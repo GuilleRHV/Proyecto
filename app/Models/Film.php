@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Game extends Model
+class Film extends Model
 
 {
     use HasFactory;
-    protected $fillable = ['nombre','plataforma','anyo'];
+    protected $fillable = ['nombre','descripcion','genero','anyo'];
 }

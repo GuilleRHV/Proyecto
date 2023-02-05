@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Game;
-class GameController extends Controller
+use App\Models\Film;
+class FilmController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,8 @@ class GameController extends Controller
     public function index()
     {
         
-        $gameList = Game::all();
-        return view('game.index',['gameList'=>$gameList]);
+        $filmList = Film::all();
+        return view('film.index',['filmList'=>$filmList]);
     }
 
     /**
@@ -39,14 +39,14 @@ class GameController extends Controller
         $request->validate([
             'nombre' => 'required|max:100',
             'descripcion' => 'required',
-            'plataforma' => 'required|not_in:0',
+            'genero' => 'required|not_in:0',
             'anyo' => 'required',
         ], [
             'nombre.required' => 'El nombre es obligatiorio',
             'descripcion.required' => 'La descripcion es obligatioria',
-            'plataforma.required' => 'El plataforma es obligatiorio',
+            'genero.required' => 'El genero es obligatiorio',
             'nombre.max' => 'El nombre no puede tener mas de 100 caracteres',
-            'plataforma.not_in' => 'El plataforma no debe ser 0'
+            'genero.not_in' => 'El genero no debe ser 0'
 
 
         ]);
@@ -65,9 +65,9 @@ class GameController extends Controller
         //METODO 2 (En el model Product se incluye):
         //protected $fillable = ['nombre', 'descripcion', 'precio'];
 
-        Game::create($request->all());
+        Film::create($request->all());
 
-        return redirect()->route('games.index')->with('juegocreado', 'juego creado correctamente');
+        return redirect()->route('films.index')->with('juegocreado', 'juego creado correctamente');
     }
 
     /**
@@ -81,12 +81,12 @@ class GameController extends Controller
          //Buscar producto
 
         //Buscar vista
-        $game = Game::find($id);
+        $film = Film::find($id);
         
 
         
             //return $product;
-            return view('game.show', ['game' => $game]);
+            return view('film.show', ['film' => $film]);
     }
 
     /**
@@ -97,8 +97,8 @@ class GameController extends Controller
      */
     public function edit($id)
     {
-        $game = Game::find($id);
-        return view('game.edit', ['game' => $game]);
+        $film = Film::find($id);
+        return view('film.edit', ['film' => $film]);
 
     }
 
@@ -114,12 +114,12 @@ class GameController extends Controller
         $request->validate([
             'nombre' => 'required|max:100',
             'descripcion' => 'required',
-            'plataforma' => 'required',
+            'genero' => 'required',
             'anyo' => 'required|not_in:0'
         ], [
             'nombre.required' => 'El nombre es obligatiorio',
             'descripcion.required' => 'La descripcion es obligatioria',
-            'plataforma.required' => 'La plataforma es obligatioria',
+            
             'nombre.max' => 'El nombre no puede tener mas de 100 caracteres',
             'anyo.not_in' => 'El anyo no debe ser 0'
 
@@ -127,16 +127,16 @@ class GameController extends Controller
         ]);
 
 
-        $game = Game::find($id);
+        $film = Film::find($id);
         //Request ingameut del formulario (name)
-        $game->nombre = $request->input('nombre');
-        $game->descripcion = $request->input('descripcion');
-        $game->plataforma = $request->input('plataforma');
-        $game->anyo = $request->input('anyo');
+        $film->nombre = $request->input('nombre');
+        $film->descripcion = $request->input('descripcion');
+        $film->genero = $request->input('genero');
+        $film->anyo = $request->input('anyo');
 
         //USAMOS EL ELOQUENT PARA GUARDAR
-        $game->save(); //Es un metodo de eloquent
-        return redirect()->route('games.index')->with('modificado', 'juego actualizado correctamente');
+        $film->save(); //Es un metodo de eloquent
+        return redirect()->route('films.index')->with('modificado', 'juego actualizado correctamente');
     }
 
     /**
@@ -147,10 +147,10 @@ class GameController extends Controller
      */
     public function destroy($id)
     {
-        $p = Game::find($id);
+        $p = Film::find($id);
         $p->delete();
 
 
-        return redirect()->route('games.index')->with('eliminado', 'juego correctamente eliminado');
+        return redirect()->route('films.index')->with('eliminado', 'juego correctamente eliminado');
     }
 }

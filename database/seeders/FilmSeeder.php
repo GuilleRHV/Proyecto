@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Game;
-class GameSeeder extends Seeder
+use App\Models\Film;
+class FilmSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -14,6 +14,6 @@ class GameSeeder extends Seeder
      */
     public function run()
     {
-        Game::factory()->count(10)->create();
+        Film::factory()->count(10)->create();
     }
 }

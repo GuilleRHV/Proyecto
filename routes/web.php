@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\FilmController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,7 +21,7 @@ Route::get('/', function () {
 */
 
 Route::resource("games",GameController::class);
-
+Route::resource("films",FilmController::class);
 
 Auth::routes();
 

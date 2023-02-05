@@ -3,23 +3,23 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\Game;
+use App\Models\Film;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Game>
  */
-class GameFactory extends Factory
+class FilmFactory extends Factory
 {
     /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
      */
-    protected $model = Game::class;
+    protected $model = Film::class;
     public function definition()
     {
         return [
             "nombre"=>$this->faker->firstName(),
-            "plataforma"=>$this->faker->lastName(),
+            "genero"=>$this->faker->lastName(),
             "descripcion"=>$this->faker->paragraph(),
             "anyo"=>$this->faker->year(),
         ];

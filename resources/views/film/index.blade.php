@@ -20,36 +20,36 @@
             <h1>Lista videojuegos</h1>
 
            <!-- @can ('create', 'App\Models\Game')-->
-            <a class="btn btn-success" href="{{ route('games.create') }}" class="btn btn">Nuevo juego</a>
+            <a class="btn btn-success" href="{{ route('films.create') }}" class="btn btn">Nuevo juego</a>
            <!-- @endcan-->
             <table class="table table-striped table-hover table-dark">
                 <tr>
                     <td>ID</td>
                     <td>NOMBRE</td>
                     <td>DESCRIPCION</td>
-                    <td>PLATAFORMA</td>
+                    <td>GENERO</td>
                     <td>AÑO DE SALIDA</td>
                 </tr>
-                 @foreach($gameList as $game)
+                 @foreach($filmList as $film)
                 <tr>
-                    <td>{{$game->id}}</td>
-                    <td>{{$game->nombre}}</td>
-                    <td>{{$game->descripcion}}</td>
-                    <td>{{$game->plataforma}}</td>
-                    <td>{{$game->anyo}}</td>
+                    <td>{{$film->id}}</td>
+                    <td>{{$film->nombre}}</td>
+                    <td>{{$film->descripcion}}</td>
+                    <td>{{$film->genero}}</td>
+                    <td>{{$film->anyo}}</td>
                     <td>
                       
-                        <a class="btn btn-warning" href="{{route('games.edit',$game->id)}}">Editar</a>
+                        <a class="btn btn-warning" href="{{route('games.edit',$film->id)}}">Editar</a>
                      
                     </td>
                     <td>
                      
-                        <a class="btn btn-primary" href="{{route('games.show',$game->id)}}">Ver</a>
+                        <a class="btn btn-primary" href="{{route('games.show',$film->id)}}">Ver</a>
                        
                     </td>
                     <td>
                        
-                        <form action="{{route('games.destroy',$game->id)}}" method="post">
+                        <form action="{{route('games.destroy',$film->id)}}" method="post">
                             @csrf
                             @method('DELETE')
                             <input type="submit" value="Borrar" class="btn btn-danger">
