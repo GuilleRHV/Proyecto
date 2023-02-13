@@ -54,8 +54,8 @@ class StudyController extends Controller
                
             ],
             [
-                "precio.required" => "El precio es obligatorio",
-                "precio.not_in" => "El precio no puede ser 0",
+                "family.required" => "El family es obligatorio",
+                "level.not_in" => "El level no puede ser 0",
                 // "precio.min"=>"El precio tieen 0",
             ]
         );
@@ -72,12 +72,15 @@ class StudyController extends Controller
             );
         }
 
-        $newproduct = Study::create($request->all());
+
+        $newstudy = Study::create($request->all());
 
         return response()->json([
             'status' => "OK",
-            "data" => $newproduct
+            "data" => $newstudy
         ], 201);
+
+        
     }
 
     /**
@@ -117,8 +120,8 @@ class StudyController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $product = Study::find($id);
-        if (!$product) {
+        $study = Study::find($id);
+        if (!$study) {
             return response()->json(
                 [
 
@@ -136,11 +139,12 @@ class StudyController extends Controller
                 'name' => 'required|max:100',
                 'code' => 'required',
                 'family' => 'required|max:100',
-                'level' => 'required',
+                'level' => 'required|regex: /[GS,GM]/'
             ],
             [
                 "precio.required" => "El precio es obligatorio",
                 "precio.not_in" => "El precio no puede ser 0",
+                "level.regex"=> "El nivel tiene que ser GS o GM"
                 // "precio.min"=>"El precio tieen 0",
             ]
         );
@@ -156,9 +160,9 @@ class StudyController extends Controller
             );
         }
 
-        $product->fill($request->all()); //Relleno con los datos el objeto
-        $product->save(); //guartdo en bbdd
-        return response()->json(['status' => 'ok', 'data' => $product], 200);
+        $study->fill($request->all()); //Relleno con los datos el objeto
+        $study->save(); //guartdo en bbdd
+        return response()->json(['status' => 'ok', 'data' => $study], 200);
     }
 
     /**

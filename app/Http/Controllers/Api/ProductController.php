@@ -113,6 +113,10 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+
+     //PUT
+     //Usar x-www-form-urlenc
     public function update(Request $request, $id)
     {
         $product = Product::find($id);
