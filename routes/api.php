@@ -1,5 +1,6 @@
 <?php
-
+//En la parte superiror:
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\StudyController;
 use App\Http\Controllers\Api\ProductController;
 use Illuminate\Http\Request;
@@ -20,6 +21,23 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 */
+
+
+
+// rutas con este prefijo: /api/auth/....
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
+    ], function ($router) {
+        Route::post('register', [AuthController::class, 'register']);
+        Route::post('login', [AuthController::class, 'login']);
+        Route::post('logout', [AuthController::class, 'logout']);
+        Route::post('refresh',  [AuthController::class, 'refresh']);
+        Route::post('me',  [AuthController::class, 'me']);
+});
+
+
+
 
 Route::get("/", function(){
     $data = ["message"=>"Bienvenido a la API"];
