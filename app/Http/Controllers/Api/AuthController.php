@@ -37,7 +37,7 @@ class AuthController extends Controller
     {
         $credentials = $request->only('email', 'password');
         try {
-            if ($token = auth()->attempt($credentials)) {
+            if ($token = auth('api')->attempt($credentials)) {
                 return $this->respondWithToken($token); //OK
             } else {
                 return response()->json(['error' => 'Credenciales inválidas'], 400);
@@ -56,20 +56,20 @@ class AuthController extends Controller
     public function logout()
     {
         // auth()->logout();
-        Auth::logout();
+        auth('api')->logout();
 
         return response()->json(['message' => 'Salió con éxito']);
     }
 
     public function me()
     {
-        return response()->json(Auth::user());
+        return response()->json(auth('api')->user());
     }
 
 
     public function refresh()
     {
-        return $this->respondWithToken(auth()->refresh());
+        return $this->respondWithToken(auth('api')->refresh());
     }
 
 
