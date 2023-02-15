@@ -48,11 +48,29 @@ class AuthController extends Controller
         }
     }
 
+
+
+
+
+
+    public function logout()
+    {
+        // auth()->logout();
+        Auth::logout();
+
+        return response()->json(['message' => 'Salió con éxito']);
+    }
+
     public function me()
     {
         return response()->json(Auth::user());
     }
 
+
+    public function refresh()
+    {
+        return $this->respondWithToken(auth()->refresh());
+    }
 
 
     protected function respondWithToken($token, $status = 200)

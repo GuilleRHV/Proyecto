@@ -16,13 +16,37 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+
     //Se deberia devolver un objeto con una propiedad 
     public function index()
     {
+        //En web
+        //$this->authorize('viewAny',Product::class);
+        //En api
+        $user = \Auth::user();
+    /*    if($user->can('viewAny',Product::class)){
+            $products = Product::all();
+            return response()->json(['status'=>'ok','data'=>$products],200);
+        }else{
+            return response()->json(['status'=>'nok','message'=>'No tiene permiso'],403);
+        }*/
+
         $products = Product::all();
 
+        if(!$user->can('viewAny',Product::class)){
+            return response()->json(['status'=>'ok','data'=>$products],200);
+        }
+            
+            return response()->json(['status'=>'nok','message'=>'No tiene permiso'],403);
+        
+        
 
-        return response()->json(['status' => 'ok', 'data' => $products], 200);
+
+        
     }
 
     /**
@@ -87,11 +111,16 @@ class ProductController extends Controller
     public function show($id)
     {
         $product = Product::find($id);
-
+        /*
+        $user = Auth::user();
+        if(!$user->can('view',Product::class)){
+            return response()->json(['status'=>'ok','data'=>$product],200);
+        }
+        */
         if (!$product) {
             return response()->json(['error' => (['code' => 404, 'message' => 'No se encuentra el producto'])], 404);
         }
-
+    //if(!$user->can('view',Product::class)){
         return response()->json(['status' => 'ok', 'data' => $product], 200);
     }
 
@@ -170,8 +199,8 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        $product = Product::find($id);
 
+        $product = Product::find($id);
         if (!$product) {
             return response()->json([
                 'status' => 'ok',
