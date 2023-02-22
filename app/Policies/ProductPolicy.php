@@ -20,7 +20,7 @@ class ProductPolicy
      
     public function viewAny(User $user)
     {
-        return false;
+        return true;
     }
 
     /**

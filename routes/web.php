@@ -14,6 +14,7 @@ use App\Http\Controllers\VideoclubController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\UserController;
 
@@ -45,6 +46,15 @@ Route::resource('products', ProductController::class);
 Route::resource('clients', ClientController::class);
 
 Route::resource('users', UserController::class);
+
+
+
+
+//AJAX***********************************************************
+Route::get('/productos/html', [ProductoController::class, "indexhtml"]);
+Route::get('/productos/json', [ProductoController::class, "indexjson"]);
+Route::resource('productos', ProductoController::class);
+/****************************************************** */
 
 /*EJERCICIO VIDEOCLUB*/
 
