@@ -14,7 +14,7 @@ class Product extends Model
     protected $fillable = ['nombre', 'descripcion', 'precio'];
 
 
-    protected function Nombre(): Attribute
+    public function Nombre(): Attribute
     {
         return new Attribute(
             fn ($value) => strtoupper($value),
