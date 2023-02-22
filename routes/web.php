@@ -17,7 +17,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\OrderController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -39,6 +39,7 @@ Route::get('/', function () {
 });
 
 
+Route::resource('orders', OrderController::class);
 
 Route::resource('products', ProductController::class);
 

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->dateTime('fecha');
             $table->text("descripcion");
-            $table->boolean("disponible");
+         //   $table->boolean("disponible");
         });
     }
 

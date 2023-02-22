@@ -40,6 +40,9 @@
                             <a class="nav-link" href="{{ route('clients.index') }}">Clientes</a>
                         </li>
                         <li class="nav-item">
+                            <a class="nav-link" href="{{ route('orders.index') }}">Orders</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('users.index') }}">Usuarios</a>
                         </li>
 

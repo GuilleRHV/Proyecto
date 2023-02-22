@@ -23,12 +23,13 @@ class OrderFactory extends Factory
     public function definition()
     {
         return [
-            "nombre"=>$this->faker->word(),
-            "fecha"=>$this->faker->dateTime(),
-            "descripcion"=>$this->faker->paragraph(),
-            "disponible"=>$this->faker->boolean(),
             "client_id"=>Client::inRandomOrder()->first()->id,
-           // "client_id"=>Client::all()->random()->id,
+            "nombre"=>$this->faker->word(),
+            "fecha"=>$this->faker->dateTime("d-m-Y"),
+            "descripcion"=>$this->faker->paragraph(),
+            //"disponible"=>$this->faker->boolean(),
+            
+        
 
 
 
