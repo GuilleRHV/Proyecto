@@ -18,6 +18,7 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProyectController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -37,7 +38,13 @@ use App\Http\Controllers\OrderController;
 Route::get('/', function () {
     return view('welcome');
 });
+//PROYECTO
 
+Route::resource('proyects', ProyectController::class);
+
+
+
+/*********************************** */
 
 Route::resource('orders', OrderController::class);
 
@@ -160,6 +167,10 @@ Route::resource('/asignaturas', AsignaturaController::class);
 /*EJERCICIO VIDEOCLUB*/
 
 //Route::get('/',[VideoclubController::class,'index']);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

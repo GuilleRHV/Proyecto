@@ -13,15 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('clients', function (Blueprint $table) {
+        Schema::create('pcgames', function (Blueprint $table) {
             $table->id();
-            $table->string('dni');
-            $table->string('nombre');
-            $table->string('apellidos');
-            $table->string('telefono');
-            $table->string('email');
+            $table->string("nombre");
+            $table->string("descripcion");
+            $table->integer("anyoLanzamiento");
+            $table->json("generos");
+            $table->json("plataformas");
             $table->timestamps();
-
         });
     }
 
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('pcgames');
     }
 };

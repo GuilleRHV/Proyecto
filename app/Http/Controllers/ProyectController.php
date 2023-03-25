@@ -3,25 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-class VideoclubController extends Controller
+use App\Models\Game;
+class ProyectController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    static $peliculas =[];
-    public function gethome()
-    {
-        //return view('home.blade.php');
-        dd("func");
-    }
     public function index()
     {
-        //
-
-        return view('videoclub.index');
+       // $this->authorize('viewAny', Client::class);
+        $gameList = Game::all();
+        return view('proyect.index', ['gameList' => $gameList]);
     }
 
     /**
@@ -29,17 +23,9 @@ class VideoclubController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-    public function login(){
-        //return view('videoclub.index');
-        dd("login");
-    }
     public function create()
     {
         //
-        
-
-        return view("videoclub.create");
     }
 
     /**
@@ -51,23 +37,6 @@ class VideoclubController extends Controller
     public function store(Request $request)
     {
         //
-       // $datos = $request->only('titulo','director');
-        $titulo = $request->input('titulo');
-        $director = $request->input('director');
-        $pelicula = [$titulo,$director];
-        self::$peliculas[]=$pelicula;
-        //dd("Titulo de la pelicula: $titulo | nombre del director: $director ");
-        $peliculas=self::$peliculas;
-      //  dd(self::$peliculas);
-        return view('videoclub.login', ['peliculas'=>$peliculas]);
-
-    }
-
-
-    public function catalog(){
-        //dd("pruieba");
-        dd(self::$peliculas);
-        dd("aa");
     }
 
     /**

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class AulaController extends Controller
+class GameController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,8 +23,10 @@ class AulaController extends Controller
      */
     public function create()
     {
-        //
+        return view("game.create");
     }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -45,7 +47,7 @@ class AulaController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
