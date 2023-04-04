@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Game;
 use Illuminate\Http\Request;
+
+use function PHPUnit\Framework\isWritable;
 
 class GameController extends Controller
 {
@@ -36,7 +39,76 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $request->validate([
+
+            "nombre" => "required",
+            "descripcion" => "required",
+            "anyoLanzamiento" => "required",
+            "generos" => "required",
+            "plataformas" => "required",
+            "precio" => "required",
+
+        ], [
+
+            "nombre.required" => "El nombre es obligatorio",
+
+            "anyoLanzamiento.required" => "El anyoLanzamiento es obligatorio",
+            "descripcion.required" => "La descripcion es obligatorio",
+            "generos.required" => "El generos es obligatorio",
+            "plataformas.required" => "El plataformas es obligatorio",
+            "precio.required" => "El precio es obligatorio"
+
+        ]);
+        $game = new Game();
+
+        $game->nombre = $request->input("nombre");
+        $game->descripcion = $request->input("descripcion");
+        $game->anyoLanzamiento = $request->input("anyoLanzamiento");
+        $generosarray = [];
+        $generos = $request->input("generos", []);
+
+        $game->generos = $generos;
+        $plataformas = $request->input("plataformas", []);
+        $game->plataformas = $plataformas;
+        $game->precio = $request->input("precio");
+
+        //****GUARDAR IMAGEN */
+
+        //   $imagen = $request->file("imagenjuego");
+
+        //$rutaimagen = $imagen->store("public/imagenes");
+
+        //  $contenidoimagen = file_get_contents($imagen);
+
+
+
+        //IMAGEN
+        $imagen = $request->file("imagenjuego");
+
+        $nombreimagen = basename($_FILES["imagenjuego"]["name"]);
+        $rutaimagen = $imagen->store("imagenes");
+
+
+        $rutaalternativa = "../public/imagenes/";
+
+        $rutacompleta = $rutaalternativa . $nombreimagen;
+        $game->imagen = $rutaimagen;
+
+        $game->save();
+        $rutaimagen = $imagen->store("public/imagenes");
+        $rutaimagen = "/" . $rutaimagen;
+
+        if (move_uploaded_file($_FILES['imagenjuego']['tmp_name'], $rutacompleta)) {
+
+            if (rename($rutacompleta, "../" . $rutaimagen)) {
+                return redirect()->route('proyects.index')->with('adminexito', 'administrador creado correctamente');
+            }
+        } else {
+            dd("No conseguido");
+        }
+
+        return redirect()->route('proyects.index')->with('adminexito', 'administrador creado correctamente');
     }
 
     /**
@@ -47,7 +119,6 @@ class GameController extends Controller
      */
     public function show($id)
     {
-        
     }
 
     /**

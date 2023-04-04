@@ -16,16 +16,18 @@
 
 
             <h1>Proyecto index</h1>
+          
+            <a class="btn btn-success" href="{{ route('games.create') }}" class="btn btn">Nuevo juego</a>
 
-            <a class="btn btn-success" href="{{ route('proyects.create') }}" class="btn btn">Nuevo producto</a>
-
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover" style="display: flex;align-items:center;">
                 <tr>
                     <td>NOMBRE</td>
                     <td>DESCRIPCION</td>
                     <td>AÑO DE LANZAMIENTO</td>
                     <td>GENEROS</td>
                     <td>PLATAFORMAS</td>
+                    <td>PRECIO</td>
+                    <td>IMAGEN</td>
                 </tr>
                 @foreach($gameList as $game)
                 <tr>
@@ -43,10 +45,15 @@
                         {{$gen1}}
                         @endforeach
                     </td>
+                    <td>{{$game->precio}} euros</td>
+                    <td>
+                        
+                    <img src="{{$game->imagen}}"/></td>
 
 
                 </tr>
                 @endforeach
+               
             </table>
 
         </div>

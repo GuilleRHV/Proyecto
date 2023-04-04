@@ -16,6 +16,7 @@ use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\GameController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProyectController;
@@ -41,7 +42,7 @@ Route::get('/', function () {
 //PROYECTO
 
 Route::resource('proyects', ProyectController::class);
-
+Route::resource('games', GameController::class);
 
 
 /*********************************** */

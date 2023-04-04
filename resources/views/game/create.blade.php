@@ -21,7 +21,7 @@
 
 
 
-            <form action="{{route('games.store')}}" method="post">
+            <form action="{{route('games.store')}}" method="post" enctype="multipart/form-data">
                 @csrf
 
 
@@ -37,11 +37,69 @@
                     <input type="text" name="descripcion" id="descripcion" class="form-control" placeholder="Descripcion">
                     </label>
                 </div>
+                <div class="form-group">
+                    <label for="anyoLanzamiento">anyoLanzamiento</label>
+                    <input type="text" name="anyoLanzamiento" id="anyoLanzamiento" class="form-control" placeholder="año de lanzamiento">
+                    </label>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="precio">Generos</label><br>
+                    <select name="generos[]" multiple>
+                        <option value="accion">accion</option>
+                        <option value="aventura">aventura</option>
+                        <option value="rpg">rpg</option>
+                        <option value="misterio">misterio</option>
+                        <option value="pelieas">pelieas</option>
+                        <option value="puzles">puzles</option>
+                        <option value="metroivania">metroivania</option>
+                        <option value="arcade">arcade</option>
+                        <option value="simulacion">simulacion</option>
+                        <option value="musica">musica</option>
+                        <option value="estrategia">estrategia</option>
+                        <option value="historia">historia</option>
+                    </select>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="precio">Plataformas</label><br>
+                    <select name="plataformas[]" multiple>
+                        <option value="pc">pc</option>
+                        <option value="ps1">ps1</option>
+                        <option value="ps2">ps2</option>
+                        <option value="ps3">ps3</option>
+                        <option value="ps4">ps4</option>
+                        <option value="ps5">ps5</option>
+                        <option value="xbox">xbox</option>
+                        <option value="xbox360">xbox360</option>
+                        <option value="xboxone">xboxone</option>
+                        <option value="xboxseriesx">xboxseriesx</option>
+                        <option value="nintendo64">nintendo64</option>
+                        <option value="gameboy">gameboy</option>
+                        <option value="nintendods">nintendo ds</option>
+                        <option value="nintendo3ds">nintendo 3ds</option>
+                        <option value="wii">wii</option>
+                        <option value="wiiu">wiiu</option>
+                        <option value="nintendoswitch">nintendo switch</option>
+                    </select>
+
+                </div>
+
+
+
+
 
                 <div class="form-group">
                     <label for="precio">Precio</label>
                     <input type="text" name="precio" id="precio" class="form-control" placeholder="Precio">
                     </label>
+                </div>
+
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Imagen del videojuego</label>
+                    <input class="form-control" type="file" id="imagenjuego" name="imagenjuego">
                 </div>
 
 
