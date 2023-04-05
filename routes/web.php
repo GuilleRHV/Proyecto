@@ -43,7 +43,8 @@ Route::get('/', function () {
 
 Route::resource('proyects', ProyectController::class);
 Route::resource('games', GameController::class);
-
+Route::get('/proyects/games/indexPc',[GameController::class,'indexPc'])->name('games.indexPc');
+Route::get('/proyects/games/showPc',[GameController::class,'showPc'])->name('games.showPc');
 
 /*********************************** */
 

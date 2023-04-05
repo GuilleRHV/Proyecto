@@ -32,7 +32,7 @@
                     <td>PRECIO</td>
                     <td>IMAGEN</td>
                 </tr>
-                @foreach($gameList as $game)
+                @foreach($juegospc as $game)
                 <tr>
 
                     <td>{{$game->nombre}}</td>
@@ -51,10 +51,11 @@
                     <td>{{$game->precio}} euros</td>
                     <td>
                         @if($game->imagen==null)
-                        <img src="imagenes/filenotfound.png" width="200px" height="250px">
+                        <img src="../../imagenes/filenotfound.png" width="200px" height="250px">
                 
                         @else
-                    <img src="{{$game->imagen}}"/>
+                    
+                        <img src="{{'../../'. $game->imagen}}"/>
                
                         @endif</td>
 

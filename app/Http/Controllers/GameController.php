@@ -119,6 +119,11 @@ class GameController extends Controller
      */
     public function show($id)
     {
+        $game = Game::find($id);
+        
+ 
+   
+        return view('game.show', ['game' => $game]);
     }
 
     /**
@@ -141,7 +146,7 @@ class GameController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        dd("updating");
     }
 
     /**
@@ -153,5 +158,19 @@ class GameController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function indexPc(){
+       
+        $games = Game::all();
+        $juegospc = [];
+
+        foreach($games as $game){
+            if(in_array("PC", $game->plataformas)){
+                $juegospc[]= $game;
+            }
+        }
+      
+        return view('game.indexpc', ['juegospc' => $juegospc]);
     }
 }

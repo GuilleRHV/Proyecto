@@ -66,7 +66,7 @@
                 <div class="form-group">
                     <label for="precio">Plataformas</label><br>
                     <select name="plataformas[]" multiple>
-                        <option value="pc">pc</option>
+                        <option value="PC">pc</option>
                         <option value="ps1">ps1</option>
                         <option value="ps2">ps2</option>
                         <option value="ps3">ps3</option>
