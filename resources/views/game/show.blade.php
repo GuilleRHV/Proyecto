@@ -8,7 +8,7 @@
         <div class="col-md-10">
             <h1>{{ $game->nombre ?? '' }}</h1>
             <h2>Imagen :  public/{{$game->imagen}}</h2>
-          {{ __DIR__ }}
+          
             <img src="public/imagenes/filenotfound.png" width="300px" height="370px">
 
             
