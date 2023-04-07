@@ -16,7 +16,7 @@
 
 
             <h1>Proyecto index</h1>
-          
+
             <a class="btn btn-success" href="{{ route('games.create') }}" class="btn btn">Nuevo juego</a>
 
             <a class="btn btn-warning" href="{{ route('games.indexPc') }}" class="btn btn">JUEGOS DE PC</a>
@@ -52,16 +52,17 @@
                     <td>
                         @if($game->imagen==null)
                         <img src="../../imagenes/filenotfound.png" width="200px" height="250px">
-                
-                        @else
-                    
-                        <img src="{{'../../'. $game->imagen}}"/>
-               
-                        @endif</td>
 
+                        @else
+
+                        <img src="{{'../../'. $game->imagen}}" />
+
+                        @endif
+                    </td>
+                    <td> <a class="btn btn-warning" href="{{ route('games.show',$game->id) }}" class="btn btn">Ver juego</a></td>
                 </tr>
                 @endforeach
-               
+
             </table>
 
         </div>

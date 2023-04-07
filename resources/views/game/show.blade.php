@@ -7,14 +7,16 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <h1>{{ $game->nombre ?? '' }}</h1>
-            <h2>Imagen :  public/{{$game->imagen}}</h2>
-          
-            <img src="public/imagenes/filenotfound.png" width="300px" height="370px">
 
-            
-            <img src="{{$game->imagen}}" width="300px" height="370px" />
 
-            
+            @if($game->imagen==null)
+            <img src="../imagenes/filenotfound.png" width="400px" height="500px">
+
+            @else
+            <img src="../{{$game->imagen}}" width="400px" height="500px" />
+
+            @endif
+
 
             @if($message = Session::get('tratamientoeliminado'))
             <div class="alert alert-success">
@@ -42,11 +44,19 @@
             <div class="form-group">
                 <label for="generos" class="col-form-label" style="font-weight:600;font-size:17px">Generos</label><br>
                 @foreach($game->generos as $g)
-                <label for="generos" class="col-form-label">{{ $g->generos ?? '' }}</label>
+                <label for="generos" class="col-form-label">{{ $g ?? '' }}</label><br>
                 @endforeach
 
             </div>
 
+            <div class="form-group">
+                <label for="plataformas" class="col-form-label" style="font-weight:600;font-size:17px">Plataformas</label><br>
+                @foreach($game->plataformas as $p)
+                <label for="plataformas" class="col-form-label">{{ $p ?? '' }}</label><br>
+                @endforeach
+
+            </div>
+            
 
             <hr>
 
@@ -84,6 +94,9 @@
                     <p class="card-text">{{$c->contenido}}</p>
                 </div>
             </div>
+
+            
+            <input type="submit" value="Responder" class="btn btn-warning">
             <br>
             @endforeach
             @endif
