@@ -15,6 +15,7 @@
 
 
 
+            {{ __DIR__ }}
             <h1>Proyecto index</h1>
           
             <a class="btn btn-success" href="{{ route('games.create') }}" class="btn btn">Nuevo juego</a>
@@ -57,6 +58,8 @@
                     <img src="{{$game->imagen}}"/>
                
                         @endif</td>
+
+                        <td> <a class="btn btn-warning" href="{{ route('games.show',$game->id) }}" class="btn btn">Ver juego</a></td>
 
                 </tr>
                 @endforeach

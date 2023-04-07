@@ -16,6 +16,7 @@ use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
@@ -41,10 +42,14 @@ Route::get('/', function () {
 });
 //PROYECTO
 
+Route::post('/proyects/games/{game_id}/{user_id}',[ComentarioController::class,'store'])->name('comentarios.store');
 Route::resource('proyects', ProyectController::class);
 Route::resource('games', GameController::class);
+//Route::resource('comentarios', ComentarioController::class);
 Route::get('/proyects/games/indexPc',[GameController::class,'indexPc'])->name('games.indexPc');
 Route::get('/proyects/games/showPc',[GameController::class,'showPc'])->name('games.showPc');
+
+
 
 /*********************************** */
 

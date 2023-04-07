@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
+use App\Models\Comentario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use function PHPUnit\Framework\isWritable;
 
@@ -120,10 +122,30 @@ class GameController extends Controller
     public function show($id)
     {
         $game = Game::find($id);
-        
- 
-   
-        return view('game.show', ['game' => $game]);
+
+        $user = Auth::user();
+
+        if ($user == null) {
+            $user = "No eres un usuario";
+        }
+
+        $comentarios = Comentario::all();
+        if ($comentarios->count() == 0) {
+            $comentarios = null;
+        }
+
+
+        $arraycomentarios = [];
+        foreach ($comentarios as $comentario) {
+            if ($comentario->juego_id == $game->id) {
+                $arraycomentarios[]=$comentario;
+            }
+        }
+        if(count($arraycomentarios)==0) {
+            $arraycomentarios = [];
+        }
+
+        return view('game.show', ['game' => $game, 'user' => $user, 'comentarios' => $arraycomentarios]);
     }
 
     /**
@@ -160,17 +182,18 @@ class GameController extends Controller
         //
     }
 
-    public function indexPc(){
-       
+    public function indexPc()
+    {
+
         $games = Game::all();
         $juegospc = [];
 
-        foreach($games as $game){
-            if(in_array("PC", $game->plataformas)){
-                $juegospc[]= $game;
+        foreach ($games as $game) {
+            if (in_array("PC", $game->plataformas)) {
+                $juegospc[] = $game;
             }
         }
-      
+
         return view('game.indexpc', ['juegospc' => $juegospc]);
     }
 }
