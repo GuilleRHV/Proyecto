@@ -63,8 +63,8 @@ class GameController extends Controller
 
         ]);
         $game = new Game();
-
-        $game->nombre = $request->input("nombre");
+        $nombreMayus = ucfirst($request->input("nombre"));
+        $game->nombre = $nombreMayus;
         $game->descripcion = $request->input("descripcion");
         $game->anyoLanzamiento = $request->input("anyoLanzamiento");
         $generosarray = [];
@@ -86,8 +86,9 @@ class GameController extends Controller
 
 
         //IMAGEN
-        $imagen = $request->file("imagenjuego");
 
+        $imagen = $request->file("imagenjuego");
+        if($imagen!=null){
         $nombreimagen = basename($_FILES["imagenjuego"]["name"]);
         $rutaimagen = $imagen->store("imagenes");
 
@@ -96,8 +97,10 @@ class GameController extends Controller
 
         $rutacompleta = $rutaalternativa . $nombreimagen;
         $game->imagen = $rutaimagen;
+        }
 
         $game->save();
+        if($imagen!=null){
         $rutaimagen = $imagen->store("public/imagenes");
         $rutaimagen = "/" . $rutaimagen;
 
@@ -109,6 +112,7 @@ class GameController extends Controller
         } else {
             dd("No conseguido");
         }
+    }
 
         return redirect()->route('proyects.index')->with('adminexito', 'administrador creado correctamente');
     }

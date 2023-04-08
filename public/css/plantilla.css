@@ -14,7 +14,9 @@
 
 #imagenjuegoshow {
   
-   
-  
+    left: 15%;
+    position: relative;
+    width: 70vh;
+    height: 70vh;
  
 }

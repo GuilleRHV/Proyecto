@@ -23,6 +23,11 @@
             <a class="btn btn-warning" href="{{ route('games.indexPc') }}" class="btn btn">JUEGOS DE PC</a>
 
 
+            <form action="{{ route('proyects.indexNombre',['orden'=>'nombre']) }}" method="post">
+                @csrf
+            <input  type="submit" class="btn btn-warning" value="Ordenar por nombre"></input>
+            </form>
+          
             <table class="table table-striped table-hover" style="display: flex;align-items:center;">
                 <tr>
                     <td>NOMBRE</td>

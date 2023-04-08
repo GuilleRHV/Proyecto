@@ -15,8 +15,27 @@ class ProyectController extends Controller
     {
        // $this->authorize('viewAny', Client::class);
         $gameList = Game::all();
+       
         return view('proyect.index', ['gameList' => $gameList]);
     }
+    
+
+
+
+    
+
+    public function indexNombre($orden)
+    {
+        
+       // $this->authorize('viewAny', Client::class);
+       // $gameList = Game::all();
+       $gameList = Game::all()->sort(function($a,$b){
+        return strcmp($a->nombre, $b->nombre);
+       });
+        return view('proyect.index', ['gameList' => $gameList]);
+    }
+
+
 
     /**
      * Show the form for creating a new resource.
