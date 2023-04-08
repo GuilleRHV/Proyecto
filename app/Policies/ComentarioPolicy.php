@@ -3,6 +3,8 @@
 namespace App\Policies;
 
 use App\Models\User;
+
+use App\Models\Game;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ComentarioPolicy
@@ -17,8 +19,12 @@ class ComentarioPolicy
 
 
 
-    public function viewComentario(User $user)
+    public function viewComentario(User $user, Game $game)
     {
         
+    }
+
+    public function escribirComentarios(User $user){
+       return true;
     }
 }

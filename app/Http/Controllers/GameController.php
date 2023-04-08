@@ -125,10 +125,13 @@ class GameController extends Controller
      */
     public function show($id)
     {
+        
         $game = Game::find($id);
 
         $user = Auth::user();
 
+        
+        
         if ($user == null) {
             $user = "No eres un usuario";
         }
