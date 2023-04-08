@@ -1,9 +1,20 @@
-
-
-#navbaradmin{
-    position: absolute; 
-    background-color: grey !important; 
-    width: 20%; 
+#navbaradmin {
+    position: absolute;
+    background-color: grey !important;
+    width: 20%;
     border: 1px solid black !important;
     border-radius: 5% 5% 5% 5%;
+}
+
+/**SHOW**/
+#titulogameshow {
+    text-align: center !important;
+}
+
+
+#imagenjuegoshow {
+  
+   
+  
+ 
 }

@@ -136,11 +136,13 @@ class GameController extends Controller
 
 
         $arraycomentarios = [];
+        if(!$comentarios==null){
         foreach ($comentarios as $comentario) {
             if ($comentario->juego_id == $game->id) {
                 $arraycomentarios[]=$comentario;
             }
         }
+    }
         if(count($arraycomentarios)==0) {
             $arraycomentarios = [];
         }

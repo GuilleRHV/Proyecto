@@ -43,6 +43,7 @@ Route::get('/', function () {
 //PROYECTO
 
 Route::post('/proyects/games/{game_id}/{user_id}',[ComentarioController::class,'store'])->name('comentarios.store');
+Route::post('/proyects/games/{game_id}/{user_id}/{comentario}',[ComentarioController::class,'responder'])->name('comentarios.responder');
 Route::resource('proyects', ProyectController::class);
 Route::resource('games', GameController::class);
 //Route::resource('comentarios', ComentarioController::class);

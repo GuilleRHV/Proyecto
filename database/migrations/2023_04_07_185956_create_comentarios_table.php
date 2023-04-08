@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger("user_id")->nullable();
             $table->unsignedBigInteger("juego_id")->nullable();
             $table->biginteger("comentario_id");
+            $table->unsignedBigInteger("padre_id")->nullable();
             $table->text("contenido");
 
          

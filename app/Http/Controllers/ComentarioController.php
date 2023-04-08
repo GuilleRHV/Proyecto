@@ -55,6 +55,26 @@ class ComentarioController extends Controller
         
     }
 
+    public function responder(Request $request,$game_id,$user_id,Comentario $comentario){
+        //dd("Ha llegado");
+        $respuestacomentario = new Comentario();
+        $respuestacomentario->user_id = $user_id;
+        $respuestacomentario->juego_id = $game_id;
+        $respuestacomentario->contenido = $request->input("contenidocomentario");
+
+        $contComentariosEnEsteJuego = 1;
+        $allComments = Comentario::all();
+        foreach($allComments as $comment){
+            if($comment->user_id == $user_id){
+            $contComentariosEnEsteJuego++;
+            }
+        }
+        $respuestacomentario->comentario_id = $contComentariosEnEsteJuego;
+        $respuestacomentario->padre()->associate($comentario);
+        //$comentario->hijos()->associate($respuestacomentario);
+        $respuestacomentario->save();
+    }
+
     /**
      * Display the specified resource.
      *

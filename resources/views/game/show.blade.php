@@ -5,16 +5,17 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-10">
-            <h1>{{ $game->nombre ?? '' }}</h1>
+        <div class="col-md-8">
+            <h1 id="titulogameshow">{{ $game->nombre ?? '' }}</h1>
 
 
             @if($game->imagen==null)
-            <img src="../imagenes/filenotfound.png" width="400px" height="500px">
+            <div id="contenedorimagenshow">
+            <img src="../imagenes/filenotfound.png" id="imagenjuegoshow">
 
             @else
-            <img src="../{{$game->imagen}}" width="400px" height="500px" />
-
+            <img src="../{{$game->imagen}}"  id="imagenjuegoshow" />
+            </div>
             @endif
 
 
@@ -56,7 +57,7 @@
                 @endforeach
 
             </div>
-            
+
 
             <hr>
 
@@ -73,37 +74,80 @@
                 <div class="card card-white post">
                     <div class="post-heading">
 
-                        <input type="text" name="contenidocomentario" id="">
+                    <div class="form-group">
+                    <label for="">Escribir un comentario</label>
+                    <textarea class="form-control" rows="3" name="contenidocomentario"></textarea>
+                </div>
                         <input type="submit" value="Crear comentario" class="btn btn-success">
                     </div>
 
                 </div>
             </form>
+            <a href="{{route('proyects.index')}}" class="btn btn-warning" style="width: 100px !important; top:0 !important">Home</a>
             @endif
 
 
 
 
 
-            @if($comentarios!=null)
-            @foreach($comentarios as $c)
-            <div class="card w-75">
-                <div class="card-body">
-                    <h5 class="card-title">{{$c->usuario->name}}</h5>
-                    <h6>{{$c->updated_at}}</h6>
-                    <p class="card-text">{{$c->contenido}}</p>
+            @if($comentarios!=null && Auth::check())
+            @foreach($comentarios as $comentario)
+
+            @if($comentario->padre_id==null)
+            <form action="{{route('comentarios.responder',['game_id'=>$game->id,'user_id'=>$user->id,'comentario'=>$comentario])}}" method="post">
+                @csrf
+                <div class="card w-75">
+                    <div class="card-body" style="background-color: grey; border-radius: 1em 1em 1em 1em">
+                        <h5 class="card-title">{{$comentario->usuario->name}}</h5>
+                        <h6>{{$comentario->updated_at}}</h6>
+                        <p class="card-text">{{$comentario->contenido}}</p>
+                    </div>
                 </div>
-            </div>
 
-            
-            <input type="submit" value="Responder" class="btn btn-warning">
-            <br>
-            @endforeach
-            @endif
+                <div class="form-group">
+                    <label for="">Responder al comentario</label>
+                    <textarea class="form-control" rows="2" name="contenidocomentario"></textarea>
+                </div>
+               
+                <input type="submit" value="Responder" class="btn btn-warning">
+            </form>
+            @if($comentario->hijos->isEmpty()==false)
+            <h4>Respuestas</h4>
+
+
+            <button class="btn btn-danger esconder" onclick="escondercomentarios('padre{{$comentario->id}}')">Esconder comentarios</button>
+            <span class="glyphicon glyphicon-chevron-down"></span>
+            <span class="glyphicon glyphicon-pencil">
+                @foreach($comentario->hijos as $hijo)
+
+                <div class="card w-75 subcomentarios{{$hijo->padre_id}}" style="width: 300px !important; display:none">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ \App\Models\User::find($hijo->user_id)->name}}</h5>
+                        <h6>{{$hijo->updated_at}}</h6>
+                        <p class="card-text">{{$hijo->contenido}}</p>
+                    </div>
+                </div>
+                @endforeach
+                @endif
 
 
 
-            <a href="{{route('games.show',$game->id)}}" class="btn btn-warning">Editar</a>
+                <!--Fin subcomentario-->
+                <hr>
+                @endif
+
+
+
+                <br>
+                @endforeach
+                @endif
+
+
+
+
+
+
+                
 
 
 
