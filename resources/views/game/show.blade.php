@@ -73,16 +73,22 @@
                 @csrf
                 <div class="card card-white post">
                     <div class="post-heading">
+                        @if(auth()->user()->can('escribirComentarios',['App\Models\Comentario',$game]))
 
                         <div class="form-group">
                             <label for="">Escribir un comentario</label>
                             <textarea class="form-control" rows="3" name="contenidocomentario"></textarea>
                         </div>
 
-                        @can('escribirComentarios','App\Models\User')
-                        <input type="submit" value="Crear comentario" class="btn btn-success">
-                        @endcan
 
+                        <input type="submit" value="Crear comentario" class="btn btn-success">
+
+                        @else
+
+                        <div class="alert alert-danger">
+                            <h4>Para evitar el spam, solo puedes crear 6 comentarios por juego <br>(incluidas respuestas)</h4>
+                        </div>
+                        @endif
                     </div>
 
                 </div>
@@ -119,7 +125,7 @@
             <h4>Respuestas</h4>
 
 
-            <button class="btn btn-danger esconder" onclick="escondercomentarios('padre{{$comentario->id}}')">Esconder comentarios</button>
+            <button class="btn btn-danger esconder" id="esconder{{$comentario->id}}" onclick="escondercomentarios('padre{{$comentario->id}}',this.id)">Mostrar respuestas</button>
             <span class="glyphicon glyphicon-chevron-down"></span>
             <span class="glyphicon glyphicon-pencil">
                 @foreach($comentario->hijos as $hijo)
@@ -156,46 +162,46 @@
                 @foreach($comentarios as $comentario)
 
                 @if($comentario->padre_id==null)
-                    <div class="card w-75">
-                        <div class="card-body" style="background-color: grey; border-radius: 1em 1em 1em 1em">
-                            <h5 class="card-title">{{$comentario->usuario->name}}</h5>
-                            <h6>{{$comentario->updated_at}}</h6>
-                            <p class="card-text">{{$comentario->contenido}}</p>
-                        </div>
+                <div class="card w-75">
+                    <div class="card-body" style="background-color: grey; border-radius: 1em 1em 1em 1em">
+                        <h5 class="card-title">{{$comentario->usuario->name}}</h5>
+                        <h6>{{$comentario->updated_at}}</h6>
+                        <p class="card-text">{{$comentario->contenido}}</p>
                     </div>
+                </div>
 
-                    
 
-            
+
+
                 @if($comentario->hijos->isEmpty()==false)
                 <h4>Respuestas</h4>
 
 
                 <button class="btn btn-danger esconder" onclick="escondercomentarios('padre{{$comentario->id}}')">Esconder comentarios</button>
-                
-                    @foreach($comentario->hijos as $hijo)
 
-                    <div class="card w-75 subcomentarios{{$hijo->padre_id}}" style="width: 300px !important; display:none">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ \App\Models\User::find($hijo->user_id)->name}}</h5>
-                            <h6>{{$hijo->updated_at}}</h6>
-                            <p class="card-text">{{$hijo->contenido}}</p>
-                        </div>
+                @foreach($comentario->hijos as $hijo)
+
+                <div class="card w-75 subcomentarios{{$hijo->padre_id}}" style="width: 300px !important; display:none">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ \App\Models\User::find($hijo->user_id)->name}}</h5>
+                        <h6>{{$hijo->updated_at}}</h6>
+                        <p class="card-text">{{$hijo->contenido}}</p>
                     </div>
-                    @endforeach
-                    @endif
+                </div>
+                @endforeach
+                @endif
 
 
 
-                    <!--Fin subcomentario-->
-                    <hr>
-                    @endif
+                <!--Fin subcomentario-->
+                <hr>
+                @endif
 
 
 
-                    <br>
-                    @endforeach
-                    @endif
+                <br>
+                @endforeach
+                @endif
 
 
 
