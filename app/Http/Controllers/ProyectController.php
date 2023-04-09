@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Game;
+
 class ProyectController extends Controller
 {
     /**
@@ -11,27 +12,40 @@ class ProyectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-       // $this->authorize('viewAny', Client::class);
-        $gameList = Game::all();
-       
-        return view('proyect.index', ['gameList' => $gameList]);
+        // $this->authorize('viewAny', Client::class);
+        $ordenarnombre = $request->get('orden');
+        
+        if ($ordenarnombre != null) {
+            dd($ordenarnombre);
+
+       /*     $gameList = Game::all()->sort(function ($a, $b) {
+                return strcmp($a->nombre, $b->nombre);
+            });
+            return view('proyect.index', ['gameList' => $gameList]);*/
+        } else {
+            
+
+            $gameList = Game::all();
+
+            return view('proyect.index', ['gameList' => $gameList]);
+        }
     }
-    
 
 
 
-    
+
+
 
     public function indexNombre($orden)
     {
-        
-       // $this->authorize('viewAny', Client::class);
-       // $gameList = Game::all();
-       $gameList = Game::all()->sort(function($a,$b){
-        return strcmp($a->nombre, $b->nombre);
-       });
+
+        // $this->authorize('viewAny', Client::class);
+        // $gameList = Game::all();
+        $gameList = Game::all()->sort(function ($a, $b) {
+            return strcmp($a->nombre, $b->nombre);
+        });
         return view('proyect.index', ['gameList' => $gameList]);
     }
 
