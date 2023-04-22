@@ -24,7 +24,10 @@
 
             <a class="btn btn-warning" href="#" class="btn btn" onclick="a()" id="ordenarpor">ordenar por nombre</a>
             
-          
+            <a class="btn btn-warning" href="{{ route('proyects.verMiBiblioteca',['user'=>Auth::user()]) }}" class="btn btn">Mi biblioteca</a>
+
+
+
             <table class="table table-striped table-hover" style="display: flex;align-items:center;" id="contenedorGames">
                 <tr>
                     <td>NOMBRE</td>
@@ -63,6 +66,10 @@
 
                         <td> <a class="btn btn-warning" href="{{ route('games.show',$game->id) }}" class="btn btn">Ver juego</a></td>
 
+                        @if(auth()->user()->can('agregarABiblioteca',['App\Models\Game',$game]))
+                        <td> <a class="btn btn-success" href="{{ route('games.show',$game->id) }}" class="btn btn">+</a></td>
+                        <form action="{{route('comentarios.store',['game_id'=>$game->id,'user_id'=>$user->id])}}" method="post">
+                        @endif
                 </tr>
                 @endforeach
                

@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Game;
-
+Use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 class ProyectController extends Controller
 {
     /**
@@ -12,10 +13,10 @@ class ProyectController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         // $this->authorize('viewAny', Client::class);
-        $ordenarnombre = $request->get('orden');
+       /* $ordenarnombre = $request->get('orden');
         
         if ($ordenarnombre != null) {
             dd($ordenarnombre);
@@ -24,13 +25,29 @@ class ProyectController extends Controller
                 return strcmp($a->nombre, $b->nombre);
             });
             return view('proyect.index', ['gameList' => $gameList]);*/
-        } else {
+      //  } else {*/
             
-
+            $user = Auth::user();
             $gameList = Game::all();
 
-            return view('proyect.index', ['gameList' => $gameList]);
+            return view('proyect.index', ['gameList' => $gameList,'user'=>$user]);
+        //}
+    }
+
+
+    public function verMiBiblioteca(User $user){
+        //Solo puedes actuar sobre tu usuario
+        //dd("USER RECIBIDO ". $user->name  . "USER REAL TUYO: ".Auth::user()->name);
+        $user = User::find($user->id);
+        $userComprobacion = Auth::user();
+        if ($user->email!=$userComprobacion->email || $user->password!=$userComprobacion->password){
+            $gameList = Game::all();
+            $user = Auth::user();
+            return redirect('proyect.index', ['gameList' => $gameList,'user'=>$user]);
         }
+        dd("ok");
+       // dd("AUTH USER: ".Auth::user()->email );
+        
     }
 
 

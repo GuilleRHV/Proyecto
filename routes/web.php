@@ -44,7 +44,9 @@ Route::get('/', function () {
 Route::post('/proyects/{orden}',[ProyectController::class,'indexNombre'])->name('proyects.indexNombre');
 Route::post('/proyects/games/{game_id}/{user_id}',[ComentarioController::class,'store'])->name('comentarios.store');
 Route::post('/proyects/games/{game_id}/{user_id}/{comentario}',[ComentarioController::class,'responder'])->name('comentarios.responder');
+Route::get('/proyects/verMiBiblioteca/{user}',[ProyectController::class,'verMiBiblioteca'])->name('proyects.verMiBiblioteca');
 Route::resource('proyects', ProyectController::class);
+
 Route::resource('games', GameController::class);
 //Route::resource('comentarios', ComentarioController::class);
 Route::get('/proyects/games/indexPc',[GameController::class,'indexPc'])->name('games.indexPc');
