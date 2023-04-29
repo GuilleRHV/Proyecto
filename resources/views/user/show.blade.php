@@ -16,13 +16,13 @@
                     </div>
 
                     <div class="form-group">
-                    <label for="descripcion" class="col-form-label" style="font-weight:600;font-size:17px">email</label><br>
+                    <label for="email" class="col-form-label" style="font-weight:600;font-size:17px">email</label><br>
                     <label for="email" class="col-form-label">{{ $user->email ?? '' }}</label>
                     </div>
 
                     <div class="form-group">
-                    <label for="descripcion" class="col-form-label" style="font-weight:600;font-size:17px">password</label><br>
-                    <label for="password" class="col-form-label">{{ $user->password ?? '' }}</label>
+                    <label for="rol" class="col-form-label" style="font-weight:600;font-size:17px">rol</label><br>
+                    <label for="rol" class="col-form-label">{{ $user->rol ?? '' }}</label>
                     </div>
                    
                         

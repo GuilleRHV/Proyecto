@@ -46,15 +46,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+        
+
+
         $request->validate([
 
             
-            "nombre" => "required",
+            "name" => "required",
             
-            "email" => "required"
+            "email" => "required",
+            "password" => "required"
         ], [
             
-            "nombre.required" => "El nombre es obvligatorio",
+            "name.required" => "El nombre es obvligatorio",
             
             "email.required" => "El email es obvligatorio"
 
@@ -62,8 +66,10 @@ class UserController extends Controller
         $usuario = new User;
         $usuario->name=$request->input('name');
         $usuario->email=$request->input('email');
-        $usuario->password=Hash::make([$request->input('password')]);
+        $usuario->password=Hash::make($request->input('password'));
+        $usuario->rol=$request->input('rol');
         $usuario->save();
+       
        
 
        // 'password' => Hash::make($data['password']),

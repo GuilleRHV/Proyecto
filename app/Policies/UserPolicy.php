@@ -40,12 +40,23 @@ class UserPolicy
      */
     public function create(User $user)
     {
-        if($user->id=="1"){
+        if($user->rol=="administrador"){
             return true;
         }else{
             return false;
         }
     }
+
+
+    public function permisosAdmin(User $user)
+    {
+        if($user->rol=="administrador"){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
 
     /**
      * Determine whether the user can update the model.
@@ -56,7 +67,7 @@ class UserPolicy
      */
     public function update(User $user, User $model)
     {
-        if($user->id == "1"){
+        if($user->rol=="administrador"){
             return true;
         }
 
@@ -77,7 +88,7 @@ class UserPolicy
      */
     public function delete(User $user, User $model)
     {
-        if($user->id=="1"){
+        if($user->rol=="administrador"){
             return true;
         }else{
             return false;

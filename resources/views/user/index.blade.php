@@ -22,7 +22,7 @@
                     <td>nombre</td>
 
                     <td>email</td>
-                    <td>password</td>
+                    <td>rol</td>
                 </tr>
                 @foreach($userList as $user)
                 <tr>
@@ -30,7 +30,7 @@
                     <td>{{$user->name}}</td>
 
                     <td>{{$user->email}}</td>
-                    <td>{{$user->password}}</td>
+                    <td>{{$user->rol}}</td>
                     <td>
                         @can ('update', $user)
                         <a class="btn btn-warning" href="{{route('users.edit',$user->id)}}">Editar</a>

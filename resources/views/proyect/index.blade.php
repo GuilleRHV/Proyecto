@@ -2,87 +2,93 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            @if($message = Session::get('productocreado'))
-            <div class="alert alert-success">
-                <h4>{{$message}}</h4>
-            </div>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      @if($message = Session::get('productocreado'))
+      <div class="alert alert-success">
+        <h4>{{$message}}</h4>
+      </div>
+      @endif
+
+
+
+
+
+
+
+      <h1>Proyecto index</h1>
+      @if($user!=null)
+@if(auth()->user()->can('permisosAdmin',['App\Models\User',$user]))
+      <a class="btn btn-success" href="{{ route('games.create') }}" class="btn btn">Nuevo juego</a>
+@endif
+@endif
+      <a class="btn btn-warning" href="{{ route('games.indexPc') }}" class="btn btn">JUEGOS DE PC</a>
+
+      <a class="btn btn-warning" href="#" class="btn btn" onclick="a()" id="ordenarpor">ordenar por nombre</a>
+      @if($user!=null)
+      @if(auth()->user()->can('verMiBiblioteca',$user))
+      <a class="btn btn-warning" href="{{ route('proyects.verMiBiblioteca',['user'=>Auth::user()]) }}" class="btn btn">Mi biblioteca</a>
+      @endif
+      @endif
+
+      <table class="table table-striped table-hover" style="display: flex;align-items:center;" id="contenedorGames">
+        <tr>
+          <td>NOMBRE</td>
+          <td>DESCRIPCION</td>
+          <td>AÑO DE LANZAMIENTO</td>
+          <td>GENEROS</td>
+          <td>PLATAFORMAS</td>
+          <td>PRECIO</td>
+          <td>IMAGEN</td>
+        </tr>
+        @foreach($gameList as $game)
+        <tr>
+
+          <td>{{$game->nombre}}</td>
+          <td>{{$game->descripcion}}</td>
+          <td>{{$game->anyoLanzamiento}}</td>
+          <td>
+            @foreach($game->generos as $gen)
+            {{$gen}}
+            @endforeach
+          </td>
+          <td>
+            @foreach($game->plataformas as $gen1)
+            {{$gen1}}
+            @endforeach
+          </td>
+          <td>{{$game->precio}} euros</td>
+          <td>
+            @if($game->imagen==null)
+            <img src="imagenes/filenotfound.png" width="200px" height="250px">
+
+            @else
+            <img src="{{$game->imagen}}" />
+
             @endif
+          </td>
 
+          <td> <a class="btn btn-warning" href="{{ route('games.show',$game->id) }}" class="btn btn">Ver juego</a></td>
+          @if($user!=null)
+          @if(auth()->user()->can('agregarABiblioteca',['App\Models\Game',$game]))
+          <td> <a class="btn btn-success" href="{{ route('games.show',$game->id) }}" class="btn btn">+</a></td>
+          <form action="{{route('comentarios.store',['game_id'=>$game->id,'user_id'=>$user->id])}}" method="post">
+            @endif
+            @endif
+        </tr>
+        @endforeach
 
+      </table>
 
-
-
-
-            {{ __DIR__ }}
-            <h1>Proyecto index</h1>
-          
-            <a class="btn btn-success" href="{{ route('games.create') }}" class="btn btn">Nuevo juego</a>
-
-            <a class="btn btn-warning" href="{{ route('games.indexPc') }}" class="btn btn">JUEGOS DE PC</a>
-
-            <a class="btn btn-warning" href="#" class="btn btn" onclick="a()" id="ordenarpor">ordenar por nombre</a>
-            
-            <a class="btn btn-warning" href="{{ route('proyects.verMiBiblioteca',['user'=>Auth::user()]) }}" class="btn btn">Mi biblioteca</a>
-
-
-
-            <table class="table table-striped table-hover" style="display: flex;align-items:center;" id="contenedorGames">
-                <tr>
-                    <td>NOMBRE</td>
-                    <td>DESCRIPCION</td>
-                    <td>AÑO DE LANZAMIENTO</td>
-                    <td>GENEROS</td>
-                    <td>PLATAFORMAS</td>
-                    <td>PRECIO</td>
-                    <td>IMAGEN</td>
-                </tr>
-                @foreach($gameList as $game)
-                <tr>
-
-                    <td>{{$game->nombre}}</td>
-                    <td>{{$game->descripcion}}</td>
-                    <td>{{$game->anyoLanzamiento}}</td>
-                    <td>
-                        @foreach($game->generos as $gen)
-                        {{$gen}}
-                        @endforeach
-                    </td>
-                    <td>
-                        @foreach($game->plataformas as $gen1)
-                        {{$gen1}}
-                        @endforeach
-                    </td>
-                    <td>{{$game->precio}} euros</td>
-                    <td>
-                        @if($game->imagen==null)
-                        <img src="imagenes/filenotfound.png" width="200px" height="250px">
-                
-                        @else
-                    <img src="{{$game->imagen}}"/>
-               
-                        @endif</td>
-
-                        <td> <a class="btn btn-warning" href="{{ route('games.show',$game->id) }}" class="btn btn">Ver juego</a></td>
-
-                        @if(auth()->user()->can('agregarABiblioteca',['App\Models\Game',$game]))
-                        <td> <a class="btn btn-success" href="{{ route('games.show',$game->id) }}" class="btn btn">+</a></td>
-                        <form action="{{route('comentarios.store',['game_id'=>$game->id,'user_id'=>$user->id])}}" method="post">
-                        @endif
-                </tr>
-                @endforeach
-               
-            </table>
-
-        </div>
     </div>
+  </div>
 </div>
 @endsection
 
 
 @section('adminnavbar')
-
+@if($user!=null)
+@if(auth()->user()->can('permisosAdmin',['App\Models\User',$user]))
 <nav class="navbar navbar-light bg-dark fixed-top" id="navbaradmin">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Herramientas de administrador</a>
@@ -97,7 +103,7 @@
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link active" aria-current="page" href="{{ route('users.index') }}">Usuarios</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
@@ -125,5 +131,6 @@
   </div>
 </nav>
 
-
+@endif
+@endif
 @endsection

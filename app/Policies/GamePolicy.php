@@ -46,7 +46,7 @@ class GamePolicy
     }
 
 
-    public function verMiBiblioteca($user, $game){
+    public function verMiBiblioteca($user){
 
         
         return true;
