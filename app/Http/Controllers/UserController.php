@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Game;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -20,7 +21,7 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-    
+
     public function index()
     {
         $this->authorize('viewAny', User::class);
@@ -46,34 +47,34 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        
+
 
 
         $request->validate([
 
-            
+
             "name" => "required",
-            
+
             "email" => "required",
             "password" => "required"
         ], [
-            
+
             "name.required" => "El nombre es obvligatorio",
-            
+
             "email.required" => "El email es obvligatorio"
 
         ]);
         $usuario = new User;
-        $usuario->name=$request->input('name');
-        $usuario->email=$request->input('email');
-        $usuario->password=Hash::make($request->input('password'));
-        $usuario->rol=$request->input('rol');
+        $usuario->name = $request->input('name');
+        $usuario->email = $request->input('email');
+        $usuario->password = Hash::make($request->input('password'));
+        $usuario->rol = $request->input('rol');
         $usuario->save();
-       
-       
 
-       // 'password' => Hash::make($data['password']),
-       // User::create($request->all());
+
+
+        // 'password' => Hash::make($data['password']),
+        // User::create($request->all());
         //return redirect("users.index")->with("exito","usere creado correctamente");
         return redirect()->route('users.index')->with('exito', 'usere creado correctamente');
     }
@@ -102,6 +103,16 @@ class UserController extends Controller
         return view('user.edit', ['user' => $user]);
     }
 
+    public function verMiBiblioteca(User $user)
+    {
+
+        foreach (json_decode($user->coleccion) as $i) {
+            $gameList[] = Game::find((int)$i);
+        }
+
+        return view('user.coleccion', ['user' => $user, 'gameList' => $gameList]);
+    }
+
     /**
      * Update the specified resource in storage.
      *
@@ -116,21 +127,21 @@ class UserController extends Controller
             "name" => "required",
             "email" => "required",
             "password" => "required",
-         
+
         ], [
             "name.required" => "El dni es obvligatorio",
             "email.required" => "El nombre es obvligatorio",
             "password.required" => "El password es obvligatorio",
-           
+
 
         ]);
 
         $user = User::find($id);
-       
+
         $user->name = $request->input("name");
-        
+
         $user->email = $request->input("email");
-        $user->password=Hash::make($request['password']);
+        $user->password = Hash::make($request['password']);
 
         $user->save();
         return redirect()->route('users.index')->with("exito", "Modificado exitosamente");

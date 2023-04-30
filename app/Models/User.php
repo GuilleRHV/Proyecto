@@ -21,11 +21,14 @@ class User extends Authenticatable implements JWTSubject
      *
      * @var array<int, string>
      */
+    protected $table="usuarios";
+    
     protected $fillable = [
         'name',
         'email',
         'password',
-        'rol'
+        'rol',
+        'coleccion'
     ];
 
     /**
@@ -64,5 +67,12 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function anyadirColeccionAttribute($value){
+        $array=array();
+        $array=$this->attributes['coleccion'];
+        $array[]=$value;
+        $this->attributes['coleccion']=$array;
     }
 }

@@ -48,6 +48,15 @@ class UserPolicy
     }
 
 
+    public function agregarABiblioteca(User $user){
+        if($user!=null){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
     public function permisosAdmin(User $user)
     {
         if($user->rol=="administrador"){

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
+use App\Models\User;
 use App\Models\Comentario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +19,7 @@ class GameController extends Controller
      */
     public function index()
     {
-        //
+        
     }
 
     /**
@@ -39,6 +40,32 @@ class GameController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+     public function agregarAColeccion(User $user, Game $game){
+
+       // $user->anyadirColeccionAttribute($game->id);
+        
+
+
+        if($user->coleccion==null){
+            $coleccionUser[] = $game->id;
+        }else{
+           
+            $coleccionUser=json_decode($user->coleccion);
+            if(!in_array($game->id,$coleccionUser)){
+                $coleccionUser[]=$game->id;
+            }
+           
+    
+   
+        }
+        
+        $user->coleccion = json_encode($coleccionUser);
+        $user->save();
+        return redirect()->route('proyects.index')->with("exito", "Modificado exitosamente");
+
+
+     }
     public function store(Request $request)
     {
 

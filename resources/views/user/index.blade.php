@@ -25,6 +25,7 @@
                     <td>rol</td>
                 </tr>
                 @foreach($userList as $user)
+                
                 <tr>
                     <td>{{$user->id}}</td>
                     <td>{{$user->name}}</td>

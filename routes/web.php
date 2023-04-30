@@ -41,6 +41,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 //PROYECTO
+//users.verMiBiblioteca
+Route::get('/proyects/{user}',[UserController::class,'verMiBiblioteca'])->name('users.verMiBiblioteca');
+Route::post('/proyects/{user}/{game}',[GameController::class,'agregarAColeccion'])->name('games.agregarAColeccion');
 Route::post('/proyects/{orden}',[ProyectController::class,'indexNombre'])->name('proyects.indexNombre');
 Route::post('/proyects/games/{game_id}/{user_id}',[ComentarioController::class,'store'])->name('comentarios.store');
 Route::post('/proyects/games/{game_id}/{user_id}/{comentario}',[ComentarioController::class,'responder'])->name('comentarios.responder');
@@ -177,6 +180,10 @@ Route::resource('/asignaturas', AsignaturaController::class);
 /*EJERCICIO VIDEOCLUB*/
 
 //Route::get('/',[VideoclubController::class,'index']);
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

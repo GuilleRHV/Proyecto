@@ -26,8 +26,8 @@
 
       <a class="btn btn-warning" href="#" class="btn btn" onclick="a()" id="ordenarpor">ordenar por nombre</a>
       @if($user!=null)
-      @if(auth()->user()->can('verMiBiblioteca',$user))
-      <a class="btn btn-warning" href="{{ route('proyects.verMiBiblioteca',['user'=>Auth::user()]) }}" class="btn btn">Mi biblioteca</a>
+      @if(auth()->user()->can('agregarABiblioteca',$user))
+      <a class="btn btn-warning" href="{{ route('users.verMiBiblioteca',$user) }}" class="btn btn">Mi biblioteca</a>
       @endif
       @endif
 
@@ -70,9 +70,12 @@
 
           <td> <a class="btn btn-warning" href="{{ route('games.show',$game->id) }}" class="btn btn">Ver juego</a></td>
           @if($user!=null)
-          @if(auth()->user()->can('agregarABiblioteca',['App\Models\Game',$game]))
-          <td> <a class="btn btn-success" href="{{ route('games.show',$game->id) }}" class="btn btn">+</a></td>
-          <form action="{{route('comentarios.store',['game_id'=>$game->id,'user_id'=>$user->id])}}" method="post">
+          @if(auth()->user()->can('agregarABiblioteca',$user))
+          <td> <form action="{{ route('games.agregarAColeccion',['user'=>$user,'game'=>$game]) }}" method="post">
+            @csrf
+            <input type="submit" class="btn btn-success" value="+">
+          </form></td>
+          
             @endif
             @endif
         </tr>
