@@ -106,8 +106,10 @@
         <main class="py-4">
             @yield('adminnavbar')
             @yield('content')
+          
         </main>
     </div>
 </body>
 
 </html>
+

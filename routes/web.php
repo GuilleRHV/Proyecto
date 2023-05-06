@@ -21,6 +21,8 @@ use App\Http\Controllers\GameController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProyectController;
+use App\Http\Controllers\VotacionController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -51,6 +53,8 @@ Route::get('/proyects/verMiBiblioteca/{user}',[ProyectController::class,'verMiBi
 Route::resource('proyects', ProyectController::class);
 
 Route::resource('games', GameController::class);
+
+Route::resource('votaciones', VotacionController::class);
 //Route::resource('comentarios', ComentarioController::class);
 Route::get('/proyects/games/indexPc',[GameController::class,'indexPc'])->name('games.indexPc');
 Route::get('/proyects/games/showPc',[GameController::class,'showPc'])->name('games.showPc');

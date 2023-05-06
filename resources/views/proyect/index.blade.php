@@ -18,10 +18,10 @@
 
       <h1>Proyecto index</h1>
       @if($user!=null)
-@if(auth()->user()->can('permisosAdmin',['App\Models\User',$user]))
+      @if(auth()->user()->can('permisosAdmin',['App\Models\User',$user]))
       <a class="btn btn-success" href="{{ route('games.create') }}" class="btn btn">Nuevo juego</a>
-@endif
-@endif
+      @endif
+      @endif
       <a class="btn btn-warning" href="{{ route('games.indexPc') }}" class="btn btn">JUEGOS DE PC</a>
 
       <a class="btn btn-warning" href="#" class="btn btn" onclick="a()" id="ordenarpor">ordenar por nombre</a>
@@ -71,22 +71,61 @@
           <td> <a class="btn btn-warning" href="{{ route('games.show',$game->id) }}" class="btn btn">Ver juego</a></td>
           @if($user!=null)
           @if(auth()->user()->can('agregarABiblioteca',$user))
-          <td> <form action="{{ route('games.agregarAColeccion',['user'=>$user,'game'=>$game]) }}" method="post">
-            @csrf
-            <input type="submit" class="btn btn-success" value="+">
-          </form></td>
-          
-            @endif
-            @endif
+          <td>
+            <form action="{{ route('games.agregarAColeccion',['user'=>$user,'game'=>$game]) }}" method="post">
+              @csrf
+              <input type="submit" class="btn btn-success" value="+">
+            </form>
+          </td>
+
+          @endif
+          @endif
         </tr>
         @endforeach
 
       </table>
 
+
+      
+
+
+
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+<div class="col-md-4">
+<table class="table table-striped table-hover" style="display: flex;align-items:center;" id="contenedorGames">
+        <tr>
+          <td>NOMBRE</td>
+          <td>DESCRIPCION</td>
+          <td>opcion 1</td>
+          <td>opcion 1</td>
+
+        </tr>
+        @foreach($votacionesList as $votacion)
+        <tr>
+
+          <td>{{$votacion->nombre}}</td>
+          <td>{{$votacion->descripcion}}</td>
+          <td>{{$votacion->nombreopcion1}}</td>
+          <td>{{$votacion->nombreopcion2}}</td>
+        </tr>
+        @endforeach
+      </table>
+</div>
+
 @endsection
+
+
+
+
 
 
 @section('adminnavbar')
@@ -103,10 +142,14 @@
         <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Administrador</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
+
       <div class="offcanvas-body">
         <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{{ route('users.index') }}">Usuarios</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="{{ route('votaciones.index') }}">Votaciones</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>

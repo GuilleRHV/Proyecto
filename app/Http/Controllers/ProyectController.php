@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Game;
 Use App\Models\User;
+use App\Models\Votacion;
 use Illuminate\Support\Facades\Auth;
 class ProyectController extends Controller
 {
@@ -29,8 +30,8 @@ class ProyectController extends Controller
             
             $user = Auth::user();
             $gameList = Game::all();
-
-            return view('proyect.index', ['gameList' => $gameList,'user'=>$user]);
+            $votacionesList=Votacion::all();
+            return view('proyect.index', ['gameList' => $gameList,'user'=>$user,'votacionesList'=>$votacionesList]);
         //}
     }
 
