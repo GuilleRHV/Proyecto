@@ -20,8 +20,8 @@ return new class extends Migration
             $table->json("participantes")->nullable();
             $table->string("nombreopcion1");
             $table->string("nombreopcion2");
-            $table->boolean("valoropcion1")->nullable();
-            $table->boolean("valoropcion2")->nullable();
+            $table->integer("valoropcion1")->nullable();
+            $table->integer("valoropcion2")->nullable();
             
             $table->timestamps();
         });

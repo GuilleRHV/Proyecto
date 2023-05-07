@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Votacion;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
 class VotacionController extends Controller
 {
     /**
@@ -14,8 +14,8 @@ class VotacionController extends Controller
      */
     public function index()
     {
-        $votacionList=Votacion::all();
-        return view('votacion.index', ['votacionList' => $votacionList]);
+        $votacionesList=Votacion::all();
+        return view('votacion.index', ['votacionesList' => $votacionesList]);
     }
 
     /**
@@ -82,7 +82,8 @@ class VotacionController extends Controller
      */
     public function edit($id)
     {
-        //
+        $votacion = Votacion::find($id);
+        return view('votacion.edit', ['votacion' => $votacion]);
     }
 
     /**
@@ -94,7 +95,50 @@ class VotacionController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        $user = Auth::user();
+        $user_id = $user->id;
+        //dd($user_id);
+        $request->validate([
+
+            
+
+        ], [
+           
+
+
+        ]);
+
+        $votacion = Votacion::find($id);
+
+        if($request->input("valorvotacion")=='nombreopcion1'){
+            
+            $votacion->valoropcion1 = $votacion->valoropcion1+1;
+        }else{
+            $votacion->valoropcion2 = $votacion->valoropcion2+1;
+        }
+
+
+
+        if($votacion->participantes==null){
+            $$participantes[] = $user_id;
+        }else{
+           
+            $participantes=json_decode($votacion->participantes);
+            if(!in_array($user_id,$participantes)){
+                $participantes[]=$user_id;
+            }
+           
+    
+   
+        }
+        
+        $votacion->participantes = json_encode($participantes);
+       
+       
+      
+        $votacion->save();
+        echo "<script>window.close();</script>";
     }
 
     /**

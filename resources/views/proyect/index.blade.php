@@ -13,7 +13,7 @@
 
 
 
-
+<button id="miBoton">Ventana emerg</button>
 
 
       <h1>Proyecto index</h1>
@@ -99,7 +99,10 @@
 
 
 
+<?php
+$contador = 1;
 
+?>
 <div class="col-md-4">
 <table class="table table-striped table-hover" style="display: flex;align-items:center;" id="contenedorGames">
         <tr>
@@ -116,7 +119,10 @@
           <td>{{$votacion->descripcion}}</td>
           <td>{{$votacion->nombreopcion1}}</td>
           <td>{{$votacion->nombreopcion2}}</td>
+          <td><button class="btn btn-warning votaciones" href="{{route('votaciones.edit',$votacion->id)}}" id="votar{{$contador}}">Votar</button></td>
+          <!--http://proyecto.local/votaciones/1/edit-->
         </tr>
+        {{$contador++}}
         @endforeach
       </table>
 </div>
