@@ -73,6 +73,10 @@ class ComentarioController extends Controller
         $respuestacomentario->padre()->associate($comentario);
         //$comentario->hijos()->associate($respuestacomentario);
         $respuestacomentario->save();
+
+        $game=Game::find($game_id);
+        return redirect()->route('games.show',['game'=>$game])->with('exito', 'usuario creado correctamente');
+     
     }
 
     /**

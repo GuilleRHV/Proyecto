@@ -22,7 +22,7 @@ return new class extends Migration
             $table->text("contenido");
 
          
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');//El enlace de fk
+            $table->foreign('user_id')->references('id')->on('usuarios')->onDelete('cascade');//El enlace de fk
           
             $table->foreign('juego_id')->references('id')->on('games')->onDelete('cascade');//El enlace de fk
 

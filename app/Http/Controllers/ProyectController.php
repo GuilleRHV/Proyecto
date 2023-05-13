@@ -36,7 +36,7 @@ class ProyectController extends Controller
     }
 
 
-    public function verMiBiblioteca(User $user){
+   /* public function verMiBiblioteca(User $user){
         //Solo puedes actuar sobre tu usuario
         //dd("USER RECIBIDO ". $user->name  . "USER REAL TUYO: ".Auth::user()->name);
         $user = User::find($user->id);
@@ -49,7 +49,7 @@ class ProyectController extends Controller
         dd("ok");
        // dd("AUTH USER: ".Auth::user()->email );
         
-    }
+    }*/
 
 
 

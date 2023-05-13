@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Votacion;
+use App\Models\Game;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 class VotacionController extends Controller
@@ -111,22 +112,29 @@ class VotacionController extends Controller
 
         $votacion = Votacion::find($id);
 
-        if($request->input("valorvotacion")=='nombreopcion1'){
-            
-            $votacion->valoropcion1 = $votacion->valoropcion1+1;
-        }else{
-            $votacion->valoropcion2 = $votacion->valoropcion2+1;
-        }
+        
 
-
+        $participantes=array();
 
         if($votacion->participantes==null){
-            $$participantes[] = $user_id;
+            $participantes[] = $user_id;
+            if($request->input("valorvotacion")=='nombreopcion1'){
+            
+                $votacion->valoropcion1 = $votacion->valoropcion1+1;
+            }else{
+                $votacion->valoropcion2 = $votacion->valoropcion2+1;
+            }
         }else{
            
             $participantes=json_decode($votacion->participantes);
             if(!in_array($user_id,$participantes)){
                 $participantes[]=$user_id;
+                if($request->input("valorvotacion")=='nombreopcion1'){
+            
+                    $votacion->valoropcion1 = $votacion->valoropcion1+1;
+                }else{
+                    $votacion->valoropcion2 = $votacion->valoropcion2+1;
+                }
             }
            
     
@@ -139,6 +147,11 @@ class VotacionController extends Controller
       
         $votacion->save();
         echo "<script>window.close();</script>";
+        $user = Auth::user();
+            $gameList = Game::all();
+            $votacionesList=Votacion::all();
+            return view('proyect.index', ['gameList' => $gameList,'user'=>$user,'votacionesList'=>$votacionesList]);
+       
     }
 
     /**

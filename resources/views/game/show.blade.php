@@ -3,7 +3,7 @@
 {{-- Muestra los detalles de un game --}}
 
 @section('content')
-<div class="container">
+<div class="container" style="background-color: white; border-radius: 20px 20px 20px 20px !important; border:2px solid grey">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <h1 id="titulogameshow">{{ $game->nombre ?? '' }}</h1>
@@ -11,10 +11,10 @@
 
             @if($game->imagen==null)
             <div id="contenedorimagenshow">
-                <img src="../imagenes/filenotfound.png" id="imagenjuegoshow">
+                <img src="../imagenes/filenotfound.png" id="imagenjuegoshow" class="imagenjuego">
 
                 @else
-                <img src="../{{$game->imagen}}" id="imagenjuegoshow" />
+                <img src="../{{$game->imagen}}" id="imagenjuegoshow" class="imagenjuego"/>
             </div>
             @endif
 

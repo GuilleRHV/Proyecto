@@ -22,7 +22,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProyectController;
 use App\Http\Controllers\VotacionController;
-
+use Illuminate\Support\Facades\Mail;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -44,15 +44,22 @@ Route::get('/', function () {
 });
 //PROYECTO
 //users.verMiBiblioteca
+
+Route::get('/proyects/perfil',[UserController::class,'perfil'])->name('users.perfil');
+Route::get('/proyects/cambiarpassword',[UserController::class,'cambiarpassword'])->name('users.cambiarpassword');
+Route::put('/proyects/formcambiarpassword/{id}',[UserController::class,'formcambiarpassword'])->name('users.formcambiarpassword');
 Route::get('/proyects/{user}',[UserController::class,'verMiBiblioteca'])->name('users.verMiBiblioteca');
 Route::post('/proyects/{user}/{game}',[GameController::class,'agregarAColeccion'])->name('games.agregarAColeccion');
 Route::post('/proyects/{orden}',[ProyectController::class,'indexNombre'])->name('proyects.indexNombre');
 Route::post('/proyects/games/{game_id}/{user_id}',[ComentarioController::class,'store'])->name('comentarios.store');
 Route::post('/proyects/games/{game_id}/{user_id}/{comentario}',[ComentarioController::class,'responder'])->name('comentarios.responder');
-Route::get('/proyects/verMiBiblioteca/{user}',[ProyectController::class,'verMiBiblioteca'])->name('proyects.verMiBiblioteca');
+
+Route::get('/proyects/verMiBiblioteca',[UserController::class,'verMiBiblioteca'])->name('users.verMiBiblioteca');
+Route::get('/proyects/verMiBiblioteca/{user}/{game}',[UserController::class,'eliminarDeMiBiblioteca'])->name('users.eliminarDeMiBiblioteca');
 Route::resource('proyects', ProyectController::class);
 
 Route::resource('games', GameController::class);
+
 
 Route::resource('votaciones', VotacionController::class);
 //Route::resource('comentarios', ComentarioController::class);
@@ -188,26 +195,3 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

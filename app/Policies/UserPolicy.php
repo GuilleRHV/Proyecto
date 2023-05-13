@@ -3,6 +3,7 @@
 namespace App\Policies;
 
 use App\Models\User;
+use App\Models\Votacion;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UserPolicy
@@ -64,6 +65,21 @@ class UserPolicy
         }else{
             return false;
         }
+    }
+
+    public function puedeVotacion(Votacion $votacion)
+    {
+        
+        
+        $user_id = auth()->user()->id;
+
+        $votacion =json_decode($votacion->participantes);
+        if(!in_array($user_id,$votacion)){
+            return false;
+        }else{
+            return true;
+        }
+        
     }
     
 

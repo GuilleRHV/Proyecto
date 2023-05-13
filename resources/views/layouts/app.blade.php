@@ -24,9 +24,20 @@
     <script src="{{asset('js/indexgames.js')}}"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script src="{{asset('js/prueba.js')}}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-h+LJg7tGq0XkNzI1ehLN9gx7gGWpZlLtrGxq60fRuVavcN5VZFe+wEz1SVjDpAS2+Vyiq+Qwzgmx4fOdmvG7QA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
+    
+<style>
+    body {
+        background-image: url('{{ asset("imagenes/fondo.jpg") }}');
+        /* Ajusta el tamaño y posición de la imagen de fondo según tus necesidades */
+    
+        background-position: center;
+      
+    }
+</style>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -85,7 +96,7 @@
                             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
+                                    {{ __('Cerrar sesion') }}
                                 </a>
 
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">

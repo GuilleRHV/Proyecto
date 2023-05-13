@@ -27,12 +27,15 @@
       <a class="btn btn-warning" href="#" class="btn btn" onclick="a()" id="ordenarpor">ordenar por nombre</a>
       @if($user!=null)
       @if(auth()->user()->can('agregarABiblioteca',$user))
-      <a class="btn btn-warning" href="{{ route('users.verMiBiblioteca',$user) }}" class="btn btn">Mi biblioteca</a>
+      <a class="btn btn-warning" href="{{ route('users.verMiBiblioteca') }}" class="btn btn">Mi biblioteca</a>
       @endif
+      
       @endif
+      <a class="btn btn-warning" href="{{ route('users.perfil') }}" class="btn btn" >Mi perfil</a>
 
-      <table class="table table-striped table-hover" style="display: flex;align-items:center;" id="contenedorGames">
-        <tr>
+
+      <table class="table table-striped table-hover" style="display: flex;align-items:center; background-color: white !important;" id="contenedorGames">
+        <tr style="background-color: #b3c4dc !important;">
           <td>NOMBRE</td>
           <td>DESCRIPCION</td>
           <td>AÑO DE LANZAMIENTO</td>
@@ -40,6 +43,8 @@
           <td>PLATAFORMAS</td>
           <td>PRECIO</td>
           <td>IMAGEN</td>
+          <td></td>
+          <td></td>
         </tr>
         @foreach($gameList as $game)
         <tr>
@@ -104,27 +109,53 @@ $contador = 1;
 
 ?>
 <div class="col-md-4">
-<table class="table table-striped table-hover" style="display: flex;align-items:center;" id="contenedorGames">
+  @if(auth()->user()!=null)
+<table class="table table-striped table-dark " style="display: flex;align-items:center" id="contenedorVotaciones" >
         <tr>
           <td>NOMBRE</td>
           <td>DESCRIPCION</td>
           <td>opcion 1</td>
-          <td>opcion 1</td>
-
+          <td>opcion 2</td>
+<td></td>
         </tr>
+
         @foreach($votacionesList as $votacion)
         <tr>
+    
 
+
+
+        @if($votacion->participantes==null)
+         
           <td>{{$votacion->nombre}}</td>
           <td>{{$votacion->descripcion}}</td>
           <td>{{$votacion->nombreopcion1}}</td>
           <td>{{$votacion->nombreopcion2}}</td>
-          <td><button class="btn btn-warning votaciones" href="{{route('votaciones.edit',$votacion->id)}}" id="votar{{$contador}}">Votar</button></td>
+          <td><button class="btn btn-info votaciones" href="{{route('votaciones.edit',$votacion->id)}}" id="votar{{$contador}}">Votar</button></td>
+          
+        @endif
+
+
+
+        @if($votacion->participantes!=null)
+          @if(!in_array($user->id,json_decode($votacion->participantes))){
+          <td>{{$votacion->nombre}}</td>
+          <td>{{$votacion->descripcion}}</td>
+          <td>{{$votacion->nombreopcion1}}</td>
+          <td>{{$votacion->nombreopcion2}}</td>
+          <td><button class="btn btn-info votaciones" href="{{route('votaciones.edit',$votacion->id)}}" id="votar{{$contador}}">Votar</button></td>
+          @endif
+        @endif
+       
           <!--http://proyecto.local/votaciones/1/edit-->
         </tr>
         {{$contador++}}
         @endforeach
+
+
+       
       </table>
+      @endif
 </div>
 
 @endsection
