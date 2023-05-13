@@ -192,16 +192,12 @@ class UserController extends Controller
         $request->validate([
 
             "name" => "required",
-           "nuevapassword"=>'|min:8|different:'.$user->password,
-           "repitenuevapassword"=>"same:nuevapassword"
+         
            
 
         ], [
             "name.required" => "El dni es obligatorio",
-            "email.required" => "El nombre es obligatorio",
-            "repitenuevapassword.same"=>"Repite la nueva contraseña correctamente",
-            "nuevapassword"=>"La nueva contraseña debe tener al menos 8 caracteres",
-            "nuevapassword.different"=>"La nueva contraseña debe ser diferente a la actual"
+            
 
       
 
@@ -210,15 +206,46 @@ class UserController extends Controller
 
     
 
-        $user->name = $request->input("name");
-       
-      
-        if($request->input("nuevapassword")!=null){
-            $user->password = Hash::make($request['nuevapassword']);
-            
-        }
         
 
+
+
+
+
+
+
+        $imagen = $request->file("imagenperfil");
+        if ($imagen != null) {
+            $nombreimagen = basename($_FILES["imagenperfil"]["name"]);
+            $rutaimagen = $imagen->store("imagenesperfil");
+
+
+            $rutaalternativa = "../public/imagenesperfil/";
+
+            $rutacompleta = $rutaalternativa . $nombreimagen;
+            $user->imagen = $rutaimagen;
+        }
+
+        $user->save();
+        if ($imagen != null) {
+            $rutaimagen = $imagen->store("public/imagenesperfil");
+            $rutaimagen = "/" . $rutaimagen;
+
+            if (move_uploaded_file($_FILES['imagenperfil']['tmp_name'], $rutacompleta)) {
+
+                if (rename($rutacompleta, "../" . $rutaimagen)) {
+                    return redirect()->route('proyects.index')->with('adminexito', 'administrador creado correctamente');
+                }
+            } else {
+                dd("No conseguido");
+            }
+        }
+
+
+
+
+
+$user->name=$request->input('name');
         $user->save();
         return redirect()->route('proyects.index')->with("exito", "Modificado exitosamente");
     }
@@ -245,6 +272,10 @@ class UserController extends Controller
 
         ]);
         $user->password = Hash::make($request['nuevapassword']);
+
+
+
+        
         $user->save();
         return redirect()->route('proyects.index')->with("exito", "Modificado exitosamente");
 

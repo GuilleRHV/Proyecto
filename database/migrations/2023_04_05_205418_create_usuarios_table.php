@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string("email");
             $table->string("password");
             $table->string("rol");
+            $table->binary("imagen")->nullable();
             $table->json("coleccion")->nullable();
             $table->timestamps();
         });

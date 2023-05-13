@@ -15,11 +15,20 @@
             </div>
             @endif
 
-            <form action="{{route('users.update',$user->id)}}" method="post">
+            <form action="{{route('users.update',$user->id)}}" method="post" enctype="multipart/form-data">
 @csrf
 @method("PUT")
             <h1>{{$user->name}}</h1>
-          
+
+            @if($user->imagen==null)
+            <img src="imagenes/filenotfound.png" width="200px" height="250px">
+
+            @else
+       
+            <img src="../{{$user->imagen}}" style="width: 200px;height:200px; border-radius: 30% 30% 30% 30%;" />
+
+            @endif
+            <input class="form-control" type="file" id="imagenperfil" name="imagenperfil">
             <div class="form-group">
                 <label for="nombre" class="col-form-label" style="font-weight:600;font-size:17px">Nombre</label><br>
      <input type="text" class="form-control" name="name" value="{{ $user->name ?? '' }}"/>
