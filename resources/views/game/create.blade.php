@@ -4,8 +4,8 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <h1>Crear estudio</h1>
-            <a href="{{route('games.index')}}" class="btn btn-primary">Index</a>
+            <h1>Crear videojuego</h1>
+            <a href="{{route('proyects.index')}}" class="btn btn-primary">Index</a>
 
             <hr>
             @if($errors->any())
@@ -21,7 +21,7 @@
 
 
 
-            <form action="{{route('games.store')}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('games.store')}}" method="post" enctype="multipart/form-data" id="formulariocrearvideojuegos">
                 @csrf
 
 

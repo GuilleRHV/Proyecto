@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer("anyoLanzamiento");
             $table->json("generos");
             $table->json("plataformas");
-            $table->integer("precio");
+            $table->double("precio");
             $table->binary("imagen")->nullable();
             $table->timestamps();
         });

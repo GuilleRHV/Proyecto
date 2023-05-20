@@ -119,7 +119,7 @@ class UserController extends Controller
         } else {
             $user = Auth::user();
 
-            return redirect()->route('proyects.index')->with('gameList', $gameList);
+            return redirect()->route('proyects.index')->with(['gameList'=> $gameList,'bibliotecavacia'=>'Vaya, parece que tienes la biblioteca vacia, añade juegos para acceder a ella']);
         }
     }
 
@@ -251,6 +251,9 @@ $user->name=$request->input('name');
     }
 
 
+
+
+    
 
     public function formcambiarpassword(Request $request,$id){
         $user=Usuario::find($id);

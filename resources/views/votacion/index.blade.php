@@ -4,12 +4,12 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            @if($message = Session::get('usercreado'))
-            <div class="alert alert-success">
-                <h4>{{$message}}</h4>
-            </div>
-            @endif
 
+        @if($message = Session::get('votacioncreada'))
+      <div class="alert alert-success">
+        <h4>{{$message}}</h4>
+      </div>
+      @endif
 
 
             <h1>Lista votaciones</h1>

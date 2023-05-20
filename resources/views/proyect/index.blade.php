@@ -4,19 +4,35 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8">
-      @if($message = Session::get('productocreado'))
+      @if($message = Session::get('juegocreado'))
       <div class="alert alert-success">
         <h4>{{$message}}</h4>
       </div>
       @endif
+      @if($message = Session::get('juegomodificado'))
+      <div class="alert alert-success">
+        <h4>{{$message}}</h4>
+      </div>
+      @endif
+      @if($message = Session::get('juegoeliminado'))
+      <div class="alert alert-success">
+        <h4>{{$message}}</h4>
+      </div>
+      @endif
+      @if($message = Session::get('bibliotecavacia'))
+      <div class="alert alert-info">
+        <h4>{{$message}}</h4>
+      </div>
+      @endif
+
+      
+      
 
 
 
 
-<button id="miBoton">Ventana emerg</button>
 
-
-      <h1>Proyecto index</h1>
+      <h1>Lista videojuegos</h1>
       @if($user!=null)
       @if(auth()->user()->can('permisosAdmin',['App\Models\User',$user]))
       <a class="btn btn-success" href="{{ route('games.create') }}" class="btn btn">Nuevo juego</a>
@@ -81,6 +97,19 @@
               @csrf
               <input type="submit" class="btn btn-success" value="+">
             </form>
+          </td>
+
+
+          <td>
+              <a class="btn btn-warning" href="{{route('games.edit',$game->id)}}">Editar</a>     
+          </td>
+
+          <td>
+          <form action="{{route('games.destroy',$game->id)}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" value="Eliminar" class="btn btn-danger">
+                        </form>
           </td>
 
           @endif

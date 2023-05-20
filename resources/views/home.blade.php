@@ -14,7 +14,9 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    <div class="alert alert-info" role="alert">
+ Te has logeado correctamente
+</div>
                 </div>
             </div>
         </div>

@@ -73,10 +73,10 @@ class GameController extends Controller
 
             "nombre" => "required",
             "descripcion" => "required",
-            "anyoLanzamiento" => "required",
+            "anyoLanzamiento" => "required|integer|min:1952",
             "generos" => "required",
             "plataformas" => "required",
-            "precio" => "required",
+            "precio" => "required|numeric|regex:/^\d+(\.\d{1,2})?$/",
 
         ], [
 
@@ -86,7 +86,10 @@ class GameController extends Controller
             "descripcion.required" => "La descripcion es obligatorio",
             "generos.required" => "El generos es obligatorio",
             "plataformas.required" => "El plataformas es obligatorio",
-            "precio.required" => "El precio es obligatorio"
+            "precio.required" => "El precio es obligatorio",
+            "precio.regex" => "El precio debe tener un valor numerico",
+            "anyoLanzamiento.integer" => "El anyoLanzamiento debe ser un numero",
+            "anyoLanzamiento.min" => "El anyoLanzamiento debe ser posterior a 1952 (primer videojuego)",
 
         ]);
         $game = new Game();
@@ -134,14 +137,14 @@ class GameController extends Controller
         if (move_uploaded_file($_FILES['imagenjuego']['tmp_name'], $rutacompleta)) {
 
             if (rename($rutacompleta, "../" . $rutaimagen)) {
-                return redirect()->route('proyects.index')->with('adminexito', 'administrador creado correctamente');
+                return redirect()->route('proyects.index')->with('juegocreado', 'Videojuego creado correctamente');
             }
         } else {
             dd("No conseguido");
         }
     }
 
-        return redirect()->route('proyects.index')->with('adminexito', 'administrador creado correctamente');
+        return redirect()->route('proyects.index')->with('juegocreado', 'Videojuego creado correctamente');
     }
 
     /**
@@ -194,7 +197,8 @@ class GameController extends Controller
      */
     public function edit($id)
     {
-        //
+        $game = Game::find($id);
+        return view('game.edit', ['game' => $game]);
     }
 
     /**
@@ -206,7 +210,82 @@ class GameController extends Controller
      */
     public function update(Request $request, $id)
     {
-        dd("updating");
+        $request->validate([
+
+            "nombre" => "required",
+            "descripcion" => "required",
+            "anyoLanzamiento" => "required|integer|min:1952",
+            "generos" => "required",
+            "plataformas" => "required",
+            "precio" => "required|numeric|regex:/^\d+(\.\d{1,2})?$/",
+
+        ], [
+
+            "nombre.required" => "El nombre es obligatorio",
+
+            "anyoLanzamiento.required" => "El anyoLanzamiento es obligatorio",
+            "descripcion.required" => "La descripcion es obligatorio",
+            "generos.required" => "El generos es obligatorio",
+            "plataformas.required" => "El plataformas es obligatorio",
+            "precio.required" => "El precio es obligatorio",
+            "precio.regex" => "El precio debe tener un valor numerico",
+            "anyoLanzamiento.integer" => "El anyoLanzamiento debe ser un numero",
+            "anyoLanzamiento.min" => "El anyoLanzamiento debe ser posterior a 1952 (primer videojuego)",
+
+        ]);
+        $game = Game::find($id);
+        $nombreMayus = ucfirst($request->input("nombre"));
+        $game->nombre = $nombreMayus;
+        $game->descripcion = $request->input("descripcion");
+        $game->anyoLanzamiento = $request->input("anyoLanzamiento");
+        $generosarray = [];
+        $generos = $request->input("generos", []);
+
+        $game->generos = $generos;
+        $plataformas = $request->input("plataformas", []);
+        $game->plataformas = $plataformas;
+        $game->precio = $request->input("precio");
+
+        //****GUARDAR IMAGEN */
+
+        //   $imagen = $request->file("imagenjuego");
+
+        //$rutaimagen = $imagen->store("public/imagenes");
+
+        //  $contenidoimagen = file_get_contents($imagen);
+
+
+
+        //IMAGEN
+
+        $imagen = $request->file("imagenjuego");
+        if($imagen!=null){
+        $nombreimagen = basename($_FILES["imagenjuego"]["name"]);
+        $rutaimagen = $imagen->store("imagenes");
+
+
+        $rutaalternativa = "../public/imagenes/";
+
+        $rutacompleta = $rutaalternativa . $nombreimagen;
+        $game->imagen = $rutaimagen;
+        }
+
+        $game->save();
+        if($imagen!=null){
+        $rutaimagen = $imagen->store("public/imagenes");
+        $rutaimagen = "/" . $rutaimagen;
+
+        if (move_uploaded_file($_FILES['imagenjuego']['tmp_name'], $rutacompleta)) {
+
+            if (rename($rutacompleta, "../" . $rutaimagen)) {
+                return redirect()->route('proyects.index')->with('juegomodificado', 'Videojuego modificado correctamente');
+            }
+        } else {
+            dd("No conseguido");
+        }
+    }
+
+        return redirect()->route('proyects.index')->with('juegomodificado', 'Videojuego modificado correctamente');
     }
 
     /**
@@ -217,7 +296,10 @@ class GameController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $game = Game::find($id);
+        $game->delete();
+        return redirect()->route('proyects.index')->with("juegoeliminado", "Videojuego eliminado exitosamente");
+
     }
 
     public function indexPc()

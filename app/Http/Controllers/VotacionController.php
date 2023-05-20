@@ -61,7 +61,7 @@ class VotacionController extends Controller
         $votacion->nombreopcion2=$request->input("valor2");
         
         $votacion->save();
-        return redirect()->route('votaciones.index')->with('adminexito', 'administrador creado correctamente');
+        return redirect()->route('votaciones.index')->with('votacioncreada', 'Votacion creada correctamente');
     }
 
     /**
