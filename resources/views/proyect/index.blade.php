@@ -19,7 +19,20 @@
         <h4>{{$message}}</h4>
       </div>
       @endif
+      
       @if($message = Session::get('bibliotecavacia'))
+      <div class="alert alert-info">
+        <h4>{{$message}}</h4>
+      </div>
+      @endif
+
+      @if($message = Session::get('usuarioeditado'))
+      <div class="alert alert-info">
+        <h4>{{$message}}</h4>
+      </div>
+      @endif
+
+      @if($message = Session::get('contraseñaactualizada'))
       <div class="alert alert-info">
         <h4>{{$message}}</h4>
       </div>
@@ -27,20 +40,19 @@
 
       
       
+      
 
 
 
 
 
-      <h1>Lista videojuegos</h1>
+      <h1 id="listavideojuegosh1">Lista videojuegos</h1>
       @if($user!=null)
       @if(auth()->user()->can('permisosAdmin',['App\Models\User',$user]))
       <a class="btn btn-success" href="{{ route('games.create') }}" class="btn btn">Nuevo juego</a>
       @endif
       @endif
-      <a class="btn btn-warning" href="{{ route('games.indexPc') }}" class="btn btn">JUEGOS DE PC</a>
-
-      <a class="btn btn-warning" href="#" class="btn btn" onclick="a()" id="ordenarpor">ordenar por nombre</a>
+  
       @if($user!=null)
       @if(auth()->user()->can('agregarABiblioteca',$user))
       <a class="btn btn-warning" href="{{ route('users.verMiBiblioteca') }}" class="btn btn">Mi biblioteca</a>
@@ -50,23 +62,25 @@
       <a class="btn btn-warning" href="{{ route('users.perfil') }}" class="btn btn" >Mi perfil</a>
 
 
-      <table class="table table-striped table-hover" style="display: flex;align-items:center; background-color: white !important;" id="contenedorGames">
+      <table class="table table-sm table-hover table-bordered" style="display: flex;align-items:center; background-color: white !important;" id="contenedorGames">
         <tr style="background-color: #b3c4dc !important;">
-          <td>NOMBRE</td>
-          <td>DESCRIPCION</td>
-          <td>AÑO DE LANZAMIENTO</td>
-          <td>GENEROS</td>
-          <td>PLATAFORMAS</td>
-          <td>PRECIO</td>
-          <td>IMAGEN</td>
+       
+        <td><strong>NOMBRE</strong></td>
+      
+          <td><strong>AÑO DE LANZAMIENTO</strong></td>
+          <td><strong>GENEROS</strong></td>
+          <td><strong>PLATAFORMAS</strong></td>
+        
+          <td><strong>IMAGEN</strong></td>
           <td></td>
           <td></td>
+        </strong>
         </tr>
         @foreach($gameList as $game)
         <tr>
 
           <td>{{$game->nombre}}</td>
-          <td>{{$game->descripcion}}</td>
+  
           <td>{{$game->anyoLanzamiento}}</td>
           <td>
             @foreach($game->generos as $gen)
@@ -78,7 +92,7 @@
             {{$gen1}}
             @endforeach
           </td>
-          <td>{{$game->precio}} euros</td>
+         
           <td>
             @if($game->imagen==null)
             <img src="imagenes/filenotfound.png" width="200px" height="250px">
@@ -99,7 +113,7 @@
             </form>
           </td>
 
-
+          @if(auth()->user()->can('permisosAdmin',['App\Models\User',$user]))
           <td>
               <a class="btn btn-warning" href="{{route('games.edit',$game->id)}}">Editar</a>     
           </td>
@@ -111,7 +125,7 @@
                             <input type="submit" value="Eliminar" class="btn btn-danger">
                         </form>
           </td>
-
+  @endif
           @endif
           @endif
         </tr>

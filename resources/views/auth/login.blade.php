@@ -7,10 +7,13 @@
             <div class="card">
                 <div class="card-header" style="text-align: center; background-color:#63D2FA">{{ __('Iniciar sesion') }}</div>
 
-                <div class="card-body">
+                <div class="card-body" id="cardlogin">
+                    <br>
+                    <img src="{{ asset('imagenes/logo.JPG')}}" id="loginlogo"/>
+                    
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
-
+                        <br>
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Direccion de email') }}</label>
 

@@ -10,13 +10,18 @@
         <h4>{{$message}}</h4>
       </div>
       @endif
+      @if($message = Session::get('votacioneliminada'))
+      <div class="alert alert-success">
+        <h4>{{$message}}</h4>
+      </div>
+      @endif
 
 
             <h1>Lista votaciones</h1>
         
             <a class="btn btn-success" href="{{ route('votaciones.create') }}" class="btn btn">Nueva votacion</a>
         
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover" id="tablavotaciones">
                 <tr>
                     <td>id</td>
                     <td>nombre</td>
@@ -43,8 +48,12 @@
                        
                     </td>
                     <td>
-                    
-                    </td>
+          <form action="{{route('votaciones.destroy',$votacion->id)}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <input type="submit" value="Eliminar" class="btn btn-danger">
+                        </form>
+          </td>
 
                 </tr>
                 @endforeach

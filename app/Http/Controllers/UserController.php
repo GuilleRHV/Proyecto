@@ -119,7 +119,8 @@ class UserController extends Controller
         } else {
             $user = Auth::user();
 
-            return redirect()->route('proyects.index')->with(['gameList'=> $gameList,'bibliotecavacia'=>'Vaya, parece que tienes la biblioteca vacia, añade juegos para acceder a ella']);
+            return redirect()->route('proyects.index')->with(['gameList'=> $gameList,'
+            '=>'Vaya, parece que tienes la biblioteca vacia, añade juegos para acceder a ella']);
         }
     }
 
@@ -196,7 +197,7 @@ class UserController extends Controller
            
 
         ], [
-            "name.required" => "El dni es obligatorio",
+            "name.required" => "El nombre es obligatorio",
             
 
       
@@ -234,7 +235,7 @@ class UserController extends Controller
             if (move_uploaded_file($_FILES['imagenperfil']['tmp_name'], $rutacompleta)) {
 
                 if (rename($rutacompleta, "../" . $rutaimagen)) {
-                    return redirect()->route('proyects.index')->with('adminexito', 'administrador creado correctamente');
+                    return redirect()->route('proyects.index')->with('usuarioeditado', 'Has actualizado tu usuario creado');
                 }
             } else {
                 dd("No conseguido");
@@ -247,7 +248,7 @@ class UserController extends Controller
 
 $user->name=$request->input('name');
         $user->save();
-        return redirect()->route('proyects.index')->with("exito", "Modificado exitosamente");
+        return redirect()->route('proyects.index')->with("usuarioeditado", 'Has actualizado el perfil de tu usuario');
     }
 
 
@@ -280,7 +281,7 @@ $user->name=$request->input('name');
 
         
         $user->save();
-        return redirect()->route('proyects.index')->with("exito", "Modificado exitosamente");
+        return redirect()->route('proyects.index')->with('contraseñaactualizada','Has cambiado tu contraseña');
 
 
     }

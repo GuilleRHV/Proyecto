@@ -162,6 +162,9 @@ class VotacionController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $votacion = Votacion::find($id);
+        $nombre = $votacion->nombre;
+        $votacion->delete();
+        return redirect()->route('votaciones.index')->with("votacioneliminada", "Votacion ".$nombre." eliminada exitosamente");
     }
 }

@@ -108,7 +108,9 @@
                 @csrf
                 <div class="card w-75">
                     <div class="card-body" style="background-color: grey; border-radius: 1em 1em 1em 1em">
-                        <h5 class="card-title">{{$comentario->usuario->name}}</h5>
+                        <h5 class="card-title"><img src="../{{$comentario->usuario->imagen}}" class="imagencomentario" />   {{$comentario->usuario->name}} </h5>
+                   
+                        
                         <h6>{{$comentario->updated_at}}</h6>
                         <p class="card-text">{{$comentario->contenido}}</p>
                     </div>
@@ -132,7 +134,7 @@
 
                 <div class="card w-75 subcomentarios{{$hijo->padre_id}}" style="width: 300px !important; display:none">
                     <div class="card-body">
-                        <h5 class="card-title">{{ \App\Models\User::find($hijo->user_id)->name}}</h5>
+                        <h5 class="card-title"><img src="../{{$comentario->usuario->imagen}}" class="imagencomentario" />   {{ \App\Models\User::find($hijo->user_id)->name}}</h5>
                         <h6>{{$hijo->updated_at}}</h6>
                         <p class="card-text">{{$hijo->contenido}}</p>
                     </div>

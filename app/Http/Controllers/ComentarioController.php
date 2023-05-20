@@ -57,6 +57,20 @@ class ComentarioController extends Controller
 
     public function responder(Request $request,$game_id,$user_id,Comentario $comentario){
         //dd("Ha llegado");
+
+
+        $request->validate([
+
+
+            "contenidocomentario" => "required",
+
+           
+        ], [
+
+            "contenidocomentario.required" => "La respuesta no puede ser vacia",
+
+
+        ]);
         $respuestacomentario = new Comentario();
         $respuestacomentario->user_id = $user_id;
         $respuestacomentario->juego_id = $game_id;

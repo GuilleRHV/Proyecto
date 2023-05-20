@@ -4,7 +4,7 @@
 <div class="container" style="background-color: white; height: 700px;">
     <div class="row justify-content-center">
         <div class="col-md-8">
-        @if($errors->any())
+            @if($errors->any())
             <div class="alert alert-danger">
                 <h4>Por favor, corrige los siguientes errores:</h4>
                 <ul>
@@ -15,54 +15,69 @@
             </div>
             @endif
 
-            <form action="{{route('users.update',$user->id)}}" method="post" enctype="multipart/form-data">
-@csrf
-@method("PUT")
-            <h1>{{$user->name}}</h1>
+            <div id="contprincipalperfil">
 
-            @if($user->imagen==null)
-            <img src="imagenes/filenotfound.png" width="200px" height="250px">
 
-            @else
-       
-            <img src="../{{$user->imagen}}" style="width: 200px;height:200px; border-radius: 30% 30% 30% 30%;" />
+                <form action="{{route('users.update',$user->id)}}" method="post" enctype="multipart/form-data">
+                    @csrf
+                    @method("PUT")
+                    <div id="imagenperfil">
+                        @if($user->imagen==null)
+                        <img src="imagenes/filenotfound.png" width="200px" height="250px">
 
-            @endif
-            <input class="form-control" type="file" id="imagenperfil" name="imagenperfil">
-            <div class="form-group">
-                <label for="nombre" class="col-form-label" style="font-weight:600;font-size:17px">Nombre</label><br>
-     <input type="text" class="form-control" name="name" value="{{ $user->name ?? '' }}"/>
+                        @else
+
+                        <img src="../{{$user->imagen}}" style="width: 200px;height:200px; border-radius: 30% 30% 30% 30%;" />
+
+                        @endif
+                    </div>
+
+
+
+
+
+
+                    <div id="datosperfil">
+                        <br>
+                        <h2 style="color: blue">{{$user->name}}</h2>
+
+
+
+                        <div class="form-group">
+                            <label for="nombre" class="col-form-label" style="font-weight:600;font-size:17px">Nombre</label><br>
+                            <input type="text" class="form-control" name="name" value="{{ $user->name ?? '' }}" />
+                        </div>
+         
+                        <div class="form-group">
+                            <label for="" class="col-form-label" style="font-weight:600;font-size:17px">Email</label><br>
+                            <label for="" class="col-form-label">{{ $user->email ?? '' }}</label>
+                        </div>
+                        <div class="mb-3">
+  <label for="formFile" class="form-label">Imagen de perfil</label>
+  <input class="form-control" type="file"  name="imagenperfil">
+</div>
+                        <div class="form-group">
+                           
+                        </div>
+                      
+                      
+
+
+
+
+
+
+<br>
+                        <input type="submit" class="btn btn-success" value="modificar perfil">
+                        <a class="btn btn-warning" href="{{ route('users.cambiarpassword') }}" class="btn btn">Cambiar contraseña</a>
+
+
+                </form>
             </div>
-            <hr>
-            <div class="form-group">
-                <label for="" class="col-form-label" style="font-weight:600;font-size:17px">Email</label><br>
-                <label for="" class="col-form-label">{{ $user->email ?? '' }}</label>
-            </div>
-            <hr>
-            <div class="form-group" id="cambiarcontraseña" style="display:none ;">
-            <br><label for="edad" class="col-form-label" style="font-weight:600;font-size:17px">Contraseña actual</label><br>
-                <label for="edad" class="col-form-label">{{ $user->password ?? '' }}</label>
-
-                <br><label for="edad" class="col-form-label" style="font-weight:600;font-size:17px">Nueva contraseña</label><br>
-                <label for="edad" class="col-form-label">{{ $user->nuevapassword ?? '' }}</label>
-                <input type="password" class="form-control" name="nuevapassword"/>
-                <br> <label for="edad" class="col-form-label" style="font-weight:600;font-size:17px">Repite nueva contraseña</label><br>
-                <input type="password" class="form-control" name="repitenuevapassword"/>
-            </div>
-
-
-
-
-
+        </div>
         
-            <input type="submit" class="btn btn-success" value="modificar perfil">
-          
-            
 
-            </form>
-            <a class="btn btn-warning" href="{{ route('users.cambiarpassword') }}" class="btn btn" >Cambiar contraseña</a>
-
-          <!--  <table class="table table-striped table-hover">
+        <!--  <table class="table table-striped table-hover">
                 <tr>
                     <td>id</td>
                     <td>nombre</td>
@@ -83,7 +98,7 @@
            
             </table>-->
 
-        </div>
     </div>
+</div>
 </div>
 @endsection
