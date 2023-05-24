@@ -62,7 +62,7 @@ class GameController extends Controller
         
         $user->coleccion = json_encode($coleccionUser);
         $user->save();
-        return redirect()->route('proyects.index')->with("exito", "Modificado exitosamente");
+        return redirect()->route('proyects.index')->with("agregadoacoleccion", "Has añadido un videojuego a tu colección");
 
 
      }

@@ -83,6 +83,7 @@ class VotacionController extends Controller
      */
     public function edit($id)
     {
+      
         $votacion = Votacion::find($id);
         return view('votacion.edit', ['votacion' => $votacion]);
     }

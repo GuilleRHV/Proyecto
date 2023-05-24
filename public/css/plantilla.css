@@ -33,7 +33,7 @@
    
 }
 
-#formulariocrearvideojuegos,#tablavotaciones{
+#formulariocrearvideojuegos,#tablavotaciones,#contenedorGames{
     background-color: bisque !important;
 }
 #loginlogo{
@@ -83,3 +83,7 @@ margin-top: 10%;
     border-radius: 50% 50% 50% 50%  !important;
     z-index: 999 !important;
 }
+#votacionedit{
+    background-color: white;
+}
+

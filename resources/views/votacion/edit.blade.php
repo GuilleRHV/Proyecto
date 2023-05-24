@@ -22,7 +22,7 @@
             @endif
 
 
-            <form action="{{route('votaciones.update',$votacion->id)}}" method="post">
+            <form action="{{route('votaciones.update',$votacion->id)}}" method="post" id="votacionedit">
                 @csrf
 
                 @method("PUT")

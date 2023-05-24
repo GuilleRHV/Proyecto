@@ -110,7 +110,8 @@ class UserController extends Controller
     {
         $user = auth()->user();
         $gameList = array();
-        if ($user->coleccion != null) {
+        $colecciondecoded=json_decode($user->coleccion,true);
+        if ($user->coleccion != null || $colecciondecoded!=null) {
             foreach (json_decode($user->coleccion) as $i) {
                 $gameList[] = Game::find((int)$i);
             }
@@ -119,8 +120,7 @@ class UserController extends Controller
         } else {
             $user = Auth::user();
 
-            return redirect()->route('proyects.index')->with(['gameList'=> $gameList,'
-            '=>'Vaya, parece que tienes la biblioteca vacia, añade juegos para acceder a ella']);
+            return redirect()->route('proyects.index')->with(['gameList'=> $gameList,'coleccionvacia'=>'Vaya, parece que tienes la biblioteca vacia, añade juegos para acceder a ella']);
         }
     }
 
@@ -261,7 +261,11 @@ $user->name=$request->input('name');
        $password=$user->password;
         $request->validate([
 
-            "nuevapassword"=>"required|min:8",
+            "nuevapassword"=>["required","min:8",function($attribute,$value,$fail) use ($request){
+                $password = Usuario::find($request->user()->id)->password;
+                 if(password_verify($request->input('nuevapassword'),$password)){
+                $fail("La nueva contraseña no puede ser la misma a la actual");
+            }}],
          
            "repitenuevapassword"=>"required|same:nuevapassword"
            
@@ -275,6 +279,13 @@ $user->name=$request->input('name');
       
 
         ]);
+
+
+        if(password_verify($request->input('nuevapassword'),$password)){
+
+        }else{
+
+        }
         $user->password = Hash::make($request['nuevapassword']);
 
 

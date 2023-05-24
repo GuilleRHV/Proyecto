@@ -38,7 +38,17 @@
       </div>
       @endif
 
-      
+
+      @if($message = Session::get('coleccionvacia'))
+      <div class="alert alert-info">
+        <h4>{{$message}}</h4>
+      </div>
+      @endif
+      @if($message = Session::get('agregadoacoleccion'))
+      <div class="alert alert-success">
+        <h4>{{$message}}</h4>
+      </div>
+      @endif
       
       
 
@@ -169,12 +179,12 @@ $contador = 1;
 
 
         @if($votacion->participantes==null)
-         
+     
           <td>{{$votacion->nombre}}</td>
           <td>{{$votacion->descripcion}}</td>
           <td>{{$votacion->nombreopcion1}}</td>
           <td>{{$votacion->nombreopcion2}}</td>
-          <td><button class="btn btn-info votaciones" href="{{route('votaciones.edit',$votacion->id)}}" id="votar{{$contador}}">Votar</button></td>
+          <td><button class="btn btn-info votaciones" href="{{route('votaciones.edit',$votacion->id)}}" id="votar{{$votacion->id}}">Votard</button></td>
           
         @endif
 
@@ -182,11 +192,12 @@ $contador = 1;
 
         @if($votacion->participantes!=null)
           @if(!in_array($user->id,json_decode($votacion->participantes))){
+     
           <td>{{$votacion->nombre}}</td>
           <td>{{$votacion->descripcion}}</td>
           <td>{{$votacion->nombreopcion1}}</td>
           <td>{{$votacion->nombreopcion2}}</td>
-          <td><button class="btn btn-info votaciones" href="{{route('votaciones.edit',$votacion->id)}}" id="votar{{$contador}}">Votar</button></td>
+          <td><button class="btn btn-info votaciones" href="{{route('votaciones.edit',$votacion->id)}}" id="votar{{$votacion->id}}">Votar s</button></td>
           @endif
         @endif
        
