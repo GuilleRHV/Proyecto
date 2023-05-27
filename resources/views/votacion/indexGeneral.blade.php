@@ -44,34 +44,11 @@
                     <td>
 
                     </td>
-                    <td>
-
-                    </td>
-                    <td>
-                        <form action="{{route('votaciones.destroy',$votacion->id)}}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <input type="submit" value="Eliminar" class="btn btn-danger">
-                        </form>
-                    </td>
-                    @if($votacion->activo==1)
-                    <td>
-                        <form action="{{route('votaciones.cerrarvotacion',$votacion->id)}}" method="post">
-                            @csrf
-                            @method('PUT')
-                            <input type="submit" value="Cerrar votacion" class="btn btn-warning">
-                        </form>
-                    </td>
-                    @else
-
-                    <td>
-                        <form action="{{route('votaciones.activarvotacion',$votacion->id)}}" method="post">
-                            @csrf
-                            @method('PUT')
-                            <input type="submit" value="activar votacion" class="btn btn-success">
-                        </form>
-                    </td>
-                    @endif
+                    
+          <td> <a class="btn btn-warning" href="{{ route('votaciones.show',$votacion->id) }}" class="btn btn">Ver votacion</a></td>
+                    
+                   
+                   
                 </tr>
                 @endforeach
             </table>

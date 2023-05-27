@@ -23,7 +23,7 @@
                     @method("PUT")
                     <div id="imagenperfil">
                         @if($user->imagen==null)
-                        <img src="imagenes/filenotfound.png" width="200px" height="250px">
+                        <img src="{{asset('imagenesperfil/userdefault.png')}}" style="border-radius: 5% 5% 5% 5%;width: 200px; height: 200px"/>
 
                         @else
 

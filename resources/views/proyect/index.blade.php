@@ -66,8 +66,10 @@
       @if($user!=null)
       @if(auth()->user()->can('agregarABiblioteca',$user))
       <a class="btn btn-warning" href="{{ route('users.verMiBiblioteca') }}" class="btn btn">Mi biblioteca</a>
-      @endif
+
       
+      @endif
+      <a class="btn btn-warning" href="{{ route('votacion.votacionesGeneral') }}" class="btn btn">Ver votaciones</a>
       @endif
       <a class="btn btn-warning" href="{{ route('users.perfil') }}" class="btn btn" >Mi perfil</a>
 
@@ -178,7 +180,7 @@ $contador = 1;
 
 
 
-        @if($votacion->participantes==null)
+        @if($votacion->participantes==null && $votacion->activo==1)
      
           <td>{{$votacion->nombre}}</td>
           <td>{{$votacion->descripcion}}</td>
@@ -190,7 +192,7 @@ $contador = 1;
 
 
 
-        @if($votacion->participantes!=null)
+        @if($votacion->participantes!=null && $votacion->activo==1)
           @if(!in_array($user->id,json_decode($votacion->participantes))){
      
           <td>{{$votacion->nombre}}</td>

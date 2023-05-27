@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string("nombreopcion2");
             $table->integer("valoropcion1")->nullable();
             $table->integer("valoropcion2")->nullable();
-            
+            $table->boolean("activo");
             $table->timestamps();
         });
     }

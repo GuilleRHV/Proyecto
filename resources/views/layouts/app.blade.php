@@ -77,12 +77,23 @@
                         </li>
                         @endif
                         @else
+                        <li class="nav-item">
+                            @if(auth()->user()->imagen!=null)
+                            <img src="{{asset(Auth::user()->imagen)}}" style="border-radius: 50% 50% 50% 50%;width: 50px; height: 50px"/>
+                            @else
+                            <img src="{{asset('imagenesperfil/userdefault.png')}}" style="border-radius: 50% 50% 50% 50%;width: 50px; height: 50px"/>
+                            @endif
+                        </li>
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                           
+                            
+                           
+                            
+
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" style="display:''; flex-flow: ''" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
                             </a>
-
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" >
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Cerrar sesion') }}

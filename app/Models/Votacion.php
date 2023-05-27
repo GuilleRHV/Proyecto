@@ -9,5 +9,5 @@ class Votacion extends Model
 {
     use HasFactory;
     protected $table="votaciones";
-    protected $fillable = ['nombre', 'descripcion','participantes', 'nombreopcion1', 'nombreopcion2',"valoropcion1","valoropcion2"];
+    protected $fillable = ['nombre', 'descripcion','participantes', 'nombreopcion1', 'nombreopcion2',"valoropcion1","valoropcion2","activo"];
 }

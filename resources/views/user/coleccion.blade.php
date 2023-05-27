@@ -58,7 +58,7 @@
           </td>
 
           <td> <a class="btn btn-warning" href="{{ route('games.show',$game->id) }}" class="btn btn">Ver juego</a></td>
-          <td> <a class="btn btn-danger" href="{{ route('users.eliminarDeMiBiblioteca',['user'=>$user,'game'=>$game]) }}" class="btn btn">Eliminar de mi lista</a></td>
+          <td> <a class="btn btn-danger" href="{{ route('users.eliminarDeMiBiblioteca',['user'=>$user,'game'=>$game]) }}" class="btn btn">X</a></td>
           <i class="fa fa-star"></i>
         </tr>
         @endif

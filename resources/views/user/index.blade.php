@@ -16,18 +16,18 @@
             @can ('create', 'App\Models\User')
             <a class="btn btn-success" href="{{ route('users.create') }}" class="btn btn">Nuevo cliente</a>
             @endcan
-            <table class="table table-striped table-hover">
+            <table class="table table-striped table-hover" id="tablaeditusuarios">
                 <tr>
-                    <td>id</td>
-                    <td>nombre</td>
+                
+                    <td><strong>nombre</strong></td>
 
-                    <td>email</td>
-                    <td>rol</td>
+                    <td><strong>email</strong></td>
+                    <td><strong>rol</strong></td>
                 </tr>
                 @foreach($userList as $user)
                 
                 <tr>
-                    <td>{{$user->id}}</td>
+                  
                     <td>{{$user->name}}</td>
 
                     <td>{{$user->email}}</td>

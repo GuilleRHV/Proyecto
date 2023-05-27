@@ -111,7 +111,15 @@ class UserController extends Controller
         $user = auth()->user();
         $gameList = array();
         $colecciondecoded=json_decode($user->coleccion,true);
-        if ($user->coleccion != null || $colecciondecoded!=null) {
+        $cont=0;
+
+        if($user->coleccion!=null){
+        foreach (json_decode($user->coleccion) as $i) {
+            $cont++;
+        }
+    }
+
+        if ($cont!=0 ) {
             foreach (json_decode($user->coleccion) as $i) {
                 $gameList[] = Game::find((int)$i);
             }
@@ -199,22 +207,8 @@ class UserController extends Controller
         ], [
             "name.required" => "El nombre es obligatorio",
             
-
-      
-
         ]);
       
-
-    
-
-        
-
-
-
-
-
-
-
         $imagen = $request->file("imagenperfil");
         if ($imagen != null) {
             $nombreimagen = basename($_FILES["imagenperfil"]["name"]);
@@ -253,6 +247,34 @@ $user->name=$request->input('name');
 
 
 
+
+
+    public function updateGeneral(Request $request,$id)
+    {
+  
+        $user=Usuario::find($id);
+     
+        $request->validate([
+
+            "name" => "required",
+         
+           
+
+        ], [
+            "name.required" => "El nombre es obligatorio",
+            
+        ]);
+      
+       
+        $user->name=$request->input('name');
+        $user->email=$request->input('email');
+        $user->rol=$request->input('rol');
+
+
+
+        $user->save();
+        return redirect()->route('proyects.index')->with("usuarioeditado", 'Has actualizado el perfil de tu usuario');
+    }
 
     
 

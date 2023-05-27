@@ -6,6 +6,7 @@ use App\Models\Votacion;
 use App\Models\Game;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 class VotacionController extends Controller
 {
     /**
@@ -15,10 +16,17 @@ class VotacionController extends Controller
      */
     public function index()
     {
-        $votacionesList=Votacion::all();
+        $votacionesList = Votacion::all();
         return view('votacion.index', ['votacionesList' => $votacionesList]);
     }
 
+    public function votacionesGeneral()
+    {
+        $votacionesList = Votacion::all();
+        return view('votacion.indexGeneral', ['votacionesList' => $votacionesList]);
+    }
+
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -37,14 +45,14 @@ class VotacionController extends Controller
      */
     public function store(Request $request)
     {
-        
+
         $request->validate([
 
             "nombre" => "required",
             "descripcion" => "required",
             "valor1" => "required",
             "valor2" => "required",
-            
+
 
         ], [
 
@@ -52,14 +60,16 @@ class VotacionController extends Controller
             "valor1.required" => "El valor1 es obligatorio",
             "descripcion.required" => "La descripcion es obligatorio",
             "valor2.required" => "El valor2 es obligatorio",
-            
+
         ]);
         $votacion = new Votacion();
-        $votacion->nombre=$request->input("nombre");
-        $votacion->descripcion=$request->input("descripcion");
-        $votacion->nombreopcion1=$request->input("valor1");
-        $votacion->nombreopcion2=$request->input("valor2");
-        
+        $votacion->nombre = $request->input("nombre");
+        $votacion->descripcion = $request->input("descripcion");
+        $votacion->nombreopcion1 = $request->input("valor1");
+        $votacion->nombreopcion2 = $request->input("valor2");
+        $votacion->valoropcion1=0;
+        $votacion->valoropcion2=0;
+        $votacion->activo = true;
         $votacion->save();
         return redirect()->route('votaciones.index')->with('votacioncreada', 'Votacion creada correctamente');
     }
@@ -72,7 +82,18 @@ class VotacionController extends Controller
      */
     public function show($id)
     {
-        //
+        
+$votacion=Votacion::find($id);
+
+    $decode = json_decode($votacion->participantes,true);
+$numparticipantes=0;
+    foreach($decode as $i){
+ 
+        $numparticipantes++;
+    }
+
+
+        return view('votacion.show', ['votacion' => $votacion,'numparticipantes'=>$numparticipantes]);
     }
 
     /**
@@ -83,7 +104,7 @@ class VotacionController extends Controller
      */
     public function edit($id)
     {
-      
+
         $votacion = Votacion::find($id);
         return view('votacion.edit', ['votacion' => $votacion]);
     }
@@ -101,60 +122,75 @@ class VotacionController extends Controller
         $user = Auth::user();
         $user_id = $user->id;
         //dd($user_id);
-        $request->validate([
-
-            
-
-        ], [
-           
-
-
-        ]);
+        $request->validate([], []);
 
         $votacion = Votacion::find($id);
 
-        
 
-        $participantes=array();
 
-        if($votacion->participantes==null){
+        $participantes = array();
+
+        if ($votacion->participantes == null) {
             $participantes[] = $user_id;
-            if($request->input("valorvotacion")=='nombreopcion1'){
-            
-                $votacion->valoropcion1 = $votacion->valoropcion1+1;
-            }else{
-                $votacion->valoropcion2 = $votacion->valoropcion2+1;
+            if ($request->input("valorvotacion") == 'nombreopcion1') {
+
+                $votacion->valoropcion1 = $votacion->valoropcion1 + 1;
+            } else {
+                $votacion->valoropcion2 = $votacion->valoropcion2 + 1;
             }
-        }else{
-           
-            $participantes=json_decode($votacion->participantes);
-            if(!in_array($user_id,$participantes)){
-                $participantes[]=$user_id;
-                if($request->input("valorvotacion")=='nombreopcion1'){
-            
-                    $votacion->valoropcion1 = $votacion->valoropcion1+1;
-                }else{
-                    $votacion->valoropcion2 = $votacion->valoropcion2+1;
+        } else {
+
+            $participantes = json_decode($votacion->participantes);
+            if (!in_array($user_id, $participantes)) {
+                $participantes[] = $user_id;
+                if ($request->input("valorvotacion") == 'nombreopcion1') {
+
+                    $votacion->valoropcion1 = $votacion->valoropcion1 + 1;
+                } else {
+                    $votacion->valoropcion2 = $votacion->valoropcion2 + 1;
                 }
             }
-           
-    
-   
         }
-        
+
         $votacion->participantes = json_encode($participantes);
-       
-       
-      
+
+
+
         $votacion->save();
         echo "<script>window.close();</script>";
         $user = Auth::user();
-            $gameList = Game::all();
-            $votacionesList=Votacion::all();
-            return view('proyect.index', ['gameList' => $gameList,'user'=>$user,'votacionesList'=>$votacionesList]);
-       
+        $gameList = Game::all();
+        $votacionesList = Votacion::all();
+        return view('proyect.index', ['gameList' => $gameList, 'user' => $user, 'votacionesList' => $votacionesList]);
     }
 
+
+
+
+
+    public function cerrarvotacion(Request $request,$id)
+    {
+
+        $votacion = Votacion::find($id);
+        $votacion->activo = false;
+        $votacion->save();
+        $nombre = $votacion->nombre;
+        return redirect()->route('votaciones.index')->with("votacioneliminada", "Se ha cerrado las votaciones de  " . $nombre . " exitosamente");
+    }
+
+
+
+    public function activarvotacion(Request $request,$id)
+    {
+
+        $votacion = Votacion::find($id);
+        $votacion->activo = true;
+        $votacion->save();
+        $nombre = $votacion->nombre;
+        return redirect()->route('votaciones.index')->with("votacioneliminada", "Se ha activado las votaciones de  " . $nombre . " exitosamente");
+    }
+
+    
     /**
      * Remove the specified resource from storage.
      *
@@ -166,6 +202,6 @@ class VotacionController extends Controller
         $votacion = Votacion::find($id);
         $nombre = $votacion->nombre;
         $votacion->delete();
-        return redirect()->route('votaciones.index')->with("votacioneliminada", "Votacion ".$nombre." eliminada exitosamente");
+        return redirect()->route('votaciones.index')->with("votacioneliminada", "Votacion " . $nombre . " eliminada exitosamente");
     }
 }

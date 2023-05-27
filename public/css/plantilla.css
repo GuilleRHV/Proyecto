@@ -83,7 +83,11 @@ margin-top: 10%;
     border-radius: 50% 50% 50% 50%  !important;
     z-index: 999 !important;
 }
-#votacionedit{
+#votacionedit,#tablaeditusuarios,#tablashowvotacion{
     background-color: white;
+}
+
+.form-group{
+    background-color: white !important;
 }
 

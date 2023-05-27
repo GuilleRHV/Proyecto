@@ -45,6 +45,11 @@ Route::get('/', function () {
 //PROYECTO
 //users.verMiBiblioteca
 
+Route::get('/proyects/votacionesGeneral',[VotacionController::class,'votacionesGeneral'])->name('votacion.votacionesGeneral');
+
+Route::put('/proyects/activarvotacion/{id}',[VotacionController::class,'activarvotacion'])->name('votaciones.activarvotacion');
+Route::put('/proyects/cerrarvotacion/{id}',[VotacionController::class,'cerrarvotacion'])->name('votaciones.cerrarvotacion');
+Route::put('/proyects/updateGeneral/{id}',[UserController::class,'updateGeneral'])->name('users.updateGeneral');
 Route::get('/proyects/perfil',[UserController::class,'perfil'])->name('users.perfil');
 Route::get('/proyects/cambiarpassword',[UserController::class,'cambiarpassword'])->name('users.cambiarpassword');
 Route::put('/proyects/formcambiarpassword/{id}',[UserController::class,'formcambiarpassword'])->name('users.formcambiarpassword');
@@ -59,7 +64,6 @@ Route::get('/proyects/verMiBiblioteca/{user}/{game}',[UserController::class,'eli
 Route::resource('proyects', ProyectController::class);
 
 Route::resource('games', GameController::class);
-
 
 Route::resource('votaciones', VotacionController::class);
 //Route::resource('comentarios', ComentarioController::class);
