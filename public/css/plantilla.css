@@ -91,3 +91,36 @@ margin-top: 10%;
     background-color: white !important;
 }
 
+.contenedorIndividual{
+    width: 120%;
+    background-color: white;
+    border-radius: 5px 5px 5px 5px;
+    border: 1px solid black;
+    min-height: 200px !important;
+    margin-top: 20px;
+    overflow: hidden;
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
+    0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+}
+
+.imagenResenya{
+    width: 40%;
+   position: relative;
+}
+.contenidoResenya{
+    width: 60%;
+    position: relative;
+   padding: 2px;
+}
+
+.contenidoeimagen{
+    display: flex;
+    flex-flow: row;
+
+}
+
+
+.contenidoResenya p{
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 18px;
+}

@@ -81,8 +81,8 @@
                         </div>
 
 
-                        <input type="submit" value="Crear comentario" class="btn btn-success">
-
+                     
+<button type="submit" class="btn btn-success">Crear comentario <span class="fa fa-comments"></span>&nbsp;</button>
                         @else
 
                         <div class="alert alert-danger">
@@ -93,7 +93,7 @@
 
                 </div>
             </form>
-            <a href="{{route('proyects.index')}}" class="btn btn-warning" style="width: 100px !important; top:0 !important">Home</a>
+            <a href="{{route('proyects.index')}}" class="btn btn-warning" style="width: 100px !important; top:0 !important" >Home</a>
             @endif
 
 

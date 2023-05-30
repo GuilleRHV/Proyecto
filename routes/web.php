@@ -21,6 +21,7 @@ use App\Http\Controllers\GameController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProyectController;
+use App\Http\Controllers\ResenyaController;
 use App\Http\Controllers\VotacionController;
 use Illuminate\Support\Facades\Mail;
 /*
@@ -64,6 +65,8 @@ Route::get('/proyects/verMiBiblioteca/{user}/{game}',[UserController::class,'eli
 Route::resource('proyects', ProyectController::class);
 
 Route::resource('games', GameController::class);
+
+Route::resource('resenyas', ResenyaController::class);
 
 Route::resource('votaciones', VotacionController::class);
 //Route::resource('comentarios', ComentarioController::class);

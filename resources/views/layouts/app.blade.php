@@ -24,6 +24,9 @@
     <script src="{{asset('js/indexgames.js')}}"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script src="{{asset('js/prueba.js')}}"></script>
+    <link 
+  href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" 
+  rel="stylesheet"  type='text/css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-h+LJg7tGq0XkNzI1ehLN9gx7gGWpZlLtrGxq60fRuVavcN5VZFe+wEz1SVjDpAS2+Vyiq+Qwzgmx4fOdmvG7QA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 

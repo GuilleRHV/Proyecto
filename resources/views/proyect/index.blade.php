@@ -63,6 +63,7 @@
       @endif
       @endif
   
+      <a class="btn btn-success" href="{{ route('resenyas.index') }}" class="btn btn">Ver reseñas</a>
       @if($user!=null)
       @if(auth()->user()->can('agregarABiblioteca',$user))
       <a class="btn btn-warning" href="{{ route('users.verMiBiblioteca') }}" class="btn btn">Mi biblioteca</a>
