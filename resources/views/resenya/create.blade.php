@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <h1>Crear resenya</h1>
+            <h1>Crear reseña</h1>
             <a href="{{route('proyects.index')}}" class="btn btn-primary">Index</a>
 
             <hr>

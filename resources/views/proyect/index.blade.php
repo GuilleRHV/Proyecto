@@ -19,7 +19,7 @@
         <h4>{{$message}}</h4>
       </div>
       @endif
-      
+
       @if($message = Session::get('bibliotecavacia'))
       <div class="alert alert-info">
         <h4>{{$message}}</h4>
@@ -49,8 +49,8 @@
         <h4>{{$message}}</h4>
       </div>
       @endif
-      
-      
+
+
 
 
 
@@ -62,38 +62,63 @@
       <a class="btn btn-success" href="{{ route('games.create') }}" class="btn btn">Nuevo juego</a>
       @endif
       @endif
-  
+
       <a class="btn btn-success" href="{{ route('resenyas.index') }}" class="btn btn">Ver reseñas</a>
       @if($user!=null)
       @if(auth()->user()->can('agregarABiblioteca',$user))
       <a class="btn btn-warning" href="{{ route('users.verMiBiblioteca') }}" class="btn btn">Mi biblioteca</a>
 
-      
+
       @endif
       <a class="btn btn-warning" href="{{ route('votacion.votacionesGeneral') }}" class="btn btn">Ver votaciones</a>
       @endif
-      <a class="btn btn-warning" href="{{ route('users.perfil') }}" class="btn btn" >Mi perfil</a>
+      <a class="btn btn-warning" href="{{ route('users.perfil') }}" class="btn btn">Mi perfil</a>
+
+
+
+
+      <div id="contenedorGamesIndex">
+        @foreach($gameList as $game)
+        <div class="contenedorGameIndividual">
+          <p class="contenedorGameIndividualNombre">{{$game->nombre}}</p>
+          <p class="contenedorGameIndividualAnyoLanzamiento">{{$game->anyoLanzamiento}}</p>
+          <p class="contenedorGameIndividualGeneros">@foreach($game->generos as $gen)
+            {{$gen}}
+            @endforeach
+          </p>
+          <div class="contenedorGameIndividualImagen"> @if($game->imagen==null)
+            <img src="imagenes/filenotfound.png" width="90px" height="90px" style="border-radius: 50% 50% 50% 50%;">
+
+            @else
+            <img src="{{$game->imagen}}" width="90px" height="90px" style="border-radius: 50% 50% 50% 50%;" />
+
+            @endif
+          </div>
+        </div>
+        @endforeach
+      </div>
+
 
 
       <table class="table table-sm table-hover table-bordered" style="display: flex;align-items:center; background-color: white !important;" id="contenedorGames">
         <tr style="background-color: #b3c4dc !important;">
-       
-        <td><strong>NOMBRE</strong></td>
-      
+
+          <td><strong>NOMBRE</strong></td>
+
           <td><strong>AÑO DE LANZAMIENTO</strong></td>
           <td><strong>GENEROS</strong></td>
           <td><strong>PLATAFORMAS</strong></td>
-        
+
           <td><strong>IMAGEN</strong></td>
           <td></td>
           <td></td>
-        </strong>
+          </strong>
         </tr>
         @foreach($gameList as $game)
         <tr>
 
           <td>{{$game->nombre}}</td>
-  
+
           <td>{{$game->anyoLanzamiento}}</td>
           <td>
             @foreach($game->generos as $gen)
@@ -105,7 +130,7 @@
             {{$gen1}}
             @endforeach
           </td>
-         
+
           <td>
             @if($game->imagen==null)
             <img src="imagenes/filenotfound.png" width="200px" height="250px">
@@ -128,17 +153,17 @@
 
           @if(auth()->user()->can('permisosAdmin',['App\Models\User',$user]))
           <td>
-              <a class="btn btn-warning" href="{{route('games.edit',$game->id)}}">Editar</a>     
+            <a class="btn btn-warning" href="{{route('games.edit',$game->id)}}">Editar</a>
           </td>
 
           <td>
-          <form action="{{route('games.destroy',$game->id)}}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <input type="submit" value="Eliminar" class="btn btn-danger">
-                        </form>
+            <form action="{{route('games.destroy',$game->id)}}" method="post">
+              @csrf
+              @method('DELETE')
+              <input type="submit" value="Eliminar" class="btn btn-danger">
+            </form>
           </td>
-  @endif
+          @endif
           @endif
           @endif
         </tr>
@@ -147,7 +172,7 @@
       </table>
 
 
-      
+
 
 
 
@@ -166,53 +191,53 @@ $contador = 1;
 ?>
 <div class="col-md-4">
   @if(auth()->user()!=null)
-<table class="table table-striped table-dark " style="display: flex;align-items:center" id="contenedorVotaciones" >
-        <tr>
-          <td>NOMBRE</td>
-          <td>DESCRIPCION</td>
-          <td>opcion 1</td>
-          <td>opcion 2</td>
-<td></td>
-        </tr>
+  <table class="table table-striped table-dark " style="display: flex;align-items:center" id="contenedorVotaciones">
+    <tr>
+      <td>NOMBRE</td>
+      <td>DESCRIPCION</td>
+      <td>opcion 1</td>
+      <td>opcion 2</td>
+      <td></td>
+    </tr>
 
-        @foreach($votacionesList as $votacion)
-        <tr>
-    
-
-
-
-        @if($votacion->participantes==null && $votacion->activo==1)
-     
-          <td>{{$votacion->nombre}}</td>
-          <td>{{$votacion->descripcion}}</td>
-          <td>{{$votacion->nombreopcion1}}</td>
-          <td>{{$votacion->nombreopcion2}}</td>
-          <td><button class="btn btn-info votaciones" href="{{route('votaciones.edit',$votacion->id)}}" id="votar{{$votacion->id}}">Votard</button></td>
-          
-        @endif
+    @foreach($votacionesList as $votacion)
+    <tr>
 
 
 
-        @if($votacion->participantes!=null && $votacion->activo==1)
-          @if(!in_array($user->id,json_decode($votacion->participantes))){
-     
-          <td>{{$votacion->nombre}}</td>
-          <td>{{$votacion->descripcion}}</td>
-          <td>{{$votacion->nombreopcion1}}</td>
-          <td>{{$votacion->nombreopcion2}}</td>
-          <td><button class="btn btn-info votaciones" href="{{route('votaciones.edit',$votacion->id)}}" id="votar{{$votacion->id}}">Votar s</button></td>
-          @endif
-        @endif
-       
-          <!--http://proyecto.local/votaciones/1/edit-->
-        </tr>
-        {{$contador++}}
-        @endforeach
 
+      @if($votacion->participantes==null && $votacion->activo==1)
 
-       
-      </table>
+      <td>{{$votacion->nombre}}</td>
+      <td>{{$votacion->descripcion}}</td>
+      <td>{{$votacion->nombreopcion1}}</td>
+      <td>{{$votacion->nombreopcion2}}</td>
+      <td><button class="btn btn-info votaciones" href="{{route('votaciones.edit',$votacion->id)}}" id="votar{{$votacion->id}}">Votard</button></td>
+
       @endif
+
+
+
+      @if($votacion->participantes!=null && $votacion->activo==1)
+      @if(!in_array($user->id,json_decode($votacion->participantes))){
+
+      <td>{{$votacion->nombre}}</td>
+      <td>{{$votacion->descripcion}}</td>
+      <td>{{$votacion->nombreopcion1}}</td>
+      <td>{{$votacion->nombreopcion2}}</td>
+      <td><button class="btn btn-info votaciones" href="{{route('votaciones.edit',$votacion->id)}}" id="votar{{$votacion->id}}">Votar s</button></td>
+      @endif
+      @endif
+
+      <!--http://proyecto.local/votaciones/1/edit-->
+    </tr>
+    {{$contador++}}
+    @endforeach
+
+
+
+  </table>
+  @endif
 </div>
 
 @endsection
@@ -252,14 +277,7 @@ $contador = 1;
             <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Dropdown
             </a>
-            <ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li>
-                <hr class="dropdown-divider">
-              </li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
+           
           </li>
         </ul>
         <form class="d-flex">

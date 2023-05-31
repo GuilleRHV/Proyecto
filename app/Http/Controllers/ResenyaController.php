@@ -126,7 +126,8 @@ class ResenyaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $resenya = Resenya::find($id);
+        return view('resenya.edit', ['resenya' => $resenya]);
     }
 
     /**
@@ -138,7 +139,74 @@ class ResenyaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+
+            "titulo" => "required",
+            "contenido" => "required",
+         
+            "puntuacion" => "required",
+            
+
+        ], [
+
+            "titulo.required" => "El titulo es obligatorio",
+
+           
+            "contenido.required" => "La contenido es obligatorio",
+            "puntuacion.required" => "El puntuacion es obligatorio"
+           
+
+        ]);
+        $resenya = Resenya::find($id);
+        $nombreMayus = ucfirst($request->input("titulo"));
+        $resenya->titulo = $nombreMayus;
+        $resenya->contenido = $request->input("contenido");
+        $resenya->puntuacion = $request->input("puntuacion");
+        
+       
+
+       
+            $imagen = $request->file("imagen");
+          
+            if($imagen!=null){
+
+                //Borrar la que tenemos
+                if($resenya->imagen!=null){
+                    $imagen_path_actual = public_path().'/'.$resenya->imagen;
+                    unlink($imagen_path_actual);
+                   
+                }
+
+
+            $nombreimagen = basename($_FILES["imagen"]["name"]);
+            $rutaimagen = $imagen->store("imagenesresenyas");
+    
+    
+            $rutaalternativa = "../public/imagenesresenyas/";
+    
+            $rutacompleta = $rutaalternativa . $nombreimagen;
+            $resenya->imagen = $rutaimagen;
+            $resenya->save();
+            }else{
+                $resenya->save();
+            }
+    
+            
+            if($imagen!=null){
+            $rutaimagen = $imagen->store("public/imagenesresenyas");
+            $rutaimagen = "/" . $rutaimagen;
+    
+            if (move_uploaded_file($_FILES['imagen']['tmp_name'], $rutacompleta)) {
+    
+                if (rename($rutacompleta, "../" . $rutaimagen)) {
+                    return redirect()->route('proyects.index')->with('resenyamodificada', 'Reseña modificada correctamente');
+                }
+            } else {
+                dd("No conseguido");
+            }
+
+        }
+        return redirect()->route('proyects.index')->with('resenyamodificada', 'Reseña modificada correctamente');
     }
 
     /**

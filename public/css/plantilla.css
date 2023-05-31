@@ -51,7 +51,7 @@
     border-radius: 10% 10% 10% 10% !important;
     background: rgb(19,111,198);
     background: radial-gradient(circle, rgba(19,111,198,1) 0%, rgba(36,136,231,1) 46%, rgba(10,103,191,1) 100%);
-    color: white;
+    -webkit-text-stroke: 1px white !important;
    
 }
 
@@ -108,7 +108,7 @@ margin-top: 10%;
    position: relative;
 }
 .contenidoResenya{
-    width: 60%;
+    width: 100%;
     position: relative;
    padding: 2px;
 }
@@ -123,4 +123,57 @@ margin-top: 10%;
 .contenidoResenya p{
     font-family: 'Times New Roman', Times, serif;
     font-size: 18px;
+    overflow-wrap:break-word !important;
+}
+
+/*  ********************LOGIN************************************                         */
+#passwordlogin,#email{
+ border-radius: 20px 20px 20px 20px;
+}
+
+
+/**********GENERICOS***************************************************/
+.tituloprincipal{
+    -webkit-text-stroke: 1px white !important;
+}
+
+
+@font-face{
+    font-family: 'Cincel regular';
+    src: url('fuentes/Cincel-Regular.ttf');
+}
+.tituloresenyas{
+font-family: 'Cincel-Regular';
+text-decoration: underline;
+font-size: 24px;
+}
+
+.contenedorGameIndividual{
+    display: flex;
+    flex-flow: row wrap;
+    border-radius: 20px 20px 20px 20px;
+    height: 92px;
+    border: 1px solid black;
+    margin-top: 15px;
+}
+
+
+
+.contenedorGameIndividualNombre{
+width: 20%;
+}
+.contenedorGameIndividualAnyoLanzamiento{
+width: 15%;
+}
+.contenedorGameIndividualGeneros{
+    width: 30%;
+}
+.contenedorGameIndividualImagen{
+    width: 35%;
+}
+
+#footer{
+    position: relative !important;
+    width: 100% !important;
+    bottom: 0 !important;
 }

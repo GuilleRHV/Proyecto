@@ -87,11 +87,13 @@ $votacion=Votacion::find($id);
 
     $decode = json_decode($votacion->participantes,true);
 $numparticipantes=0;
+
+if($decode!=null){
     foreach($decode as $i){
  
         $numparticipantes++;
     }
-
+    }
 
         return view('votacion.show', ['votacion' => $votacion,'numparticipantes'=>$numparticipantes]);
     }

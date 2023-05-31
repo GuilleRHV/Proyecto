@@ -43,7 +43,7 @@ class GameController extends Controller
 
      public function agregarAColeccion(User $user, Game $game){
 
-       // $user->anyadirColeccionAttribute($game->id);
+       //Añadirá videojuegos a tu coleccion
         
 
 
@@ -106,12 +106,6 @@ class GameController extends Controller
         $game->precio = $request->input("precio");
 
         //****GUARDAR IMAGEN */
-
-        //   $imagen = $request->file("imagenjuego");
-
-        //$rutaimagen = $imagen->store("public/imagenes");
-
-        //  $contenidoimagen = file_get_contents($imagen);
 
 
 

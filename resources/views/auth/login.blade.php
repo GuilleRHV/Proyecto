@@ -27,14 +27,21 @@
                                     <label class="form-label" for="form2Example11">Correo electronico</label>
                                 </div>
                                 <div class="form-outline mb-4">
-                                    <input type="email" id="form2Example11" class="form-control" name="email" placeholder="Phone number or email address" />
-
+                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus placeholder="Introduce tu direccion de email">
+                                   
+                                @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                                 </div>
+
+                               
                                 <div class="text-center">
                                     <label class="form-label" for="form2Example22">Password</label>
                                 </div>
                                 <div class="form-outline mb-4">
-                                    <input type="password" id="form2Example22" name="password" class="form-control" />
+                                    <input type="password" id="passwordlogin" name="password" class="form-control" />
 
                                 </div>
 

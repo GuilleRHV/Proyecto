@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('resenyas', function (Blueprint $table) {
             $table->id();
             $table->string('titulo');
-            $table->string('contenido');
+            $table->text('contenido');
             $table->text('nombreyapellido');
             
             $table->unsignedBigInteger("user_id")->nullable();

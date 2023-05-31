@@ -122,7 +122,69 @@
             @yield('content')
           
         </main>
+
+
+
+
+      
     </div>
+
+    <footer class="text-center text-lg-start bg-white " id="footer">
+
+<!-- Section: Social media -->
+
+<!-- Section: Links  -->
+<section class="">
+
+  <div class="container text-center text-md-start mt-5">
+    <!-- Grid row -->
+    <div class="row mt-3">
+ 
+      <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+        <!-- Content -->
+        <h6 class="text-uppercase fw-bold mb-4">
+         BiblioGames
+        </h6>
+       
+      </div>
+    
+
+     
+      <!-- Grid column -->
+      <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+        <!-- Links -->
+        <h6 class="text-uppercase fw-bold mb-4">
+          Useful links
+        </h6>
+        <a href="https://github.com/guillerhv" class="me-4 link-secondary">
+      <i class="fa fa-github fa-3x"></i>
+    </a>
+        <p>
+          <a href="#" class="text-reset">Orders</a>
+        </p>
+        <p>
+          <a href="#" class="text-reset">Help</a>
+        </p>
+      </div>
+     
+      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+        <h6 class="text-uppercase fw-bold mb-4">Contactanos</h6>
+        <p><i class="fa fa-home me-3 text-secondary"></i> Zaragoza, ES</p>
+        
+    
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<div class="text-center p-4" >
+  © 2023 Copyright:
+  <a class="text-reset fw-bold" href="#">Bibliogames</a>
+</div>
+
+</footer>
 </body>
 
 </html>

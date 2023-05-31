@@ -14,16 +14,37 @@
                     <label for="email" class="col-form-label" style="font-weight:600;font-size:17px">descripcion</label><br>
                     <label for="email" class="col-form-label">{{ $votacion->descripcion ?? '' }}</label>
                     </div>
+                  
+                    @if($votacion->valoropcion1>$votacion->valoropcion2)
                     <div class="form-group">
-                    <label for="email" class="col-form-label" style="font-weight:600;font-size:17px">
-                    {{ $votacion->nombreopcion1}}</label><br>
+                    <label for="email" class="col-form-label" style="font-weight:600;font-size:17px;"><p style="color: green">{{ $votacion->nombreopcion1}}</p></label><br>
                     <label for="email" class="col-form-label">votos: {{ $votacion->valoropcion1  ?? '' }}</label>
                     </div>
                     <div class="form-group">
-                    <label for="email" class="col-form-label" style="font-weight:600;font-size:17px">{{ $votacion->nombreopcion2}}</label><br>
+                    <label for="email" class="col-form-label" style="font-weight:600;font-size:17px; "><p style="color: red">{{ $votacion->nombreopcion2}}</p></label><br>
                     <label for="email" class="col-form-label">votos: {{ $votacion->valoropcion2  ?? '' }}</label>
                     </div>
-
+                    @endif
+                    @if($votacion->valoropcion1<$votacion->valoropcion2)
+                    <div class="form-group">
+                    <label for="email" class="col-form-label" style="font-weight:600;font-size:17px;"><p style="color: red">{{ $votacion->nombreopcion1}}</p></label><br>
+                    <label for="email" class="col-form-label">votos: {{ $votacion->valoropcion1  ?? '' }}</label>
+                    </div>
+                    <div class="form-group">
+                    <label for="email" class="col-form-label" style="font-weight:600;font-size:17px; "><p style="color: green">{{ $votacion->nombreopcion2}}</p></label><br>
+                    <label for="email" class="col-form-label">votos: {{ $votacion->valoropcion2  ?? '' }}</label>
+                    </div>
+                    @endif
+                    @if($votacion->valoropcion1==$votacion->valoropcion2)
+                    <div class="form-group">
+                    <label for="email" class="col-form-label" style="font-weight:600;font-size:17px;"><p style="">{{ $votacion->nombreopcion1}}</p></label><br>
+                    <label for="email" class="col-form-label">votos: {{ $votacion->valoropcion1  ?? '' }}</label>
+                    </div>
+                    <div class="form-group">
+                    <label for="email" class="col-form-label" style="font-weight:600;font-size:17px; "><p style="">{{ $votacion->nombreopcion2}}</p></label><br>
+                    <label for="email" class="col-form-label">votos: {{ $votacion->valoropcion2  ?? '' }}</label>
+                    </div>
+                    @endif
                     <div class="form-group">
                     <label for="rol" class="col-form-label" style="font-weight:600;font-size:17px">Numero de participantes</label><br>
                     <label for="rol" class="col-form-label">{{$numparticipantes}}</label>
