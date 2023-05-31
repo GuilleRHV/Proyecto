@@ -59,7 +59,7 @@
                         <form action="{{route('votaciones.cerrarvotacion',$votacion->id)}}" method="post">
                             @csrf
                             @method('PUT')
-                            <input type="submit" value="Cerrar votacion" class="btn btn-warning">
+                            <button type="submit" value="Cerrar votacion" class="btn btn-transparent"><span class="fa fa-toggle-on fa-2x"></span>&nbsp;</button>
                         </form>
                     </td>
                     @else
@@ -68,7 +68,7 @@
                         <form action="{{route('votaciones.activarvotacion',$votacion->id)}}" method="post">
                             @csrf
                             @method('PUT')
-                            <input type="submit" value="activar votacion" class="btn btn-success">
+                            <button type="submit" value="activar votacion" class="btn btn-transparent"><span class="fa fa-toggle-off fa-2x"></span>&nbsp;</button>
                         </form>
                     </td>
                     @endif

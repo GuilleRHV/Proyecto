@@ -72,7 +72,7 @@
       @endif
       <a class="btn btn-warning" href="{{ route('votacion.votacionesGeneral') }}" class="btn btn">Ver votaciones</a>
       @endif
-      <a class="btn btn-warning" href="{{ route('users.perfil') }}" class="btn btn">Mi perfil</a>
+      <a class="btn btn-outline-secondary" href="{{ route('users.perfil') }}" class="btn btn"><span class="fa fa-user"></span>&nbsp;</a>
 
 
 
@@ -80,7 +80,7 @@
       <div id="contenedorGamesIndex">
         @foreach($gameList as $game)
         <div class="contenedorGameIndividual">
-          <p class="contenedorGameIndividualNombre">{{$game->nombre}}</p>
+          <p class="contenedorGameIndividualNombre"><strong>{{$game->nombre}}</strong></p>
           <p class="contenedorGameIndividualAnyoLanzamiento">{{$game->anyoLanzamiento}}</p>
           <p class="contenedorGameIndividualGeneros">@foreach($game->generos as $gen)
             {{$gen}}
@@ -88,11 +88,36 @@
           </p>
           <div class="contenedorGameIndividualImagen"> @if($game->imagen==null)
             <img src="imagenes/filenotfound.png" width="90px" height="90px" style="border-radius: 50% 50% 50% 50%;">
-
+            
             @else
             <img src="{{$game->imagen}}" width="90px" height="90px" style="border-radius: 50% 50% 50% 50%;" />
 
             @endif
+            <a class="btn btn-warning" href="{{ route('games.show',$game->id) }}" class="btn btn"><span class="fa fa-eye"></span>&nbsp;</a>
+            @if($user!=null)
+            @if(auth()->user()->can('agregarABiblioteca',$user))
+         
+            <form action="{{ route('games.agregarAColeccion',['user'=>$user,'game'=>$game]) }}" method="post">
+              @csrf
+              <button type="submit" class="btn btn-success" ><span class="fa fa-plus-circle"></span>&nbsp;</button>
+            </form>
+          
+
+          @if(auth()->user()->can('permisosAdmin',['App\Models\User',$user]))
+          
+            <button class="btn btn-warning" href="{{route('games.edit',$game->id)}}"><span class="fa fa-pencil"></span>&nbsp;</button>
+          
+
+          
+            <form action="{{route('games.destroy',$game->id)}}" method="post">
+              @csrf
+              @method('DELETE')
+              <button type="submit" value="Eliminar" class="btn btn-danger"><span class="fa fa-trash"></span>&nbsp;</button>
+            </form>
+          
+          @endif
+          @endif
+          @endif
           </div>
         </div>
         @endforeach
@@ -195,8 +220,7 @@ $contador = 1;
     <tr>
       <td>NOMBRE</td>
       <td>DESCRIPCION</td>
-      <td>opcion 1</td>
-      <td>opcion 2</td>
+     
       <td></td>
     </tr>
 
@@ -210,8 +234,7 @@ $contador = 1;
 
       <td>{{$votacion->nombre}}</td>
       <td>{{$votacion->descripcion}}</td>
-      <td>{{$votacion->nombreopcion1}}</td>
-      <td>{{$votacion->nombreopcion2}}</td>
+    
       <td><button class="btn btn-info votaciones" href="{{route('votaciones.edit',$votacion->id)}}" id="votar{{$votacion->id}}">Votard</button></td>
 
       @endif
@@ -223,8 +246,7 @@ $contador = 1;
 
       <td>{{$votacion->nombre}}</td>
       <td>{{$votacion->descripcion}}</td>
-      <td>{{$votacion->nombreopcion1}}</td>
-      <td>{{$votacion->nombreopcion2}}</td>
+      
       <td><button class="btn btn-info votaciones" href="{{route('votaciones.edit',$votacion->id)}}" id="votar{{$votacion->id}}">Votar s</button></td>
       @endif
       @endif
@@ -248,6 +270,7 @@ $contador = 1;
 
 
 @section('adminnavbar')
+
 @if($user!=null)
 @if(auth()->user()->can('permisosAdmin',['App\Models\User',$user]))
 <nav class="navbar navbar-light bg-dark fixed-top" id="navbaradmin">
@@ -277,7 +300,7 @@ $contador = 1;
             <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Dropdown
             </a>
-           
+
           </li>
         </ul>
         <form class="d-flex">
@@ -291,4 +314,5 @@ $contador = 1;
 
 @endif
 @endif
+   
 @endsection

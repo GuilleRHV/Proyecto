@@ -4,6 +4,7 @@
     width: 20%;
     border: 1px solid black !important;
     border-radius: 5% 5% 5% 5%;
+    margin-top: 60px;
 }
 
 /**SHOW**/
@@ -153,27 +154,45 @@ font-size: 24px;
     flex-flow: row wrap;
     border-radius: 20px 20px 20px 20px;
     height: 92px;
-    border: 1px solid black;
+    border: 1px solid rgb(235, 235, 235);
     margin-top: 15px;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 
 
 
 .contenedorGameIndividualNombre{
 width: 20%;
+padding: 30px !important;
 }
 .contenedorGameIndividualAnyoLanzamiento{
 width: 15%;
+padding: 30px !important;
 }
 .contenedorGameIndividualGeneros{
     width: 30%;
+    padding: 30px !important;
 }
 .contenedorGameIndividualImagen{
     width: 35%;
+    padding-left: 10px;
+    height: 100%;
+}
+form{
+    display: inline;
 }
 
 #footer{
     position: relative !important;
     width: 100% !important;
     bottom: 0 !important;
+}
+
+#contenedorGames{
+    display: none !important;
+}
+
+#contenedorGamesColeccion{
+    background-color: bisque !important;
 }

@@ -34,12 +34,12 @@
                     <td>{{$user->rol}}</td>
                     <td>
                         @can ('update', $user)
-                        <a class="btn btn-warning" href="{{route('users.edit',$user->id)}}">Editar</a>
+                        <a class="btn btn-warning" href="{{route('users.edit',$user->id)}}"><span class="fa fa-pencil"></span>&nbsp;</a>
                         @endcan
                     </td>
                     <td>
                         @can ('view', $user)
-                        <a class="btn btn-primary" href="{{route('users.show',$user->id)}}">Ver</a>
+                        <a class="btn btn-primary" href="{{route('users.show',$user->id)}}"><span class="fa fa-eye"></span>&nbsp;</a>
                         @endcan
                     </td>
                     <td>
@@ -47,7 +47,7 @@
                         <form action="{{route('users.destroy',$user->id)}}" method="post">
                             @csrf
                             @method('DELETE')
-                            <input type="submit" value="Delete" class="btn btn-danger">
+                            <button type="submit" value="Delete" class="btn btn-danger"><span class="fa fa-trash"></span>&nbsp;</button>
                         </form>
                     @endcan
                     </td>

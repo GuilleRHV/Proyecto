@@ -45,7 +45,7 @@
 
                     </td>
                     
-          <td> <a class="btn btn-warning" href="{{ route('votaciones.show',$votacion->id) }}" class="btn btn">Ver votacion</a></td>
+          <td> <a class="btn btn-warning" href="{{ route('votaciones.show',$votacion->id) }}" class="btn btn"><span class="fa fa-eye"></span>&nbsp;</a></td>
                     
                    
                    
