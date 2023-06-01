@@ -185,17 +185,12 @@
       <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
         <!-- Links -->
         <h6 class="text-uppercase fw-bold mb-4">
-          Useful links
+          Más de nosotros
         </h6>
         <a href="https://github.com/guillerhv" class="me-4 link-secondary">
       <i class="fa fa-github fa-3x"></i>
     </a>
-        <p>
-          <a href="#" class="text-reset">Orders</a>
-        </p>
-        <p>
-          <a href="#" class="text-reset">Help</a>
-        </p>
+        
       </div>
      
       <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">

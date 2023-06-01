@@ -22,7 +22,7 @@
             @endif
 
 
-            
+
 
 
 
@@ -50,13 +50,13 @@
 
                 </div>
                 <div class="autor">Escrito por {{$resenya->nombreyapellido}}
-                <p>Fecha publicacion: {{$resenya->created_at}}
+                    <p>Fecha publicacion: {{$resenya->created_at}}
 
-                @if($resenya->created_at!=$resenya->updated_at)
-                <p style="color:orange">EDITADO: {{$resenya->updated_at}}</p>
-                @endif
-                </p>
-                
+                        @if($resenya->created_at!=$resenya->updated_at)
+                    <p style="color:orange">EDITADO: {{$resenya->updated_at}}</p>
+                    @endif
+                    </p>
+
                 </div>
 
                 <div class="contenidoeimagen">
@@ -107,18 +107,19 @@
                     </div>
                     @endif
                 </div>
-                @if (auth()->user()->can('modificarResenya', $resenya)) 
+                @if (auth()->user()->can('modificarResenya', $resenya))
 
-<a class="btn btn-warning" href="{{ route('resenyas.edit',$resenya->id) }}" class="btn btn">Modificar reseña</a>
+                <a class="btn btn-warning" href="{{ route('resenyas.edit',$resenya->id) }}" class="btn btn">Modificar reseña</a>
 
 
-<form action="{{route('resenyas.destroy',$resenya->id)}}" method="post">
-    @csrf
-    @method('DELETE')
-    <input type="submit" value="X" class="btn btn-danger" />
-</form>
+                <form action="{{route('resenyas.destroy',$resenya->id)}}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" value="X" class="btn btn-danger"><span class="fa fa-trash"></span>&nbsp;</button>
+                </form>
 
-@endif
+                @endif
+                <a class="btn btn-warning" href="{{ route('resenyas.show',$resenya->id) }}" class="btn btn"><span class="fa fa-eye"></span>&nbsp;</a>
             </div>
 
 

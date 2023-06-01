@@ -80,17 +80,17 @@
       <div id="contenedorGamesIndex">
         @foreach($gameList as $game)
         <div class="contenedorGameIndividual">
-          <p class="contenedorGameIndividualNombre"><strong>{{$game->nombre}}</strong></p>
-          <p class="contenedorGameIndividualAnyoLanzamiento">{{$game->anyoLanzamiento}}</p>
-          <p class="contenedorGameIndividualGeneros">@foreach($game->generos as $gen)
+          <p class="contenedorGameIndividualNombre elipsis"><strong>{{$game->nombre}}</strong></p>
+          <p class="contenedorGameIndividualAnyoLanzamiento elipsis">{{$game->anyoLanzamiento}}</p>
+          <p class="contenedorGameIndividualGeneros ">@foreach($game->generos as $gen)
             {{$gen}}
             @endforeach
           </p>
           <div class="contenedorGameIndividualImagen"> @if($game->imagen==null)
-            <img src="imagenes/filenotfound.png" width="90px" height="90px" style="border-radius: 50% 50% 50% 50%;">
+            <img src="imagenes/filenotfound.png" width="85px" height="85px" style="border-radius: 50% 50% 50% 50%;">
             
             @else
-            <img src="{{$game->imagen}}" width="90px" height="90px" style="border-radius: 50% 50% 50% 50%;" />
+            <img src="{{$game->imagen}}" width="90px" height="90px" />
 
             @endif
             <a class="btn btn-warning" href="{{ route('games.show',$game->id) }}" class="btn btn"><span class="fa fa-eye"></span>&nbsp;</a>

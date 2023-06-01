@@ -27,8 +27,8 @@
                     <td>nombre</td>
 
                     <td>descipcion</td>
-                    <td>nombreopcion1</td>
-                    <td>nombreopcion2</td>
+                    <td>Opción 1</td>
+                    <td>Opción 2</td>
                     <td>participantes</td>
                 </tr>
                 @foreach($votacionesList as $votacion)
@@ -41,19 +41,8 @@
                     <td>{{$votacion->nombreopcion1}}</td>
                     <td>{{$votacion->nombreopcion2}}</td>
                     <td>{{$votacion->participantes}}</td>
-                    <td>
-
-                    </td>
-                    <td>
-
-                    </td>
-                    <td>
-                        <form action="{{route('votaciones.destroy',$votacion->id)}}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <input type="submit" value="Eliminar" class="btn btn-danger">
-                        </form>
-                    </td>
+        
+                   
                     @if($votacion->activo==1)
                     <td>
                         <form action="{{route('votaciones.cerrarvotacion',$votacion->id)}}" method="post">
@@ -72,6 +61,13 @@
                         </form>
                     </td>
                     @endif
+                    <td>
+                        <form action="{{route('votaciones.destroy',$votacion->id)}}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger"><span class="fa fa-trash"></span>&nbsp;</button>
+                        </form>
+                    </td>
                 </tr>
                 @endforeach
             </table>

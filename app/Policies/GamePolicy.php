@@ -52,7 +52,7 @@ class GamePolicy
         return true;
     }
 
-    public function escribirComentarios( $user, $game){
+    public function escribirComentarios($user, $game){
         
         $comentarios = Comentario::all();
      

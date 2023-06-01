@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Resenya;
+use App\Models\ComentarioResenya;
 use App\Models\Usuario;
-
+use Illuminate\Support\Facades\Auth;
 class ResenyaController extends Controller
 {
     /**
@@ -115,7 +116,34 @@ class ResenyaController extends Controller
      */
     public function show($id)
     {
-        //
+        $resenya= Resenya::find($id);
+        $user = Auth::user();
+
+        
+        
+        if ($user == null) {
+            $user = "No eres un usuario";
+        }
+
+        $comentarios = ComentarioResenya::all();
+        if ($comentarios->count() == 0) {
+            $comentarios = null;
+        }
+
+
+        $arraycomentarios = [];
+        if(!$comentarios==null){
+        foreach ($comentarios as $comentario) {
+            if ($comentario->resenya_id == $resenya->id) {
+                $arraycomentarios[]=$comentario;
+            }
+        }
+    }
+        if(count($arraycomentarios)==0) {
+            $arraycomentarios = [];
+        }
+
+        return view('resenya.show', ['resenya' => $resenya, 'user' => $user, 'comentariosresenya' => $arraycomentarios]);
     }
 
     /**

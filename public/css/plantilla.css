@@ -1,10 +1,13 @@
 #navbaradmin {
     position: absolute;
-    background-color: grey !important;
+    background: rgb(209,164,242);
+    background: linear-gradient(90deg, rgba(209,164,242,1) 0%, rgba(217,181,244,1) 45%, rgba(209,164,242,1) 100%); 
     width: 20%;
     border: 1px solid black !important;
-    border-radius: 5% 5% 5% 5%;
+    border-radius: 20px 20px 20px 20px;
     margin-top: 60px;
+    -webkit-text-stroke: 1px rgb(128, 82, 161) !important;
+
 }
 
 /**SHOW**/
@@ -34,7 +37,7 @@
    
 }
 
-#formulariocrearvideojuegos,#tablavotaciones,#contenedorGames{
+#formulariocrearvideojuegos,#contenedorGames{
     background-color: bisque !important;
 }
 #loginlogo{
@@ -137,7 +140,10 @@ margin-top: 10%;
 .tituloprincipal{
     -webkit-text-stroke: 1px white !important;
 }
-
+/**********TABLA VOTACIONES****************************************/
+#tablavotaciones{
+background-color: #FFF2CE;
+}
 
 @font-face{
     font-family: 'Cincel regular';
@@ -172,12 +178,22 @@ padding: 30px !important;
 }
 .contenedorGameIndividualGeneros{
     width: 30%;
-    padding: 30px !important;
+   
+    height: 92px;
+    
+}
+.contenedorGameIndividualGeneros p{
+    text-overflow: ellipsis ;
 }
 .contenedorGameIndividualImagen{
     width: 35%;
     padding-left: 10px;
     height: 100%;
+}
+.contenedorGameIndividualImagen img{
+   
+    padding-left: 0 !important;
+
 }
 form{
     display: inline;
@@ -195,4 +211,12 @@ form{
 
 #contenedorGamesColeccion{
     background-color: bisque !important;
+}
+.textoajustado{
+    width:100% !important;
+    overflow-wrap:break-word !important;
+}
+
+.elipsis{
+    text-overflow: ellipsis;
 }

@@ -66,6 +66,9 @@
 
             </table>
 
+
+
+            <!-- COMENTARIOS-->
             <h2>Comentarios</h2>
 
             @if(Auth::check())
@@ -134,7 +137,7 @@
             <h4>Respuestas</h4>
 
 
-            <button class="btn btn-danger esconder" id="esconder{{$comentario->id}}" onclick="escondercomentarios('padre{{$comentario->id}}',this.id)">Mostrar respuestas</button>
+            <button class="btn btn-outline-danger esconder" id="esconder{{$comentario->id}}" onclick="escondercomentarios('padre{{$comentario->id}}',this.id)">Mostrar respuestas</button>
             <span class="glyphicon glyphicon-chevron-down"></span>
             <span class="glyphicon glyphicon-pencil">
                 @foreach($comentario->hijos as $hijo)
@@ -195,7 +198,7 @@
                 <h4>Respuestas</h4>
 
 
-                <button class="btn btn-danger esconder" onclick="escondercomentarios('padre{{$comentario->id}}')">Esconder comentarios</button>
+                <button class="btn btn-outline-danger esconder" onclick="escondercomentarios('padre{{$comentario->id}}')">Esconder comentarios</button>
 
                 @foreach($comentario->hijos as $hijo)
 
@@ -221,18 +224,7 @@
                 <br>
                 @endforeach
                 @endif
-
-
-
-
-
-
-
-
-
-
-
-        </div>
+</div>
     </div>
 </div>
 @endsection

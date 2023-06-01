@@ -17,6 +17,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ComentarioController;
+use App\Http\Controllers\ComentarioResenyaController;
 use App\Http\Controllers\GameController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\OrderController;
@@ -59,6 +60,9 @@ Route::post('/proyects/{user}/{game}',[GameController::class,'agregarAColeccion'
 Route::post('/proyects/{orden}',[ProyectController::class,'indexNombre'])->name('proyects.indexNombre');
 Route::post('/proyects/games/{game_id}/{user_id}',[ComentarioController::class,'store'])->name('comentarios.store');
 Route::post('/proyects/games/{game_id}/{user_id}/{comentario}',[ComentarioController::class,'responder'])->name('comentarios.responder');
+
+Route::post('/proyects/resenyas/{resenya_id}/{user_id}',[ComentarioResenyaController::class,'store'])->name('comentariosresenyas.store');
+Route::post('/proyects/resenyas/{resenya_id}/{user_id}/{comentario}',[ComentarioResenyaController::class,'responder'])->name('comentariosresenyas.responder');
 
 Route::get('/proyects/verMiBiblioteca',[UserController::class,'verMiBiblioteca'])->name('users.verMiBiblioteca');
 Route::get('/proyects/verMiBiblioteca/{user}/{game}',[UserController::class,'eliminarDeMiBiblioteca'])->name('users.eliminarDeMiBiblioteca');
