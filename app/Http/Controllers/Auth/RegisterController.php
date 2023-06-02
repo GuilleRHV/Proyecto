@@ -50,10 +50,27 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'apellido' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'name' => ['required', 'string', 'max:20'],
+            'apellido' => ['required', 'string', 'max:20'],
+            'email' => ['required', 'string', 'email', 'max:30', 'unique:usuarios'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ],[
+            'name.required' => "El nombre es obligatorio",
+            'name.string' => "El nombre debe ser una cadena",
+            'name.max' => "El nombre debe tener un maximo de 20",
+            'apellido.required'=>"El apellido es obligatorio",
+            "apellido.string" => "El apellido debe ser una cadena",
+            'apellido.max' => "El apellido debe tener un maximo de 20 caracteres",
+            "email.required"=>"El email es obligatorio",
+            "email.string" => "El email debe ser una cadena",
+            "email.email" => "El email debe estar bien compuesto: nombre@dominio.(ej: com)",
+            "email.confirmed"=>"El email es obligatorio",
+            "email.unique"=>"Ya existe alguien registrado con esta direccion de email",
+            "email.max" => "El email debe tener un maximo de 30 caracteres",
+            "password.required"=>"La contraseña es obligatoria",
+            "password.string" => "La contraseña debe ser una cadena",
+            "password.min" => "La contraseña debe tener como minimo 8 caracteres",
+            "password.confirmed"=>"Las contraseñas deben coincidir" 
         ]);
     }
 

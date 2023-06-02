@@ -55,6 +55,29 @@ document.addEventListener('DOMContentLoaded', function () {
     
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     $("#botoncambiarcontraseña").on('click', function () {
 
         $("#cambiarcontraseña").toggleClass('inactivo');

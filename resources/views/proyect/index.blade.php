@@ -2,8 +2,8 @@
 
 @section('content')
 <div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
+  <div class="row justify-content-center" id="fondo2index">
+    <div class="col-md-8" >
       @if($message = Session::get('juegocreado'))
       <div class="alert alert-success">
         <h4>{{$message}}</h4>
