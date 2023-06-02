@@ -12,10 +12,10 @@
 
 
 
-            <h1>Lista usuarios</h1>
-            @can ('create', 'App\Models\User')
-            <a class="btn btn-success" href="{{ route('users.create') }}" class="btn btn">Nuevo cliente</a>
-            @endcan
+            <h1> Usuarios</h1>
+         <!--   @can ('create', 'App\Models\User')
+            <a class="btn btn-success" href="{{ route('users.create') }}" class="btn btn">Crear usuario</a>
+            @endcan-->
             <table class="table table-striped table-hover" id="tablaeditusuarios">
                 <tr>
                 

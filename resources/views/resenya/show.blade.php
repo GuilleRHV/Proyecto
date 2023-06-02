@@ -3,7 +3,7 @@
 {{-- Muestra los detalles de un resenya --}}
 
 @section('content')
-<div class="container" style="background-color: white; border-radius: 20px 20px 20px 20px !important; border:2px solid grey">
+<div class="container contenedorcomentarios" style="" >
     <div class="row justify-content-center">
        
            
@@ -135,7 +135,7 @@
             <form action="{{route('comentariosresenyas.responder',['resenya_id'=>$resenya->id,'user_id'=>$user->id,'comentario'=>$comentario])}}" method="post">
                 @csrf
                 <div class="card w-75">
-                    <div class="card-body" style="background-color: grey; border-radius: 1em 1em 1em 1em">
+                    <div class="card-body contenedorcomentarios" style="border-radius: 1em 1em 1em 1em">
                         <h5 class="card-title">
                         @if($comentario->usuario->imagen!=null)
                        
@@ -162,7 +162,7 @@
             <h4>Respuestas</h4>
 
 
-            <button class="btn btn-danger esconder" id="esconder{{$comentario->id}}" onclick="escondercomentarios('padre{{$comentario->id}}',this.id)">Mostrar respuestas</button>
+            <button class="btn btn-danger esconder" id="esconder{{$comentario->id}}" onclick="escondercomentarios('padre{{$comentario->id}}',this.id)">Mostrar respuestas <span class="fa fa-sort-desc"></span>&nbsp;</button>
             <span class="glyphicon glyphicon-chevron-down"></span>
             <span class="glyphicon glyphicon-pencil">
                 @foreach($comentario->hijos as $hijo)
@@ -209,7 +209,7 @@
 
                 @if($comentario->padre_id==null)
                 <div class="card w-75">
-                    <div class="card-body" style="background-color: grey; border-radius: 1em 1em 1em 1em">
+                    <div class="card-body contenedorcomentarios" >
                         <h5 class="card-title">{{$comentario->usuario->name}}</h5>
                         <h6>{{$comentario->updated_at}}</h6>
                         <p class="card-text textoajustado">{{$comentario->contenido}}</p>

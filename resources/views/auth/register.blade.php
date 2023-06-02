@@ -49,7 +49,7 @@
                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation">
                         </div>
 
-                        <button type="submit" class="btn btn-primary btn-block mb-4">
+                        <button type="submit" class="btn btn-primary btn-block mb-4 botonloginregister">
                             Registrarse
                         </button>
 
