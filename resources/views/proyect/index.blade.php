@@ -59,7 +59,7 @@
       <h1 id="listavideojuegosh1">Lista videojuegos</h1>
       @if($user!=null)
       @if(auth()->user()->can('permisosAdmin',['App\Models\User',$user]))
-      <a class="btn btn-success" href="{{ route('games.create') }}" class="btn btn">Nuevo juego</a>
+      <a class="btn btn-success" href="{{ route('games.create') }}" class="btn btn">Añadir juego</a>
       @endif
       @endif
 
@@ -105,7 +105,7 @@
 
           @if(auth()->user()->can('permisosAdmin',['App\Models\User',$user]))
           
-            <button class="btn btn-warning" href="{{route('games.edit',$game->id)}}"><span class="fa fa-pencil"></span>&nbsp;</button>
+            <a class="btn btn-warning" href="{{route('games.edit',$game->id)}}"><span class="fa fa-pencil"></span>&nbsp;</a>
           
 
           
@@ -235,7 +235,7 @@ $contador = 1;
       <td>{{$votacion->nombre}}</td>
       <td>{{$votacion->descripcion}}</td>
     
-      <td><button class="btn btn-info votaciones" href="{{route('votaciones.edit',$votacion->id)}}" id="votar{{$votacion->id}}">Votard</button></td>
+      <td><button class="btn btn-info votaciones" onclick="votar(this.id)" href="{{route('votaciones.edit',$votacion->id)}}" id="votar{{$votacion->id}}">Votar</button></td>
 
       @endif
 
@@ -247,7 +247,7 @@ $contador = 1;
       <td>{{$votacion->nombre}}</td>
       <td>{{$votacion->descripcion}}</td>
       
-      <td><button class="btn btn-info votaciones" href="{{route('votaciones.edit',$votacion->id)}}" id="votar{{$votacion->id}}">Votar s</button></td>
+      <td><button class="btn btn-info votaciones" onclick="votar(this.id)" href="{{route('votaciones.edit',$votacion->id)}}" id="votar{{$votacion->id}}">Votar</button></td>
       @endif
       @endif
 

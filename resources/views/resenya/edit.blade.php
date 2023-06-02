@@ -26,48 +26,44 @@
 
                 @method("PUT")
 
+                <div class="row align-self-center">
+                    <div class="col col-md-4 mb-8 ">
+                        <div class="form-outline">
+                            <label class="form-label" for="formtitulo">Titulo</label>
+                            <input type="text" id="form3Example1" class="form-control  bordesredondeados " name="titulo" value="{{ $resenya->titulo ?? '' }}"/>
+                        </div>
+                    </div>
+                </div>
+                <div class=" mb-4">
+                    <div class="form-outline">
+                        <label class="form-label" for="formcont">Contenido</label>
+                        <input type="text" id="form3Example2" class="form-control bordesredondeados" name="contenido" value="{{ $resenya->contenido ?? '' }}" />
 
-                <div class="form-group">
-                    <label for="titulo">Titulo</label>
-                    <input type="text" name="titulo" id="titulo" class="form-control" value="{{ $resenya->titulo ?? '' }}">
-                    </label>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="nombre">contenido</label>
-                    <input type="text" name="contenido" id="contenido" class="form-control" value="{{ $resenya->contenido ?? '' }}">
-                    </label>
+                <div class="row">
+                    <div class="col-md-3 mb-4">
+                    <div class="form-outline">
+                    <label class="form-label" for="formpuntuacion">Puntuacion</label>
+                        <select class="form-select form-select-sm" aria-label=".form-select-sm example" name="puntuacion">
+
+                            <option value="1" <?php if($resenya->puntuacion==1){ echo "selected";}  ?>>1</option>
+                            <option value="2"<?php if($resenya->puntuacion==2){ echo "selected";}  ?>>2</option>
+                            <option value="3"<?php if($resenya->puntuacion==3){ echo "selected";}  ?>>3</option>
+                            <option value="4"<?php if($resenya->puntuacion==4){ echo "selected";}  ?>>4</option>
+                            <option value="5"<?php if($resenya->puntuacion==5){ echo "selected";}  ?>>5</option>
+                        </select>
+                    </div>
+                    </div>
+                    <div class="col-md-6 mb-4">
+                        <div class="mb-3">
+                            <label for="formFile" class="form-label">Imagen reseña</label>
+                            <input class="form-control" type="file" name="imagen">
+                        </div>
+
+                    </div>
                 </div>
-
-             
-
-                <div class="form-group">
-                    <label for="puntuacion">puntuacion</label><br>
-                    <select name="puntuacion" >
-                        
-                        <option value="1" <?php if($resenya->puntuacion==1){ echo "selected";}  ?>>1</option>
-                        <option value="2" <?php if($resenya->puntuacion==2){ echo "selected";}  ?>>2</option>
-                        <option value="3" <?php if($resenya->puntuacion==3){ echo "selected";}  ?>>3</option>
-                        <option value="4" <?php if($resenya->puntuacion==4){ echo "selected";}  ?>>4</option>
-                        <option value="5" <?php if($resenya->puntuacion==5){ echo "selected";}  ?>>5</option>
-                        
-                    
-                    </select>
-
-                </div>
-
-
-               
-
-                <div class="mb-3">
-                    <label for="formFile" class="form-label">Imagen de la reseña</label>
-                    <input class="form-control" type="file" id="imagen" name="imagen">
-                </div>
-
-
-               
-
-
 
                 <input type="submit" value="Actualizar" class="btn btn-warning">
             </form>

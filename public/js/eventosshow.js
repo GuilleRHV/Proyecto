@@ -1,4 +1,12 @@
 
+function votar(id){
+  
+    alert(id);
+    var numId = id.split("votar");
+    //console.log(numId[1]);
+    var numero = numId[1];
+    window.open("votaciones/"+numero+"/edit","ventanaEmergente","width=300px,height=300px");
+}
 
 function escondercomentarios(valor,esconder) {
 

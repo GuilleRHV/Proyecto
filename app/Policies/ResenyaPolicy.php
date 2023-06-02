@@ -23,7 +23,7 @@ class ResenyaPolicy
         //
     }
 
-    public function escribirComentariosResenya($user, $resenya){
+    public function escribirComentariosResenya(User $user, Resenya $resenya){
         
         $comentarios = ComentarioResenya::all();
      
