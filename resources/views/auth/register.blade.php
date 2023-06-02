@@ -12,7 +12,7 @@
             backdrop-filter: blur(30px);
             ">
                 <div class="card-body p-5 shadow-5 text-center cardregister" >
-                    <h1>Registrarse</h1>
+                    <h1>Registrate</h1>
                     <br>
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
@@ -110,7 +110,7 @@
 
 
 
-<div class="container">
+<div class="container" style="display: none;">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
