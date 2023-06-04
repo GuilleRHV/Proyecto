@@ -3,10 +3,11 @@
 @section('content')
 <div class="container">
 <div id="carousel">
+</div>
   <div class="row justify-content-center" id="fondo2index">
  
   
-  </div>
+  
     <div class="col-md-8" >
       @if($message = Session::get('juegocreado'))
       <div class="alert alert-success">
