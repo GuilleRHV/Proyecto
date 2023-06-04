@@ -1,14 +1,40 @@
 @extends('layouts.app')
 
 @section('content')
+
+
+
 <div class="container">
-<div id="carousel">
+
+
+
+
+<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img class="d-block w-100" src="imagenescarousel/zeldatok.jpg" alt="First slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="imagenescarousel/silksong.jpeg" alt="Second slide">
+    </div>
+    <div class="carousel-item">
+      <img class="d-block w-100" src="imagenescarousel/zeldatok.jpg" alt="Third slide">
+    </div>
+  </div>
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
 </div>
   <div class="row justify-content-center" id="fondo2index">
- 
-  
-  
-    <div class="col-md-8" >
+
+
+
+    <div class="col-md-8">
       @if($message = Session::get('juegocreado'))
       <div class="alert alert-success">
         <h4>{{$message}}</h4>
@@ -93,7 +119,7 @@
           </p>
           <div class="contenedorGameIndividualImagen"> @if($game->imagen==null)
             <img src="imagenes/filenotfound.png" width="85px" height="85px" style="border-radius: 50% 50% 50% 50%;">
-            
+
             @else
             <img src="{{$game->imagen}}" width="90px" height="90px" />
 
@@ -101,28 +127,28 @@
             <a class="btn btn-warning" href="{{ route('games.show',$game->id) }}" class="btn btn"><span class="fa fa-eye"></span>&nbsp;</a>
             @if($user!=null)
             @if(auth()->user()->can('agregarABiblioteca',$user))
-         
+
             <form action="{{ route('games.agregarAColeccion',['user'=>$user,'game'=>$game]) }}" method="post">
               @csrf
-              <button type="submit" class="btn btn-success" ><span class="fa fa-plus-circle"></span>&nbsp;</button>
+              <button type="submit" class="btn btn-success"><span class="fa fa-plus-circle"></span>&nbsp;</button>
             </form>
-          
 
-          @if(auth()->user()->can('permisosAdmin',['App\Models\User',$user]))
-          
+
+            @if(auth()->user()->can('permisosAdmin',['App\Models\User',$user]))
+
             <a class="btn btn-warning" href="{{route('games.edit',$game->id)}}"><span class="fa fa-pencil"></span>&nbsp;</a>
-          
 
-          
+
+
             <form action="{{route('games.destroy',$game->id)}}" method="post">
               @csrf
               @method('DELETE')
               <button type="submit" value="Eliminar" class="btn btn-danger"><span class="fa fa-trash"></span>&nbsp;</button>
             </form>
-          
-          @endif
-          @endif
-          @endif
+
+            @endif
+            @endif
+            @endif
           </div>
         </div>
         @endforeach
@@ -225,7 +251,7 @@ $contador = 1;
     <tr>
       <td>NOMBRE</td>
       <td>DESCRIPCION</td>
-     
+
       <td></td>
     </tr>
 
@@ -239,7 +265,7 @@ $contador = 1;
 
       <td>{{$votacion->nombre}}</td>
       <td>{{$votacion->descripcion}}</td>
-    
+
       <td><button class="btn btn-info votaciones" onclick="votar(this.id)" href="{{route('votaciones.edit',$votacion->id)}}" id="votar{{$votacion->id}}">Votar</button></td>
 
       @endif
@@ -251,7 +277,7 @@ $contador = 1;
 
       <td>{{$votacion->nombre}}</td>
       <td>{{$votacion->descripcion}}</td>
-      
+
       <td><button class="btn btn-info votaciones" onclick="votar(this.id)" href="{{route('votaciones.edit',$votacion->id)}}" id="votar{{$votacion->id}}">Votar</button></td>
       @endif
       @endif
@@ -298,9 +324,9 @@ $contador = 1;
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{{ route('votaciones.index') }}">Votaciones</a>
           </li>
-          
+
         </ul>
-        
+
       </div>
     </div>
   </div>
@@ -308,5 +334,5 @@ $contador = 1;
 
 @endif
 @endif
-   
+
 @endsection

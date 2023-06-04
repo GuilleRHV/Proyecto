@@ -3,6 +3,14 @@
 document.addEventListener('DOMContentLoaded', function () {
        
 
+
+    $(".carousel").carousel({
+        interval: 4000,
+        pause:true,
+        wrap:false
+   });
+
+
    /*
     $(".votaciones").on('click',function(){
            // alert("Votacion");
@@ -108,7 +116,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-if
+
 
 
 
