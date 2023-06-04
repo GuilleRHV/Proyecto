@@ -9,6 +9,9 @@
     -webkit-text-stroke: 1px rgb(128, 82, 161) !important;
 
 }
+#paneladministrador{
+  height: 500px !important;
+}
 
 /**SHOW**/
 #titulogameshow {
@@ -453,3 +456,9 @@ font-size: 35px;
     }
   }
   
+
+  #carousel{
+    width: 100% !important;
+    height: 300px !important;
+    background-color: grey !important;
+  }

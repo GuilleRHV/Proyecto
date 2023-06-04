@@ -2,7 +2,11 @@
 
 @section('content')
 <div class="container">
+<div id="carousel">
   <div class="row justify-content-center" id="fondo2index">
+ 
+  
+  </div>
     <div class="col-md-8" >
       @if($message = Session::get('juegocreado'))
       <div class="alert alert-success">
@@ -72,7 +76,7 @@
       @endif
       <a class="btn btn-warning" href="{{ route('votacion.votacionesGeneral') }}" class="btn btn">Ver votaciones</a>
       @endif
-      <a class="btn btn-outline-secondary" href="{{ route('users.perfil') }}" class="btn btn"><span class="fa fa-user"></span>&nbsp;</a>
+      <a class="btn btn-primary" href="{{ route('users.perfil') }}" class="btn btn"><span class="fa fa-user"></span>&nbsp;</a>
 
 
 
@@ -276,10 +280,10 @@ $contador = 1;
 <nav class="navbar navbar-light bg-dark fixed-top" id="navbaradmin">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Herramientas de administrador</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#paneladministrador" aria-controls="paneladministrador">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="paneladministrador" aria-labelledby="offcanvasNavbarLabel">
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Administrador</h5>
         <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
@@ -293,20 +297,9 @@ $contador = 1;
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="{{ route('votaciones.index') }}">Votaciones</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
-            </a>
-
-          </li>
+          
         </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
+        
       </div>
     </div>
   </div>

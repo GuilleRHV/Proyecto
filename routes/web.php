@@ -24,6 +24,10 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProyectController;
 use App\Http\Controllers\ResenyaController;
 use App\Http\Controllers\VotacionController;
+use App\Models\Game;
+use App\Models\Usuario;
+use App\Models\Votacion;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 /*
 |--------------------------------------------------------------------------
@@ -42,7 +46,10 @@ use Illuminate\Support\Facades\Mail;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    $user = Auth::user();
+            $gameList = Game::all();
+            $votacionesList=Votacion::all();
+            return view('proyect.index', ['gameList' => $gameList,'user'=>$user,'votacionesList'=>$votacionesList]);
 });
 //PROYECTO
 //users.verMiBiblioteca

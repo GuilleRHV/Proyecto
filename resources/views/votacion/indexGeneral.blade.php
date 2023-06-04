@@ -19,7 +19,8 @@
 
             <h1>Lista votaciones</h1>
 
-            <a class="btn btn-success" href="{{ route('votaciones.create') }}" class="btn btn">Nueva votacion</a>
+           
+            
 
             <table class="table table-striped table-hover" id="tablavotaciones">
                 <tr>

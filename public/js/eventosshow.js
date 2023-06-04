@@ -1,7 +1,7 @@
 
 function votar(id){
   
-    alert(id);
+
     var numId = id.split("votar");
     //console.log(numId[1]);
     var numero = numId[1];

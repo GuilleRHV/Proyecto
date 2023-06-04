@@ -107,6 +107,7 @@
                     </div>
                     @endif
                 </div>
+                @if(auth()->user()!=null)
                 @if (auth()->user()->can('modificarResenya', $resenya))
 
                 <a class="btn btn-warning" href="{{ route('resenyas.edit',$resenya->id) }}" class="btn btn">Modificar reseña</a>
@@ -118,6 +119,7 @@
                     <button type="submit" value="X" class="btn btn-danger"><span class="fa fa-trash"></span>&nbsp;</button>
                 </form>
 
+                @endif
                 @endif
                 <a class="btn btn-warning" href="{{ route('resenyas.show',$resenya->id) }}" class="btn btn"><span class="fa fa-eye"></span>&nbsp;</a>
             </div>

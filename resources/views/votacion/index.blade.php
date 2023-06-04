@@ -1,3 +1,4 @@
+
 @extends('layouts.app')
 
 @section('content')
@@ -19,8 +20,10 @@
 
             <h1>Lista votaciones</h1>
 
+        @if(auth()->user()->can('permisosAdmin',['App\Models\User',auth()->user()]))
             <a class="btn btn-success" href="{{ route('votaciones.create') }}" class="btn btn">Nueva votacion</a>
-
+            @endif
+           
             <table class="table table-striped table-hover" id="tablavotaciones">
                 <tr>
                     <td>id</td>
