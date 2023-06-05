@@ -108,10 +108,18 @@
                     @endif
                 </div>
                 @if(auth()->user()!=null)
+
+              
+
+
                 @if (auth()->user()->can('modificarResenya', $resenya))
+                
 
                 <a class="btn btn-warning" href="{{ route('resenyas.edit',$resenya->id) }}" class="btn btn">Modificar reseña</a>
 
+
+                @endif
+                @if (auth()->user()->can('eliminarResenya', $resenya))
 
                 <form action="{{route('resenyas.destroy',$resenya->id)}}" method="post">
                     @csrf

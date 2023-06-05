@@ -59,7 +59,19 @@ class ResenyaPolicy
     {
     
         $resenyauser = $resenya->user_id;
-        if (Usuario::find($resenyauser)->id == $user->id || $user->rol == "administrador") {
+        if (Usuario::find($resenyauser)->id == $user->id) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+
+    public function eliminarResenya(User $user, Resenya $resenya)
+    {
+    
+        $resenyauser = $resenya->user_id;
+        if (Usuario::find($resenyauser)->id == $user->id || $user->rol=="administrador") {
             return true;
         } else {
             return false;
