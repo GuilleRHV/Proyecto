@@ -98,14 +98,14 @@ class ResenyaController extends Controller
         if (move_uploaded_file($_FILES['imagen']['tmp_name'], $rutacompleta)) {
 
             if (rename($rutacompleta, "../" . $rutaimagen)) {
-                return redirect()->route('proyects.index')->with('resenyacreada', 'Reseña creada correctamente');
+                return redirect()->route('resenyas.index')->with('resenyacreada', 'Reseña creada correctamente');
             }
         } else {
             dd("No conseguido");
         }
     }
 
-        return redirect()->route('proyects.index')->with('resenyacreada', 'Reseña creada correctamente');
+        return redirect()->route('resenyas.index')->with('resenyacreada', 'Reseña creada correctamente');
     }
 
     /**
@@ -227,14 +227,14 @@ class ResenyaController extends Controller
             if (move_uploaded_file($_FILES['imagen']['tmp_name'], $rutacompleta)) {
     
                 if (rename($rutacompleta, "../" . $rutaimagen)) {
-                    return redirect()->route('proyects.index')->with('resenyamodificada', 'Reseña modificada correctamente');
+                    return redirect()->route('resenyas.index')->with('resenyamodificada', 'Reseña modificada correctamente');
                 }
             } else {
                 dd("No conseguido");
             }
 
         }
-        return redirect()->route('proyects.index')->with('resenyamodificada', 'Reseña modificada correctamente');
+        return redirect()->route('resenyas.index')->with('resenyamodificada', 'Reseña modificada correctamente');
     }
 
     /**

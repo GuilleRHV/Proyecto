@@ -79,7 +79,7 @@
         </div>
 
         <div class="col-lg-6 mb-5 mb-lg-0">
-        <img src="{{asset('imagenes/logo.JPG')}}" class="w-100 shadow-4" style="height: 600px; border-radius: 0 20px 20px 0; "
+        <img src="{{asset('imagenes/logosintexto.png')}}" class="w-100 shadow-4" style="height: 600px; border-radius: 0 20px 20px 0; "
           alt="" />
       </div>
     </div>

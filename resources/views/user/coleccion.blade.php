@@ -15,7 +15,7 @@
 
 
 
-            <h1 class="tituloprincipal">Coleccion de videojuegos</h1>
+            <h1 class="tituloprincipal" >Coleccion de videojuegos</h1>
 
       
           

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container" style="background-color: white;">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <h1>{{ $votacion->nombre ?? '' }}</h1>

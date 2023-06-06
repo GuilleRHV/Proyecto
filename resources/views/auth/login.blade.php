@@ -14,7 +14,7 @@
                         <div class="card-body p-md-5 mx-md-4">
 
                             <div class="text-center">
-                                <img src="{{ asset('imagenes/logo.JPG')}}" style="width: 200px;height: 200px; border-radius: 50% 50% 50% 50%" alt="">
+                                <img src="{{ asset('imagenes/logosintexto.png')}}" style="width: 200px;height: 200px; border-radius: 50% 50% 50% 50%" alt="">
 
                             </div>
                             <br>
@@ -58,10 +58,8 @@
                     </div>
                     <div class="col-lg-6 d-flex align-items-center gradient-custom-2 " id="color-change-5x">
                         <div class="text-white px-3 py-4 p-md-5 mx-md-4 ">
-                            <h2 class="mb-1 " id="tracking-in-contract">Bibliogames</h1>
-                            <p class="small mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                            <h2 class="mb-1 " id="tracking-in-contract" id="titulologin">Bibliogames</h1>
+                            <p>Crea tu propia colección de videojuegos, comenta tu opinión y reseña tus juegos favoritos.</p>
                         </div>
                     </div>
                 </div>
@@ -103,7 +101,7 @@
 
                 <div class="card-body" id="cardlogin">
                     <br>
-                    <img src="{{ asset('imagenes/logo.JPG')}}" id="loginlogo" />
+                    <img src="{{ asset('imagenes/logo.png')}}" id="loginlogo" />
 
                     <form method="POST" action="{{ route('login') }}">
                         @csrf

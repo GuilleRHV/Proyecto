@@ -26,7 +26,6 @@
             @endif
 
             <hr>
-
             <div class="form-group">
                 <label for="nombre" class="col-form-label" style="font-weight:600;font-size:17px">Nombre</label><br>
                 <label for="nombre" class="col-form-label">{{ $game->nombre ?? '' }}</label>
@@ -56,17 +55,18 @@
                 <label for="plataformas" class="col-form-label">{{ $p ?? '' }}</label><br>
                 @endforeach
 
+                <br>
+                <a href="{{route('proyects.index')}}" class="btn btn-primary">Home</a>
             </div>
 
 
             <hr>
 
 
+        
 
 
-            </table>
-
-
+           
 
             <!-- COMENTARIOS-->
             <h2>Comentarios</h2>
@@ -96,7 +96,7 @@
 
                 </div>
             </form>
-            <a href="{{route('proyects.index')}}" class="btn btn-warning" style="width: 100px !important; top:0 !important" >Home</a>
+         
             @endif
 
 
@@ -131,13 +131,17 @@
                     <textarea class="form-control" rows="2" name="contenidocomentario"></textarea>
                 </div>
 
+
+                <div class="form-group">
                 <input type="submit" value="Responder" class="btn btn-warning">
+                </div>
+      
             </form>
             @if($comentario->hijos->isEmpty()==false)
-            <h4>Respuestas</h4>
-
-
-            <button class="btn btn-outline-danger esconder" id="esconder{{$comentario->id}}" onclick="escondercomentarios('padre{{$comentario->id}}',this.id)">Mostrar respuestas <span class="fa fa-sort-desc"></span>&nbsp;</button>
+        
+            <div class="form-group">
+            <button class="btn btn-outline-danger esconder"  id="esconder{{$comentario->id}}" onclick="escondercomentarios('padre{{$comentario->id}}',this.id)">Mostrar respuestas <span class="fa fa-sort-desc"></span>&nbsp;</button>
+            </div>
             <span class="glyphicon glyphicon-chevron-down"></span>
             <span class="glyphicon glyphicon-pencil">
                 @foreach($comentario->hijos as $hijo)
@@ -147,7 +151,7 @@
                         <h5 class="card-title">
                         
                             @if($comentario->usuario->imagen!=null)
-                            <h3>{{$hijo->user_id}}</h3>
+                           
                          
                             <img src="../{{$comentario->usuario->imagen}}" class="imagencomentario" />
                            @else
@@ -195,8 +199,7 @@
 
 
                 @if($comentario->hijos->isEmpty()==false)
-                <h4>Respuestas</h4>
-
+                
 
                 <button class="btn btn-outline-danger esconder" onclick="escondercomentarios('padre{{$comentario->id}}')">Esconder comentarios</button>
 

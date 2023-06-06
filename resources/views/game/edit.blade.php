@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container" style="background-color: white;">
     <div class="row justify-content-center">
         <div class="col-md-12">
             <h1>Editar videojuego</h1>
-            <a href="{{route('games.index')}}" class="btn btn-primary">Index</a>
+            <a href="{{route('proyects.index')}}" class="btn btn-primary">Home</a>
 
             <hr>
 
@@ -65,7 +65,7 @@
                                 <option value="aventura" <?php foreach($game->generos as $genero){if($genero=="aventura"){echo "selected";}}?>>aventura</option>
                                 <option value="rpg" <?php foreach($game->generos as $genero){if($genero=="rpg"){echo "selected";}}?>>rpg</option>
                                 <option value="misterio"<?php foreach($game->generos as $genero){if($genero=="misterio"){echo "selected";}}?>>misterio</option>
-                                <option value="pelieas"<?php foreach($game->generos as $genero){if($genero=="pelieas"){echo "selected";}}?>>pelieas</option>
+                                <option value="peleas"<?php foreach($game->generos as $genero){if($genero=="peleas"){echo "selected";}}?>>peleas</option>
                                 <option value="puzles"<?php foreach($game->generos as $genero){if($genero=="puzles"){echo "selected";}}?>>puzles</option>
                                 <option value="metroivania"<?php foreach($game->generos as $genero){if($genero=="metroivania"){echo "selected";}}?>>metroivania</option>
                                 <option value="arcade"<?php foreach($game->generos as $genero){if($genero=="arcade"){echo "selected";}}?>>arcade</option>

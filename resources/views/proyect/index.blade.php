@@ -9,27 +9,6 @@
 
 
 
-<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img class="d-block w-100" src="imagenescarousel/zeldatok.jpg" alt="First slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="imagenescarousel/silksong.jpeg" alt="Second slide">
-    </div>
-    <div class="carousel-item">
-      <img class="d-block w-100" src="imagenescarousel/zeldatok.jpg" alt="Third slide">
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-</div>
   <div class="row justify-content-center" id="fondo2index">
 
 
@@ -87,7 +66,7 @@
 
 
 
-      <h1 id="listavideojuegosh1">Lista videojuegos</h1>
+      <h1 id="listavideojuegosh1"> Lista videojuegos</h1><br>
       @if($user!=null)
       @if(auth()->user()->can('permisosAdmin',['App\Models\User',$user]))
       <a class="btn btn-success" href="{{ route('games.create') }}" class="btn btn">Añadir juego</a>

@@ -64,7 +64,7 @@
                                 <option value="aventura">aventura</option>
                                 <option value="rpg">rpg</option>
                                 <option value="misterio">misterio</option>
-                                <option value="pelieas">pelieas</option>
+                                <option value="peleas">peleas</option>
                                 <option value="puzles">puzles</option>
                                 <option value="metroivania">metroivania</option>
                                 <option value="arcade">arcade</option>

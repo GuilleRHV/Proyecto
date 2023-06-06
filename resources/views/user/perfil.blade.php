@@ -23,11 +23,11 @@
                     @method("PUT")
                     <div id="imagenperfil">
                         @if($user->imagen==null)
-                        <img src="{{asset('imagenesperfil/userdefault.png')}}" style="border-radius: 5% 5% 5% 5%;width: 200px; height: 200px"/>
+                        <img src="{{asset('imagenesperfil/userdefault.png')}}" style="border-radius: 10% 10% 10% 10%;width:230px; height: 230px"/>
 
                         @else
 
-                        <img src="../{{$user->imagen}}" style="width: 200px;height:200px; border-radius: 30% 30% 30% 30%;" />
+                        <img src="../{{$user->imagen}}" style="width: 230px;height:230px; border-radius: 10% 10% 10% 10%;" />
 
                         @endif
                     </div>
@@ -53,7 +53,7 @@
                             <label for="" class="col-form-label">{{ $user->email ?? '' }}</label>
                         </div>
                         <div class="mb-3">
-  <label for="formFile" class="form-label">Imagen de perfil</label>
+                        <label for="nombre" class="col-form-label" style="font-weight:600;font-size:17px">Imagen de perfil</label><br>
   <input class="form-control" type="file"  name="imagenperfil">
 </div>
                         <div class="form-group">

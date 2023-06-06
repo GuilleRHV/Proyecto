@@ -5,7 +5,7 @@
     width: 20%;
     border: 1px solid black !important;
     border-radius: 20px 20px 20px 20px;
-    margin-top: 60px;
+    margin-top: 90px;
     -webkit-text-stroke: 1px rgb(128, 82, 161) !important;
 
 }
@@ -31,6 +31,7 @@
 #contenedorVotaciones{
     position: absolute;
     top: 200px;
+    width: 500px;
     border-radius: 15px 15px 15px 15px !important;
 }
 #userimagenregistro{
@@ -54,8 +55,9 @@
 }
 
 #listavideojuegosh1{
-    width: 400px;
-    border-radius: 10% 10% 10% 10% !important;
+    width: 320px;
+    margin: auto;
+    border-radius: 20px 20px 20px 20px !important;
     background: rgb(19,111,198);
     background: radial-gradient(circle, rgba(19,111,198,1) 0%, rgba(36,136,231,1) 46%, rgba(10,103,191,1) 100%);
     -webkit-text-stroke: 1px white !important;
@@ -142,6 +144,7 @@ margin-top: 10%;
 /**********GENERICOS***************************************************/
 .tituloprincipal{
     -webkit-text-stroke: 1px white !important;
+    background-color: #0e8ed8;
 }
 /**********TABLA VOTACIONES****************************************/
 #tablavotaciones{
@@ -152,6 +155,16 @@ background-color: #FFF2CE;
     font-family: 'Cincel regular';
     src: url('fuentes/Cincel-Regular.ttf');
 }
+@font-face{
+  font-family: 'josefin semibold';
+  src: url('fuentes/JosefinSans-SemiBold.ttf');
+}
+
+#titulologin{
+font-family: 'JosefinSans-SemiBold' !important;
+font-size: 30px
+}
+
 .tituloresenyas{
 font-family: 'Cincel-Regular';
 text-decoration: underline;
