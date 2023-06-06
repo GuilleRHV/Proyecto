@@ -28,13 +28,13 @@
                 <!--Nombre usuario-->
                 <div class="form-group">
                     <label for="nombre">Nombre</label>
-                    <input type="text" name="name" id="name" class="form-control" value="{{ $user->name ?? '' }}">
+                    <input type="text" name="name" id="name" class="form-control bordesredondeados" value="{{ $user->name ?? '' }}">
                     </label>
                 </div>
                 <!--Email usuario-->
                 <div class="form-group">
                     <label for="descripcion">Email</label>
-                    <input type="text" name="email" id="email" class="form-control" value="{{ $user->email ?? '' }}">
+                    <input type="text" name="email" id="email" class="form-control bordesredondeados" value="{{ $user->email ?? '' }}" readonly>
                     </label>
                 </div>
                 <!--Rol del usuario(usuario o administrador)-->

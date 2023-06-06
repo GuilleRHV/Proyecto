@@ -51,7 +51,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
 
-
+        //Dejo esto así por si en el futuro implementar creacion de usuarios desde vista grafica, pero actualmente no se usa
 
         $request->validate([
 
@@ -108,27 +108,28 @@ class UserController extends Controller
 
     public function verMiBiblioteca()
     {
+        //Ve quien es el usuario
         $user = auth()->user();
         $gameList = array();
-        $colecciondecoded=json_decode($user->coleccion,true);
-        $cont=0;
-
-        if($user->coleccion!=null){
-        foreach (json_decode($user->coleccion) as $i) {
-            $cont++;
+        $colecciondecoded = json_decode($user->coleccion, true);
+        $cont = 0;
+        //mira a ver si tiene juegos en la coleccion
+        if ($user->coleccion != null) {
+            foreach (json_decode($user->coleccion) as $i) {
+                $cont++;
+            }
         }
-    }
-
-        if ($cont!=0 ) {
+        //Doble verificacion 
+        if ($cont != 0) {
             foreach (json_decode($user->coleccion) as $i) {
                 $gameList[] = Game::find((int)$i);
             }
-
+            //Si tiene juegos en la coleccion/biblioteca puede acceder a la vista
             return view('user.coleccion', ['user' => $user, 'gameList' => $gameList]);
         } else {
             $user = Auth::user();
-
-            return redirect()->route('proyects.index')->with(['gameList'=> $gameList,'coleccionvacia'=>'Vaya, parece que tienes la biblioteca vacia, añade juegos para acceder a ella']);
+            //Si no tienes juegos en la coleccion/biblioteca te impide acceder a la vista y te manda una alerta
+            return redirect()->route('proyects.index')->with(['gameList' => $gameList, 'coleccionvacia' => 'Vaya, parece que tienes la biblioteca vacia, añade juegos para acceder a ella']);
         }
     }
 
@@ -136,53 +137,47 @@ class UserController extends Controller
 
     public function eliminarDeMiBiblioteca(User $user, Game $game)
     {
+        //Para eliminar juegos de la biblioteca
         $gameList = Game::all();
-
+        //Te identifica
         $userAuth = auth()->user();
-
+        //Mira que no intentas acceder como otro usuario
         if ($user->id != $userAuth->id) {
             return redirect()->route('proyects.index')->with('gameList', $gameList);
         }
+
+        //Si tienes juegos en la coleccion busca y elimina
         if ($user->coleccion != null) {
 
 
-            $array = json_decode($user->coleccion,true);
+            $array = json_decode($user->coleccion, true);
             $nuevoarray = array();
             foreach ($array as $i) {
                 $nuevoarray[] = $i;
             }
             $arrayConEliminado = array_search($game->id, $nuevoarray);
-   
+            array_splice($array, $arrayConEliminado, 1);
 
-            
-                array_splice($array,$arrayConEliminado,1);
-           
-            /* foreach ($arrayConEliminado as $a){
-                    $array[]=$arrayConEliminado;
-                }
 
-                $arr = array_pull($array,$game->id);*/
-            //$arrayConEliminado->forget($game->id);
-           
             $user->coleccion = json_encode($array);
+            //Guarda tu coleccion
             $user->save();
             return redirect()->route('users.verMiBiblioteca');
-           
         }
-
-
-        // $this->verMiBiblioteca($user);
-
     }
 
 
-    public function perfil(){
+    public function perfil()
+    {
+        //Te identifica y te redirige a la vista de tu perfil
         $user = auth()->user();
         return view('user.perfil', ['user' => $user]);
     }
 
-    public function cambiarpassword(){
-        $user=auth()->user();
+    public function cambiarpassword()
+    {
+        //Te identifica y te redirige a la vista para cambiar la contraseña
+        $user = auth()->user();
         return view('user.cambiarpassword', ['user' => $user]);
     }
 
@@ -193,24 +188,25 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,$id)
+    public function update(Request $request, $id)
     {
-  
-        $user=Usuario::find($id);
-       $password=$user->password;
+        //Modificar el perfil de otro usuario o el tu
+        $user = Usuario::find($id);
+        $password = $user->password;
         $request->validate([
 
             "name" => "required",
-         
+
             "imagenperfil" => "image|mimes:jpg,png,jpeg,svg|dimensions:min_width=100,min_heigh=100"
 
         ], [
             "name.required" => "El nombre es obligatorio",
-            "imagenperfil.image"=>"El archivo debe ser una imagen",
+            "imagenperfil.image" => "El archivo debe ser una imagen",
             "imagenperfil.mimes" => "La imagen debe tener extension jpg,jpeg,gif o svg",
             "imagenperfil.dimensions" => "La imagen debe tener unas dimensiones minimas de 100x100 px"
         ]);
-      
+        $user->name = $request->input('name');
+        //Fija rutas en imagenesperfil
         $imagen = $request->file("imagenperfil");
         if ($imagen != null) {
             $nombreimagen = basename($_FILES["imagenperfil"]["name"]);
@@ -222,8 +218,10 @@ class UserController extends Controller
             $rutacompleta = $rutaalternativa . $nombreimagen;
             $user->imagen = $rutaimagen;
         }
-
+        //Salva ruta de imagen en bbdd
         $user->save();
+        //Guarda la imagen en la
+
         if ($imagen != null) {
             $rutaimagen = $imagen->store("public/imagenesperfil");
             $rutaimagen = "/" . $rutaimagen;
@@ -242,83 +240,87 @@ class UserController extends Controller
 
 
 
-$user->name=$request->input('name');
+        //En caso de que decidas no actualizar
         $user->save();
-        return redirect()->route('proyects.index')->with("usuarioeditado", 'Has actualizado el perfil de tu usuario');
+        return redirect()->route('proyects.index')->with("usuarioeditado", 'Has actualizado el perfil de usuario');
     }
 
 
 
 
 
-    public function updateGeneral(Request $request,$id)
+    public function updateGeneral(Request $request, $id)
     {
-  
-        $user=Usuario::find($id);
-     
+        //Cambiar datos de perfil de otro usuario
+        $user = Usuario::find($id);
+
         $request->validate([
 
             "name" => "required",
-         
-           
+
+
 
         ], [
             "name.required" => "El nombre es obligatorio",
-            
+
         ]);
-      
-       
-        $user->name=$request->input('name');
-        $user->email=$request->input('email');
-        $user->rol=$request->input('rol');
+
+        //Cambiar nombre
+        $user->name = $request->input('name');
+        //Cambiar rol (usuario/administrador)
+        $user->rol = $request->input('rol');
 
 
-
+        //Guarda el usuario
         $user->save();
+        //Redirige al index de usuarios
         return redirect()->route('users.index')->with("usuariogeneraleditado", 'Has actualizado el perfil de un usuario');
     }
 
-    
 
-    public function formcambiarpassword(Request $request,$id){
-        $user=Usuario::find($id);
-       $password=$user->password;
+
+    public function formcambiarpassword(Request $request, $id)
+    {
+        //Cambia contraseña de tu usuario
+        $user = Usuario::find($id);
+        //Vamos a comparar entre la nueva contraseña y la actual. 
+        //1. Tiene que se diferente a la contraseña actual
+        //2. La contraseña nueva y su confirmacion deben ser exactamente iguales
+        $password = $user->password;
         $request->validate([
 
-            "nuevapassword"=>["required","min:8",function($attribute,$value,$fail) use ($request){
+            "nuevapassword" => ["required", "string", "min:8", function ($attribute, $value, $fail) use ($request) {
                 $password = Usuario::find($request->user()->id)->password;
-                 if(password_verify($request->input('nuevapassword'),$password)){
-                $fail("La nueva contraseña no puede ser la misma a la actual");
-            }}],
-         
-           "repitenuevapassword"=>"required|same:nuevapassword"
-           
+                if (password_verify($request->input('nuevapassword'), $password)) {
+                    $fail("La nueva contraseña no puede ser la misma a la actual");
+                }
+            }],
+
+            "repitenuevapassword" => "required|same:nuevapassword"
+
 
         ], [
-            "password.same"=>"Contraseña actual incorrecta",
-            "repitenuevapassword.same"=>"Repite la nueva contraseña correctamente",
-            "nuevapassword.min"=>"La nueva contraseña debe tener al menos 8 caracteres",
-            
+            "password.same" => "Contraseña actual incorrecta",
+            "repitenuevapassword.same" => "Repite la nueva contraseña correctamente",
+            "nuevapassword.min" => "La nueva contraseña debe tener al menos 8 caracteres",
+            "nuevapassword.string" => "La nueva contraseña debe ser una cadena"
 
-      
+
+
 
         ]);
 
 
-        if(password_verify($request->input('nuevapassword'),$password)){
-
-        }else{
-
+        if (password_verify($request->input('nuevapassword'), $password)) {
+        } else {
         }
         $user->password = Hash::make($request['nuevapassword']);
 
 
+        //Guarda la nueva contraseña
 
-        
         $user->save();
-        return redirect()->route('proyects.index')->with('contraseñaactualizada','Has cambiado tu contraseña');
-
-
+        return redirect()->route('proyects.index')->with('contraseñaactualizada', 'Has cambiado tu contraseña');
     }
 
     /**
@@ -327,20 +329,20 @@ $user->name=$request->input('name');
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Request $request,$id)
+    public function destroy(Request $request, $id)
     {
-//if($request->input("checkeliminar")==true){
-  if($request->input("checkeliminar")==1){
-    $user = User::find($id);
-    $user->delete();
-    return redirect()->route('users.index')->with("usereliminado", "Usuario eliminado exitosamente");
-  }else{
-    return redirect()->route('users.index')->with("errorborrarusuario", "Para eliminar a un usuario debes seleccionar el check ");
-  }
+        //Para eliminar un usuario debes activar el check al lado del boton de eliminar (borrar usuarios se debe tratar con cuidado)
+        if ($request->input("checkeliminar") == 1) {
+            $user = User::find($id);
+            $user->delete();
+            //Elimina al usuario y te avisa del exito
+            return redirect()->route('users.index')->with("usereliminado", "Usuario eliminado exitosamente");
+        } else {
+            //No te elimina al usuario y te recuerda que para eliminar usuarios debes activar el check
+            return redirect()->route('users.index')->with("errorborrarusuario", "Para eliminar a un usuario debes seleccionar el check ");
+        }
 
 
-//}
-      
-       
+
     }
 }
