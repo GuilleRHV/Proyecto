@@ -273,7 +273,7 @@ $user->name=$request->input('name');
 
 
         $user->save();
-        return redirect()->route('proyects.index')->with("usuarioeditado", 'Has actualizado el perfil de tu usuario');
+        return redirect()->route('users.index')->with("usuariogeneraleditado", 'Has actualizado el perfil de un usuario');
     }
 
     
@@ -325,11 +325,20 @@ $user->name=$request->input('name');
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request,$id)
     {
+//if($request->input("checkeliminar")==true){
+  if($request->input("checkeliminar")==1){
+    $user = User::find($id);
+    $user->delete();
+    return redirect()->route('users.index')->with("usereliminado", "Usuario eliminado exitosamente");
+  }else{
+    return redirect()->route('users.index')->with("errorborrarusuario", "Para eliminar a un usuario debes seleccionar el check ");
+  }
 
-        $user = User::find($id);
-        $user->delete();
-        return redirect()->route('users.index')->with("exito", "Eliminado exitosamente");
+
+//}
+      
+       
     }
 }

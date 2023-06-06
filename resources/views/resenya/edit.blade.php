@@ -68,7 +68,7 @@
                 <input type="submit" value="Actualizar" class="btn btn-warning">
             </form>
 
-
+            <a class="btn btn-warning" href="{{ route('resenyas.show',$resenya->id) }}" class="btn btn"><span class="fa fa-eye"></span>&nbsp;</a>
 
 
 

@@ -8,13 +8,13 @@
         <div class="col-md-8">
             <h1 id="titulogameshow">{{ $game->nombre ?? '' }}</h1>
 
-
+            <!--Imagen juego-->
             @if($game->imagen==null)
             <div id="contenedorimagenshow">
                 <img src="../imagenes/filenotfound.png" id="imagenjuegoshow" class="imagenjuego">
 
                 @else
-                <img src="../{{$game->imagen}}" id="imagenjuegoshow" class="imagenjuego"/>
+                <img src="../{{$game->imagen}}" id="imagenjuegoshow" class="imagenjuego" />
             </div>
             @endif
 
@@ -26,21 +26,25 @@
             @endif
 
             <hr>
+            <!--Nombre juego-->
             <div class="form-group">
                 <label for="nombre" class="col-form-label" style="font-weight:600;font-size:17px">Nombre</label><br>
                 <label for="nombre" class="col-form-label">{{ $game->nombre ?? '' }}</label>
             </div>
             <hr>
+            <!--Descripcion juego-->
             <div class="form-group">
-                <label for="descripcion" class="col-form-label" style="font-weight:600;font-size:17px">Apellidos</label><br>
+                <label for="descripcion" class="col-form-label" style="font-weight:600;font-size:17px">Descripción</label><br>
                 <label for="descripcion" class="col-form-label">{{ $game->descripcion ?? '' }}</label>
             </div>
             <hr>
+            <!--Año de lanzamiento-->
             <div class="form-group">
                 <label for="anyoLanzamiento" class="col-form-label" style="font-weight:600;font-size:17px">Año de lanzamiento</label><br>
                 <label for="anyoLanzamiento" class="col-form-label">{{ $game->anyoLanzamiento ?? '' }}</label>
             </div>
             <hr>
+            <!--Generos juego-->
             <div class="form-group">
                 <label for="generos" class="col-form-label" style="font-weight:600;font-size:17px">Generos</label><br>
                 @foreach($game->generos as $g)
@@ -48,7 +52,7 @@
                 @endforeach
 
             </div>
-
+            <!--Plataformas juego-->
             <div class="form-group">
                 <label for="plataformas" class="col-form-label" style="font-weight:600;font-size:17px">Plataformas</label><br>
                 @foreach($game->plataformas as $p)
@@ -56,17 +60,25 @@
                 @endforeach
 
                 <br>
+                <!--Boton ir al home-->
                 <a href="{{route('proyects.index')}}" class="btn btn-primary">Home</a>
+
+                @if(auth()->user()!=null)
+                @if(auth()->user()->can('permisosAdmin',['App\Models\User',$user]))
+                <!--Boton editar juego -->
+                <a class="btn btn-warning" href="{{route('games.edit',$game->id)}}"><span class="fa fa-pencil"></span>&nbsp;</a>
+                @endif
+                @endif
             </div>
 
 
             <hr>
 
 
-        
 
 
-           
+
+
 
             <!-- COMENTARIOS-->
             <h2>Comentarios</h2>
@@ -84,10 +96,10 @@
                         </div>
 
 
-                     
-<button type="submit" class="btn btn-success">Crear comentario <span class="fa fa-comments"></span>&nbsp;</button>
-                        @else
 
+                        <button type="submit" class="btn btn-success">Crear comentario <span class="fa fa-comments"></span>&nbsp;</button>
+                        @else
+                        <!--Si has comentado 6 veces ya no te deja comentar más-->
                         <div class="alert alert-danger">
                             <h4>Para evitar el spam, solo puedes crear 6 comentarios por juego <br>(incluidas respuestas)</h4>
                         </div>
@@ -96,13 +108,13 @@
 
                 </div>
             </form>
-         
+
             @endif
 
 
 
 
-
+            <!--Si existen comentarios y estas logeado-->
             @if($comentarios!=null && Auth::check())
             @foreach($comentarios as $comentario)
 
@@ -112,20 +124,26 @@
                 <div class="card w-75">
                     <div class="card-body contenedorcomentarios" style="border-radius: 1em 1em 1em 1em">
                         <h5 class="card-title">
-                        @if($comentario->usuario->imagen!=null)
-                       
-                           <img src="../{{$comentario->usuario->imagen}}" class="imagencomentario" />
-                           @else
-                           <img src="../imagenesperfil/userdefault.png" class="imagencomentario" />
-                           @endif
-                          {{$comentario->usuario->name}} </h5>
-                   
-                        
-                        <h6>{{$comentario->updated_at}}</h6>
+                            <!--Imagen de perfil en el comentario-->
+                            @if($comentario->usuario->imagen!=null)
+
+                            <img src="../{{$comentario->usuario->imagen}}" class="imagencomentario" />
+                            @else
+                            <img src="../imagenesperfil/userdefault.png" class="imagencomentario" />
+                            @endif
+                            <!--Nombre del usuario que ha comentado-->
+                            {{$comentario->usuario->name}}
+                        </h5>
+
+                            <!--Fecha creacion de comentario-->
+                        <h6>{{$comentario->created_at}}</h6>
+                        <!--Contenido respuesta-->
                         <p class="card-text">{{$comentario->contenido}}</p>
                     </div>
                 </div>
 
+
+                <!--Responder a comentarios-->
                 <div class="form-group">
                     <label for="">Responder al comentario</label>
                     <textarea class="form-control" rows="2" name="contenidocomentario"></textarea>
@@ -133,32 +151,37 @@
 
 
                 <div class="form-group">
-                <input type="submit" value="Responder" class="btn btn-warning">
+                    <input type="submit" value="Responder" class="btn btn-warning">
                 </div>
-      
+
             </form>
+            <!--Si el comentario tiene respuestas-->
             @if($comentario->hijos->isEmpty()==false)
-        
+
             <div class="form-group">
-            <button class="btn btn-outline-danger esconder"  id="esconder{{$comentario->id}}" onclick="escondercomentarios('padre{{$comentario->id}}',this.id)">Mostrar respuestas <span class="fa fa-sort-desc"></span>&nbsp;</button>
+                <button class="btn btn-outline-danger esconder" id="esconder{{$comentario->id}}" onclick="escondercomentarios('padre{{$comentario->id}}',this.id)">Mostrar respuestas <span class="fa fa-sort-desc"></span>&nbsp;</button>
             </div>
             <span class="glyphicon glyphicon-chevron-down"></span>
             <span class="glyphicon glyphicon-pencil">
+                <!--Recorre las respuestas-->
                 @foreach($comentario->hijos as $hijo)
 
                 <div class="card w-75 subcomentarios{{$hijo->padre_id}}" style="width: 300px !important; display:none">
                     <div class="card-body">
                         <h5 class="card-title">
-                        
+                            <!--Imagen perfil de quien ha respondido-->
                             @if($comentario->usuario->imagen!=null)
-                           
-                         
+
+
                             <img src="../{{$comentario->usuario->imagen}}" class="imagencomentario" />
-                           @else
-                           <img src="../imagenesperfil/userdefault.png" class="imagencomentario" />
-                           @endif
-                            {{ \App\Models\User::find($hijo->user_id)->name}}</h5>
-                        <h6>{{$hijo->updated_at}}</h6>
+                            @else
+                            <img src="../imagenesperfil/userdefault.png" class="imagencomentario" />
+                            @endif
+                            {{ \App\Models\User::find($hijo->user_id)->name}}
+                        </h5>
+                        <!--Fecha creacion respuesta-->
+                        <h6>{{$hijo->created_at}}</h6>
+                        <!--Contenido respuesta-->
                         <p class="card-text">{{$hijo->contenido}}</p>
                     </div>
                 </div>
@@ -189,8 +212,11 @@
                 @if($comentario->padre_id==null)
                 <div class="card w-75">
                     <div class="card-body contenedorcomentarios" style="background-color: grey; border-radius: 1em 1em 1em 1em">
+                    <!--Nombre autor comentario-->
                         <h5 class="card-title">{{$comentario->usuario->name}}</h5>
-                        <h6>{{$comentario->updated_at}}</h6>
+                    <!--Fecha creacion comentario-->
+                        <h6>{{$comentario->created_at}}</h6>
+                        <!--Contenido comentario-->
                         <p class="card-text">{{$comentario->contenido}}</p>
                     </div>
                 </div>
@@ -199,17 +225,19 @@
 
 
                 @if($comentario->hijos->isEmpty()==false)
-                
+
 
                 <button class="btn btn-outline-danger esconder" onclick="escondercomentarios('padre{{$comentario->id}}')">Esconder comentarios</button>
-
+                <!--Recorre las respuestas-->
                 @foreach($comentario->hijos as $hijo)
 
                 <div class="card w-75 subcomentarios{{$hijo->padre_id}}" style="width: 300px !important; display:none">
                     <div class="card-body">
-                        
+                        <!--Nombre autor respuesa-->
                         <h5 class="card-title">{{ \App\Models\User::find($hijo->user_id)->name}}</h5>
-                        <h6>{{$hijo->updated_at}}</h6>
+                        <!--Fecha creacion respuesta-->
+                        <h6>{{$hijo->created_at}}</h6>
+                        <!--Contenido respuesta-->
                         <p class="card-text">{{$hijo->contenido}}</p>
                     </div>
                 </div>
@@ -227,7 +255,7 @@
                 <br>
                 @endforeach
                 @endif
-</div>
+        </div>
     </div>
 </div>
 @endsection

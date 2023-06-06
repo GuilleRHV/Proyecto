@@ -8,6 +8,7 @@
             <a href="{{route('proyects.index')}}" class="btn btn-primary">Index</a>
 
             <hr>
+            <!--Errores formulario-->
             @if($errors->any())
             <div class="alert alert-danger">
                 <h4>Por favor, corrige los siguientes errores:</h4>
@@ -25,7 +26,7 @@
                 <br>
                 <form action="{{route('games.store')}}" method="post" enctype="multipart/form-data" id="formulariocrearvideojuegos">
                     @csrf
-                    <!-- 2 column grid layout with text inputs for the first and last names -->
+                    <!--Nombre juegos-->
 
                     <div class="row align-self-center">
                         <div class="col col-md-4 mb-8 ">
@@ -35,6 +36,7 @@
                             </div>
                         </div>
                     </div>
+                    <!--Descripcion juego-->
                     <div class=" mb-4">
                         <div class="form-outline">
                             <label class="form-label" for="form3Example2">Descripcion</label>
@@ -42,20 +44,21 @@
 
                         </div>
                     </div>
-
+                    <!--Año de lanzamiento del juego -->
                     <div class="row">
                         <div class="col-md-6 mb-4">
                             <label class="form-label" for="anyoLanzamiento">Año de lanzamiento</label>
                             <input type="text" id="anyoLanzamiento" class="form-control bordesredondeados" name="anyoLanzamiento" />
 
                         </div>
+                        <!--Precio del juego -->
                         <div class="col-md-6 mb-4">
                             <label class="form-label" for="formpassword">Precio</label>
                             <input type="text" id="precio" class="form-control  bordesredondeados" name="precio" />
 
                         </div>
                     </div>
-
+                    <!--Generos del juego -->
                     <div class="row">
                         <div class="form-outline mb-4 col-md-6">
                             <label for="precio">Generos</label><br>
@@ -75,6 +78,7 @@
                             </select>
 
                         </div>
+                        <!--Plataformas del juego -->
                         <div class="form-outline mb-4 col-md-6">
                             <label for="precio">Plataformas</label><br>
                             <select class="form-select" name="plataformas[]" multiple>
@@ -102,12 +106,12 @@
 
                         </div>
                     </div>
-
+                    <!--Imagen del juego-->
                     <div class="mb-3">
                         <label for="formFile" class="form-label">Imagen del videojuego</label>
                         <input class="form-control" type="file" id="imagenjuego" name="imagenjuego">
                     </div>
-
+                    <!--boton crear juego-->
                     <input type="submit" value="Crear" class="btn btn-success">
 
 
