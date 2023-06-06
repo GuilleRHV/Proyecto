@@ -86,10 +86,11 @@
       @endif
       <!--Ver votaciones -->
       <a class="btn btn-warning" href="{{ route('votacion.votacionesGeneral') }}" class="btn btn">Ver votaciones</a>
-      @endif
+     
       <!--Ir a mi perfil -->
       <a class="btn btn-primary" href="{{ route('users.perfil') }}" class="btn btn"><span class="fa fa-user"></span>&nbsp;</a>
 
+@endif
 
 
 <!--Contenedor con todos los juegos creados -->

@@ -5,6 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
 
+
+            <!--Lista de votaciones que podrán ver todos los usuarios logeados, independientemente de que la votacion esté activa/inactiva-->
+
+            <!--Mensajes de alerta-->
             @if($message = Session::get('votacioncreada'))
             <div class="alert alert-success">
                 <h4>{{$message}}</h4>
@@ -16,40 +20,44 @@
             </div>
             @endif
 
+            <!--Lista de votaciones-->
+            <h1>Lista de votaciones</h1>
 
-            <h1>Lista votaciones</h1>
 
-           
-            
+
 
             <table class="table table-striped table-hover" id="tablavotaciones">
                 <tr>
-                    <td>id</td>
-                    <td>nombre</td>
 
-                    <td>descipcion</td>
-                    <td>nombreopcion1</td>
-                    <td>nombreopcion2</td>
-                    <td>participantes</td>
+                    <td>Titulo</td>
+
+                    <td>Descipcion</td>
+                    <td>Nombre opcion 1</td>
+                    <td>Nombre opcion 2</td>
+
                 </tr>
+                <!--Recorre las votaciones-->
                 @foreach($votacionesList as $votacion)
 
                 <tr>
-                    <td>{{$votacion->id}}</td>
-                    <td>{{$votacion->nombre}}</td>
 
+                    <!--Nombre/titulo de la votacion-->
+                    <td>{{$votacion->nombre}}</td>
+                    <!--Descripcion de la votacion-->
                     <td>{{$votacion->descripcion}}</td>
+                    <!--Nombre de la opcion 1 de la votacion -->
                     <td>{{$votacion->nombreopcion1}}</td>
+                    <!--Nombre de la opcion 2 de la votacion -->
                     <td>{{$votacion->nombreopcion2}}</td>
-                    <td>{{$votacion->participantes}}</td>
+
                     <td>
 
                     </td>
-                    
-          <td> <a class="btn btn-warning" href="{{ route('votaciones.show',$votacion->id) }}" class="btn btn"><span class="fa fa-eye"></span>&nbsp;</a></td>
-                    
-                   
-                   
+                    <!--Boton para mostrar detalles de la votacion -->
+                    <td> <a class="btn btn-warning" href="{{ route('votaciones.show',$votacion->id) }}" class="btn btn"><span class="fa fa-eye"></span>&nbsp;</a></td>
+
+
+
                 </tr>
                 @endforeach
             </table>

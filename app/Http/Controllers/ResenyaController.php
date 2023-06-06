@@ -46,7 +46,7 @@ class ResenyaController extends Controller
             "titulo" => "required",
             "contenido" => "required",
             "puntuacion" => "required",
-            
+            "imagen" => "image|mimes:jpg,png,jpeg,svg|dimensions:min_width=100,min_heigh=100"
            
 
         ], [
@@ -55,7 +55,9 @@ class ResenyaController extends Controller
 
             "contenido.required" => "El contenido es obligatorio",
             "puntuacion.required" => "La puntuacion es obligatorio",
-            
+            "imagen.image"=>"El archivo debe ser una imagen",
+            "imagen.mimes" => "La imagen debe tener extension jpg,jpeg,gif o svg",
+            "imagen.dimensions" => "La imagen debe tener unas dimensiones minimas de 100x100 px"
 
         ]);
         $resenya = new Resenya();
@@ -68,11 +70,6 @@ class ResenyaController extends Controller
         
         //****GUARDAR IMAGEN */
 
-        //   $imagen = $request->file("imagenjuego");
-
-        //$rutaimagen = $imagen->store("public/imagenes");
-
-        //  $contenidoimagen = file_get_contents($imagen);
 
 
 
@@ -174,15 +171,17 @@ class ResenyaController extends Controller
          
             "puntuacion" => "required",
             
-
+            "imagen" => "image|mimes:jpg,png,jpeg,svg|dimensions:min_width=100,min_heigh=100"
         ], [
 
             "titulo.required" => "El titulo es obligatorio",
 
            
             "contenido.required" => "La contenido es obligatorio",
-            "puntuacion.required" => "El puntuacion es obligatorio"
-           
+            "puntuacion.required" => "El puntuacion es obligatorio",
+            "imagen.image"=>"El archivo debe ser una imagen",
+            "imagen.mimes" => "La imagen debe tener extension jpg,jpeg,gif o svg",
+            "imagen.dimensions" => "La imagen debe tener unas dimensiones minimas de 100x100 px"
 
         ]);
         $resenya = Resenya::find($id);

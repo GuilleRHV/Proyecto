@@ -202,11 +202,13 @@ class UserController extends Controller
 
             "name" => "required",
          
-           
+            "imagenperfil" => "image|mimes:jpg,png,jpeg,svg|dimensions:min_width=100,min_heigh=100"
 
         ], [
             "name.required" => "El nombre es obligatorio",
-            
+            "imagenperfil.image"=>"El archivo debe ser una imagen",
+            "imagenperfil.mimes" => "La imagen debe tener extension jpg,jpeg,gif o svg",
+            "imagenperfil.dimensions" => "La imagen debe tener unas dimensiones minimas de 100x100 px"
         ]);
       
         $imagen = $request->file("imagenperfil");
