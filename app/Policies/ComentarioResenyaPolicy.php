@@ -2,13 +2,12 @@
 
 namespace App\Policies;
 
-use App\Models\Comentario;
+use App\Models\ComentarioResenya;
 use App\Models\User;
-use App\Models\Game;
 use App\Models\Usuario;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class ComentarioPolicy
+class ComentarioResenyaPolicy
 {
     use HandlesAuthorization;
 
@@ -27,13 +26,27 @@ class ComentarioPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Comentario  $comentario
+     * @param  \App\Models\ComentarioResenya  $comentarioResenya
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Comentario $comentario)
+    public function view(User $user, ComentarioResenya $comentarioResenya)
     {
         //
     }
+
+
+    public function eliminarComentariosResenyas(User $user, ComentarioResenya $comentario)
+    {
+   
+    
+        $usercomentario = $comentario->user_id;
+        if ($usercomentario == $user->id || $user->rol=="administrador") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 
     /**
      * Determine whether the user can create models.
@@ -46,46 +59,14 @@ class ComentarioPolicy
         //
     }
 
-
-    public function eliminarComentario(User $user, Comentario $comentario)
-    {
-    
-        $usercomentario = $comentario->user_id;
-        if ($usercomentario == $user->id || $user->rol=="administrador") {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public function escribirComentarios( $user, $game){
-        
-        $comentarios = Comentario::all();
-     
-        $contador = 1;
-        foreach( $comentarios as $comentario){
-            if($comentario->user_id==$user->id && $comentario->juego_id==$game->id){
-                $contador++;
-            }
-        
-        }
-        if($contador >= 6){
-            return false;
-        }else{
-            return true;
-        }
-        
-    
-     }
-
     /**
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Comentario  $comentario
+     * @param  \App\Models\ComentarioResenya  $comentarioResenya
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Comentario $comentario)
+    public function update(User $user, ComentarioResenya $comentarioResenya)
     {
         //
     }
@@ -94,10 +75,10 @@ class ComentarioPolicy
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Comentario  $comentario
+     * @param  \App\Models\ComentarioResenya  $comentarioResenya
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Comentario $comentario)
+    public function delete(User $user, ComentarioResenya $comentarioResenya)
     {
         //
     }
@@ -106,10 +87,10 @@ class ComentarioPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Comentario  $comentario
+     * @param  \App\Models\ComentarioResenya  $comentarioResenya
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Comentario $comentario)
+    public function restore(User $user, ComentarioResenya $comentarioResenya)
     {
         //
     }
@@ -118,10 +99,10 @@ class ComentarioPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Comentario  $comentario
+     * @param  \App\Models\ComentarioResenya  $comentarioResenya
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Comentario $comentario)
+    public function forceDelete(User $user, ComentarioResenya $comentarioResenya)
     {
         //
     }

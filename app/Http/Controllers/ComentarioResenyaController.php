@@ -36,6 +36,13 @@ class ComentarioResenyaController extends Controller
      */
     public function store(Request $request,$resenya_id,$user_id)
     {
+
+        $request->validate([
+            "contenidocomentario" => "required|string",
+        ], [
+            "contenidocomentario.required" => "El comentario no puede estar vacio",
+           
+        ]);
         $comentario = new ComentarioResenya();
         $comentario->user_id = $user_id;
         $comentario->resenya_id = $resenya_id;
@@ -50,7 +57,8 @@ class ComentarioResenyaController extends Controller
         }
         $comentario->comentario_id = $contComentarioEnEstaResenya;
         $comentario->save();
-        return redirect()->route('proyects.index')->with('exito', 'usuario creado correctamente');
+        $resenya=Resenya::find($resenya_id);
+        return redirect()->route('resenyas.show',['resenya'=>$resenya])->with('comentariocreado', 'Has escrito un comentario');
     }
 
 
@@ -143,6 +151,10 @@ class ComentarioResenyaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comentario = ComentarioResenya::find($id);
+      
+        $resenya_id=$comentario->resenya_id;
+        $comentario->delete();
+        return redirect()->route('resenyas.show',$resenya_id)->with("cs", "Has eliminado un comentario exitosamente");
     }
 }

@@ -163,7 +163,6 @@ class GameController extends Controller
         $user = Auth::user();
 
 
-
         if ($user == null) {
             $user = "No eres un usuario";
         }
@@ -188,6 +187,11 @@ class GameController extends Controller
         if (count($arraycomentarios) == 0) {
             $arraycomentarios = [];
         }
+
+
+
+
+
         //Ir a la vista show con los parametros anteriores
         return view('game.show', ['game' => $game, 'user' => $user, 'comentarios' => $arraycomentarios]);
     }
