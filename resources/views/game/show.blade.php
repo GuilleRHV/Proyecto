@@ -23,10 +23,10 @@
             </div>
             @endif
 
-            
 
 
-            
+
+
             <h1 id="titulogameshow">{{ $game->nombre ?? '' }}</h1>
 
             <!--Imagen juego-->
@@ -61,32 +61,34 @@
             </div>
             <hr>
             <!--Generos juego-->
-            <div class="form-group">
-                <label for="generos" class="col-form-label" style="font-weight:600;font-size:17px">Generos</label><br>
-                @foreach($game->generos as $g)
-                <label for="generos" class="col-form-label">{{ $g ?? '' }}</label><br>
-                @endforeach
+            <div class="row">
+                <div class="form-group col-4">
+                    <label for="generos" class="col-form-label" style="font-weight:600;font-size:17px">Generos</label><br>
+                    @foreach($game->generos as $g)
+                    <label for="generos" class="col-form-label">{{ $g ?? '' }}</label><br>
+                    @endforeach
 
+                </div>
+                <!--Plataformas juego-->
+                <div class="form-group col-4">
+                    <label for="plataformas" class="col-form-label" style="font-weight:600;font-size:17px">Plataformas</label><br>
+                    @foreach($game->plataformas as $p)
+                    <label for="plataformas" class="col-form-label">{{ $p ?? '' }}</label><br>
+                    @endforeach
+
+                    <br>
+                    <!--Boton ir al home-->
+
+                </div>
             </div>
-            <!--Plataformas juego-->
-            <div class="form-group">
-                <label for="plataformas" class="col-form-label" style="font-weight:600;font-size:17px">Plataformas</label><br>
-                @foreach($game->plataformas as $p)
-                <label for="plataformas" class="col-form-label">{{ $p ?? '' }}</label><br>
-                @endforeach
+            <a href="{{route('proyects.index')}}" class="btn btn-primary">Home</a>
 
-                <br>
-                <!--Boton ir al home-->
-                <a href="{{route('proyects.index')}}" class="btn btn-primary">Home</a>
-
-                @if(auth()->user()!=null)
-                @if(auth()->user()->can('permisosAdmin',['App\Models\User',$user]))
-                <!--Boton editar juego -->
-                <a class="btn btn-warning" href="{{route('games.edit',$game->id)}}"><span class="fa fa-pencil"></span>&nbsp;</a>
-                @endif
-                @endif
-            </div>
-
+            @if(auth()->user()!=null)
+            @if(auth()->user()->can('permisosAdmin',['App\Models\User',$user]))
+            <!--Boton editar juego -->
+            <a class="btn btn-warning" href="{{route('games.edit',$game->id)}}"><span class="fa fa-pencil"></span>&nbsp;</a>
+            @endif
+            @endif
 
             <hr>
 
@@ -98,7 +100,7 @@
 
             <!-- COMENTARIOS-->
             <h2>Comentarios</h2>
-  @if($errors->any())
+            @if($errors->any())
             <div class="alert alert-danger">
                 <h4>Por favor, corrige los siguientes errores:</h4>
                 <ul>
@@ -182,7 +184,7 @@
             </form>
             @endif
             @endif
-            
+
         </div>
     </div>
 
@@ -204,22 +206,22 @@
         @foreach($comentario->hijos as $hijo)
 
         <div class="card w-75 subcomentarios{{$hijo->padre_id}}" style="width: 600px !important; display:none">
-        
+
             <div class="card-body">
-              
-                              
-                
-                
-                
+
+
+
+
+
                 <!--Imagen perfil de quien ha respondido-->
                 @if(file_exists(\App\Models\User::find($hijo->user_id)->imagen))
                 <img src="../{{ \App\Models\User::find($hijo->user_id)->imagen}}" class="imagencomentario " />
                 @else
                 <img src="../imagenesperfil/userdefault.png" class="imagencomentario" />
                 @endif
-                   <h1> {{ \App\Models\User::find($hijo->user_id)->name}}</h1>
-               
-                
+                <h1> {{ \App\Models\User::find($hijo->user_id)->name}}</h1>
+
+
                 <!--Fecha creacion respuesta-->
                 <h6>{{$hijo->created_at}}</h6>
                 <!--Contenido respuesta-->
@@ -310,10 +312,10 @@
         @foreach($comentario->hijos as $hijo)
 
         <div class="card w-75 subcomentarios{{$hijo->padre_id}}" style="width: 600px !important; display:none">
-  
+
             <div class="card-body">
                 <h5 class="card-title">
-                    
+
                     <!--Imagen perfil de quien ha respondido-->
                     @if($comentario->usuario->imagen!=null)
 
