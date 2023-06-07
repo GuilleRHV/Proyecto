@@ -38,9 +38,10 @@ class ComentarioResenyaController extends Controller
     {
 
         $request->validate([
-            "contenidocomentario" => "required|string",
+            "contenidocomentario" => "required|string|max:300",
         ], [
             "contenidocomentario.required" => "El comentario no puede estar vacio",
+            "contenidocomentario.max" => "Solo puedes escribir hasta 300 caracteres"
            
         ]);
         $comentario = new ComentarioResenya();
@@ -151,10 +152,11 @@ class ComentarioResenyaController extends Controller
      */
     public function destroy($id)
     {
+   
         $comentario = ComentarioResenya::find($id);
       
         $resenya_id=$comentario->resenya_id;
         $comentario->delete();
-        return redirect()->route('resenyas.show',$resenya_id)->with("cs", "Has eliminado un comentario exitosamente");
+        return redirect()->route('resenyas.show',$resenya_id)->with("comentarioeliminado", "Has eliminado un comentario exitosamente");
     }
 }

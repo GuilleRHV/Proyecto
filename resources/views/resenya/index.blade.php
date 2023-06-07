@@ -72,7 +72,10 @@
                     @if($resenya->imagen==null)
                     <div class="contenidoResenya">
                         <p style="overflow-wrap:break-word; width: 100%">{{$resenya->contenido}}</p>
-
+                        <p style="color: green" >Pros: </p>
+                        <p style="overflow-wrap:break-word">{{$resenya->pros}} </p>
+                        <p style="color: red">Contras: </p>
+                        <p style="overflow-wrap:break-word">{{$resenya->contras}} </p>
 
                         <!--Muestra la calificacion de la reseña en iconos (estrellas)-->
                         Calificación: @if($resenya->puntuacion==1)
@@ -94,6 +97,10 @@
                     @else
                     <div class="contenidoResenya" style="width: 60%;">
                         <p style="overflow-wrap:break-word">{{$resenya->contenido}} </p>
+                        <p style="color: green" >Pros: </p>
+                        <p style="overflow-wrap:break-word">{{$resenya->pros}} </p>
+                        <p style="color: red">Contras: </p>
+                        <p style="overflow-wrap:break-word">{{$resenya->contras}} </p>
                         Calificación: @if($resenya->puntuacion==1)
                         <i class="fa fa-star fa-xxl"></i>
                         @endif

@@ -19,9 +19,10 @@ class ComentarioController extends Controller
     {
      
         $request->validate([
-            "contenidocomentario" => "required|string",
+            "contenidocomentario" => "required|string|max:300",
         ], [
             "contenidocomentario.required" => "El comentario no puede estar vacio",
+            "contenidocomentario.max"=>"Solo puedes escribir hasta 300 caracteres"
         ]);
         $comentario = new Comentario();
         $comentario->user_id = $user_id;

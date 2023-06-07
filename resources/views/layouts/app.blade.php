@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--CSS-->
     <link rel="stylesheet" href="{{asset('css/plantilla.css')}}">
+    <link rel="stylesheet" href="{{asset('css/registerylogin.css')}}">
+   
+    <link rel="stylesheet" href="{{asset('css/animaciones.css')}}">
     <script src="{{asset('js/eventosshow.js')}}"></script>
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -46,7 +49,7 @@
             <div class="container">
                 <a class="navbar-brand" href="{{  route('proyects.index') }}">
                
-                <img src="{{ asset('imagenes/logohorizontal.png') }}" alt="Bibliogames" width="200px" height="60px" style="border-radius: 20px 20px 20px 20px ;">
+                <img src="{{ asset('imagenes/logohorizontal.png') }}" alt="Bibliogames" width="200px" height="60px" style="border-radius: 20px 20px 20px 20px ;" class="pulsate-fwd">
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>

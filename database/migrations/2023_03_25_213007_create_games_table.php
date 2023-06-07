@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('games', function (Blueprint $table) {
             $table->id();
             $table->string("nombre");
-            $table->string("descripcion");
+            $table->text("descripcion");
             $table->integer("anyoLanzamiento");
             $table->json("generos");
             $table->json("plataformas");

@@ -27,7 +27,7 @@
             </div>
             @endif
             
-            <h1> Usuarios</h1>
+            <h1 style="background-color: white;text-align: center; border: 2px solid grey" class="bordesredondeados"> Gestión de usuarios</h1>
           
             <!--Tabla de gestion de usuarios-->
             <table class="table table-striped table-hover" id="tablaeditusuarios">
@@ -53,13 +53,13 @@
                     <td>
                         <!--boton editar usuario-->
                         @can ('update', $user)
-                        <a class="btn btn-warning" href="{{route('users.edit',$user->id)}}"><span class="fa fa-pencil"></span>&nbsp;</a>
+                        <a class="btn btn-warning jello-horizontal" href="{{route('users.edit',$user->id)}}"><span class="fa fa-pencil jello-horizontal"></span>&nbsp;</a>
                         @endcan
                     </td>
                     <td>
                         <!--boton mostrar usuario-->
                         @can ('view', $user)
-                        <a class="btn btn-primary" href="{{route('users.show',$user->id)}}"><span class="fa fa-eye"></span>&nbsp;</a>
+                        <a class="btn btn-primary  jello-horizontal" href="{{route('users.show',$user->id)}}"><span class="fa fa-eye jello-horizontal"></span>&nbsp;</a>
                         @endcan
                     </td>
                     <td>
@@ -70,14 +70,14 @@
                             @method('DELETE')
 
 <!--Si no seleccionas el check de eliminar no podrás eliminar al usuario seleccionado y te saldrá una alerta-->
-                            <input class="form-check-input" type="checkbox" value="1" id="checkeliminar" name="checkeliminar">
+                            <input class="form-check-input jello-horizontal" type="checkbox" value="1" id="checkeliminar" name="checkeliminar">
                                 <label class="form-check-label" for="flexCheckDefault">
                                     Eliminar usuario
                                 </label>
 
 
                                 <!--Boton para eliminar usuario-->
-                            <button type="submit" value="Delete" class="btn btn-danger"><span class="fa fa-trash"></span>&nbsp;</button>
+                            <button type="submit" value="Delete" class="btn btn-danger jello-horizontal"><span class="fa fa-trash jello-horizontal"></span>&nbsp;</button>
                            
                                 
                           

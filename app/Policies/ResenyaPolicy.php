@@ -46,18 +46,7 @@ class ResenyaPolicy
 
 
 
-    public function eliminarComentariosResenyas(Usuario $user, ComentarioResenya $comentario)
-    {
-        return true;
-    
-        /*$usercomentario = $comentario->user_id;
-        if ($usercomentario == $user->id || $user->rol=="administrador") {
-            return true;
-        } else {
-            return false;
-        }*/
-    }
-
+   
 
      
 

@@ -71,24 +71,24 @@
       @if(auth()->user()->can('permisosAdmin',['App\Models\User',$user]))
 
       <!--Crear videojuegos -->
-      <a class="btn btn-success" href="{{ route('games.create') }}" class="btn btn pulsate-fwd">Añadir juego</a>
+      <a class="btn btn-success pulsate-fwd" href="{{ route('games.create') }}" class="btn btn pulsate-fwd">Añadir juego</a>
       @endif
       @endif
 
       <!--Ver reseñas -->
-      <a class="btn btn-success" href="{{ route('resenyas.index') }}" class="btn btn pulsate-fwd">Ver reseñas</a>
+      <a class="btn btn-success pulsate-fwd" href="{{ route('resenyas.index') }}">Ver reseñas</a>
       @if($user!=null)
       @if(auth()->user()->can('agregarABiblioteca',$user))
       <!--Ver mi biblioteca -->
-      <a class="btn btn-warning" href="{{ route('users.verMiBiblioteca') }}" class="btn btn pulsate-fwd">Mi biblioteca</a>
+      <a class="btn btn-warning pulsate-fwd" href="{{ route('users.verMiBiblioteca') }}" class="btn btn pulsate-fwd">Mi biblioteca</a>
 
 
       @endif
       <!--Ver votaciones -->
-      <a class="btn btn-warning" href="{{ route('votacion.votacionesGeneral') }}" class="btn btn pulsate-fwd">Ver votaciones</a>
+      <a class="btn btn pulsate-fwd" href="{{ route('votacion.votacionesGeneral') }}" class="btn btn pulsate-fwd" style="background-color: pink;">Ver votaciones</a>
      
       <!--Ir a mi perfil -->
-      <a class="btn btn-primary" href="{{ route('users.perfil') }}" class="btn btn"><span class="fa fa-user pulsate-fwd"></span>&nbsp;</a>
+      <a class="btn btn-primary pulsate-fwd" href="{{ route('users.perfil') }}" class="btn btn"><span class="fa fa-user pulsate-fwd"></span>&nbsp;</a>
 
 @endif
 
@@ -115,27 +115,27 @@
             <img src="{{$game->imagen}}" width="90px" height="90px" />
 
             @endif
-            <a class="btn btn-warning" href="{{ route('games.show',$game->id) }}" class="btn btn"><span class="fa fa-eye"></span>&nbsp;</a>
+            <a class="btn btn jello-horizontal" href="{{ route('games.show',$game->id) }}" style="background-color: #9AD3E6"><span class="fa fa-eye jello-horizontal"></span>&nbsp;</a>
             @if($user!=null)
             @if(auth()->user()->can('agregarABiblioteca',$user))
 
             <!--Boton agregar a coleccion/biblioteca -->
             <form action="{{ route('games.agregarAColeccion',['user'=>$user,'game'=>$game]) }}" method="post">
               @csrf
-              <button type="submit" class="btn btn-success"><span class="fa fa-plus-circle"></span>&nbsp;</button>
+              <button type="submit" class="btn btn-success jello-horizontal"><span class="fa fa-plus-circle jello-horizontal"></span>&nbsp;</button>
             </form>
 
 
             @if(auth()->user()->can('permisosAdmin',['App\Models\User',$user]))
             <!--Boton ditar juego -->
-            <a class="btn btn-warning" href="{{route('games.edit',$game->id)}}"><span class="fa fa-pencil"></span>&nbsp;</a>
+            <a class="btn btn jello-horizontal" href="{{route('games.edit',$game->id)}}" style="background-color: #FEB895"><span class="fa fa-pencil jello-horizontal"></span>&nbsp;</a>
 
 
             <!--Boton eliminar juego -->
             <form action="{{route('games.destroy',$game->id)}}" method="post">
               @csrf
               @method('DELETE')
-              <button type="submit" value="Eliminar" class="btn btn-danger"><span class="fa fa-trash"></span>&nbsp;</button>
+              <button type="submit" value="Eliminar" class="btn btn-danger jello-horizontal"><span class="fa fa-trash jello-horizontal"></span>&nbsp;</button>
             </form>
 
             @endif
@@ -189,7 +189,7 @@ $contador = 1;
       @if($votacion->participantes==null && $votacion->activo==1)
 
       <td>{{$votacion->nombre}}</td>
-      <td>{{$votacion->descripcion}}</td>
+      <td style="max-width: 250px; overflow-wrap:break-word !important;">{{$votacion->descripcion}}</td>
 
       <!--Boton votar-->
       <td><button class="btn btn-info votaciones" onclick="votar(this.id)" href="{{route('votaciones.edit',$votacion->id)}}" id="votar{{$votacion->id}}">Votar</button></td>

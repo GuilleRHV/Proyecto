@@ -63,7 +63,10 @@
                 <div class="contenidoResenya">
                     <!--Muestra la calificacion de la reseña en iconos (estrellas)-->
                     <p style="overflow-wrap:break-word; width: 100%">{{$resenya->contenido}}</p>
-
+                    <p style="color: green">Pros: </p>
+                    <p style="overflow-wrap:break-word">{{$resenya->pros}} </p>
+                    <p style="color: red">Contras: </p>
+                    <p style="overflow-wrap:break-word">{{$resenya->contras}} </p>
                     Calificación: @if($resenya->puntuacion==1)
                     <i class="fa fa-star fa-xxl"></i>
                     @endif
@@ -83,6 +86,10 @@
                 @else
                 <div class="contenidoResenya" style="width: 60%;">
                     <p style="overflow-wrap:break-word">{{$resenya->contenido}} </p>
+                    <p style="color: green">Pros: </p>
+                    <p style="overflow-wrap:break-word">{{$resenya->pros}} </p>
+                    <p style="color: red">Contras: </p>
+                    <p style="overflow-wrap:break-word">{{$resenya->contras}} </p>
                     Calificación: @if($resenya->puntuacion==1)
                     <i class="fa fa-star fa-xxl"></i>
                     @endif
@@ -168,16 +175,17 @@
         @csrf
         <div class="card w-75">
             <div class="card-body contenedorcomentarios" style="border-radius: 1em 1em 1em 1em">
-                <h5 class="card-title">
-                    @if($comentario->usuario->imagen!=null)
-                    <!--Imagen de usuario del comentario-->
-                    <img src="../{{$comentario->usuario->imagen}}" class="imagencomentario" />
-                    @else
-                    <img src="../imagenesperfil/userdefault.png" class="imagencomentario" />
-                    @endif
-                    <!--Nombre del usuario del comentario-->
-                    {{$comentario->usuario->name}}
-                </h5>
+                @if($comentario->usuario->imagen!=null)
+                <!--Imagen de usuario del comentario-->
+                <img src="../{{$comentario->usuario->imagen}}" class="imagencomentario" />
+                @else
+                <img src="../imagenesperfil/userdefault.png" class="imagencomentario" />
+                @endif
+
+
+                <!--Nombre del usuario del comentario-->
+                {{$comentario->usuario->name}}
+
 
                 <!--Fecha de creacion del comentario-->
                 <h6>{{$comentario->created_at}}</h6>
@@ -222,23 +230,31 @@
     <!--Recorre las respuestas-->
     <div class="card w-75 subcomentarios{{$hijo->padre_id}}" style="width: 600px !important; display:none">
         <div class="card-body">
-            <h5 class="card-title">
-
-                <!--Imagen del perfil de la respuesta-->
-                @if($comentario->usuario->imagen!=null)
 
 
-                <img src="../{{$comentario->usuario->imagen}}" class="imagencomentario" />
-                @else
-                <img src="../imagenesperfil/userdefault.png" class="imagencomentario" />
-                @endif
-                <!--Nombre del perfil de la respuesta-->
-                {{ \App\Models\User::find($hijo->user_id)->name}}
-            </h5>
+            <!--Imagen perfil de quien ha respondido-->
+            @if(file_exists(\App\Models\User::find($hijo->user_id)->imagen))
+            <img src="../{{ \App\Models\User::find($hijo->user_id)->imagen}}" class="imagencomentario" />
+            @else
+            <img src="../imagenesperfil/userdefault.png" class="imagencomentario" />
+            @endif
+            <!--Nombre del perfil de la respuesta-->
+            {{ \App\Models\User::find($hijo->user_id)->name}}
+
             <!--Fecha de creacion de la respuesta -->
             <h6>{{$hijo->created_at}}</h6>
             <!--Contenido de la respuesta -->
             <p class="card-text textoajustado">{{$hijo->contenido}}</p>
+            @if(auth()->user()!=null)
+            @if (auth()->user()->can('eliminarComentariosResenyas', $hijo))
+            <form action="{{route('comentariosresenyas.destroy',$hijo->id)}}" method="post">
+                @csrf
+                @method('DELETE')
+
+                <button type="submit" value="Eliminar" class="btn btn-danger"><span class="fa fa-trash"></span>&nbsp;</button>
+            </form>
+            @endif
+            @endif
         </div>
     </div>
     @endforeach
@@ -274,6 +290,13 @@
             <h6>{{$comentario->created_at}}</h6>
             <!--Contenido del comentario -->
             <p class="card-text textoajustado">{{$comentario->contenido}}</p>
+
+            <form action="{{route('comentarios.destroy',$hijo->id)}}" method="post">
+                @csrf
+                @method('DELETE')
+
+                <button type="submit" value="Eliminar" class="btn btn-danger"><span class="fa fa-trash"></span>&nbsp;</button>
+            </form>
         </div>
     </div>
 
@@ -297,6 +320,13 @@
             <h6>{{$hijo->created_at}}</h6>
             <!--Contenido de la respuesta-->
             <p class="card-text textoajustado">{{$hijo->contenido}}</p>
+
+            <form action="{{route('comentarios.destroy',$hijo->id)}}" method="post">
+                @csrf
+                @method('DELETE')
+
+                <button type="submit" value="Eliminar" class="btn btn-danger"><span class="fa fa-trash"></span>&nbsp;</button>
+            </form>
         </div>
     </div>
     @endforeach

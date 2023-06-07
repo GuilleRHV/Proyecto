@@ -42,6 +42,22 @@
 
                     </div>
                 </div>
+                <div class="row">
+                <div class=" col-md-6 mb-4">
+                    <div class="form-outline">
+                        <label class="form-label" for="formcont">Pros</label>
+                        <input type="text" id="form3Example2" class="form-control bordesredondeados"  value="{{ $resenya->pros ?? '' }}" name="pros" style="min-height: 100px"/>
+
+                    </div>
+                </div>
+                <div class=" col-md-6 mb-4">
+                    <div class="form-outline">
+                        <label class="form-label" for="formcont">Contras</label>
+                        <input type="text" id="form3Example2" class="form-control bordesredondeados"  value="{{ $resenya->contras ?? '' }}" name="contras" style="min-height: 100px" />
+
+                    </div>
+                </div>
+                </div>
                 <!--Puntuacion de la reseña-->
                 <div class="row">
                     <div class="col-md-3 mb-4">

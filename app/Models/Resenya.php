@@ -9,6 +9,6 @@ class Resenya extends Model
 {
     use HasFactory;
     protected $table = "resenyas";
-    protected $fillable = ['titulo','contenido','user_id','nombreyapellido','puntuacion'];
+    protected $fillable = ['titulo','contenido','user_id','nombreyapellido','puntuacion','pros','contras'];
  
 }

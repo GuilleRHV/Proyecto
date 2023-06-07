@@ -1,0 +1,34 @@
+
+#passwordlogin,#email{
+    border-radius: 20px 20px 20px 20px;
+   }
+   #titulologin{
+     font-family: 'JosefinSans-SemiBold' !important;
+     font-size: 30px
+     }
+   #loginlogo{
+     margin-left: 14%  !important;
+   }
+   #cardlogin{
+     border-radius: 20% 20% 20% 20% !important;
+   }
+   #fondo2index{
+      
+       
+     background-image: url("../imagenes/imagenfondo2.jpg") !important;
+         /* Ajusta el tamaño y posición de la imagen de fondo según tus necesidades */
+     border-radius: 5% 5% 5% 5% !important;
+         background-position: center;;
+   }
+   #userimagenregistro{
+     width: 100px !important;
+     margin-left: 50%;
+     margin-bottom: 20px !important;
+    
+   }
+   
+   .cardregister{
+   background-color: white ;
+   box-shadow: rgba(0, 0, 0, 0.1) 3px 4px 15px;
+   
+   }

@@ -20,7 +20,7 @@
             @endif
 
             <!--Lista de votaciones-->
-            <h1>Lista votaciones</h1>
+            <h1 style="background-color: white !important; text-align: center" class="bordesredondeados">Lista votaciones</h1>
 
             @if(auth()->user()->can('permisosAdmin',['App\Models\User',auth()->user()]))
             <!--Boton crear votacion-->
@@ -32,7 +32,7 @@
                     <td>id</td>
                     <td>nombre</td>
 
-                    <td>descipcion</td>
+                    <td>descripcion</td>
                     <td>Opción 1</td>
                     <td>Opción 2</td>
                     <td>participantes</td>
@@ -46,7 +46,7 @@
                     <!--Nombre de la votacion -->
                     <td>{{$votacion->nombre}}</td>
                     <!--Descripcion de la votacion -->
-                    <td>{{$votacion->descripcion}}</td>
+                    <td style="max-width: 300px;overflow-wrap:break-word !important;">{{$votacion->descripcion}}</td>
                     <!--Nombre de la primera opcion -->
                     <td>{{$votacion->nombreopcion1}}</td>
                     <!--Nombre de la segunda opcion -->

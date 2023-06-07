@@ -48,17 +48,21 @@ class VotacionController extends Controller
 
         $request->validate([
 
-            "nombre" => "required",
-            "descripcion" => "required",
-            "valor1" => "required",
-            "valor2" => "required",
+            "nombre" => "required|max:30",
+            "descripcion" => "required|max:120",
+            "valor1" => "required|max:30",
+            "valor2" => "required|max:30",
 
 
         ], [
 
             "nombre.required" => "El nombre es obligatorio",
+            "nombre.max" =>"El nombre solo puede tener un máximo de 30 caracteres",
             "valor1.required" => "El valor1 es obligatorio",
             "descripcion.required" => "La descripcion es obligatorio",
+            "descripcion.max" =>"La descripción solo puede tener un máximo de 120 caracteres",
+            "valor1.max" =>"El valor A solo puede tener un máximo de 30 caracteres",
+            "valor2.max"=>"El valor B solo puede tener un máximo de 30 caracteres",
             "valor2.required" => "El valor2 es obligatorio",
 
         ]);

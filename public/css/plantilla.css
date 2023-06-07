@@ -1,3 +1,4 @@
+/*Navbar administrador*/
 #navbaradmin {
     position: absolute;
     background: rgb(209,164,242);
@@ -7,13 +8,16 @@
     border-radius: 20px 20px 20px 20px;
     margin-top: 90px;
     -webkit-text-stroke: 1px rgb(128, 82, 161) !important;
-
 }
 #paneladministrador{
   height: 500px !important;
 }
 
-/**SHOW**/
+.navbar{
+  color: white !important;
+}
+
+/*Juegos show*/
 #titulogameshow {
     text-align: center !important;
 }
@@ -34,25 +38,11 @@
     width: 500px;
     border-radius: 15px 15px 15px 15px !important;
 }
-#userimagenregistro{
-    width: 100px !important;
-    margin-left: 50%;
-    margin-bottom: 20px !important;
-   
-}
 
 #formulariocrearvideojuegos,#contenedorGames{
     background-color: bisque !important;
 }
-#loginlogo{
-    margin-left: 14%  !important;
-}
-#cardlogin{
-    border-radius: 20% 20% 20% 20% !important;
-}
-.navbar{
-    color: white !important;
-}
+
 
 #listavideojuegosh1{
     width: 320px;
@@ -64,7 +54,7 @@
    
 }
 
-
+/*Perfil usuario*/
 #contprincipalperfil{
     display: flex !important;
     flex-flow: row wrap !important;
@@ -79,19 +69,21 @@ height: 600px;
 box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
 0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
+/*Imagen de perfil*/
 #imagenperfil{
     width: 300px;
     position: absolute;
 margin-top: 10%;
 
 }
-
+/*Imagen de perfil en comentarios*/
 .imagencomentario{
     width: 60px;
     height: 60px;
     border-radius: 50% 50% 50% 50%  !important;
     z-index: 999 !important;
 }
+/*Fondo tablas*/
 #votacionedit,#tablaeditusuarios,#tablashowvotacion{
     background-color: white;
 }
@@ -112,32 +104,29 @@ margin-top: 10%;
     0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
 
+/*Imagenes de las reseñas*/
 .imagenResenya{
     width: 40%;
    position: relative;
 }
+/*Contenido (texto) de las reseñas*/
 .contenidoResenya{
     width: 100%;
     position: relative;
    padding: 2px;
 }
-
+/*Si hay texto e imagen en las reseñas*/
 .contenidoeimagen{
     display: flex;
     flex-flow: row;
 
 }
 
-
+/*Texto reseñas*/
 .contenidoResenya p{
     font-family: 'Times New Roman', Times, serif;
     font-size: 18px;
     overflow-wrap:break-word !important;
-}
-
-/*  ********************LOGIN************************************                         */
-#passwordlogin,#email{
- border-radius: 20px 20px 20px 20px;
 }
 
 
@@ -160,10 +149,7 @@ background-color: #FFF2CE;
   src: url('fuentes/JosefinSans-SemiBold.ttf');
 }
 
-#titulologin{
-font-family: 'JosefinSans-SemiBold' !important;
-font-size: 30px
-}
+
 
 .tituloresenyas{
 font-family: 'Cincel-Regular';
@@ -237,101 +223,6 @@ form{
     text-overflow: ellipsis;
 }
 
-/**************ENTRADAS***************/
-.slide-in-fwd-center {
-	-webkit-animation: slide-in-fwd-center 1.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	        animation: slide-in-fwd-center 1.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-}
- @-webkit-keyframes slide-in-fwd-center {
-    0% {
-      -webkit-transform: translateZ(-1400px);
-              transform: translateZ(-1400px);
-      opacity: 0;
-    }
-    100% {
-      -webkit-transform: translateZ(0);
-              transform: translateZ(0);
-      opacity: 1;
-    }
-  }
-  @keyframes slide-in-fwd-center {
-    0% {
-      -webkit-transform: translateZ(-1400px);
-              transform: translateZ(-1400px);
-      opacity: 0;
-    }
-    100% {
-      -webkit-transform: translateZ(0);
-              transform: translateZ(0);
-      opacity: 1;
-      display: block;
-    }
-  }
-  
-  .slide-out-bck-center {
-	-webkit-animation: slide-out-bck-center 0.7s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-	        animation: slide-out-bck-center 0.7s cubic-bezier(0.550, 0.085, 0.680, 0.530) both;
-}
- @-webkit-keyframes slide-out-bck-center {
-    0% {
-      -webkit-transform: translateZ(0);
-              transform: translateZ(0);
-      opacity: 1;
-    }
-    100% {
-      -webkit-transform: translateZ(-1100px);
-              transform: translateZ(-1100px);
-      opacity: 0;
-    }
-  }
-  @keyframes slide-out-bck-center {
-    0% {
-      -webkit-transform: translateZ(0);
-              transform: translateZ(0);
-      opacity: 1;
-    }
-    100% {
-      -webkit-transform: translateZ(-1100px);
-              transform: translateZ(-1100px);
-      opacity: 0;
-    }
-  }
-  /*ANIMACION BOTONES*/
-  .pulsate-fwd:hover {
-    -webkit-animation: pulsate-fwd 0.5s ease-in-out infinite both;
-            animation: pulsate-fwd 0.5s ease-in-out infinite both;
-  }
-
- @-webkit-keyframes pulsate-fwd {
-  0% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
-  50% {
-    -webkit-transform: scale(1.1);
-            transform: scale(1.1);
-  }
-  100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
-}
-@keyframes pulsate-fwd {
-  0% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
-  50% {
-    -webkit-transform: scale(1.1);
-            transform: scale(1.1);
-  }
-  100% {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-  }
-}
-
-
 
 
   .contenedorcomentarios{
@@ -339,19 +230,7 @@ form{
   }
 
   /********LOGIN*****************************/
-  #fondo2index{
-   
-    
-    background-image: url("../imagenes/imagenfondo2.jpg") !important;
-        /* Ajusta el tamaño y posición de la imagen de fondo según tus necesidades */
-    border-radius: 5% 5% 5% 5% !important;
-        background-position: center;;
-  }
-.cardregister{
-  background-color: white ;
-  box-shadow: rgba(0, 0, 0, 0.1) 3px 4px 15px;
-
-}
+ 
   .bordesredondeados{
     border-radius: 20px 20px 20px 20px !important;
   }
@@ -361,148 +240,4 @@ form{
 }
 
 
- @-webkit-keyframes color-change-5x {
 
-    0% {
-        background: #19dcea;
-      }
-      25% {
-        background: #189da7;
-      }
-      50% {
-        background: #348bfd;
-      }
-      75% {
-        background: #0b72f8;
-      }
-      100% {
-        background: #0e8ed8;
-      }
-    }
-    @keyframes color-change-5x {
-      0% {
-        background: #19dcea;
-      }
-      25% {
-        background: #189da7;
-      }
-      50% {
-        background: #348bfd;
-      }
-      75% {
-        background: #0b72f8;
-      }
-      100% {
-        background: #0e8ed8;
-      }
-  }
-  
-  #tracking-in-contract {
-font-size: 35px;
-
-
-    -webkit-animation: tracking-in-contract 1.4s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
-            animation: tracking-in-contract 1.4s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
-  }
-
- @-webkit-keyframes tracking-in-contract {
-  0% {
-    letter-spacing: 1em;
-    opacity: 0;
-  }
-  40% {
-    opacity: 0.6;
-  }
-  100% {
-    letter-spacing: normal;
-    opacity: 1;
-  }
-}
-@keyframes tracking-in-contract {
-  0% {
-    letter-spacing: 1em;
-    opacity: 0;
-  }
-  40% {
-    opacity: 0.6;
-  }
-  100% {
-    letter-spacing: normal;
-    opacity: 1;
-  }
-}
-
-
-
-
-
-  #botonlogin:hover{
-    background-color: yellow !important;
-  
-
-}
-  .botonloginregister:hover{
-        -webkit-animation: wobble-hor-bottom 0.8s both;
-                animation: wobble-hor-bottom 0.8s both;
-    
-  }
-
-@-webkit-keyframes wobble-hor-bottom {
-    0%,
-    100% {
-      -webkit-transform: translateX(0%);
-              transform: translateX(0%);
-      -webkit-transform-origin: 50% 50%;
-              transform-origin: 50% 50%;
-    }
-    15% {
-      -webkit-transform: translateX(-30px) rotate(-6deg);
-              transform: translateX(-30px) rotate(-6deg);
-    }
-    30% {
-      -webkit-transform: translateX(15px) rotate(6deg);
-              transform: translateX(15px) rotate(6deg);
-    }
-    45% {
-      -webkit-transform: translateX(-15px) rotate(-3.6deg);
-              transform: translateX(-15px) rotate(-3.6deg);
-    }
-    60% {
-      -webkit-transform: translateX(9px) rotate(2.4deg);
-              transform: translateX(9px) rotate(2.4deg);
-    }
-    75% {
-      -webkit-transform: translateX(-6px) rotate(-1.2deg);
-              transform: translateX(-6px) rotate(-1.2deg);
-    }
-  }
-  @keyframes wobble-hor-bottom {
-    0%,
-    100% {
-      -webkit-transform: translateX(0%);
-              transform: translateX(0%);
-      -webkit-transform-origin: 50% 50%;
-              transform-origin: 50% 50%;
-    }
-    15% {
-      -webkit-transform: translateX(-30px) rotate(-6deg);
-              transform: translateX(-30px) rotate(-6deg);
-    }
-    30% {
-      -webkit-transform: translateX(15px) rotate(6deg);
-              transform: translateX(15px) rotate(6deg);
-    }
-    45% {
-      -webkit-transform: translateX(-15px) rotate(-3.6deg);
-              transform: translateX(-15px) rotate(-3.6deg);
-    }
-    60% {
-      -webkit-transform: translateX(9px) rotate(2.4deg);
-              transform: translateX(9px) rotate(2.4deg);
-    }
-    75% {
-      -webkit-transform: translateX(-6px) rotate(-1.2deg);
-              transform: translateX(-6px) rotate(-1.2deg);
-    }
-  }
-  

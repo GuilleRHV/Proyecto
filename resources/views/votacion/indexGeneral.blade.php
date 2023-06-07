@@ -31,7 +31,7 @@
 
                     <td>Titulo</td>
 
-                    <td>Descipcion</td>
+                    <td>Descripcion</td>
                     <td>Nombre opcion 1</td>
                     <td>Nombre opcion 2</td>
 

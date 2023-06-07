@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('titulo');
             $table->text('contenido');
+            $table->text('pros')->nullable();
+            $table->text('contras')->nullable();
             $table->text('nombreyapellido');
             
             $table->unsignedBigInteger("user_id")->nullable();

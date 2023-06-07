@@ -68,8 +68,8 @@ class GameController extends Controller
         //Crea un videojuego
         $request->validate([
 
-            "nombre" => "required",
-            "descripcion" => "required",
+            "nombre" => "required|max:30",
+            "descripcion" => "required|max:1500",
             "anyoLanzamiento" => "required|integer|min:1952",
             "generos" => "required",
             "plataformas" => "required",
@@ -78,7 +78,8 @@ class GameController extends Controller
         ], [
 
             "nombre.required" => "El nombre es obligatorio",
-
+"nombre.max" => "El nombre solo puede tener hasta 30 caracteres",
+"descripcion.max"=>"La descripción solo puede tener hasta 1500 caracteres",
             "anyoLanzamiento.required" => "El anyoLanzamiento es obligatorio",
             "descripcion.required" => "La descripcion es obligatorio",
             "generos.required" => "El generos es obligatorio",
@@ -221,8 +222,8 @@ class GameController extends Controller
         //Modificar un videojuego
         $request->validate([
 
-            "nombre" => "required",
-            "descripcion" => "required",
+            "nombre" => "required|max:30",
+            "descripcion" => "required|max:1500",
             "anyoLanzamiento" => "required|integer|min:1952",
             "generos" => "required",
             "plataformas" => "required",
@@ -231,7 +232,8 @@ class GameController extends Controller
         ], [
 
             "nombre.required" => "El nombre es obligatorio",
-
+            "nombre.max" => "El nombre solo puede tener hasta 30 caracteres",
+            "descripcion.max"=>"La descripción solo puede tener hasta 1500 caracteres",
             "anyoLanzamiento.required" => "El anyoLanzamiento es obligatorio",
             "descripcion.required" => "La descripcion es obligatorio",
             "generos.required" => "El generos es obligatorio",

@@ -35,7 +35,7 @@
                 <img src="../imagenes/filenotfound.png" id="imagenjuegoshow" class="imagenjuego">
 
                 @else
-                <img src="../{{$game->imagen}}" id="imagenjuegoshow" class="imagenjuego" />
+                <img src="../{{$game->imagen}}" id="imagenjuegoshow" class="imagenjuego slide-in-bck-center" />
             </div>
             @endif
 
@@ -206,18 +206,20 @@
         <div class="card w-75 subcomentarios{{$hijo->padre_id}}" style="width: 600px !important; display:none">
         
             <div class="card-body">
-                <h5 class="card-title">
-                    
-                    <!--Imagen perfil de quien ha respondido-->
-                    @if($comentario->usuario->imagen!=null)
-
-
-                    <img src="../{{$comentario->usuario->imagen}}" class="imagencomentario" />
-                    @else
-                    <img src="../imagenesperfil/userdefault.png" class="imagencomentario" />
-                    @endif
-                    {{ \App\Models\User::find($hijo->user_id)->name}}
-                </h5>
+              
+                              
+                
+                
+                
+                <!--Imagen perfil de quien ha respondido-->
+                @if(file_exists(\App\Models\User::find($hijo->user_id)->imagen))
+                <img src="../{{ \App\Models\User::find($hijo->user_id)->imagen}}" class="imagencomentario " />
+                @else
+                <img src="../imagenesperfil/userdefault.png" class="imagencomentario" />
+                @endif
+                   <h1> {{ \App\Models\User::find($hijo->user_id)->name}}</h1>
+               
+                
                 <!--Fecha creacion respuesta-->
                 <h6>{{$hijo->created_at}}</h6>
                 <!--Contenido respuesta-->

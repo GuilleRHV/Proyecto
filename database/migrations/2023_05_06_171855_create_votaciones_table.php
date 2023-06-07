@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('votaciones', function (Blueprint $table) {
             $table->id();
             $table->string("nombre");
-            $table->string("descripcion");
+            $table->text("descripcion");
             $table->json("participantes")->nullable();
             $table->string("nombreopcion1");
             $table->string("nombreopcion2");
