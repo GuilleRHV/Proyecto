@@ -37,7 +37,8 @@
                 <div class=" mb-4">
                     <div class="form-outline">
                         <label class="form-label" for="formcont">Contenido</label>
-                        <input type="text" id="form3Example2" class="form-control bordesredondeados" name="contenido" style="min-height: 150px" />
+             
+                        <textarea class="form-control bordesredondeados" rows="2" name="contenido"  style="min-height: 150px"></textarea>
 
                     </div>
                 </div>
@@ -45,14 +46,15 @@
                 <div class=" col-md-6 mb-4">
                     <div class="form-outline">
                         <label class="form-label" for="formcont">Pros</label>
-                        <input type="text" id="form3Example2" class="form-control bordesredondeados" name="pros" style="min-height: 100px"/>
+                        <textarea class="form-control" rows="2" name="pros"></textarea>
+                       
 
                     </div>
                 </div>
                 <div class=" col-md-6 mb-4">
                     <div class="form-outline">
                         <label class="form-label" for="formcont">Contras</label>
-                        <input type="text" id="form3Example2" class="form-control bordesredondeados" name="contras" style="min-height: 100px" />
+                        <textarea class="form-control" rows="2" name="contras"></textarea>
 
                     </div>
                 </div>

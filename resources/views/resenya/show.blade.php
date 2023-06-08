@@ -179,7 +179,7 @@
                 <!--Imagen de usuario del comentario-->
                 <img src="../{{$comentario->usuario->imagen}}" class="imagencomentario" />
                 @else
-                <img src="../imagenesperfil/userdefault.png" class="imagencomentario" />
+                <img src="../imagenesperfil/userdefault2.jpg" class="imagencomentario" />
                 @endif
 
 
@@ -236,7 +236,7 @@
             @if(file_exists(\App\Models\User::find($hijo->user_id)->imagen))
             <img src="../{{ \App\Models\User::find($hijo->user_id)->imagen}}" class="imagencomentario" />
             @else
-            <img src="../imagenesperfil/userdefault.png" class="imagencomentario" />
+            <img src="../imagenesperfil/userdefault2.jpg" class="imagencomentario" />
             @endif
             <!--Nombre del perfil de la respuesta-->
             {{ \App\Models\User::find($hijo->user_id)->name}}

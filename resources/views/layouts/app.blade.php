@@ -86,7 +86,7 @@
                             @if(auth()->user()->imagen!=null)
                             <img src="{{asset(Auth::user()->imagen)}}" style="border-radius: 50% 50% 50% 50%;width: 50px; height: 50px"/>
                             @else
-                            <img src="{{asset('imagenesperfil/userdefault.png')}}" style="border-radius: 50% 50% 50% 50%;width: 50px; height: 50px"/>
+                            <img src="{{asset('imagenesperfil/userdefault2.jpg')}}" style="border-radius: 50% 50% 50% 50%;width: 50px; height: 50px"/>
                             @endif
                         </li>
                         <li class="nav-item dropdown">

@@ -59,7 +59,7 @@
                     <td>
                         <!--boton mostrar usuario-->
                         @can ('view', $user)
-                        <a class="btn btn-primary  jello-horizontal" href="{{route('users.show',$user->id)}}"><span class="fa fa-eye jello-horizontal"></span>&nbsp;</a>
+                        <a class="btn btn  jello-horizontal" href="{{route('users.show',$user->id)}}" style="background-color: #9AD3E6"><span class="fa fa-eye jello-horizontal"></span>&nbsp;</a>
                         @endcan
                     </td>
                     <td>

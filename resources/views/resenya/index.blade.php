@@ -132,7 +132,7 @@
                 
                 <!--Solo podrán modificar reseñas las personas que hayan escrito la misma (los administradores no podrán editarla)-->
                 <!--Boton para modificar la reseña-->
-                <a class="btn btn-warning" href="{{ route('resenyas.edit',$resenya->id) }}" class="btn btn">Modificar reseña</a>
+                <a class="btn btn-warning" href="{{ route('resenyas.edit',$resenya->id) }}" class="btn btn"><span class="fa fa-pencil"></span>&nbsp;</a>
 
 
                 @endif
@@ -149,7 +149,7 @@
                 @endif
                 @endif
                 <!--Boton para mostrar detalles de la reseña seleccionada-->
-                <a class="btn btn-warning" href="{{ route('resenyas.show',$resenya->id) }}" class="btn btn"><span class="fa fa-eye"></span>&nbsp;</a>
+                <a class="btn btn" href="{{ route('resenyas.show',$resenya->id) }}" style="background-color: #9AD3E6"><span class="fa fa-eye"></span>&nbsp;</a>
             </div>
 
 

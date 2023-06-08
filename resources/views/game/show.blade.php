@@ -80,8 +80,11 @@
                     <!--Boton ir al home-->
 
                 </div>
+            
             </div>
+            <div class="form-group ">
             <a href="{{route('proyects.index')}}" class="btn btn-primary">Home</a>
+          
 
             @if(auth()->user()!=null)
             @if(auth()->user()->can('permisosAdmin',['App\Models\User',$user]))
@@ -89,7 +92,7 @@
             <a class="btn btn-warning" href="{{route('games.edit',$game->id)}}"><span class="fa fa-pencil"></span>&nbsp;</a>
             @endif
             @endif
-
+            </div>
             <hr>
 
 
@@ -156,7 +159,7 @@
 
                             <img src="../{{$comentario->usuario->imagen}}" class="imagencomentario" />
                             @else
-                            <img src="../imagenesperfil/userdefault.png" class="imagencomentario" />
+                            <img src="../imagenesperfil/userdefault2.jpg" class="imagencomentario" />
                             @endif
                             <!--Nombre del usuario que ha comentado-->
                             {{$comentario->usuario->name}}
@@ -214,12 +217,13 @@
 
 
                 <!--Imagen perfil de quien ha respondido-->
+                <h5>
                 @if(file_exists(\App\Models\User::find($hijo->user_id)->imagen))
                 <img src="../{{ \App\Models\User::find($hijo->user_id)->imagen}}" class="imagencomentario " />
                 @else
-                <img src="../imagenesperfil/userdefault.png" class="imagencomentario" />
+                <img src="../imagenesperfil/userdefault2.jpg" class="imagencomentario" />
                 @endif
-                <h1> {{ \App\Models\User::find($hijo->user_id)->name}}</h1>
+                {{ \App\Models\User::find($hijo->user_id)->name}}</h5>
 
 
                 <!--Fecha creacion respuesta-->
@@ -275,7 +279,7 @@
 
                     <img src="../{{$comentario->usuario->imagen}}" class="imagencomentario" />
                     @else
-                    <img src="../imagenesperfil/userdefault.png" class="imagencomentario" />
+                    <img src="../imagenesperfil/userdefault2.jpg" class="imagencomentario" />
                     @endif
                     <!--Nombre del usuario que ha comentado-->
                     {{$comentario->usuario->name}}
@@ -322,7 +326,7 @@
 
                     <img src="../{{$comentario->usuario->imagen}}" class="imagencomentario" />
                     @else
-                    <img src="../imagenesperfil/userdefault.png" class="imagencomentario" />
+                    <img src="../imagenesperfil/userdefault2.jpg" class="imagencomentario" />
                     @endif
                     {{ \App\Models\User::find($hijo->user_id)->name}}
                 </h5>

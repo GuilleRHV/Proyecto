@@ -12,7 +12,7 @@
   <div class="row justify-content-center" id="fondo2index">
 
 
-<!--Alertas acciones -->
+    <!--Alertas acciones -->
     <div class="col-md-8">
       @if($message = Session::get('juegocreado'))
       <div class="alert alert-success">
@@ -61,11 +61,11 @@
       @endif
 
 
-<!--Fin alertas acciones -->
+      <!--Fin alertas acciones -->
 
 
 
-<!--Panel videojuegps-->
+      <!--Panel videojuegps-->
       <h1 id="listavideojuegosh1"> Lista videojuegos</h1><br>
       @if($user!=null)
       @if(auth()->user()->can('permisosAdmin',['App\Models\User',$user]))
@@ -86,14 +86,14 @@
       @endif
       <!--Ver votaciones -->
       <a class="btn btn pulsate-fwd" href="{{ route('votacion.votacionesGeneral') }}" class="btn btn pulsate-fwd" style="background-color: pink;">Ver votaciones</a>
-     
+
       <!--Ir a mi perfil -->
       <a class="btn btn-primary pulsate-fwd" href="{{ route('users.perfil') }}" class="btn btn"><span class="fa fa-user pulsate-fwd"></span>&nbsp;</a>
 
-@endif
+      @endif
 
 
-<!--Contenedor con todos los juegos creados -->
+      <!--Contenedor con todos los juegos creados -->
       <div id="contenedorGamesIndex">
         @foreach($gameList as $game)
         <!--Contenedor individual de juego-->
@@ -168,12 +168,18 @@ $contador = 1;
 
 ?>
 
+
+
+
+
 <!--VOTACIONES-->
 <div class="col-md-4">
   @if(auth()->user()!=null)
+  
+  
   <table class="table table-striped table-dark " style="display: flex;align-items:center" id="contenedorVotaciones">
-    <tr>VOTACIONES</tr>
-  <tr>
+  
+    <tr>
       <td>NOMBRE</td>
       <td>DESCRIPCION</td>
 
@@ -185,7 +191,7 @@ $contador = 1;
 
 
 
-    <!--Si la votacion está activa-->
+      <!--Si la votacion está activa-->
       @if($votacion->participantes==null && $votacion->activo==1)
 
       <td>{{$votacion->nombre}}</td>
@@ -201,7 +207,7 @@ $contador = 1;
       @if($votacion->participantes!=null && $votacion->activo==1)
       @if(!in_array($user->id,json_decode($votacion->participantes))){
 
-        <!--Si hay participantes-->
+      <!--Si hay participantes-->
       <td>{{$votacion->nombre}}</td>
       <td>{{$votacion->descripcion}}</td>
 
@@ -218,8 +224,11 @@ $contador = 1;
 
   </table>
   <!--Fin tabla votaciones-->
-  @endif
+
 </div>
+
+<!--Fin condicion si no hay votaciones activas-->
+@endif
 
 @endsection
 
@@ -232,9 +241,9 @@ $contador = 1;
 
 @if($user!=null)
 @if(auth()->user()->can('permisosAdmin',['App\Models\User',$user]))
-<nav class="navbar navbar-light bg-dark fixed-top" id="navbaradmin">
+<nav class="navbar navbar-light bg-dark fixed-top " id="navbaradmin">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Herramientas de administrador</a>
+    <a class="navbar-brand slide-in-elliptic-top-fwd" href="#">Herramientas de administrador</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#paneladministrador" aria-controls="paneladministrador">
       <span class="navbar-toggler-icon"></span>
     </button>
