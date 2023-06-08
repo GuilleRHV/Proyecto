@@ -47,7 +47,12 @@
         <h4>{{$message}}</h4>
       </div>
       @endif
-
+      @if($message = Session::get('nohayvotaciones'))
+      <div class="alert alert-warning">
+        <h4>{{$message}}</h4>
+      </div>
+      @endif
+      
 
       @if($message = Session::get('coleccionvacia'))
       <div class="alert alert-info">

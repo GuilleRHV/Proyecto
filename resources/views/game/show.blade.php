@@ -27,7 +27,7 @@
 
 
 
-            <h1 id="titulogameshow">{{ $game->nombre ?? '' }}</h1>
+            <h1 id="titulogameshow" class="titulojuegosyreseñas">{{ $game->nombre ?? '' }}</h1>
 
             <!--Imagen juego-->
             @if($game->imagen==null)

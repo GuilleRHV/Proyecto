@@ -39,8 +39,8 @@
                 <div class=" mb-4">
                     <div class="form-outline">
                         <label class="form-label" for="form3Example2">Descripcion</label>
-                        <input type="text" id="form3Example2" class="form-control bordesredondeados" name="descripcion" value="{{ $game->descripcion ?? '' }}" />
-
+                        
+                        <textarea class="form-control bordesredondeados" rows="2" name="descripcion"  style="min-height: 150px">{{ $game->descripcion ?? '' }}</textarea>
                     </div>
                 </div>
 

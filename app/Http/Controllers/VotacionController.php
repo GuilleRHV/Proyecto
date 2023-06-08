@@ -23,6 +23,9 @@ class VotacionController extends Controller
     public function votacionesGeneral()
     {
         $votacionesList = Votacion::all();
+        if(count($votacionesList)==0){
+return redirect()->route('proyects.index')->with("nohayvotaciones", "Actualmente no hay ninguna votacion.");
+        }
         return view('votacion.indexGeneral', ['votacionesList' => $votacionesList]);
     }
 

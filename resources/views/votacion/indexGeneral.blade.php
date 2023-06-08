@@ -21,7 +21,7 @@
             @endif
 
             <!--Lista de votaciones-->
-            <h1>Lista de votaciones</h1>
+            <h1 style="background-color: white;text-align:center" class="bordesredondeados">Lista de votaciones</h1>
 
 
 

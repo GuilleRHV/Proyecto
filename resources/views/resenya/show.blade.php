@@ -38,7 +38,7 @@
 
             <div class="text-center">
                 <!--Titulo de la reseña-->
-                <h3 class="tituloresenyas">{{$resenya->titulo}}</h3>
+                <h2 class="tituloresenyas titulojuegosyreseñas">{{$resenya->titulo}}</h2>
             </div>
             <hr class="hr" />
             <div>

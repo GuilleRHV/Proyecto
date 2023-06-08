@@ -148,9 +148,14 @@ background-color: #FFF2CE;
   font-family: 'josefin semibold';
   src: url('fuentes/JosefinSans-SemiBold.ttf');
 }
+@font-face{
+    font-family: 'Ybedeau';
+    src: url('fuentes/Ybedeau-Italic.ttf');
 
-
-
+}
+.titulojuegosyreseñas{
+    font-family: 'Ybedeau-Italic' !important;
+}
 .tituloresenyas{
 font-family: 'Cincel-Regular';
 text-decoration: underline;
@@ -171,11 +176,11 @@ font-size: 24px;
 
 
 .contenedorGameIndividualNombre{
-width: 20%;
+width: 25%;
 padding: 30px !important;
 }
 .contenedorGameIndividualAnyoLanzamiento{
-width: 15%;
+width: 10%;
 padding: 30px !important;
 }
 .contenedorGameIndividualGeneros{

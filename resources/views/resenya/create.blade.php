@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" style="background-color: white;">
         <div class="col-md-12">
             <h1>Crear reseña</h1>
             <a href="{{route('proyects.index')}}" class="btn btn-primary">Index</a>
