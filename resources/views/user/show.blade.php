@@ -4,7 +4,7 @@
 <div class="container" style="background-color: white">
     <div class="row justify-content-center">
         <div class="col-md-10">
-            <h1>Detalle del usuario</h1>
+            <h1>Detalles del usuario</h1>
 
 
 
@@ -13,6 +13,11 @@
             <div class="form-group">
                 <label for="nombre" class="col-form-label" style="font-weight:600;font-size:17px">Nombre</label><br>
                 <label for="nombre" class="col-form-label">{{ $user->name ?? '' }}</label>
+            </div>
+            <!--Apellido del usuario -->
+            <div class="form-group">
+                <label for="nombre" class="col-form-label" style="font-weight:600;font-size:17px">Apellido</label><br>
+                <label for="nombre" class="col-form-label">{{ $user->apellido ?? '' }}</label>
             </div>
             <!--Email del usuario -->
             <div class="form-group">

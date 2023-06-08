@@ -4,8 +4,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <h1>Crear videojuego</h1>
-            <a href="{{route('proyects.index')}}" class="btn btn-primary">Index</a>
+        <a href="{{route('proyects.index')}}" class="btn btn-primary">Index</a>
+            <h1 style="background-color: white;border: 2px solid grey; text-align: center" class="bordesredondeados">Crear videojuego</h1>
+            
 
             <hr>
             <!--Errores formulario-->
@@ -22,7 +23,7 @@
 
 
             <div class="card-body p-5 shadow-5 text-center cardregister">
-                <h1>Registrarse</h1>
+          
                 <br>
                 <form action="{{route('games.store')}}" method="post" enctype="multipart/form-data" id="formulariocrearvideojuegos">
                     @csrf
