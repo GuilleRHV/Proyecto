@@ -24,6 +24,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProyectController;
 use App\Http\Controllers\ResenyaController;
 use App\Http\Controllers\VotacionController;
+use App\Models\ComentarioResenya;
 use App\Models\Game;
 use App\Models\Usuario;
 use App\Models\Votacion;
@@ -80,14 +81,15 @@ Route::resource('games', GameController::class);
 Route::resource('resenyas', ResenyaController::class);
 
 Route::resource('votaciones', VotacionController::class);
+Route::delete('/proyects/games/{comentario_id}/destroy', [ComentarioController::class, "destroy"])->name('comentarios.destroy');
+Route::delete('/proyects/games/{comentario_id}/destroycomentarioresenya', [ComentarioResenyaController::class, "destroy"])->name('comentariosresenyas.destroy');
 //Route::resource('comentarios', ComentarioController::class);
-Route::get('/proyects/games/indexPc',[GameController::class,'indexPc'])->name('games.indexPc');
-Route::get('/proyects/games/showPc',[GameController::class,'showPc'])->name('games.showPc');
+//Route::resource('comentarios', ComentarioController::class);
 
 
 
 /*********************************** */
-
+//Route::resource('comentarios', ComentarioController::class);
 Route::resource('orders', OrderController::class);
 
 Route::resource('products', ProductController::class);

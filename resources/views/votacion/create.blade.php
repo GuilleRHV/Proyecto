@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-md-12" style="background-color: white;">
             <h1>Crear votacion</h1>
             <a href="{{route('users.index')}}" class="btn btn-primary">Index</a>
             <!--Para acceder a esta vista tienes que ser un administrador-->

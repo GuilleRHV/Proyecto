@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" style="background-color: white;">
         <div class="col-md-12">
             <h1>Crear reseña</h1>
             <a href="{{route('proyects.index')}}" class="btn btn-primary">Index</a>
@@ -37,9 +37,27 @@
                 <div class=" mb-4">
                     <div class="form-outline">
                         <label class="form-label" for="formcont">Contenido</label>
-                        <input type="text" id="form3Example2" class="form-control bordesredondeados" name="contenido" />
+             
+                        <textarea class="form-control bordesredondeados" rows="2" name="contenido"  style="min-height: 150px"></textarea>
 
                     </div>
+                </div>
+                <div class="row">
+                <div class=" col-md-6 mb-4">
+                    <div class="form-outline">
+                        <label class="form-label" for="formcont">Pros</label>
+                        <textarea class="form-control" rows="2" name="pros"></textarea>
+                       
+
+                    </div>
+                </div>
+                <div class=" col-md-6 mb-4">
+                    <div class="form-outline">
+                        <label class="form-label" for="formcont">Contras</label>
+                        <textarea class="form-control" rows="2" name="contras"></textarea>
+
+                    </div>
+                </div>
                 </div>
                 <!--Puntuacion de la reseña-->
                 <div class="row">

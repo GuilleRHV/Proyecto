@@ -72,7 +72,10 @@
                     @if($resenya->imagen==null)
                     <div class="contenidoResenya">
                         <p style="overflow-wrap:break-word; width: 100%">{{$resenya->contenido}}</p>
-
+                        <p style="color: green" >Pros: </p>
+                        <p style="overflow-wrap:break-word">{{$resenya->pros}} </p>
+                        <p style="color: red">Contras: </p>
+                        <p style="overflow-wrap:break-word">{{$resenya->contras}} </p>
 
                         <!--Muestra la calificacion de la reseña en iconos (estrellas)-->
                         Calificación: @if($resenya->puntuacion==1)
@@ -94,6 +97,10 @@
                     @else
                     <div class="contenidoResenya" style="width: 60%;">
                         <p style="overflow-wrap:break-word">{{$resenya->contenido}} </p>
+                        <p style="color: green" >Pros: </p>
+                        <p style="overflow-wrap:break-word">{{$resenya->pros}} </p>
+                        <p style="color: red">Contras: </p>
+                        <p style="overflow-wrap:break-word">{{$resenya->contras}} </p>
                         Calificación: @if($resenya->puntuacion==1)
                         <i class="fa fa-star fa-xxl"></i>
                         @endif
@@ -125,7 +132,7 @@
                 
                 <!--Solo podrán modificar reseñas las personas que hayan escrito la misma (los administradores no podrán editarla)-->
                 <!--Boton para modificar la reseña-->
-                <a class="btn btn-warning" href="{{ route('resenyas.edit',$resenya->id) }}" class="btn btn">Modificar reseña</a>
+                <a class="btn btn-warning" href="{{ route('resenyas.edit',$resenya->id) }}" class="btn btn"><span class="fa fa-pencil"></span>&nbsp;</a>
 
 
                 @endif
@@ -142,7 +149,7 @@
                 @endif
                 @endif
                 <!--Boton para mostrar detalles de la reseña seleccionada-->
-                <a class="btn btn-warning" href="{{ route('resenyas.show',$resenya->id) }}" class="btn btn"><span class="fa fa-eye"></span>&nbsp;</a>
+                <a class="btn btn" href="{{ route('resenyas.show',$resenya->id) }}" style="background-color: #9AD3E6"><span class="fa fa-eye"></span>&nbsp;</a>
             </div>
 
 

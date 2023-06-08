@@ -8,26 +8,7 @@ use Illuminate\Http\Request;
 
 class ComentarioController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
+   
     /**
      * Store a newly created resource in storage.
      *
@@ -37,6 +18,12 @@ class ComentarioController extends Controller
     public function store(Request $request,$game_id,$user_id)
     {
      
+        $request->validate([
+            "contenidocomentario" => "required|string|max:300",
+        ], [
+            "contenidocomentario.required" => "El comentario no puede estar vacio",
+            "contenidocomentario.max"=>"Solo puedes escribir hasta 300 caracteres"
+        ]);
         $comentario = new Comentario();
         $comentario->user_id = $user_id;
         $comentario->juego_id = $game_id;
@@ -51,7 +38,8 @@ class ComentarioController extends Controller
         }
         $comentario->comentario_id = $contComentariosEnEsteJuego;
         $comentario->save();
-        return redirect()->route('proyects.index')->with('exito', 'usuario creado correctamente');
+        $game=game::find($game_id);
+        return redirect()->route('games.show',['game'=>$game])->with('comentariocreado', 'Has escrito un comentario');
         
     }
 
@@ -89,43 +77,10 @@ class ComentarioController extends Controller
         $respuestacomentario->save();
 
         $game=Game::find($game_id);
-        return redirect()->route('games.show',['game'=>$game])->with('exito', 'usuario creado correctamente');
+        return redirect()->route('games.show',['game'=>$game])->with('respuesta', 'Has respondido a un comentario');
      
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
@@ -135,6 +90,10 @@ class ComentarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $comentario = Comentario::find($id);
+      
+        $juego_id=$comentario->juego_id;
+        $comentario->delete();
+        return redirect()->route('games.show',$juego_id)->with("comentarioeliminado", "Has eliminado un comentario exitosamente");
     }
 }

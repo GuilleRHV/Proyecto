@@ -162,7 +162,7 @@ class UserController extends Controller
             $user->coleccion = json_encode($array);
             //Guarda tu coleccion
             $user->save();
-            return redirect()->route('users.verMiBiblioteca');
+            return redirect()->route('users.verMiBiblioteca')->with("borradocoleccion", "Has eliminado un videojuego de tu colección");
         }
     }
 
@@ -195,17 +195,21 @@ class UserController extends Controller
         $password = $user->password;
         $request->validate([
 
-            "name" => "required",
-
+            "name" => "required|max:30",
+"apellido"=> "required|max:30",
             "imagenperfil" => "image|mimes:jpg,png,jpeg,svg|dimensions:min_width=100,min_heigh=100"
 
         ], [
             "name.required" => "El nombre es obligatorio",
+            "name.max"=>"El nombre solo puede tener hasta 30 caracteres",
+            "apellido.required" => "El apellido es obligatorio",
+            "apellido.max"=>"El apellido solo puede tener hasta 30 caracteres",
             "imagenperfil.image" => "El archivo debe ser una imagen",
             "imagenperfil.mimes" => "La imagen debe tener extension jpg,jpeg,gif o svg",
             "imagenperfil.dimensions" => "La imagen debe tener unas dimensiones minimas de 100x100 px"
         ]);
         $user->name = $request->input('name');
+        $user->apellido=$request->input('apellido');
         //Fija rutas en imagenesperfil
         $imagen = $request->file("imagenperfil");
         if ($imagen != null) {

@@ -39,8 +39,8 @@
                 <div class=" mb-4">
                     <div class="form-outline">
                         <label class="form-label" for="form3Example2">Descripcion</label>
-                        <input type="text" id="form3Example2" class="form-control bordesredondeados" name="descripcion" value="{{ $game->descripcion ?? '' }}" />
-
+                        
+                        <textarea class="form-control bordesredondeados" rows="2" name="descripcion"  style="min-height: 150px">{{ $game->descripcion ?? '' }}</textarea>
                     </div>
                 </div>
 
@@ -237,10 +237,11 @@
                 </div>
 
                 <!--Boton actualizar juego -->
-                <input type="submit" value="Actualizar" class="btn btn-warning">
+           
+                <button type="submit" class="btn btn-warning"><span class="fa fa-pencil"></span>&nbsp;</button>
             </form>
             <!--Muestra el juego-->
-            <a class="btn btn-warning" href="{{ route('games.show',$game->id) }}" class="btn btn"><span class="fa fa-eye"></span>&nbsp;</a>
+            <a class="btn btn" href="{{ route('games.show',$game->id) }}" style="background-color: #9AD3E6"><span class="fa fa-eye"></span>&nbsp;</a>
 
 
 

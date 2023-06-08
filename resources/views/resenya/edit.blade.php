@@ -2,10 +2,10 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    <div class="row justify-content-center" style="background-color: white;">
         <div class="col-md-12">
             <h1>Editar reseña</h1>
-            <a href="{{route('games.index')}}" class="btn btn-primary">Index</a>
+            <a href="{{route('resenyas.index')}}" class="btn btn-primary">Index</a>
 
             <hr>
             <!--Muestra errores del formulario-->
@@ -38,9 +38,27 @@
                 <div class=" mb-4">
                     <div class="form-outline">
                         <label class="form-label" for="formcont">Contenido</label>
-                        <input type="text" id="form3Example2" class="form-control bordesredondeados" name="contenido" value="{{ $resenya->contenido ?? '' }}" />
+                      
+                        <textarea class="form-control bordesredondeados" rows="2" name="contenido"  style="min-height: 150px">{{ $resenya->contenido ?? '' }}</textarea>
 
                     </div>
+                </div>
+                <div class="row">
+                <div class=" col-md-6 mb-4">
+                    <div class="form-outline">
+                        <label class="form-label" for="formcont">Pros</label>
+                        <textarea class="form-control bordesredondeados" rows="2" name="pros"  >{{ $resenya->pros ?? '' }}</textarea>
+                        
+
+                    </div>
+                </div>
+                <div class=" col-md-6 mb-4">
+                    <div class="form-outline">
+                        <label class="form-label" for="formcont">Contras</label>
+                        <textarea class="form-control bordesredondeados" rows="2" name="contras"  >{{ $resenya->contras ?? '' }}</textarea>
+
+                    </div>
+                </div>
                 </div>
                 <!--Puntuacion de la reseña-->
                 <div class="row">
@@ -77,10 +95,10 @@
                     </div>
                 </div>
                 <!--Boton de actualizar la reseña-->
-                <input type="submit" value="Actualizar" class="btn btn-warning">
+                <input type="submit" value="Actualizar" class="btn btn-warning jello-horizontal">
             </form>
             <!--Mostrar detalles de la reseña-->
-            <a class="btn btn-warning" href="{{ route('resenyas.show',$resenya->id) }}" class="btn btn"><span class="fa fa-eye"></span>&nbsp;</a>
+            <a class="btn btn jello-horizontal" href="{{ route('resenyas.show',$resenya->id) }}" style="background-color: #9AD3E6"><span class="fa fa-eye"></span>&nbsp;</a>
 
 
 

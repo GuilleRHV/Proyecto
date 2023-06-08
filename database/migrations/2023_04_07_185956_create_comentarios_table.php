@@ -20,7 +20,8 @@ return new class extends Migration
             $table->biginteger("comentario_id");
             $table->unsignedBigInteger("padre_id")->nullable();
             $table->text("contenido");
-            
+         
+
          
             $table->foreign('user_id')->references('id')->on('usuarios')->onDelete('cascade');//El enlace de fk
          

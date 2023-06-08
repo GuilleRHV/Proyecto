@@ -9,7 +9,7 @@
             <!--Nombre de la votacion-->
             <h1>{{ $votacion->nombre ?? '' }}</h1>
             <!--Descripcion de la votacion -->
-            <h4>{{ $votacion->descripcion ?? '' }}</h4>
+            <h4 style="max-width: 200px;    overflow-wrap:break-word !important;">{{ $votacion->descripcion ?? '' }}</h4>
 
 
             <hr>

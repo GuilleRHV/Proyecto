@@ -21,7 +21,7 @@
             @endif
 
             <!--Lista de votaciones-->
-            <h1>Lista de votaciones</h1>
+            <h1 style="background-color: white;text-align:center" class="bordesredondeados">Lista de votaciones</h1>
 
 
 
@@ -31,7 +31,7 @@
 
                     <td>Titulo</td>
 
-                    <td>Descipcion</td>
+                    <td>Descripcion</td>
                     <td>Nombre opcion 1</td>
                     <td>Nombre opcion 2</td>
 
@@ -54,7 +54,7 @@
 
                     </td>
                     <!--Boton para mostrar detalles de la votacion -->
-                    <td> <a class="btn btn-warning" href="{{ route('votaciones.show',$votacion->id) }}" class="btn btn"><span class="fa fa-eye"></span>&nbsp;</a></td>
+                    <td> <a class="btn btn jello-horizontal" href="{{ route('votaciones.show',$votacion->id) }}" style="background-color: #9AD3E6"><span class="fa fa-eye"></span>&nbsp;</a></td>
 
 
 

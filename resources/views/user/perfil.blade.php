@@ -25,7 +25,7 @@
                     <!--Imagen usuario, si no tiene se le asigna una por defecto -->
                     <div id="imagenperfil">
                         @if($user->imagen==null)
-                        <img src="{{asset('imagenesperfil/userdefault.png')}}" style="border-radius: 10% 10% 10% 10%;width:230px; height: 230px" />
+                        <img src="{{asset('imagenesperfil/userdefault2.jpg')}}" style="border-radius: 10% 10% 10% 10%;width:230px; height: 230px" />
 
                         @else
 
@@ -42,13 +42,18 @@
                     <div id="datosperfil">
                         <br>
                         <!--Nombre actual del usuario-->
-                        <h2 style="color: blue">{{$user->name}}</h2>
+                        <h2 style="color: blue">{{$user->name}} {{$user->apellido}}</h2>
 
 
                         <!--Nombre del usuario, se puede editar-->
                         <div class="form-group">
                             <label for="nombre" class="col-form-label" style="font-weight:600;font-size:17px">Nombre</label><br>
                             <input type="text" class="form-control" name="name" value="{{ $user->name ?? '' }}" />
+                        </div>
+                         <!--Apellido del usuario, se puede editar-->
+                         <div class="form-group">
+                            <label for="nombre" class="col-form-label" style="font-weight:600;font-size:17px">Apellido</label><br>
+                            <input type="text" class="form-control" name="apellido" value="{{ $user->apellido ?? '' }}" />
                         </div>
                         <!--Email del usuario, no se puede editar-->
                         <div class="form-group">

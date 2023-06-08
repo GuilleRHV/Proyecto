@@ -4,8 +4,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
-            <h1>Crear videojuego</h1>
-            <a href="{{route('proyects.index')}}" class="btn btn-primary">Index</a>
+        <a href="{{route('proyects.index')}}" class="btn btn-primary">Index</a>
+            <h1 style="background-color: white;border: 2px solid grey; text-align: center" class="bordesredondeados">Crear videojuego</h1>
+            
 
             <hr>
             <!--Errores formulario-->
@@ -22,7 +23,7 @@
 
 
             <div class="card-body p-5 shadow-5 text-center cardregister">
-                <h1>Registrarse</h1>
+          
                 <br>
                 <form action="{{route('games.store')}}" method="post" enctype="multipart/form-data" id="formulariocrearvideojuegos">
                     @csrf
@@ -40,15 +41,15 @@
                     <div class=" mb-4">
                         <div class="form-outline">
                             <label class="form-label" for="form3Example2">Descripcion</label>
-                            <input type="text" id="form3Example2" class="form-control bordesredondeados" name="descripcion" />
-
+                          
+                            <textarea class="form-control bordesredondeados" rows="2" name="descripcion"  style="min-height: 150px"></textarea>
                         </div>
                     </div>
                     <!--Año de lanzamiento del juego -->
                     <div class="row">
                         <div class="col-md-6 mb-4">
                             <label class="form-label" for="anyoLanzamiento">Año de lanzamiento</label>
-                            <input type="text" id="anyoLanzamiento" class="form-control bordesredondeados" name="anyoLanzamiento" />
+                            <input type="text" id="anyoLanzamiento" class="form-control bordesredondeados" name="anyoLanzamiento" "/>
 
                         </div>
                         <!--Precio del juego -->
