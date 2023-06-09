@@ -1,0 +1,27 @@
+.contenedorGameIndividualGeneros {
+    display: none !important;
+}
+.contenedorGameIndividualAnyoLanzamiento{
+    display: none !important;
+}
+.contenedorGameIndividualImagen{
+    padding-top: 25px;
+    width: 65% !important;
+}
+.contenedorGameIndividual img{
+    display: none !important;
+}
+#contenedorVotaciones{
+    display: none !important;
+}
+
+#contenedorGameIndividualNombre{
+width: 35% !important;
+overflow-wrap:break-word !important;
+}
+#contenedorGamesIndex{
+    margin-top: 60px !important;
+}
+p.elipsis{
+    text-overflow: ellipsis !important ;
+}

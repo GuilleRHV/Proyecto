@@ -44,7 +44,7 @@
                     <!--Nombre/titulo de la votacion-->
                     <td>{{$votacion->nombre}}</td>
                     <!--Descripcion de la votacion-->
-                    <td>{{$votacion->descripcion}}</td>
+                    <td style="max-width: 300px;overflow-wrap:break-word !important;">{{$votacion->descripcion}}</td>
                     <!--Nombre de la opcion 1 de la votacion -->
                     <td>{{$votacion->nombreopcion1}}</td>
                     <!--Nombre de la opcion 2 de la votacion -->

@@ -11,10 +11,12 @@ $contador = 1;
 
 
 
-
+<link rel="stylesheet" href="{{asset('css/carousel.css')}}">
 
 <!--VOTACIONES-->
-<div class="col-md-4">
+
+<div class="row justify-content-center">
+<div class="col-md-8">
   @if(auth()->user()!=null)
 
 
@@ -78,7 +80,7 @@ $contador = 1;
 <div id="wrap" style="position: relative;color: black !important; text-decoration:none !important">
   <a href="{{ route('games.show',11) }}" class="hb">
     <div class="c">
-      <img src="{{asset('imagenescarousel/silksong.jpeg')}}" class="imagencarousel" alt=""/>
+      <img src="{{asset('imagenescarousel/silksong.jpeg')}}" class="imagencarousel img-responsive" alt=""/>
       <div class="txt">
         <h1 class="negro">Silksong</h1>
         <p class="negro">Esperada secuela del posiblemente mejor metroidvania</p>
@@ -88,7 +90,7 @@ $contador = 1;
   
   <a href="#" class="hb">
     <div class="c">
-      <img src="{{asset('imagenescarousel/ffvii.jpeg')}}" class="imagencarousel" alt=""/>
+      <img src="{{asset('imagenescarousel/ffvii.jpeg')}}" class="imagencarousel img-responsive" alt=""/>
       <div class="txt">
         <h1 class="negro">Final Fantasy 7</h1>
         <p class="negro">Ponte en los pies de Cloud Strife y unete a Avalancha</p>
@@ -98,7 +100,7 @@ $contador = 1;
   
   <a href="#" class="hb">
     <div class="c">
-      <img src="{{asset('imagenescarousel/yakuza0.jpeg')}}"  class="imagencarousel"alt=""/>
+      <img src="{{asset('imagenescarousel/yakuza0.jpeg')}}"  class="imagencarousel img-responsive"alt=""/>
       <div class="txt">
         <h1 class="negro">Yakuza 0</h1>
         <p class="negro">Some longer text here thats wide enough to span on several lines.</p>
@@ -108,7 +110,7 @@ $contador = 1;
 
   <a href="#" class="hb">
     <div class="c">
-      <img src="{{asset('imagenescarousel/sekiro.jpg')}}" class="imagencarousel" alt=""/>
+      <img src="{{asset('imagenescarousel/sekiro.jpg')}}" class="imagencarousel img-responsive" alt=""/>
       <div class="txt">
         <h1 class="negro">Title here</h1>
         <p class="negro">Some longer text here thats wide enough to span on several lines.</p>
@@ -120,85 +122,7 @@ $contador = 1;
 <br>
 
 
-<style>
- *{margin:0;padding:0;}
-a {text-decoration:none;}
 
-.negro{
-  color: black !important;
-}
-#wrap{
-  position:absolute;
-  left:0; top:0;
-  width:100%;
-  height:100%;
-  display:flex;
-  align-items:stretch;
-  margin:0 25%;
-}
-.imagencarousel{
-  width: 300px !important;
-  height: 200px !important;
-}
-.hb {
-  position:relative;
-  width:25%;
-  z-index:1;
-  display:flex;
-  align-items:center;
-  z-index:2;
-  transform:scale(.97);
-}
-.c{
-  position:relative;
-  display:block;
-  max-width:90%;
-}
-.c img {
-  position:relative;
-  display:block;
-  width:100%;
-  height:auto;
-  z-index:2;
-}
-.txt {
-  position:absolute;
-  top:100%; left:10%;
-  width:80%;
-  opacity:0;
-  padding:1em 0 0 1em;
-  border-left:1px solid;
-  z-index:1;
-  transform:scaleY(1) translateY(-50px);
-  transition:transform .2s, opacity .5s;
-}
-h1 {
-  font-size:1.2em;
-  font-weight:700;
-  text-transform:uppercase;
-}
-.hb:hover .txt {
-  opacity:1;
-  transform:scaleY(1) translateY(0);
-}
-
-.hb:hover + .fullBg {opacity:1;transform:scale(1.02);}
-.credits {
-  position:fixed;
-  bottom:0;right:0;
-  padding:1.5em;
-  font-size:.8em;
-  text-align:right;
-  font-style:italic;
-  opacity:.8;
-  transition:opacity .2;
-  z-index:3;
-}
-.credits:hover {
-  text-decoration:underline;
-  opacity:1;
-}
-</style>
 <script>
   $(document).ready(function(){
   var docWidth = $('body').width(),
@@ -211,9 +135,9 @@ h1 {
     slidesWidth = $wrap.width();
   })
   
-  $(document).mousemove(function(e) {
+  $("#wrap").mousemove(function(e) {
     var mouseX = e.pageX,
-        offset = mouseX / docWidth * slidesWidth - mouseX / 2;
+        offset = mouseX / docWidth * slidesWidth - mouseX / 2.5;
     
     $images.css({
       '-webkit-transform': 'translate3d(' + -offset + 'px,0,0)',
@@ -522,6 +446,7 @@ h1 {
 @endsection
 
 @section('js')
+</div>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 Swal.fire("aaa");</script>
 @endsection
