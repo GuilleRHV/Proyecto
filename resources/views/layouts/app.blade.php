@@ -175,20 +175,18 @@
 
       
     </div>
-
+<!--Footer-->
     <footer class="text-center text-lg-start bg-white " id="footer">
 
-<!-- Section: Social media -->
 
-<!-- Section: Links  -->
 <section class="">
 
   <div class="container text-center text-md-start mt-5">
-    <!-- Grid row -->
+    <!-- Columna -->
     <div class="row mt-3">
  
       <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-        <!-- Content -->
+        <!-- Contenido columna -->
         <h6 class="text-uppercase fw-bold mb-4">
          BiblioGames
         </h6>
@@ -197,7 +195,7 @@
     
 
      
-      <!-- Grid column -->
+      <!-- Columna -->
       <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
         <!-- Links -->
         <h6 class="text-uppercase fw-bold mb-4">
@@ -228,7 +226,7 @@
 
 </footer>
 @yield('js')
-<!-- Enlaces JS de Bootstrap (colócalos al final del body) -->
+
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

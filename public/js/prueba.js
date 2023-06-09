@@ -1,6 +1,8 @@
 
 document.addEventListener('DOMContentLoaded', function () {
        
+
+
     $(".formularioeliminarjuego").submit(function(e){
 e.preventDefault();
 Swal.fire({

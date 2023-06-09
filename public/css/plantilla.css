@@ -34,9 +34,10 @@
 
 #contenedorVotaciones{
     position: absolute;
-    top: 200px;
+    top: 150px;
     width: 500px;
     border-radius: 15px 15px 15px 15px !important;
+    display: flex;align-items:center;z-index: 29;
 }
 
 #formulariocrearvideojuegos,#contenedorGames{
