@@ -135,7 +135,9 @@
 
         <main class="py-4">
             @yield('adminnavbar')
+            @yield('votaciones')
             @yield('content')
+            
           
         </main>
 

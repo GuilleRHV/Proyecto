@@ -207,7 +207,7 @@
     @if(auth()->user()!=null)
     @if (auth()->user()->can('eliminarComentariosResenyas', $comentario))
 
-    <form action="{{route('comentariosresenyas.destroy',$comentario->id)}}" method="post">
+    <form action="{{route('comentariosresenyas.destroy',$comentario->id)}}" method="post" class="formularioeliminarcomentarioresenya">
         @csrf
         @method('DELETE')
         <button type="submit" value="Eliminar" class="btn btn-danger"><span class="fa fa-trash"></span>&nbsp;</button>
@@ -247,7 +247,7 @@
             <p class="card-text textoajustado">{{$hijo->contenido}}</p>
             @if(auth()->user()!=null)
             @if (auth()->user()->can('eliminarComentariosResenyas', $hijo))
-            <form action="{{route('comentariosresenyas.destroy',$hijo->id)}}" method="post">
+            <form action="{{route('comentariosresenyas.destroy',$hijo->id)}}" class="formularioeliminarrespuesta" method="post">
                 @csrf
                 @method('DELETE')
 

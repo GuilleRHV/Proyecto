@@ -15,9 +15,14 @@ $contador = 1;
 
 <!--VOTACIONES-->
 
+
+
 <div class="row justify-content-center">
-<div class="col-md-8">
-  @if(auth()->user()!=null)
+
+
+@section("votaciones")
+
+@if(auth()->user()!=null)
 
 
   <table class="table table-striped table-dark " id="contenedorVotaciones">
@@ -68,10 +73,13 @@ $contador = 1;
   </table>
   <!--Fin tabla votaciones-->
 
-</div>
+
 
 <!--Fin condicion si no hay votaciones activas-->
 @endif
+@endsection
+<div class="col-md-8">
+  
 
 
 
@@ -445,8 +453,86 @@ $contador = 1;
 
 @endsection
 
+
+
+
+
 @section('js')
 </div>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 Swal.fire("aaa");</script>
+@endsection
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@section("votaciones")
+
+@if(auth()->user()!=null)
+
+
+  <table class="table table-striped table-dark " id="contenedorVotaciones">
+
+    <tr>
+      <td>NOMBRE</td>
+      <td>DESCRIPCION</td>
+
+      <td></td>
+    </tr>
+
+    @foreach($votacionesList as $votacion)
+    <tr>
+
+
+
+      <!--Si la votacion está activa-->
+      @if($votacion->participantes==null && $votacion->activo==1)
+
+      <td>{{$votacion->nombre}}</td>
+      <td style="max-width: 250px !important; overflow-wrap:break-word !important;">{{$votacion->descripcion}}</td>
+
+      <!--Boton votar-->
+      <td><button class="btn btn-info votaciones" onclick="votar(this.id)" href="{{route('votaciones.edit',$votacion->id)}}" id="votar{{$votacion->id}}">Votar</button></td>
+
+      @endif
+
+
+
+      @if($votacion->participantes!=null && $votacion->activo==1)
+      @if(!in_array($user->id,json_decode($votacion->participantes))){
+
+      <!--Si hay participantes-->
+      <td>{{$votacion->nombre}}</td>
+      <td>{{$votacion->descripcion}}</td>
+
+      <td><button class="btn btn-info votaciones" onclick="votar(this.id)" href="{{route('votaciones.edit',$votacion->id)}}" id="votar{{$votacion->id}}">Votar</button></td>
+      @endif
+      @endif
+
+
+    </tr>
+    {{$contador++}}
+    @endforeach
+
+
+
+  </table>
+  <!--Fin tabla votaciones-->
+
+
+
+<!--Fin condicion si no hay votaciones activas-->
+@endif
 @endsection

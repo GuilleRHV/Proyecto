@@ -34,7 +34,8 @@
 
 #contenedorVotaciones{
     position: absolute;
-    top: 150px;
+    top: 350px;
+    left: 15px;
     width: 500px;
     border-radius: 15px 15px 15px 15px !important;
     display: flex;align-items:center;z-index: 29;

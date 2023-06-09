@@ -1,34 +1,113 @@
 
 document.addEventListener('DOMContentLoaded', function () {
-       
 
 
-    $(".formularioeliminarjuego").submit(function(e){
-e.preventDefault();
-Swal.fire({
-    title: '¿Estás seguro de querer eliminar este videojuego?',
-    text: "Eliminarás los datos y comentarios de este videojuego",
-    icon: 'warning',
-    showCancelButton: true,
-    confirmButtonColor: '#3085d6',
-    cancelButtonColor: '#d33',
-    cancelButtonText: 'Cancelar',
-    confirmButtonText: 'Sí, borrar'
-  }).then((result) => {
+
+    $(".formularioeliminarcomentarioresenya").submit(function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: '¿Estás seguro de querer eliminar este comentario?',
+            text: 'Podrás volver a comentar en esta reseña',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Sí, borrar'
+        }).then((result) => {
+
+            if (result.value) {
+
+                setTimeout(this.submit(), 3000);
+
+            }
+
+        });
+    });
+
+    $(".formularioeliminarrespuesta").submit(function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: '¿Estás seguro de querer eliminar esta respuesta?',
+            text: 'Podrás volver a comentar en esta comentario',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Sí, borrar'
+        }).then((result) => {
+
+            if (result.value) {
+
+                setTimeout(this.submit(), 3000);
+
+            }
+
+        });
+    });
+
+
+
     
-    if(result.value){
-       
-        setTimeout(this.submit(), 3000);
-        
-    }
-   
-  });
+
+
+
+
+
+    $(".formularioeliminarcomentariojuego").submit(function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: '¿Estás seguro de querer eliminar este comentario?',
+            text: 'Podrás volver a comentar en este videojuego',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Sí, borrar'
+        }).then((result) => {
+
+            if (result.value) {
+
+                setTimeout(this.submit(), 3000);
+
+            }
+
+        });
     });
 
 
 
 
-    $(".formularioeliminarresenya").submit(function(e){
+
+
+    $(".formularioeliminarjuego").submit(function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: '¿Estás seguro de querer eliminar este videojuego?',
+            text: "Eliminarás los datos y comentarios de este videojuego",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Sí, borrar'
+        }).then((result) => {
+
+            if (result.value) {
+
+                setTimeout(this.submit(), 3000);
+
+            }
+
+        });
+    });
+
+
+
+
+    $(".formularioeliminarresenya").submit(function (e) {
         e.preventDefault();
         Swal.fire({
             title: '¿Estás seguro de querer eliminar esta reseña?',
@@ -39,34 +118,34 @@ Swal.fire({
             cancelButtonColor: '#d33',
             cancelButtonText: 'Cancelar',
             confirmButtonText: 'Sí, borrar'
-          }).then((result) => {
-            
-            if(result.value){
-               
-                setTimeout(this.submit(), 3000);
-                
-            }
-           
-          });
-            });
-    
+        }).then((result) => {
 
-   /*
-    $(".votaciones").on('click',function(){
-           // alert("Votacion");
-           alert("aa");
-            var id = $(this).attr("id");
-           // console.log("id: "+id);
-            
-    
-           
-            var numId = id.split("votar");
-            //console.log(numId[1]);
-            var numero = numId[1];
-                window.open("votaciones/"+numero+"/edit","ventanaEmergente","width=300px,height=300px");
-         
+            if (result.value) {
+
+                setTimeout(this.submit(), 3000);
+
+            }
+
+        });
     });
- */
+
+
+    /*
+     $(".votaciones").on('click',function(){
+            // alert("Votacion");
+            alert("aa");
+             var id = $(this).attr("id");
+            // console.log("id: "+id);
+             
+     
+            
+             var numId = id.split("votar");
+             //console.log(numId[1]);
+             var numero = numId[1];
+                 window.open("votaciones/"+numero+"/edit","ventanaEmergente","width=300px,height=300px");
+          
+     });
+  */
 
 
 
@@ -85,7 +164,7 @@ Swal.fire({
                 'z-index': 9999
 
             });
-        }else{
+        } else {
             $("#imagenjuegoshow").css({
 
                 'width': '30vh',
@@ -105,7 +184,7 @@ Swal.fire({
     });
 
 
-    
+
 
 
 
@@ -141,7 +220,7 @@ Swal.fire({
                 'display': 'block'
 
             });
-        }else{
+        } else {
             $("#cambiarcontraseña").css({
 
                 'display': 'none'
