@@ -53,8 +53,10 @@ Route::get('/', function () {
             return view('proyect.index', ['gameList' => $gameList,'user'=>$user,'votacionesList'=>$votacionesList]);
 });
 //PROYECTO
-//users.verMiBiblioteca
 
+
+//users.verMiBiblioteca
+Route::post('/proyectsordprecio',[ProyectController::class,'indexordprecio'])->name('proyects.indexordprecio');
 Route::get('/proyects/votacionesGeneral',[VotacionController::class,'votacionesGeneral'])->name('votacion.votacionesGeneral');
 
 Route::put('/proyects/activarvotacion/{id}',[VotacionController::class,'activarvotacion'])->name('votaciones.activarvotacion');
@@ -74,6 +76,10 @@ Route::post('/proyects/resenyas/{resenya_id}/{user_id}/{comentario}',[Comentario
 
 Route::get('/proyects/verMiBiblioteca',[UserController::class,'verMiBiblioteca'])->name('users.verMiBiblioteca');
 Route::get('/proyects/verMiBiblioteca/{user}/{game}',[UserController::class,'eliminarDeMiBiblioteca'])->name('users.eliminarDeMiBiblioteca');
+
+
+
+
 Route::resource('proyects', ProyectController::class);
 
 Route::resource('games', GameController::class);

@@ -4,6 +4,7 @@
 
 
 
+
 <div class="container">
 
 
@@ -52,7 +53,7 @@
         <h4>{{$message}}</h4>
       </div>
       @endif
-      
+
 
       @if($message = Session::get('coleccionvacia'))
       <div class="alert alert-info">
@@ -67,6 +68,8 @@
 
 
       <!--Fin alertas acciones -->
+
+
 
 
 
@@ -98,6 +101,17 @@
       @endif
 
 
+      <form action="{{ route('proyects.indexordprecio')}} " method="POST">
+        @csrf
+
+        <select class="form-select" aria-label="Default select example" style="width: 200px" name="ordenacion">
+          <option selected value="nombredesc">Nombre desc</option>
+          <option value="nombreasc">Nombre asc</option>
+          <option value="preciodesc">Precio desc</option>
+          <option value="precioasc">Precio asc</option>
+        </select>
+        <button type="submit" class="btn btn-warning" value="Filtrar"><span class="fa fa-filter pulsate-fwd"></span>&nbsp;</button>
+      </form>
       <!--Contenedor con todos los juegos creados -->
       <div id="contenedorGamesIndex">
         @foreach($gameList as $game)
@@ -137,12 +151,14 @@
 
 
             <!--Boton eliminar juego -->
-            <form action="{{route('games.destroy',$game->id)}}" method="post">
+            <form action="{{route('games.destroy',$game->id)}}" method="post" class="formularioeliminarjuego">
               @csrf
               @method('DELETE')
               <button type="submit" value="Eliminar" class="btn btn-danger jello-horizontal"><span class="fa fa-trash jello-horizontal"></span>&nbsp;</button>
+            
             </form>
-
+            
+            
             @endif
             @endif
             @endif
@@ -180,10 +196,10 @@ $contador = 1;
 <!--VOTACIONES-->
 <div class="col-md-4">
   @if(auth()->user()!=null)
-  
-  
+
+
   <table class="table table-striped table-dark " style="display: flex;align-items:center" id="contenedorVotaciones">
-  
+
     <tr>
       <td>NOMBRE</td>
       <td>DESCRIPCION</td>
@@ -279,4 +295,9 @@ $contador = 1;
 @endif
 @endif
 
+@endsection
+
+@section('js')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+Swal.fire("aaa");</script>
 @endsection

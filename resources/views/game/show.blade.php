@@ -80,6 +80,12 @@
                     <!--Boton ir al home-->
 
                 </div>
+                <!--Precio juego-->
+            <div class="form-group">
+                <label for="precio" class="col-form-label" style="font-weight:600;font-size:17px">Precio</label><br>
+                <label for="precio" class="col-form-label">{{ $game->precio ?? '' }}</label>
+            </div>
+            <hr>
             
             </div>
             <div class="form-group ">

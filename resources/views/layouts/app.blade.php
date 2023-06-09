@@ -23,10 +23,15 @@
     @yield('scripts')
 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{asset('js/sweetalert2.all.min.js')}}"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js" integrity="sha512-AA1Bzp5Q0K1KanKKmvN/4d3IRKVlv9PYgwFPvm32nPO6QS8yH1HO7LbgB1pgiOxPtfeg5zEn2ba64MUcqJx6CA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="{{asset('js/jquery-3.5.1.js')}}"></script>
     <script src="{{asset('js/indexgames.js')}}"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script src="{{asset('js/prueba.js')}}"></script>
+    
     <link 
   href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.3.0/css/font-awesome.css" 
   rel="stylesheet"  type='text/css'>
@@ -44,6 +49,7 @@
       
     }
 </style>
+
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-dark bg-primary ">
             <div class="container">
@@ -213,6 +219,7 @@
 </div>
 
 </footer>
+@yield('js')
 </body>
 
 </html>

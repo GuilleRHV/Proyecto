@@ -16,26 +16,42 @@ class ProyectController extends Controller
      */
     public function index()
     {
-        // $this->authorize('viewAny', Client::class);
-       /* $ordenarnombre = $request->get('orden');
-        
-        if ($ordenarnombre != null) {
-            dd($ordenarnombre);
+    
 
-       /*     $gameList = Game::all()->sort(function ($a, $b) {
-                return strcmp($a->nombre, $b->nombre);
-            });
-            return view('proyect.index', ['gameList' => $gameList]);*/
-      //  } else {*/
-            
             $user = Auth::user();
             $gameList = Game::all();
             $votacionesList=Votacion::all();
+            $gameList = collect($gameList)->sortBy('nombre')->values()->all();      
             return view('proyect.index', ['gameList' => $gameList,'user'=>$user,'votacionesList'=>$votacionesList]);
-        //}
+
+    }
+    public function indexordprecio(Request $request)
+    {
+        $user = Auth::user();
+            $gameList = Game::all();
+            $votacionesList=Votacion::all();
+            
+    if($request->input("ordenacion")=="nombredesc"){
+        $gameList = collect($gameList)->sortByDesc('nombre')->values()->all();  
+    }
+    if($request->input("ordenacion")=="nombreasc"){
+        $gameList = collect($gameList)->sortBy('nombre')->values()->all();  
+    }
+    if($request->input("ordenacion")=="precioasc"){
+        $gameList = collect($gameList)->sortBy('precio')->values()->all();  
+    }
+    if($request->input("ordenacion")=="preciodesc"){
+        $gameList = collect($gameList)->sortByDesc('precio')->values()->all();  
+    }
+                
+            return view('proyect.index', ['gameList' => $gameList,'user'=>$user,'votacionesList'=>$votacionesList]);
+
     }
 
+    public function all(Request $request)
+    {
 
+    }
    /* public function verMiBiblioteca(User $user){
         //Solo puedes actuar sobre tu usuario
         //dd("USER RECIBIDO ". $user->name  . "USER REAL TUYO: ".Auth::user()->name);

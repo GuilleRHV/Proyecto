@@ -139,7 +139,7 @@
                 <!--Solo los los autores de las reseñas y los administradores podrán eliminar reseñas-->
                 @if (auth()->user()->can('eliminarResenya', $resenya))
 
-                <form action="{{route('resenyas.destroy',$resenya->id)}}" method="post">
+                <form action="{{route('resenyas.destroy',$resenya->id)}}" class="formularioeliminarresenya" method="post">
                     @csrf
                     @method('DELETE')
                     <!--Boton para eliminar la reseña-->
