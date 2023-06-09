@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Collection;
+use Illuminate\Pagination\Paginator;
 use Illuminate\Http\Request;
 use App\Models\Game;
 Use App\Models\User;
@@ -19,10 +20,10 @@ class ProyectController extends Controller
     
 
             $user = Auth::user();
-            $gameList = Game::all();
+           
             $votacionesList=Votacion::all();
-            $gameList = collect($gameList)->sortBy('nombre')->values()->all();      
-            return view('proyect.index', ['gameList' => $gameList,'user'=>$user,'votacionesList'=>$votacionesList]);
+            $gameList=Game::paginate(10);    
+            return view('proyect.index', ['gameList' => $gameList,'user'=>$user,'votacionesList'=>$votacionesList,'query'=>null,'resultados'=>null]);
 
     }
     public function indexordprecio(Request $request)

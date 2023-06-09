@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Votacion;
 use App\Models\Game;
 use App\Models\User;
 use App\Models\Comentario;
@@ -155,6 +155,23 @@ class GameController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+public function buscar(Request $request){
+    $query = $request->get('query'); // Obtener el término de búsqueda del parámetro 'query'
+
+    // Realizar la búsqueda en la base de datos
+    $resultados = Game::where('nombre', 'LIKE', "%$query%")
+        ->orWhere('descripcion', 'LIKE', "%$query%")
+        ->get();
+
+    
+
+
+    $user = Auth::user();
+           
+    $votacionesList=Votacion::all();
+    $gameList=Game::paginate(10); 
+    return view('proyect.index', ['gameList' => $gameList,'user'=>$user,'votacionesList'=>$votacionesList,'query'=>$query,'resultados'=>$resultados]);
+}
 
     public function show($id)
     {

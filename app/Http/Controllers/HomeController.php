@@ -29,8 +29,8 @@ class HomeController extends Controller
 
 
         $user = Auth::user();
-        $gameList = Game::all();
+        $gameList=Game::paginate(10);
         $votacionesList=Votacion::all();
-        return view('proyect.index', ['gameList' => $gameList,'user'=>$user,'votacionesList'=>$votacionesList]);
+        return view('proyect.index', ['gameList' => $gameList,'user'=>$user,'votacionesList'=>$votacionesList,'query'=>null,'resultados'=>null]);
     }
 }

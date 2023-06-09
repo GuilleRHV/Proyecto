@@ -48,13 +48,13 @@ use Illuminate\Support\Facades\Mail;
 
 Route::get('/', function () {
     $user = Auth::user();
-            $gameList = Game::all();
+    $gameList=Game::paginate(10);   
             $votacionesList=Votacion::all();
-            return view('proyect.index', ['gameList' => $gameList,'user'=>$user,'votacionesList'=>$votacionesList]);
+            return view('proyect.index', ['gameList' => $gameList,'user'=>$user,'votacionesList'=>$votacionesList,'query'=>null,'resultados'=>null]);
 });
 //PROYECTO
 
-
+Route::get('/buscar', 'App\Http\Controllers\GameController@buscar')->name('buscar');
 //users.verMiBiblioteca
 Route::post('/proyectsordprecio',[ProyectController::class,'indexordprecio'])->name('proyects.indexordprecio');
 Route::get('/proyects/votacionesGeneral',[VotacionController::class,'votacionesGeneral'])->name('votacion.votacionesGeneral');

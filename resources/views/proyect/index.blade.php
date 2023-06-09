@@ -101,17 +101,72 @@
       @endif
 
 
-      <form action="{{ route('proyects.indexordprecio')}} " method="POST">
-        @csrf
-
-        <select class="form-select" aria-label="Default select example" style="width: 200px" name="ordenacion">
-          <option selected value="nombredesc">Nombre desc</option>
-          <option value="nombreasc">Nombre asc</option>
-          <option value="preciodesc">Precio desc</option>
-          <option value="precioasc">Precio asc</option>
-        </select>
-        <button type="submit" class="btn btn-warning" value="Filtrar"><span class="fa fa-filter pulsate-fwd"></span>&nbsp;</button>
+      <form action="{{ route('buscar') }}" method="GET">
+        <input type="text" class="bordesredondeados" name="query" placeholder="Buscar juego" >
+        <button type="submit" class="btn btn-primary"><span class="fa fa-search pulsate-fwd"></span>&nbsp;Buscar</button>
       </form>
+@if($query!=null)
+      <p style="color:white">Resultados para: {{ $query }}</p>
+      @endif
+@if($resultados!=null)
+      @foreach ($resultados as $resultado)
+      
+      <div id="buscador" >
+       
+      @if($resultado->nombre==$query)
+     
+      <div class="contenedorGameIndividual" style="background-color: #A3F6FF;">
+          <!--Nombre juego-->
+          <p class="contenedorGameIndividualNombre elipsis"><strong>{{$resultado->nombre}}</strong></p>
+          <!--Anyo lanzamiento juego -->
+          <p class="contenedorGameIndividualAnyoLanzamiento elipsis">{{$resultado->anyoLanzamiento}}</p>
+          <!--Generos juegos-->
+          <p class="contenedorGameIndividualGeneros ">@foreach($resultado->generos as $gen)
+            {{$gen}}
+            @endforeach
+          </p>
+          <!--Imagen juego -->
+          <div class="contenedorGameIndividualImagen"> @if($resultado->imagen==null)
+            <img src="imagenes/filenotfound.png" width="85px" height="85px" style="border-radius: 50% 50% 50% 50%;">
+
+            @else
+            <img src="{{$game->imagen}}" width="90px" height="90px" />
+
+            @endif
+            <a class="btn btn jello-horizontal" href="{{ route('games.show',$resultado->id) }}" style="background-color: #9AD3E6"><span class="fa fa-eye jello-horizontal"></span>&nbsp;</a>
+            @if($user!=null)
+            @if(auth()->user()->can('agregarABiblioteca',$user))
+
+            <!--Boton agregar a coleccion/biblioteca -->
+            <form action="{{ route('games.agregarAColeccion',['user'=>$user,'game'=>$resultado]) }}" method="post">
+              @csrf
+              <button type="submit" class="btn btn-success jello-horizontal"><span class="fa fa-plus-circle jello-horizontal"></span>&nbsp;</button>
+            </form>
+
+
+            @if(auth()->user()->can('permisosAdmin',['App\Models\User',$user]))
+            <!--Boton ditar juego -->
+            <a class="btn btn jello-horizontal" href="{{route('games.edit',$resultado->id)}}" style="background-color: #FEB895"><span class="fa fa-pencil jello-horizontal"></span>&nbsp;</a>
+
+
+            <!--Boton eliminar juego -->
+            <form action="{{route('games.destroy',$resultado->id)}}" method="post" class="formularioeliminarjuego">
+              @csrf
+              @method('DELETE')
+              <button type="submit" value="Eliminar" class="btn btn-danger jello-horizontal"><span class="fa fa-trash jello-horizontal"></span>&nbsp;</button>
+
+            </form>
+
+
+            @endif
+            @endif
+            @endif
+          </div>
+        </div>
+        @endif
+      </div>
+      @endforeach
+@endif
       <!--Contenedor con todos los juegos creados -->
       <div id="contenedorGamesIndex">
         @foreach($gameList as $game)
@@ -155,10 +210,10 @@
               @csrf
               @method('DELETE')
               <button type="submit" value="Eliminar" class="btn btn-danger jello-horizontal"><span class="fa fa-trash jello-horizontal"></span>&nbsp;</button>
-            
+
             </form>
-            
-            
+
+
             @endif
             @endif
             @endif
@@ -166,6 +221,12 @@
         </div>
         <!--Fin contenedor individual juego -->
         @endforeach
+        <br>
+        <div id="" style="margin: auto !important">
+          {{$gameList->links('pagination::bootstrap-4')}}
+        </div>
+
+
       </div>
       <!--Fin contenedor general juegos -->
 
