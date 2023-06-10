@@ -7,20 +7,29 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             @if($message = Session::get('comentarioeliminado'))
-            <div class="alert alert-success">
-                <h4>{{$message}}</h4>
-            </div>
+            <script>
+            iziToast.success({
+              title: 'Operación exitosa',
+              message: '{{$message}}',
+            });
+          </script>
             @endif
 
             @if($message = Session::get('comentariocreado'))
-            <div class="alert alert-success">
-                <h4>{{$message}}</h4>
-            </div>
+            <script>
+            iziToast.success({
+              title: 'Operación exitosa',
+              message: '{{$message}}',
+            });
+          </script>
             @endif
             @if($message = Session::get('respuesta'))
-            <div class="alert alert-success">
-                <h4>{{$message}}</h4>
-            </div>
+            <script>
+            iziToast.success({
+              title: 'Operación exitosa',
+              message: '{{$message}}',
+            });
+          </script>
             @endif
 
 

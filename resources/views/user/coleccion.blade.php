@@ -5,34 +5,37 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
 
-    @if($message = Session::get('borradocoleccion'))
-            <div class="alert alert-success">
-                <h4>{{$message}}</h4>
-            </div>
-            @endif
-      
-<!--Solo puedes acceder a esta vista si tienes juegos en tu coleccion-->
+      @if($message = Session::get('borradocoleccion'))
+      <script>
+        iziToast.success({
+          title: 'Operación exitosa',
+          message: '{{$message}}',
+        });
+      </script>
+      @endif
+
+      <!--Solo puedes acceder a esta vista si tienes juegos en tu coleccion-->
       <h1 class="tituloprincipal">Coleccion de videojuegos</h1>
-     
+
 
       <table class="table table-striped table-hover" style="display: flex;align-items:center;" id="contenedorGamesColeccion">
         <tr>
-        <td>IMAGEN</td>
+          <td>IMAGEN</td>
           <td>NOMBRE</td>
 
           <td>AÑO DE LANZAMIENTO</td>
           <td>GENEROS</td>
 
           <td>PRECIO</td>
-          
+
         </tr>
 
         <!--Recorre tu coleccion juego por juego-->
         @foreach($gameList as $game)
         @if($game!=null)
         <tr>
-        <td>
-          <!--Imagen del juego, si no tiene se le asigna uno por defecto-->
+          <td>
+            <!--Imagen del juego, si no tiene se le asigna uno por defecto-->
             @if($game->imagen==null)
             <img src="../imagenes/filenotfound.png" width="200px" height="250px">
 
@@ -53,12 +56,19 @@
           </td>
           <!--Precio del juego-->
           <td>{{$game->precio}} euros</td>
-          
-         
+
+
           <!--Boton mostrar juego-->
           <td> <a class="btn btn jello-horizontal" href="{{ route('games.show',$game->id) }}" style="background-color: #9AD3E6"><span class="fa fa-eye"></span>&nbsp;</a></td>
           <!--Boton eliminar de mi biblioteca, se podrá volver a añadir desde el home-->
-          <td> <a class="btn btn-danger jello-horizontal" href="{{ route('users.eliminarDeMiBiblioteca',['user'=>$user,'game'=>$game]) }}" class="btn btn"><span class="fa fa-trash"></span>&nbsp;</a></td>
+          <form method="POST" action="{{ route('users.eliminarDeMiBiblioteca',['user'=>$user,'game'=>$game]) }}" class="formeliminarcoleccion">
+            @csrf
+            @method("DELETE")
+            <td>
+              <button type="submit" class="btn btn-danger jello-horizontal" class="btn btn"><span class="fa fa-trash"></span>&nbsp;</a>
+            </td>
+          </form>
+          <td>
 
         </tr>
         @endif

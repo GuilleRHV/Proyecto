@@ -9,14 +9,20 @@
 
             <!--Mensajes de alerta-->
             @if($message = Session::get('votacioncreada'))
-            <div class="alert alert-success">
-                <h4>{{$message}}</h4>
-            </div>
+            <script>
+                iziToast.success({
+                    title: 'Operación exitosa',
+                    message: '{{$message}}',
+                });
+            </script>
             @endif
             @if($message = Session::get('votacioneliminada'))
-            <div class="alert alert-success">
-                <h4>{{$message}}</h4>
-            </div>
+            <script>
+                iziToast.success({
+                    title: 'Operación exitosa',
+                    message: '{{$message}}',
+                });
+            </script>
             @endif
 
             <!--Lista de votaciones-->
@@ -46,7 +52,7 @@
                     <!--Nombre de la votacion -->
                     <td>{{$votacion->nombre}}</td>
                     <!--Descripcion de la votacion -->
-                    <td style="max-width: 200px;overflow-wrap:break-word !important;">{{$votacion->descripcion}}</td>
+                    <td style="max-width: 300px;overflow-wrap:break-word !important;">{{$votacion->descripcion}}</td>
                     <!--Nombre de la primera opcion -->
                     <td>{{$votacion->nombreopcion1}}</td>
                     <!--Nombre de la segunda opcion -->
@@ -76,7 +82,7 @@
                     @endif
                     <td>
                         <!--Botom eliminar votacion-->
-                        <form action="{{route('votaciones.destroy',$votacion->id)}}" method="post">
+                        <form action="{{route('votaciones.destroy',$votacion->id)}}" method="post" class="formularioeliminarvotacion">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger"><span class="fa fa-trash"></span>&nbsp;</button>

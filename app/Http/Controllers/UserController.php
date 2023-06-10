@@ -120,6 +120,7 @@ class UserController extends Controller
             }
         }
         //Doble verificacion 
+     
         if ($cont != 0) {
             foreach (json_decode($user->coleccion) as $i) {
                 $gameList[] = Game::find((int)$i);

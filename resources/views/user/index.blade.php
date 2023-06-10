@@ -5,30 +5,35 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <!--Mensajes alertas-->
-            @if($message = Session::get('usercreado'))
-            <div class="alert alert-success">
-                <h4>{{$message}}</h4>
-            </div>
-            @endif
+
             @if($message = Session::get('usereliminado'))
-            <div class="alert alert-success">
-                <h4>{{$message}}</h4>
-            </div>
+            <script>
+                iziToast.success({
+                    title: 'Operación exitosa',
+                    message: '{{$message}}',
+                });
+            </script>
             @endif
             @if($message = Session::get('errorborrarusuario'))
-            <div class="alert alert-warning">
-                <h4><span class="fa fa-exclamation-circle"></span>&nbsp; {{$message}}</h4>
-            </div>
-            
+            <script>
+                iziToast.warning({
+                    title: 'Error al borrar',
+                    message: '{{$message}}',
+                });
+            </script>
+
             @endif
             @if($message = Session::get('usuariogeneraleditado'))
-            <div class="alert alert-success">
-                <h4>{{$message}}</h4>
-            </div>
+            <script>
+                iziToast.info({
+                    title: 'Edición exitosa',
+                    message: '{{$message}}',
+                });
+            </script>
             @endif
-            
+
             <h1 style="background-color: white;text-align: center; border: 2px solid grey" class="bordesredondeados"> Gestión de usuarios</h1>
-          
+
             <!--Tabla de gestion de usuarios-->
             <table class="table table-striped table-hover" id="tablaeditusuarios">
                 <tr>
@@ -44,9 +49,9 @@
                 @foreach($userList as $user)
 
                 <tr>
-<!--Nombre usuario-->
+                    <!--Nombre usuario-->
                     <td>{{$user->name}}</td>
-<!--Email usuario-->
+                    <!--Email usuario-->
                     <td>{{$user->email}}</td>
                     <!--rol usuario-->
                     <td>{{$user->rol}}</td>
@@ -69,18 +74,18 @@
                             @csrf
                             @method('DELETE')
 
-<!--Si no seleccionas el check de eliminar no podrás eliminar al usuario seleccionado y te saldrá una alerta-->
+                            <!--Si no seleccionas el check de eliminar no podrás eliminar al usuario seleccionado y te saldrá una alerta-->
                             <input class="form-check-input jello-horizontal" type="checkbox" value="1" id="checkeliminar" name="checkeliminar">
-                                <label class="form-check-label" for="flexCheckDefault">
-                                    Eliminar usuario
-                                </label>
+                            <label class="form-check-label" for="flexCheckDefault">
+                                Eliminar usuario
+                            </label>
 
 
-                                <!--Boton para eliminar usuario-->
+                            <!--Boton para eliminar usuario-->
                             <button type="submit" value="Delete" class="btn btn-danger jello-horizontal"><span class="fa fa-trash jello-horizontal"></span>&nbsp;</button>
-                           
-                                
-                          
+
+
+
                         </form>
                         @endcan
                     </td>
