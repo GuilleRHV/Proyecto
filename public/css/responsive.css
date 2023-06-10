@@ -22,6 +22,112 @@ overflow-wrap:break-word !important;
 #contenedorGamesIndex{
     margin-top: 60px !important;
 }
-p.elipsis{
+.elipsis{
     text-overflow: ellipsis !important ;
+}
+
+/*PERFIL*/
+#contprincipalperfil{
+overflow: hidden !important;
+}
+.py-4{
+    overflow: hidden !important;
+}
+#imgperfil{
+width: 30% !important;
+height: 30% !important;
+}
+#datosperfil{
+    margin-left: 35% !important;
+    width: 80% !important;
+}
+#contprincipalperfil input{
+width: 80% !important;
+}
+
+#botonesperfil{
+    position: relative !important;
+    display: flex !important;
+    flex-flow:row wrap !important ;
+  
+    flex-direction: column !important;
+  
+}
+#botonesperfil a,input{
+position: relative !important;
+width: 100% !important;
+margin-right: 100px !important;
+}
+#wrap{
+    display: none !important;
+}
+#fondo2index{
+    margin-top: 40px !important;
+}
+#tablavotaciones{
+    overflow: scroll !important;
+
+}
+#footer{
+    position: sticky !important;
+    height: 200px !important;
+    bottom: 0 !important;
+}
+#app{
+    height: 120% !important;
+}
+
+
+
+#camposearcher{
+    display: flex !important;
+    
+}
+#searcher{
+    width: 50% !important;
+   
+    position: relative !important;
+}
+#botonsearcher{
+    display: inline-block !important;
+
+    height: 10px !important;
+    position: relative;
+}
+
+#fondo2index  a{
+ margin: 4px !important;
+}
+.contenidoeimagen{
+    display: flex;
+    flex-flow: row wrap !important;
+    width: 100% !important;
+}
+.imagenResenya{
+width: 30% !important;
+}
+.imagenResenya img {
+    margin-top: 25%;
+    width: 100% !important;
+}
+.contenedorIndividual{
+    width: 100% !important;
+    font-size: 12px !important;
+}
+.contenedorIndividual p{
+    font-size: 12px !important;
+}
+#contenedorGamesColeccion{
+width: 100% !important;
+border-radius: 0 0 0 0 !important;
+overflow: hidden !important;
+}
+#contenedorGamesColeccion td {
+    overflow-wrap: break-word !important;
+}
+#contenedorGamesColeccion img {
+    width: 60% !important;
+}
+.tdresp{
+display: none !important;
 }

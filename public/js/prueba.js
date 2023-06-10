@@ -1,9 +1,29 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
+   //Animacion carrousel
+        var docWidth = $('body').width(),
+          $wrap = $('#wrap'),
+          $images = $('#wrap .hb'),
+          slidesWidth = $wrap.width();
 
+        $(window).on('resize', function() {
+          docWidth = $('body').width();
+          slidesWidth = $wrap.width();
+        })
+
+        $("#wrap").mousemove(function(e) {
+          var mouseX = e.pageX,
+            offset = mouseX / docWidth * slidesWidth - mouseX / 3;
+
+          $images.css({
+            '-webkit-transform': 'translate3d(' + -offset + 'px,0,0)',
+            'transform': 'translate3d(' + -offset + 'px,0,0)'
+          });
+        });
+     //fin animacion
     
-    
+    //Botones eliminar promises
     $(".formularioeliminarvotacion").submit(function (e) {
         e.preventDefault();
         Swal.fire({

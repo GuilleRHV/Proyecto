@@ -1,3 +1,4 @@
+
 /*Navbar administrador*/
 #navbaradmin {
     position: absolute;
@@ -35,8 +36,8 @@
 #contenedorVotaciones{
     position: absolute;
     top: 350px;
-    left: 15px;
-    width: 500px;
+    left: 10px;
+    width: 15%;
     border-radius: 15px 15px 15px 15px !important;
     display: flex;align-items:center;z-index: 29;
 }
@@ -68,8 +69,7 @@
     margin-left: 300px;
 margin-top: 30px;
 height: 600px;
-box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
-0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+
 }
 /*Imagen de perfil*/
 #imagenperfil{
@@ -107,13 +107,18 @@ margin-top: 10%;
 }
 
 /*Imagenes de las reseñas*/
+.imagenResenya img{
+    width: 350px !important;
+    padding: 10px;
+}
 .imagenResenya{
-    width: 40%;
+    width: 38%;
+    
    position: relative;
 }
 /*Contenido (texto) de las reseñas*/
 .contenidoResenya{
-    width: 100%;
+    width: 60%;
     position: relative;
    padding: 2px;
 }
@@ -209,7 +214,7 @@ form{
 }
 
 #footer{
-    position: relative !important;
+    position: relative ;
     width: 100% !important;
     bottom: 0 !important;
 }
@@ -245,6 +250,9 @@ form{
   #color-change-5x {
 	-webkit-animation: color-change-5x 14s linear infinite alternate both;
 	        animation: color-change-5x 14s linear infinite alternate both;
+}
+.botonloginregister{
+    width: 150px !important;
 }
 
 

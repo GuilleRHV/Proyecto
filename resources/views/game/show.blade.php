@@ -8,29 +8,38 @@
         <div class="col-md-8">
             @if($message = Session::get('comentarioeliminado'))
             <script>
-            iziToast.success({
-              title: 'Operación exitosa',
-              message: '{{$message}}',
-            });
-          </script>
+                iziToast.success({
+                    title: 'Operación exitosa',
+                    message: '{{$message}}',
+                });
+            </script>
             @endif
 
             @if($message = Session::get('comentariocreado'))
             <script>
-            iziToast.success({
-              title: 'Operación exitosa',
-              message: '{{$message}}',
-            });
-          </script>
+                iziToast.success({
+                    title: 'Operación exitosa',
+                    message: '{{$message}}',
+                });
+            </script>
             @endif
             @if($message = Session::get('respuesta'))
             <script>
-            iziToast.success({
-              title: 'Operación exitosa',
-              message: '{{$message}}',
-            });
-          </script>
+                iziToast.success({
+                    title: 'Operación exitosa',
+                    message: '{{$message}}',
+                });
+            </script>
             @endif
+            @if($message = Session::get('erroralcomentar'))
+            <script>
+                iziToast.warning({
+                    title: 'Error',
+                    message: '{{$message}}',
+                });
+            </script>
+            @endif
+
 
 
 
@@ -90,23 +99,23 @@
 
                 </div>
                 <!--Precio juego-->
-            <div class="form-group">
-                <label for="precio" class="col-form-label" style="font-weight:600;font-size:17px">Precio</label><br>
-                <label for="precio" class="col-form-label">{{ $game->precio ?? '' }}</label>
-            </div>
-            <hr>
-            
+                <div class="form-group">
+                    <label for="precio" class="col-form-label" style="font-weight:600;font-size:17px">Precio</label><br>
+                    <label for="precio" class="col-form-label">{{ $game->precio ?? '' }}</label>
+                </div>
+                <hr>
+
             </div>
             <div class="form-group ">
-            <a href="{{route('proyects.index')}}" class="btn btn-primary">Home</a>
-          
+                <a href="{{route('proyects.index')}}" class="btn btn-primary">Home</a>
 
-            @if(auth()->user()!=null)
-            @if(auth()->user()->can('permisosAdmin',['App\Models\User',$user]))
-            <!--Boton editar juego -->
-            <a class="btn btn-warning" href="{{route('games.edit',$game->id)}}"><span class="fa fa-pencil"></span>&nbsp;</a>
-            @endif
-            @endif
+
+                @if(auth()->user()!=null)
+                @if(auth()->user()->can('permisosAdmin',['App\Models\User',$user]))
+                <!--Boton editar juego -->
+                <a class="btn btn-warning" href="{{route('games.edit',$game->id)}}"><span class="fa fa-pencil"></span>&nbsp;</a>
+                @endif
+                @endif
             </div>
             <hr>
 
@@ -145,9 +154,7 @@
                         <button type="submit" class="btn btn-success">Crear comentario <span class="fa fa-comments"></span>&nbsp;</button>
                         @else
                         <!--Si has comentado 6 veces ya no te deja comentar más-->
-                        <div class="alert alert-danger">
-                            <h4>Para evitar el spam, solo puedes crear 6 comentarios por juego <br>(incluidas respuestas)</h4>
-                        </div>
+                        
                         @endif
                     </div>
 
@@ -185,12 +192,15 @@
                         <!--Contenido respuesta-->
                         <p class="card-text">{{$comentario->contenido}}</p>
                         <!--Responder a comentarios-->
+                        @if (auth()->user()->can('escribirComentarios',['App\Models\Comentario',$game]))
                         <div class="form-group" style="background-color: rgb(207, 207, 207) !important; ">
                             <label for="" style="color:brown">Responder al comentario</label>
                             <textarea class="form-control" rows="2" name="contenidocomentario"></textarea>
                         </div>
                         <input type="submit" value="Responder" class="btn btn-warning">
-
+                        @else
+                       
+                        @endif
 
             </form>
             @if(auth()->user()!=null)
@@ -233,12 +243,13 @@
 
                 <!--Imagen perfil de quien ha respondido-->
                 <h5>
-                @if(file_exists(\App\Models\User::find($hijo->user_id)->imagen))
-                <img src="../{{ \App\Models\User::find($hijo->user_id)->imagen}}" class="imagencomentario " />
-                @else
-                <img src="../imagenesperfil/userdefault2.jpg" class="imagencomentario" />
-                @endif
-                {{ \App\Models\User::find($hijo->user_id)->name}}</h5>
+                    @if(file_exists(\App\Models\User::find($hijo->user_id)->imagen))
+                    <img src="../{{ \App\Models\User::find($hijo->user_id)->imagen}}" class="imagencomentario " />
+                    @else
+                    <img src="../imagenesperfil/userdefault2.jpg" class="imagencomentario" />
+                    @endif
+                    {{ \App\Models\User::find($hijo->user_id)->name}}
+                </h5>
 
 
                 <!--Fecha creacion respuesta-->

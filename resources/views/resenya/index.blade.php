@@ -5,28 +5,33 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <!--Mensajes de alerta -->
-            @if($message = Session::get('juegocreado'))
-            <div class="alert alert-success">
-                <h4>{{$message}}</h4>
-            </div>
-            @endif
+           
 
             @if($message = Session::get('resenyaeliminada'))
-            <div class="alert alert-success">
-                <h4>{{$message}}</h4>
-            </div>
+            <script>
+                iziToast.success({
+                    title: 'Operación exitosa',
+                    message: '{{$message}}',
+                });
+            </script>
             @endif
             @if($message = Session::get('resenyacreada'))
-            <div class="alert alert-success">
-                <h4>{{$message}}</h4>
-            </div>
+            <script>
+                iziToast.success({
+                    title: 'Operación exitosa',
+                    message: '{{$message}}',
+                });
+            </script>
             @endif
 
             
             @if($message = Session::get('resenyamodificada'))
-            <div class="alert alert-info">
-                <h4>{{$message}}</h4>
-            </div>
+            <script>
+                iziToast.info({
+                    title: 'Edición exitosa',
+                    message: '{{$message}}',
+                });
+            </script>
             @endif
 
 
@@ -117,8 +122,8 @@
                         <i class="fa fa-star fa-xxl"></i><i class="fa fa-star fa-xxl"></i><i class="fa fa-star fa-xxl"></i><i class="fa fa-star fa-xxl"></i><i class="fa fa-star fa-xxl"></i>
                         @endif
                     </div>
-                    <div class="imagenResenya" style="width: 40%;">
-                        <img src="{{asset($resenya->imagen)}}" width="100%" height="100%" />
+                    <div class="imagenResenya" >
+                        <img src="{{asset($resenya->imagen)}}"  class="img-responsive"/>
 
                     </div>
                     @endif

@@ -155,6 +155,14 @@ class ComentarioResenyaController extends Controller
    
         $comentario = ComentarioResenya::find($id);
       
+//Borra los hijos dentro del comentario
+        $allComments = ComentarioResenya::all();
+        foreach($allComments as $co){
+            if($co->padre_id==$id){
+                $co->delete();
+            }
+        }
+
         $resenya_id=$comentario->resenya_id;
         $comentario->delete();
         return redirect()->route('resenyas.show',$resenya_id)->with("comentarioeliminado", "Has eliminado un comentario exitosamente");

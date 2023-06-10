@@ -184,7 +184,7 @@
     <footer class="text-center text-lg-start bg-white " id="footer">
 
 
-<section class="">
+
 
   <div class="container text-center text-md-start mt-5">
     <!-- Columna -->
@@ -222,7 +222,7 @@
     </div>
 
   </div>
-</section>
+
 
 <div class="text-center p-4" >
   © 2023 Copyright:

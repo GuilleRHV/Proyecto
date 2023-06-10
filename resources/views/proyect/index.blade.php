@@ -77,7 +77,7 @@ $contador = 1;
   <!--Fin condicion si no hay votaciones activas-->
   @endif
   @endsection
-  <div class="col-md-8">
+  <div class="col-md-10">
 
 
 
@@ -131,27 +131,7 @@ $contador = 1;
 
 
       <script>
-        $(document).ready(function() {
-          var docWidth = $('body').width(),
-            $wrap = $('#wrap'),
-            $images = $('#wrap .hb'),
-            slidesWidth = $wrap.width();
-
-          $(window).on('resize', function() {
-            docWidth = $('body').width();
-            slidesWidth = $wrap.width();
-          })
-
-          $("#wrap").mousemove(function(e) {
-            var mouseX = e.pageX,
-              offset = mouseX / docWidth * slidesWidth - mouseX / 2.5;
-
-            $images.css({
-              '-webkit-transform': 'translate3d(' + -offset + 'px,0,0)',
-              'transform': 'translate3d(' + -offset + 'px,0,0)'
-            });
-          });
-        })
+        
       </script>
 
 
@@ -168,11 +148,11 @@ $contador = 1;
 
 
 
-      <div class="row justify-content-center" id="fondo2index" style="z-index: 12">
+      <div class="row justify-content-center" id="fondo2index" style="z-index: 12;">
 
 
         <!--Alertas acciones -->
-        <div class="col-md-8">
+        <div class="col-md-10">
           @if($message = Session::get('juegocreado'))
 
 
@@ -293,12 +273,16 @@ $contador = 1;
 
           @endif
 
-
+          
           <form action="{{ route('buscar') }}" method="GET">
 
-            <button type="submit" class="btn btn-primary" style="float: right;"><span class="fa fa-search pulsate-fwd"></span>&nbsp;Buscar</button>
-            <input type="text" class="bordesredondeados" name="query" placeholder="Buscar juego" style="float: right;">
+        <div id="camposearcher">
+          <button type="submit" class="btn btn-primary" style="float: right;"><span class="fa fa-search pulsate-fwd" id="botonsearcher"></span>&nbsp;Buscar</button>
+            <input type="text" class="bordesredondeados" name="query" placeholder="Buscar juego" style="float: right;" id="searcher">
+        </div>
+       
           </form>
+          <br>
           @if($query!=null)
           <p style="color:white">Resultados para: {{ $query }}</p>
           @endif

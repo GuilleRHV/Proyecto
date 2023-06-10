@@ -130,7 +130,7 @@ class UserController extends Controller
         } else {
             $user = Auth::user();
             //Si no tienes juegos en la coleccion/biblioteca te impide acceder a la vista y te manda una alerta
-            return redirect()->route('proyects.index')->with(['gameList' => $gameList, 'coleccionvacia' => 'Vaya, parece que tienes la biblioteca vacia, añade juegos para acceder a ella']);
+            return redirect()->route('proyects.index')->with(['gameList' => $gameList, 'coleccionvacia' => 'Parece que tienes la biblioteca vacia, añade juegos para acceder a ella']);
         }
     }
 

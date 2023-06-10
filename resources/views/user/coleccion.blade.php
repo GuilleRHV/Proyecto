@@ -23,11 +23,12 @@
           <td>IMAGEN</td>
           <td>NOMBRE</td>
 
-          <td>AÑO DE LANZAMIENTO</td>
-          <td>GENEROS</td>
+          <td class="tdresp">AÑO DE LANZAMIENTO</td>
+          <td class="tdresp">GENEROS</td>
 
-          <td>PRECIO</td>
-
+          <td class="tdresp">PRECIO</td>
+<td></td>
+<td></td>
         </tr>
 
         <!--Recorre tu coleccion juego por juego-->
@@ -37,25 +38,25 @@
           <td>
             <!--Imagen del juego, si no tiene se le asigna uno por defecto-->
             @if($game->imagen==null)
-            <img src="../imagenes/filenotfound.png" width="200px" height="250px">
+            <img src="../imagenes/filenotfound.png"  width="150" height="150" class="img-responsive" >
 
             @else
-            <img src="../{{$game->imagen}}" width="200px" height="250px" />
+            <img src="../{{$game->imagen}}" width="150px" height="150px"  class="img-responsive"  />
 
             @endif
           </td>
           <!--Nombre del juego-->
           <td>{{$game->nombre}}</td>
           <!--Año de lanzamiento del juego-->
-          <td>{{$game->anyoLanzamiento}}</td>
+          <td class="tdresp">{{$game->anyoLanzamiento}}</td>
           <!--Generos del juego-->
-          <td>
+          <td class="tdresp">
             @foreach($game->generos as $gen)
             {{$gen}}
             @endforeach
           </td>
           <!--Precio del juego-->
-          <td>{{$game->precio}} euros</td>
+          <td class="tdresp">{{$game->precio}} euros</td>
 
 
           <!--Boton mostrar juego-->

@@ -70,7 +70,25 @@ class ComentarioResenyaPolicy
     {
         //
     }
-
+    public function escribirComentariosResenya( $user, $resenya){
+        
+        $comentarios = ComentarioResenya::all();
+     
+        $contador = 1;
+        foreach( $comentarios as $comentario){
+            if($comentario->user_id==$user->id && $comentario->resenya_id==$resenya->id){
+                $contador++;
+            }
+        
+        }
+        if($contador >= 6){
+            return false;
+        }else{
+            return true;
+        }
+        
+    
+     }
     /**
      * Determine whether the user can delete the model.
      *

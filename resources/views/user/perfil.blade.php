@@ -3,7 +3,7 @@
 @section('content')
 <div class="container" style="background-color: white; height: 700px;">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <!--Errores formulario-->
             @if($errors->any())
             <div class="alert alert-danger">
@@ -25,11 +25,11 @@
                     <!--Imagen usuario, si no tiene se le asigna una por defecto -->
                     <div id="imagenperfil">
                         @if($user->imagen==null)
-                        <img src="{{asset('imagenesperfil/userdefault2.jpg')}}" style="border-radius: 10% 10% 10% 10%;width:230px; height: 230px" />
+                        <img src="{{asset('imagenesperfil/userdefault2.jpg')}}" style="border-radius: 10% 10% 10% 10%;width:230px; height: 230px" id="imgperfil" />
 
                         @else
 
-                        <img src="../{{$user->imagen}}" style="width: 230px;height:230px; border-radius: 10% 10% 10% 10%;" />
+                        <img src="../{{$user->imagen}}" style="width: 230px;height:230px; border-radius: 10% 10% 10% 10%;" id="imgperfil" />
 
                         @endif
                     </div>
@@ -50,8 +50,8 @@
                             <label for="nombre" class="col-form-label" style="font-weight:600;font-size:17px">Nombre</label><br>
                             <input type="text" class="form-control" name="name" value="{{ $user->name ?? '' }}" />
                         </div>
-                         <!--Apellido del usuario, se puede editar-->
-                         <div class="form-group">
+                        <!--Apellido del usuario, se puede editar-->
+                        <div class="form-group">
                             <label for="nombre" class="col-form-label" style="font-weight:600;font-size:17px">Apellido</label><br>
                             <input type="text" class="form-control" name="apellido" value="{{ $user->apellido ?? '' }}" />
                         </div>
@@ -78,11 +78,12 @@
 
                         <br>
                         <!--Boton editar perfil usuario-->
-                        <input type="submit" class="btn btn-success" value="modificar perfil">
-                        <!--Boton para ir al cambio de contraseña-->
-                        <a class="btn btn-warning" href="{{ route('users.cambiarpassword') }}" class="btn btn">Cambiar contraseña</a>
+                        <div id="botonesperfil">
+                            <input type="submit" class="btn btn-success" value="modificar perfil">
+                            <!--Boton para ir al cambio de contraseña-->
+                            <a class="btn btn-warning" href="{{ route('users.cambiarpassword') }}" class="btn btn">Cambiar contraseña</a>
 
-
+                        </div>
                 </form>
             </div>
         </div>
