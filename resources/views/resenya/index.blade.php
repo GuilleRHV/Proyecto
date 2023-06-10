@@ -75,8 +75,8 @@
 
 
                     @if($resenya->imagen==null)
-                    <div class="contenidoResenya">
-                        <p style="overflow-wrap:break-word; width: 100%">{{$resenya->contenido}}</p>
+                    <div class="contenidoResenya" style=" width: 100% !important">
+                        <p style="overflow-wrap:break-word; width: 100% !important">{{$resenya->contenido}}</p>
                         <p style="color: green" >Pros: </p>
                         <p style="overflow-wrap:break-word">{{$resenya->pros}} </p>
                         <p style="color: red">Contras: </p>

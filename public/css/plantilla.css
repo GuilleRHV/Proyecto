@@ -120,7 +120,7 @@ margin-top: 10%;
 .contenidoResenya{
     width: 60%;
     position: relative;
-   padding: 2px;
+   padding: 10px !important;
 }
 /*Si hay texto e imagen en las reseñas*/
 .contenidoeimagen{

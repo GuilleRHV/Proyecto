@@ -90,7 +90,7 @@ $contador = 1;
             <img src="{{asset('imagenescarousel/silksong.jpeg')}}" class="imagencarousel img-responsive" alt="" />
             <div class="txt">
               <h1 class="negro">Silksong</h1>
-              <p class="negro">Esperada secuela del posiblemente mejor metroidvania</p>
+              <p class="negro">Esperada secuela del posiblemente mejor metroidvania de la historia</p>
             </div>
           </div>
         </a>
@@ -110,7 +110,7 @@ $contador = 1;
             <img src="{{asset('imagenescarousel/yakuza0.jpeg')}}" class="imagencarousel img-responsive" alt="" />
             <div class="txt">
               <h1 class="negro">Yakuza 0</h1>
-              <p class="negro">Some longer text here thats wide enough to span on several lines.</p>
+              <p class="negro">Juego de yakuzas protagonizado por Kiryu Kazuma y Goro Majima</p>
             </div>
           </div>
         </a>
@@ -119,8 +119,8 @@ $contador = 1;
           <div class="c">
             <img src="{{asset('imagenescarousel/sekiro.jpg')}}" class="imagencarousel img-responsive" alt="" />
             <div class="txt">
-              <h1 class="negro">Title here</h1>
-              <p class="negro">Some longer text here thats wide enough to span on several lines.</p>
+              <h1 class="negro">Sekiro</h1>
+              <p class="negro">Tomas el papel de un shinobi que busca rescatar a su joven señor</p>
             </div>
           </div>
         </a>
