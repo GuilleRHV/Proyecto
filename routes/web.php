@@ -56,7 +56,7 @@ Route::get('/', function () {
 
 Route::get('/buscar', 'App\Http\Controllers\GameController@buscar')->name('buscar');
 //users.verMiBiblioteca
-Route::post('/proyectsordprecio',[ProyectController::class,'indexordprecio'])->name('proyects.indexordprecio');
+
 Route::get('/proyects/votacionesGeneral',[VotacionController::class,'votacionesGeneral'])->name('votacion.votacionesGeneral');
 
 Route::put('/proyects/activarvotacion/{id}',[VotacionController::class,'activarvotacion'])->name('votaciones.activarvotacion');

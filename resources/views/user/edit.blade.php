@@ -31,6 +31,12 @@
                     <input type="text" name="name" id="name" class="form-control bordesredondeados" value="{{ $user->name ?? '' }}">
                     </label>
                 </div>
+                 <!--Apellido usuario-->
+                 <div class="form-group">
+                    <label for="nombre">Apellido</label>
+                    <input type="text" name="apellido" id="apellido" class="form-control bordesredondeados" value="{{ $user->apellido ?? '' }}">
+                    </label>
+                </div>
                 <!--Email usuario-->
                 <div class="form-group">
                     <label for="descripcion">Email</label>

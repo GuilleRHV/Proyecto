@@ -234,7 +234,7 @@ class UserController extends Controller
             if (move_uploaded_file($_FILES['imagenperfil']['tmp_name'], $rutacompleta)) {
 
                 if (rename($rutacompleta, "../" . $rutaimagen)) {
-                    return redirect()->route('proyects.index')->with('usuarioeditado', 'Has actualizado tu usuario creado');
+                    return redirect()->route('proyects.index')->with('usuarioeditado', 'Has actualizado tu usuario');
                 }
             } else {
                 dd("No conseguido");
@@ -262,16 +262,19 @@ class UserController extends Controller
         $request->validate([
 
             "name" => "required",
-
+            "apellido"=> "required",
 
 
         ], [
             "name.required" => "El nombre es obligatorio",
-
+            "apellido.required" => "El apellido es obligatorio"
         ]);
 
         //Cambiar nombre
         $user->name = $request->input('name');
+
+        //Cambiar apellido
+        $user->apellido = $request->input('apellido');
         //Cambiar rol (usuario/administrador)
         $user->rol = $request->input('rol');
 

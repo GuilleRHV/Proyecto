@@ -34,7 +34,7 @@
             <!--Boton ir al index de usuarios -->
             <a href="{{route('users.index')}}" class="btn btn-primary">Index usuarios</a>
             <!--Boton editar este usuario -->
-            <a href="{{route('users.edit',$user->id)}}" class="btn btn-warning">Edit</a>
+            <a href="{{route('users.edit',$user->id)}}" class="btn btn-warning">Editar</a>
 
 
 

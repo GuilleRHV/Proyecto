@@ -40,7 +40,8 @@
                     <td>Descripcion</td>
                     <td>Nombre opcion 1</td>
                     <td>Nombre opcion 2</td>
-
+                    <td></td>
+                    <td></td>
                 </tr>
                 <!--Recorre las votaciones-->
                 @foreach($votacionesList as $votacion)

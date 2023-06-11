@@ -281,7 +281,7 @@
 
 
 
-    <br>
+   
     @endforeach
     @endif
 

@@ -14,14 +14,18 @@ class VotacionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //Index votaciones admin
     public function index()
     {
+        //Devuelve lista de votaciomes
         $votacionesList = Votacion::all();
         return view('votacion.index', ['votacionesList' => $votacionesList]);
     }
 
+    //Index votaciones general
     public function votacionesGeneral()
     {
+        //Devuelve lista de votaciones que ven los usuarios normales
         $votacionesList = Votacion::all();
         if(count($votacionesList)==0){
 return redirect()->route('proyects.index')->with("nohayvotaciones", "Actualmente no hay ninguna votacion.");
@@ -35,6 +39,7 @@ return redirect()->route('proyects.index')->with("nohayvotaciones", "Actualmente
      *
      * @return \Illuminate\Http\Response
      */
+    //Dirigir a la vista de creacion de votaciones
     public function create()
     {
         return view("votacion.create");
@@ -46,9 +51,10 @@ return redirect()->route('proyects.index')->with("nohayvotaciones", "Actualmente
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    //Crear una votacion
     public function store(Request $request)
     {
-
+//Las votaciones tienen nombre, descripcion, valor de la opcion 1,valor de la opcion 2,sus respectivos votos y los participantes
         $request->validate([
 
             "nombre" => "required|max:30",
@@ -77,6 +83,7 @@ return redirect()->route('proyects.index')->with("nohayvotaciones", "Actualmente
         $votacion->valoropcion1=0;
         $votacion->valoropcion2=0;
         $votacion->activo = true;
+        //Crea la votacion
         $votacion->save();
         return redirect()->route('votaciones.index')->with('votacioncreada', 'Votacion creada correctamente');
     }
@@ -87,11 +94,12 @@ return redirect()->route('proyects.index')->with("nohayvotaciones", "Actualmente
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //Mostrar votaciones
     public function show($id)
     {
         
 $votacion=Votacion::find($id);
-
+//Vamos a ver si hay participantes y devolveremos la cantidad
     $decode = json_decode($votacion->participantes,true);
 $numparticipantes=0;
 
@@ -111,6 +119,7 @@ if($decode!=null){
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //Dirige a la vista de edicion de votacion
     public function edit($id)
     {
 
@@ -125,6 +134,7 @@ if($decode!=null){
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //Este metodo sirve para votar
     public function update(Request $request, $id)
     {
 
@@ -139,6 +149,7 @@ if($decode!=null){
 
         $participantes = array();
 
+        //Agrega tu voto a la lista
         if ($votacion->participantes == null) {
             $participantes[] = $user_id;
             if ($request->input("valorvotacion") == 'nombreopcion1') {
@@ -161,11 +172,13 @@ if($decode!=null){
             }
         }
 
+        //encodea la lista
         $votacion->participantes = json_encode($participantes);
 
 
-
+//Guarda la votacion
         $votacion->save();
+        //Te cierra la pestaña de votacion
         echo "<script>window.close();</script>";
         $user = Auth::user();
         $gameList = Game::all();
@@ -177,6 +190,7 @@ if($decode!=null){
 
 
 
+    //No deja acceder a la votacion
     public function cerrarvotacion(Request $request,$id)
     {
 
@@ -188,7 +202,7 @@ if($decode!=null){
     }
 
 
-
+//Deja acceder a la votacion
     public function activarvotacion(Request $request,$id)
     {
 
@@ -206,6 +220,7 @@ if($decode!=null){
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //Elimina la votacion
     public function destroy($id)
     {
         $votacion = Votacion::find($id);
