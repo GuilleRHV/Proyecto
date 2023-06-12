@@ -84,55 +84,23 @@ $contador = 1;
 
     <div class="container">
       <div id="wrap" style="position: relative;color: black !important; text-decoration:none !important">
-        <a href="{{ route('games.show',11) }}" class="hb">
+      @foreach($gameList as $g)
+        <a href="{{ route('games.show',$g->id) }}" class="hb">
           <div class="c">
-            <img src="{{asset('imagenescarousel/silksong.jpeg')}}" class="imagencarousel img-responsive" alt="" />
+            @if($g->imagen==null)
+            <img src="imagenes/filenotfound.png" class="imagencarousel img-responsive" alt="" />
+            @else
+            <img src="{{$g->imagen}}" class="imagencarousel img-responsive" alt="" />
+            @endif
+        
             <div class="txt">
-              <h1 class="negro">Silksong</h1>
-              <p class="negro">Esperada secuela del posiblemente mejor metroidvania de la historiacd</p>
+              <h1 class="negro">{{$g->nombre}}</h1>
+              <p class="negro">{{$g->descripcion}}</p>
             </div>
           </div>
         </a>
-
-        <a href="#" class="hb">
-          <div class="c">
-            <img src="{{asset('imagenescarousel/ffvii.jpeg')}}" class="imagencarousel img-responsive" alt="" />
-            <div class="txt">
-              <h1 class="negro">Final Fantasy 7</h1>
-              <p class="negro">Ponte en los pies de Cloud Strife y unete a Avalancha</p>
-            </div>
-          </div>
-        </a>
-
-        <a href="#" class="hb">
-          <div class="c">
-            <img src="{{asset('imagenescarousel/yakuza0.jpeg')}}" class="imagencarousel img-responsive" alt="" />
-            <div class="txt">
-              <h1 class="negro">Yakuza 0</h1>
-              <p class="negro">Juego de yakuzas protagonizado por Kiryu Kazuma y Goro Majima</p>
-            </div>
-          </div>
-        </a>
-
-        <a href="#" class="hb">
-          <div class="c">
-            <img src="{{asset('imagenescarousel/sekiro.jpg')}}" class="imagencarousel img-responsive" alt="" />
-            <div class="txt">
-              <h1 class="negro">Sekiro</h1>
-              <p class="negro">Tomas el papel de un shinobi que busca rescatar a su joven señor</p>
-            </div>
-          </div>
-        </a>
-
-        <a href="#" class="hb">
-          <div class="c">
-            <img src="{{asset('imagenescarousel/sekiro.jpg')}}" class="imagencarousel img-responsive" alt="" />
-            <div class="txt">
-              <h1 class="negro">Sekiro</h1>
-              <p class="negro">Tomas el papel de un shinobi que busca rescatar a su joven señor</p>
-            </div>
-          </div>
-        </a>
+        @endforeach
+       
 
       </div>
       <br>

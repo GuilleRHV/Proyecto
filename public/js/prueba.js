@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         $("#wrap").mousemove(function(e) {
           var mouseX = e.pageX,
-            offset = mouseX / docWidth * slidesWidth - mouseX / 3;
+            offset = mouseX / docWidth * slidesWidth - mouseX / 12;
 
           $images.css({
             '-webkit-transform': 'translate3d(' + -offset + 'px,0,0)',
