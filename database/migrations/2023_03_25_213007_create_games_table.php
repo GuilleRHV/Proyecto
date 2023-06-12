@@ -11,6 +11,7 @@ return new class extends Migration
      *
      * @return void
      */
+    //Tabla de los videojuegos
     public function up()
     {
         Schema::create('games', function (Blueprint $table) {

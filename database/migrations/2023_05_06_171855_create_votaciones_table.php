@@ -11,6 +11,7 @@ return new class extends Migration
      *
      * @return void
      */
+    //Tabla de las votaciones
     public function up()
     {
         Schema::create('votaciones', function (Blueprint $table) {
