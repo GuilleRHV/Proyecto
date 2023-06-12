@@ -26,7 +26,7 @@
             @endif
 
             <!--Lista de votaciones-->
-            <h1 style="background-color: white !important; text-align: center" class="bordesredondeados">Lista votaciones</h1>
+            <h1 style="background-color: white !important; text-align: center; border: 2px solid grey " class="bordesredondeados">Gestión de votaciones</h1>
 
             @if(auth()->user()->can('permisosAdmin',['App\Models\User',auth()->user()]))
             <!--Boton crear votacion-->

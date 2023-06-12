@@ -23,11 +23,12 @@
 
       <!--Solo puedes acceder a esta vista si tienes juegos en tu coleccion-->
       <h1 class="tituloprincipal">Coleccion de videojuegos</h1>
+    <!--Eliminar todos los juegos de tu coleccion-->
 <form method="POST" action="{{ route('users.eliminarTodaBiblioteca',['user'=>$user])}}" class="formeliminartodacoleccion">
             @csrf
             @method("DELETE")
             <td>
-              <button type="submit" class="btn btn-danger jello-horizontal" class="btn btn"><span class="fa fa-trash"></span>&nbsp;</button>
+              <button type="submit" class="btn btn-danger jello-horizontal" class="btn btn">Eliminar todos <span class="fa fa-trash"></span>&nbsp;</button>
             </td>
           </form>
 

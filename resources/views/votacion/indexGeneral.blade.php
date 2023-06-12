@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -28,12 +27,23 @@
             @endif
 
 
+            @if($votacionesList==null || $votacionesList=='[]')
+
+            <div id="contenedorsinresenyas">
+
+
+                <div class="alert alert-warning" role="alert">
+                    <h2>Vaya, parece que actualmente no hay reseñas</h2>
+                </div>
+                <img src="{{asset('imagenes/resenyasnoencontradas.png')}}" class="img-responsive" width="200px" height="200px" style="margin-left:33%" />
+            </div>
+            @endif
 
 
             @if($votacionesList!=null || $votacionesList!='[]')
 
             <!--Lista de votaciones-->
-            <h1 style="background-color: white;text-align:center" class="bordesredondeados">Lista de votaciones</h1>
+            <h1 style="background-color: white;text-align:center; border: 2px solid grey" class="bordesredondeados">Lista de votaciones</h1>
 
 
 
@@ -74,7 +84,7 @@
                 </tr>
                 @endforeach
             </table>
-        
+            @endif
         </div>
     </div>
 </div>

@@ -30,12 +30,6 @@
                 @csrf
 
                 @method("PUT")
-
-
-
-
-
-
                 <!--Check para la opcion 1-->
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="valorvotacion" id="flexRadioDefault1" value="nombreopcion1">
