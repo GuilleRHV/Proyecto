@@ -22,6 +22,29 @@ document.addEventListener('DOMContentLoaded', function () {
           });
         });
      //fin animacion
+    //Eliminar toda mi coleccion
+    $(".formeliminartodacoleccion").submit(function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: '¿Estás seguro de querer eliminar toda tu coleccion?',
+            text: 'Podrás volver estos juegos en tu colección más adelante',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Cancelar',
+            confirmButtonText: 'Sí, borrar'
+        }).then((result) => {
+
+            if (result.value) {
+
+                setTimeout(this.submit(), 3000);
+
+            }
+
+        });
+    });
+
     
     //Botones eliminar promises
     $(".formularioeliminarvotacion").submit(function (e) {

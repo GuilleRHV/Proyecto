@@ -1,6 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+  #footer{
+    position: sticky ;
+    width: 100% !important;
+    bottom: 0 !important;
+}
+</style>
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8">
@@ -16,7 +23,13 @@
 
       <!--Solo puedes acceder a esta vista si tienes juegos en tu coleccion-->
       <h1 class="tituloprincipal">Coleccion de videojuegos</h1>
-
+<form method="POST" action="{{ route('users.eliminarTodaBiblioteca',['user'=>$user])}}" class="formeliminartodacoleccion">
+            @csrf
+            @method("DELETE")
+            <td>
+              <button type="submit" class="btn btn-danger jello-horizontal" class="btn btn"><span class="fa fa-trash"></span>&nbsp;</button>
+            </td>
+          </form>
 
       <table class="table table-striped table-hover" style="display: flex;align-items:center;" id="contenedorGamesColeccion">
         <tr>
@@ -66,7 +79,7 @@
             @csrf
             @method("DELETE")
             <td>
-              <button type="submit" class="btn btn-danger jello-horizontal" class="btn btn"><span class="fa fa-trash"></span>&nbsp;</a>
+              <button type="submit" class="btn btn-danger jello-horizontal" class="btn btn"><span class="fa fa-trash"></span>&nbsp;</button>
             </td>
           </form>
           <td>

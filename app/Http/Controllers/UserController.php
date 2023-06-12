@@ -167,6 +167,15 @@ class UserController extends Controller
         }
     }
 
+    public function   eliminarTodaBiblioteca(User $user){
+        $user->coleccion = null;
+            //Guarda tu coleccion
+            $user->save();
+            return redirect()->route('users.verMiBiblioteca')->with("borradotodacoleccion", "Has eliminado todos los videojuego de tu colección");
+        
+    }
+  
+
 
     public function perfil()
     {

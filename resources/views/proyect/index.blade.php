@@ -5,7 +5,6 @@
 
 <?php
 $contador = 1;
-
 ?>
 
 
@@ -90,7 +89,7 @@ $contador = 1;
             <img src="{{asset('imagenescarousel/silksong.jpeg')}}" class="imagencarousel img-responsive" alt="" />
             <div class="txt">
               <h1 class="negro">Silksong</h1>
-              <p class="negro">Esperada secuela del posiblemente mejor metroidvania de la historia</p>
+              <p class="negro">Esperada secuela del posiblemente mejor metroidvania de la historiacd</p>
             </div>
           </div>
         </a>
@@ -125,27 +124,18 @@ $contador = 1;
           </div>
         </a>
 
+        <a href="#" class="hb">
+          <div class="c">
+            <img src="{{asset('imagenescarousel/sekiro.jpg')}}" class="imagencarousel img-responsive" alt="" />
+            <div class="txt">
+              <h1 class="negro">Sekiro</h1>
+              <p class="negro">Tomas el papel de un shinobi que busca rescatar a su joven señor</p>
+            </div>
+          </div>
+        </a>
+
       </div>
       <br>
-
-
-
-      <script>
-        
-      </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
       <div class="row justify-content-center" id="fondo2index" style="z-index: 12;">

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -25,6 +26,11 @@
                 });
             </script>
             @endif
+
+
+
+
+            @if($votacionesList!=null || $votacionesList!='[]')
 
             <!--Lista de votaciones-->
             <h1 style="background-color: white;text-align:center" class="bordesredondeados">Lista de votaciones</h1>
@@ -68,7 +74,7 @@
                 </tr>
                 @endforeach
             </table>
-
+        
         </div>
     </div>
 </div>

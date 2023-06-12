@@ -1,11 +1,21 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    #footer {
+        position: sticky !important;
+        width: 100% !important;
+        bottom: 0 !important;
+    }
+</style>
+
+
+
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <!--Mensajes de alerta -->
-           
+
 
             @if($message = Session::get('resenyaeliminada'))
             <script>
@@ -24,7 +34,7 @@
             </script>
             @endif
 
-            
+
             @if($message = Session::get('resenyamodificada'))
             <script>
                 iziToast.info({
@@ -40,14 +50,26 @@
 
 
 
-<!--Si está logeado puede crear reseñas-->
-<!--Boton para crear reseña-->
+            <!--Si está logeado puede crear reseñas-->
+            <!--Boton para crear reseña-->
             @if(auth()->user()!=null)
             <a class="btn btn-success" href="{{ route('resenyas.create') }}" class="btn btn">crear reseñas</a>
             @endif
-<!--Recorre las reseñas-->
+            <!--Recorre las reseñas-->
+
+            @if($resenyasList==null || $resenyasList=='[]')
+
+            <div id="contenedorsinelementos">
+
+
+                <div class="alert alert-warning" role="alert">
+                    <h2>Vaya, parece que actualmente no hay reseñas</h2>
+                </div>
+                <img src="{{asset('imagenes/resenyasnoencontradas.png')}}" class="img-responsive" width="200px" height="200px" style="margin-left:33%" />
+            </div>
+            @endif
             @foreach($resenyasList as $resenya)
-<!--Contenedor individual para cada reseña-->
+            <!--Contenedor individual para cada reseña-->
             <div class="contenedorIndividual">
 
 
@@ -62,7 +84,7 @@
                     Escrito por {{$resenya->nombreyapellido}}
                     <!--Fecha de publicacion de la reseña -->
                     <p>Fecha publicacion: {{$resenya->created_at}}
-<!--Si la reseña se ha editado muestra que se ha modificado y cuando-->
+                        <!--Si la reseña se ha editado muestra que se ha modificado y cuando-->
                         @if($resenya->created_at!=$resenya->updated_at)
                     <p style="color:orange">EDITADO: {{$resenya->updated_at}}</p>
                     @endif
@@ -77,7 +99,7 @@
                     @if($resenya->imagen==null)
                     <div class="contenidoResenya" style=" width: 100% !important">
                         <p style="overflow-wrap:break-word; width: 100% !important">{{$resenya->contenido}}</p>
-                        <p style="color: green" >Pros: </p>
+                        <p style="color: green">Pros: </p>
                         <p style="overflow-wrap:break-word">{{$resenya->pros}} </p>
                         <p style="color: red">Contras: </p>
                         <p style="overflow-wrap:break-word">{{$resenya->contras}} </p>
@@ -102,7 +124,7 @@
                     @else
                     <div class="contenidoResenya" style="width: 60%;">
                         <p style="overflow-wrap:break-word">{{$resenya->contenido}} </p>
-                        <p style="color: green" >Pros: </p>
+                        <p style="color: green">Pros: </p>
                         <p style="overflow-wrap:break-word">{{$resenya->pros}} </p>
                         <p style="color: red">Contras: </p>
                         <p style="overflow-wrap:break-word">{{$resenya->contras}} </p>
@@ -122,19 +144,19 @@
                         <i class="fa fa-star fa-xxl"></i><i class="fa fa-star fa-xxl"></i><i class="fa fa-star fa-xxl"></i><i class="fa fa-star fa-xxl"></i><i class="fa fa-star fa-xxl"></i>
                         @endif
                     </div>
-                    <div class="imagenResenya" >
-                        <img src="{{asset($resenya->imagen)}}"  class="img-responsive"/>
+                    <div class="imagenResenya">
+                        <img src="{{asset($resenya->imagen)}}" class="img-responsive" />
 
                     </div>
                     @endif
                 </div>
                 @if(auth()->user()!=null)
 
-              
+
 
 
                 @if (auth()->user()->can('modificarResenya', $resenya))
-                
+
                 <!--Solo podrán modificar reseñas las personas que hayan escrito la misma (los administradores no podrán editarla)-->
                 <!--Boton para modificar la reseña-->
                 <a class="btn btn-warning" href="{{ route('resenyas.edit',$resenya->id) }}" class="btn btn"><span class="fa fa-pencil"></span>&nbsp;</a>

@@ -105,7 +105,16 @@ margin-top: 10%;
     box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1), 0 0 0 2px rgb(255, 255, 255),
     0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
 }
-
+/*RESEÑAS*/
+#contenedorsinelementos{
+    margin-top: 20px !important;
+width: 100%;
+height: 300px;
+border-radius: 10px;
+border: 2px solid grey;
+background-color: white;
+align-items: center;
+}
 /*Imagenes de las reseñas*/
 .imagenResenya img{
     width: 350px !important;
@@ -215,8 +224,8 @@ form{
 
 #footer{
     position: relative ;
-    width: 100% !important;
-    bottom: 0 !important;
+    width: 100% ;
+    bottom: 0 ;
 }
 
 #contenedorGames{

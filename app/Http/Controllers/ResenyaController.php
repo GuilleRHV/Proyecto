@@ -19,7 +19,11 @@ class ResenyaController extends Controller
     {
 
         $resenyasList = Resenya::all();
-        return view('resenya.index', ['resenyasList' => $resenyasList]);
+        
+            return view('resenya.index', ['resenyasList' => $resenyasList]);
+      
+      
+        
     }
 
     /**

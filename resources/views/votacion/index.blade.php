@@ -32,6 +32,20 @@
             <!--Boton crear votacion-->
             <a class="btn btn-success" href="{{ route('votaciones.create') }}" class="btn btn">Nueva votacion</a>
             @endif
+
+            <!--Si la lista de votaciones esta vacia muestra un panel de alerta-->
+            @if($votacionesList==null || $votacionesList=='[]')
+
+            <div id="contenedorsinelementos">
+
+
+                <div class="alert alert-warning" role="alert">
+                    <h2>Vaya, parece que actualmente no hay votaciones</h2>
+                </div>
+                <img src="{{asset('imagenes/resenyasnoencontradas.png')}}" class="img-responsive" width="200px" height="200px" style="margin-left:33%" />
+            </div>
+            @else
+
             <!--Tabla de votaciones-->
             <table class="table table-striped table-hover" id="tablavotaciones">
                 <tr>
@@ -91,7 +105,7 @@
                 </tr>
                 @endforeach
             </table>
-
+            @endif
         </div>
     </div>
 </div>

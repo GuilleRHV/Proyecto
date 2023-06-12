@@ -76,7 +76,7 @@ Route::post('/proyects/resenyas/{resenya_id}/{user_id}/{comentario}',[Comentario
 
 Route::get('/proyects/verMiBiblioteca',[UserController::class,'verMiBiblioteca'])->name('users.verMiBiblioteca');
 Route::delete('/proyects/verMiBiblioteca/{user}/{game}',[UserController::class,'eliminarDeMiBiblioteca'])->name('users.eliminarDeMiBiblioteca');
-
+Route::delete('/proyects/eliminarDeMiBiblioteca/{user}',[UserController::class,'eliminarTodaBiblioteca'])->name('users.eliminarTodaBiblioteca');
 
 
 
