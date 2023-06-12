@@ -2,13 +2,13 @@
 /*Navbar administrador*/
 #navbaradmin {
     position: absolute;
-    background: rgb(209,164,242);
-    background: linear-gradient(90deg, rgba(209,164,242,1) 0%, rgba(217,181,244,1) 45%, rgba(209,164,242,1) 100%); 
+    background: rgb(31, 54, 182);
+    background: linear-gradient(90deg, rgb(15, 59, 180) 0%, rgb(37, 81, 177) 45%, rgb(28, 64, 182) 100%); 
     width: 20%;
-    border: 1px solid black !important;
+    border: 1px solid rgb(230, 230, 230) !important;
     border-radius: 20px 20px 20px 20px;
     margin-top: 90px;
-    -webkit-text-stroke: 1px rgb(128, 82, 161) !important;
+    -webkit-text-stroke: 1px rgb(0, 2, 139) !important;
 }
 #paneladministrador{
   height: 500px !important;
