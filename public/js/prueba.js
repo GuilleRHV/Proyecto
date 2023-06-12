@@ -7,10 +7,6 @@ document.addEventListener('DOMContentLoaded', function () {
           $images = $('#wrap .hb'),
           slidesWidth = $wrap.width();
 
-        $(window).on('resize', function() {
-          docWidth = $('body').width();
-          slidesWidth = $wrap.width();
-        })
 
         $("#wrap").mousemove(function(e) {
           var mouseX = e.pageX,
@@ -21,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
             'transform': 'translate3d(' + -offset + 'px,0,0)'
           });
         });
+        
      //fin animacion
     //Eliminar toda mi coleccion
     $(".formeliminartodacoleccion").submit(function (e) {

@@ -80,21 +80,23 @@ $contador = 1;
 
 
 
-
-
+<!--Carousel movil-->
     <div class="container">
       <div id="wrap" style="position: relative;color: black !important; text-decoration:none !important">
-      @foreach($gameList as $g)
+      <!--Como está paginado, recibir todos-->
+      @foreach(\App\Models\Game::all() as $g)
         <a href="{{ route('games.show',$g->id) }}" class="hb">
           <div class="c">
+            <div class="im">
             @if($g->imagen==null)
-            <img src="imagenes/filenotfound.png" class="imagencarousel img-responsive" alt="" />
+            <img src="imagenes/filenotfound.png" class="imagencarousel img-responsive" alt="" class="imgcarouseldesplegable"/>
             @else
-            <img src="{{$g->imagen}}" class="imagencarousel img-responsive" alt="" />
+            <img src="{{$g->imagen}}" class="imagencarousel img-responsive" alt="" class="imgcarouseldesplegable"/>
             @endif
-        
-            <div class="txt">
-              <h1 class="negro">{{$g->nombre}}</h1>
+            </div>
+            <!--Texto desplegable-->
+            <div class="txt" style="z-index: 5;">
+              <h1 class="negro">{{$g->nombre}}({{$g->anyoLanzamiento}})</h1>
               <p class="negro">{{$g->descripcion}}</p>
             </div>
           </div>
@@ -105,10 +107,8 @@ $contador = 1;
       </div>
       <br>
 
-
-      <div class="row justify-content-center" id="fondo2index" style="z-index: 12;">
-
-
+<!--Lista de todos los videojuegos-->
+      <div class="row justify-content-center" id="fondo2index" style="z-index: 12; margin-top:15px">
         <!--Alertas acciones -->
         <div class="col-md-10">
           @if($message = Session::get('juegocreado'))
@@ -210,24 +210,24 @@ $contador = 1;
           @if(auth()->user()->can('permisosAdmin',['App\Models\User',$user]))
 
           <!--Crear videojuegos -->
-          <a class="btn btn-success pulsate-fwd" href="{{ route('games.create') }}" class="btn btn pulsate-fwd">Añadir juego</a>
+          <a class="btn btn-success pulsate-fwd" href="{{ route('games.create') }}" style="z-index: 6;" class="btn btn pulsate-fwd">Añadir juego</a>
           @endif
           @endif
 
           <!--Ver reseñas -->
-          <a class="btn btn-success pulsate-fwd" href="{{ route('resenyas.index') }}">Ver reseñas</a>
+          <a class="btn btn-success pulsate-fwd" href="{{ route('resenyas.index') }}" style="z-index: 6;">Ver reseñas</a>
           @if($user!=null)
           @if(auth()->user()->can('agregarABiblioteca',$user))
           <!--Ver mi biblioteca -->
-          <a class="btn btn-warning pulsate-fwd" href="{{ route('users.verMiBiblioteca') }}" class="btn btn pulsate-fwd">Mi biblioteca</a>
+          <a class="btn btn-warning pulsate-fwd" href="{{ route('users.verMiBiblioteca') }}" class="btn btn pulsate-fwd" style="z-index: 6;">Mi biblioteca</a>
 
 
           @endif
           <!--Ver votaciones -->
-          <a class="btn btn pulsate-fwd" href="{{ route('votacion.votacionesGeneral') }}" class="btn btn pulsate-fwd" style="background-color: pink;">Ver votaciones</a>
+          <a class="btn btn pulsate-fwd" href="{{ route('votacion.votacionesGeneral') }}" class="btn btn pulsate-fwd" style="background-color: pink;z-index:6">Ver votaciones</a>
 
           <!--Ir a mi perfil -->
-          <a class="btn btn-primary pulsate-fwd" href="{{ route('users.perfil') }}" class="btn btn"><span class="fa fa-user pulsate-fwd"></span>&nbsp;</a>
+          <a class="btn btn-primary pulsate-fwd" href="{{ route('users.perfil') }}" class="btn btn" style="z-index: 6;"><span class="fa fa-user pulsate-fwd"></span>&nbsp;</a>
 
           @endif
 
