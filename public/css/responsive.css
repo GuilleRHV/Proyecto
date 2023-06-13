@@ -25,6 +25,10 @@ overflow-wrap:break-word !important;
 .elipsis{
     text-overflow: ellipsis !important ;
 }
+/*Navbar*/
+#navbaradmin{
+width: 100% !important;
+}
 
 /*PERFIL*/
 #contprincipalperfil{
@@ -94,7 +98,9 @@ margin-right: 100px !important;
     height: 10px !important;
     position: relative;
 }
-
+#imagenjuegoshow{
+    left: 15% !important;
+}
 #fondo2index  a{
  margin: 4px !important;
 }

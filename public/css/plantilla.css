@@ -2,13 +2,13 @@
 /*Navbar administrador*/
 #navbaradmin {
     position: absolute;
-    background: rgb(31, 54, 182);
-    background: linear-gradient(90deg, rgb(15, 59, 180) 0%, rgb(37, 81, 177) 45%, rgb(28, 64, 182) 100%); 
+    background: rgb(98, 116, 216);
+    background: linear-gradient(90deg, rgb(107, 141, 235) 0%, rgb(102, 135, 204) 45%, rgb(86, 111, 192) 100%); 
     width: 20%;
     border: 1px solid rgb(230, 230, 230) !important;
     border-radius: 20px 20px 20px 20px;
     margin-top: 90px;
-    -webkit-text-stroke: 1px rgb(0, 2, 139) !important;
+  
 }
 #paneladministrador{
   height: 500px !important;
@@ -35,7 +35,7 @@
 
 #contenedorVotaciones{
     position: absolute;
-    top: 350px;
+    top: 380px;
     left: 10px;
     width: 15%;
     border-radius: 15px 15px 15px 15px !important;

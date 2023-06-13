@@ -266,7 +266,7 @@ $contador = 1;
                 <img src="imagenes/filenotfound.png" width="85px" height="85px" style="border-radius: 50% 50% 50% 50%;">
 
                 @else
-                <img src="{{$game->imagen}}" width="90px" height="90px" />
+                <img src="{{$resultado->imagen}}" width="90px" height="90px" />
 
                 @endif
                 <a class="btn btn jello-horizontal" href="{{ route('games.show',$resultado->id) }}" style="background-color: #9AD3E6"><span class="fa fa-eye jello-horizontal"></span>&nbsp;</a>
@@ -396,13 +396,13 @@ $contador = 1;
     @if(auth()->user()->can('permisosAdmin',['App\Models\User',$user]))
     <nav class="navbar navbar-light bg-dark fixed-top " id="navbaradmin">
       <div class="container-fluid">
-        <a class="navbar-brand slide-in-elliptic-top-fwd" href="#">Herramientas de administrador</a>
+        <a class="navbar-brand slide-in-elliptic-top-fwd" href="#" style="color: white">Herramientas de administrador</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#paneladministrador" aria-controls="paneladministrador">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="offcanvas offcanvas-end" tabindex="-1" id="paneladministrador" aria-labelledby="navBarApagado">
           <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="navBarApagado">Administrador</h5>
+            <h5 class="offcanvas-title" id="navBarApagado" style="color: blue">Administrador</h5>
             <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
           </div>
 
@@ -453,61 +453,3 @@ $contador = 1;
 
 
 
-  @section("votaciones")
-
-  @if(auth()->user()!=null)
-
-
-  <table class="table table-striped table-dark " id="contenedorVotaciones">
-
-    <tr>
-      <td>NOMBRE</td>
-      <td>DESCRIPCION</td>
-
-      <td></td>
-    </tr>
-
-    @foreach($votacionesList as $votacion)
-    <tr>
-
-
-
-      <!--Si la votacion está activa-->
-      @if($votacion->participantes==null && $votacion->activo==1)
-
-      <td>{{$votacion->nombre}}</td>
-      <td style="max-width: 250px !important; overflow-wrap:break-word !important;">{{$votacion->descripcion}}</td>
-
-      <!--Boton votar-->
-      <td><button class="btn btn-info votaciones" onclick="votar(this.id)" href="{{route('votaciones.edit',$votacion->id)}}" id="votar{{$votacion->id}}">Votar</button></td>
-
-      @endif
-
-
-
-      @if($votacion->participantes!=null && $votacion->activo==1)
-      @if(!in_array($user->id,json_decode($votacion->participantes))){
-
-      <!--Si hay participantes-->
-      <td>{{$votacion->nombre}}</td>
-      <td>{{$votacion->descripcion}}</td>
-
-      <td><button class="btn btn-info votaciones" onclick="votar(this.id)" href="{{route('votaciones.edit',$votacion->id)}}" id="votar{{$votacion->id}}">Votar</button></td>
-      @endif
-      @endif
-
-
-    </tr>
-    {{$contador++}}
-    @endforeach
-
-
-
-  </table>
-  <!--Fin tabla votaciones-->
-
-
-
-  <!--Fin condicion si no hay votaciones activas-->
-  @endif
-  @endsection

@@ -1,9 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
+<style>footer{
+ display: none;   
+}</style>
 <div class="container" style="background-color: white;">
     <div class="row justify-content-center">
-        <div class="col-md-12">
+        <div class="col-md-10">
             <!--Esta vista es para hacer la votación, solo podras acceder 1 vez si completas el formulario-->
 
             <!--Nombre de la votacion-->
@@ -32,28 +35,28 @@
                 @method("PUT")
                 <!--Check para la opcion 1-->
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="valorvotacion" id="flexRadioDefault1" value="nombreopcion1">
+                    <input class="form-check-input" type="radio" name="valorvotacion" id="flexRadioDefault1" value="nombreopcion1" style="width: 20px !important;height: 20px">
                     <label class="form-check-label" for="flexRadioDefault1">
                         {{ $votacion->nombreopcion1 ?? '' }}
                     </label>
                 </div>
                 <!--Check para la opcion 2-->
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="valorvotacion" id="flexRadioDefault2" value="nombreopcion2" checked>
+                    <input class="form-check-input" type="radio" name="valorvotacion" id="flexRadioDefault2" value="nombreopcion2" style="width: 20px !important;height: 20px" checked >
                     <label class="form-check-label" for="flexRadioDefault2">
                         {{ $votacion->nombreopcion2 ?? '' }}
                     </label>
                 </div>
 
 
-        </div>
+      
 
 
         <!--Boton para votar, no se podrá modificar más adelante-->
         <input type="submit" value="Votar" class="btn btn-warning">
         </form>
 
-
+        </div>
 
 
 
