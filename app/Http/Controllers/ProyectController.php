@@ -1,13 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Support\Collection;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Http\Request;
 use App\Models\Game;
-Use App\Models\User;
+use App\Models\User;
 use App\Models\Votacion;
 use Illuminate\Support\Facades\Auth;
+
 class ProyectController extends Controller
 {
     /**
@@ -17,52 +19,23 @@ class ProyectController extends Controller
      */
     public function index()
     {
-    
-            $user = Auth::user();
-           
-            //Pagina por 10
-            $votacionesList=Votacion::all();
-            $gameList=Game::paginate(10);    
-            //Query=busqueda de videojuegos
-            return view('proyect.index', ['gameList' => $gameList,'user'=>$user,'votacionesList'=>$votacionesList,'query'=>null,'resultados'=>null]);
+        //Te identifica
+        $user = Auth::user();
 
+        //Pagina por 10
+        $votacionesList = Votacion::all();
+        $gameList = Game::paginate(10);
+        //Query=busqueda de videojuegos
+        return view('proyect.index', ['gameList' => $gameList, 'user' => $user, 'votacionesList' => $votacionesList, 'query' => null, 'resultados' => null]);
     }
-    
+
 
     public function all(Request $request)
     {
-
     }
-   /* public function verMiBiblioteca(User $user){
-        //Solo puedes actuar sobre tu usuario
-        //dd("USER RECIBIDO ". $user->name  . "USER REAL TUYO: ".Auth::user()->name);
-        $user = User::find($user->id);
-        $userComprobacion = Auth::user();
-        if ($user->email!=$userComprobacion->email || $user->password!=$userComprobacion->password){
-            $gameList = Game::all();
-            $user = Auth::user();
-            return redirect('proyect.index', ['gameList' => $gameList,'user'=>$user]);
-        }
-        dd("ok");
-       // dd("AUTH USER: ".Auth::user()->email );
-        
-    }*/
 
 
 
-
-
-
-    public function indexNombre($orden)
-    {
-
-        // $this->authorize('viewAny', Client::class);
-        // $gameList = Game::all();
-        $gameList = Game::all()->sort(function ($a, $b) {
-            return strcmp($a->nombre, $b->nombre);
-        });
-        return view('proyect.index', ['gameList' => $gameList]);
-    }
 
 
 

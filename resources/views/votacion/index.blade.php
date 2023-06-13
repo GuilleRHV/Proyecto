@@ -49,7 +49,7 @@
             <!--Tabla de votaciones-->
             <table class="table table-striped table-hover" id="tablavotaciones">
                 <tr>
-                    <td>id</td>
+                    <td class="tdidvot">id</td>
                     <td>nombre</td>
 
                     <td>descripcion</td>
@@ -62,7 +62,7 @@
 
                 <tr>
                     <!--Id de la votacion -->
-                    <td>{{$votacion->id}}</td>
+                    <td class="tdidvot">{{$votacion->id}}</td>
                     <!--Nombre de la votacion -->
                     <td>{{$votacion->nombre}}</td>
                     <!--Descripcion de la votacion -->

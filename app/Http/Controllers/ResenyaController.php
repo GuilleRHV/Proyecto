@@ -15,15 +15,13 @@ class ResenyaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //Te lleva al indice de reseñas
     public function index()
     {
 
         $resenyasList = Resenya::all();
-        
-            return view('resenya.index', ['resenyasList' => $resenyasList]);
-      
-      
-        
+
+        return view('resenya.index', ['resenyasList' => $resenyasList]);
     }
 
     /**
@@ -31,6 +29,7 @@ class ResenyaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    //Te dirige a la vista del formulario de creacion de reseñas
     public function create()
     {
         return view("resenya.create");
@@ -42,9 +41,10 @@ class ResenyaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    //Crea la reseña
     public function store(Request $request)
     {
-
+        //La valida
         $user = auth()->user();
         $request->validate([
 
@@ -70,6 +70,7 @@ class ResenyaController extends Controller
             "imagen.dimensions" => "La imagen debe tener unas dimensiones minimas de 100x100 px"
 
         ]);
+        //La crea
         $resenya = new Resenya();
         $tituloMayus = ucfirst($request->input("titulo"));
         $resenya->titulo = $tituloMayus;
@@ -78,6 +79,7 @@ class ResenyaController extends Controller
         $resenya->contras = ucfirst($request->input("contras"));
         $resenya->puntuacion = $request->input("puntuacion");
         $resenya->user_id = $user->id;
+        //Te pone como autor de la reseña
         $resenya->nombreyapellido = Usuario::find($user->id)->name . " " . Usuario::find($user->id)->apellido;
 
         //****GUARDAR IMAGEN */
@@ -95,8 +97,9 @@ class ResenyaController extends Controller
             $rutacompleta = $rutaalternativa . $nombreimagen;
             $resenya->imagen = $rutaimagen;
         }
-
+        //Te guarda la direccion de la imagen en la bbdd
         $resenya->save();
+        //Te guarda la imagen en carpeta
         if ($imagen != null) {
             $rutaimagen = $imagen->store("public/imagenesresenyas");
             $rutaimagen = "/" . $rutaimagen;
@@ -120,6 +123,7 @@ class ResenyaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //Te muestra los detalles de una reseña
     public function show($id)
     {
         $resenya = Resenya::find($id);
@@ -131,12 +135,11 @@ class ResenyaController extends Controller
             $user = "No eres un usuario";
         }
 
+        //Verifica que hayan comentarios
         $comentarios = ComentarioResenya::all();
         if ($comentarios->count() == 0) {
             $comentarios = null;
         }
-
-
         $arraycomentarios = [];
         if (!$comentarios == null) {
             foreach ($comentarios as $comentario) {
@@ -158,6 +161,7 @@ class ResenyaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //Te dirige al formulario de edicion de reseñas
     public function edit($id)
     {
         $resenya = Resenya::find($id);
@@ -171,8 +175,10 @@ class ResenyaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //Te actualiza la reseña
     public function update(Request $request, $id)
     {
+        //Valida los datos
         $request->validate([
 
             "titulo" => "required|max:30",
@@ -196,6 +202,7 @@ class ResenyaController extends Controller
             "imagen.dimensions" => "La imagen debe tener unas dimensiones minimas de 100x100 px"
 
         ]);
+        //La actualiza
         $resenya = Resenya::find($id);
         $nombreMayus = ucfirst($request->input("titulo"));
         $resenya->titulo = $nombreMayus;
@@ -209,6 +216,7 @@ class ResenyaController extends Controller
 
         $imagen = $request->file("imagen");
 
+        //Verifica la exitencia de imagenes y las guarda en carpeta
         if ($imagen != null) {
 
             //Borrar la que tenemos
@@ -254,6 +262,7 @@ class ResenyaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //Elimina la reseña pasada
     public function destroy($id)
     {
         $resenya = Resenya::find($id);

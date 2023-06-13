@@ -14,6 +14,7 @@ class GameSeeder extends Seeder
      */
     public function run()
     {
+        //Seeder de juegos para las pruebas
         Game::factory()->count(10)->create();
     }
 }

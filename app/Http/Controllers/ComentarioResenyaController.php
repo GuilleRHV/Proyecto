@@ -34,32 +34,34 @@ class ComentarioResenyaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request,$resenya_id,$user_id)
+    //Crea el comentario de la reseña
+    public function store(Request $request, $resenya_id, $user_id)
     {
-
+        //La valida
         $request->validate([
             "contenidocomentario" => "required|string|max:300",
         ], [
             "contenidocomentario.required" => "El comentario no puede estar vacio",
             "contenidocomentario.max" => "Solo puedes escribir hasta 300 caracteres"
-           
+
         ]);
         $comentario = new ComentarioResenya();
         $comentario->user_id = $user_id;
         $comentario->resenya_id = $resenya_id;
         $comentario->contenido = $request->input("contenidocomentario");
 
+        //Para ver cuantos comentarios tiene este usuario en esta reseña
         $contComentarioEnEstaResenya = 1;
         $allComments = ComentarioResenya::all();
-        foreach($allComments as $comment){
-            if($comment->user_id == $user_id){
-            $contComentarioEnEstaResenya++;
+        foreach ($allComments as $comment) {
+            if ($comment->user_id == $user_id) {
+                $contComentarioEnEstaResenya++;
             }
         }
         $comentario->comentario_id = $contComentarioEnEstaResenya;
         $comentario->save();
-        $resenya=Resenya::find($resenya_id);
-        return redirect()->route('resenyas.show',['resenya'=>$resenya])->with('comentariocreado', 'Has escrito un comentario');
+        $resenya = Resenya::find($resenya_id);
+        return redirect()->route('resenyas.show', ['resenya' => $resenya])->with('comentariocreado', 'Has escrito un comentario');
     }
 
 
@@ -72,17 +74,18 @@ class ComentarioResenyaController extends Controller
 
 
 
+    //Para responder a un comentario (será su hijo)
+    public function responder(Request $request, $resenya_id, $user_id, ComentarioResenya $comentario)
+    {
 
-    public function responder(Request $request,$resenya_id,$user_id,ComentarioResenya $comentario){
-        //dd("Ha llegado");
 
-
+        //La valida
         $request->validate([
 
 
             "contenidocomentario" => "required",
 
-           
+
         ], [
 
             "contenidocomentario.required" => "La respuesta no puede ser vacia",
@@ -93,22 +96,22 @@ class ComentarioResenyaController extends Controller
         $respuestacomentario->user_id = $user_id;
         $respuestacomentario->resenya_id = $resenya_id;
         $respuestacomentario->contenido = $request->input("contenidocomentario");
-
+        //Recorre y cuenta
         $contComentarioEnEstaResenya = 1;
         $allComments = ComentarioResenya::all();
-        foreach($allComments as $comment){
-            if($comment->user_id == $user_id){
-            $contComentarioEnEstaResenya++;
+        foreach ($allComments as $comment) {
+            if ($comment->user_id == $user_id) {
+                $contComentarioEnEstaResenya++;
             }
         }
+        //Asocia
         $respuestacomentario->comentario_id = $contComentarioEnEstaResenya;
         $respuestacomentario->padre()->associate($comentario);
-        //$comentario->hijos()->associate($respuestacomentario);
-        $respuestacomentario->save();
 
-        $resenya=Resenya::find($resenya_id);
-        return redirect()->route('resenyas.show',['resenya'=>$resenya])->with('respuesta', 'Has respondido a un comentario');
-     
+        $respuestacomentario->save();
+        //Redirige a la reseña que estabas
+        $resenya = Resenya::find($resenya_id);
+        return redirect()->route('resenyas.show', ['resenya' => $resenya])->with('respuesta', 'Has respondido a un comentario');
     }
     /**
      * Display the specified resource.
@@ -150,21 +153,22 @@ class ComentarioResenyaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    //Elimina comentarios (si tiene respuestas tambien las elimina)
     public function destroy($id)
     {
-   
+
         $comentario = ComentarioResenya::find($id);
-      
-//Borra los hijos dentro del comentario
+
+        //Borra los hijos dentro del comentario
         $allComments = ComentarioResenya::all();
-        foreach($allComments as $co){
-            if($co->padre_id==$id){
+        foreach ($allComments as $co) {
+            if ($co->padre_id == $id) {
                 $co->delete();
             }
         }
 
-        $resenya_id=$comentario->resenya_id;
+        $resenya_id = $comentario->resenya_id;
         $comentario->delete();
-        return redirect()->route('resenyas.show',$resenya_id)->with("comentarioeliminado", "Has eliminado un comentario exitosamente");
+        return redirect()->route('resenyas.show', $resenya_id)->with("comentarioeliminado", "Has eliminado un comentario exitosamente");
     }
 }

@@ -38,10 +38,10 @@
             <table class="table table-striped table-hover" id="tablaeditusuarios">
                 <tr>
 
-                    <td><strong>nombre</strong></td>
+                    <td class="tdname"><strong>nombre</strong></td>
 
                     <td><strong>email</strong></td>
-                    <td><strong>rol</strong></td>
+                    <td class="tdrol"><strong>rol</strong></td>
                     <td></td>
                     <td></td>
                     <td></td>
@@ -50,11 +50,11 @@
 
                 <tr>
                     <!--Nombre usuario-->
-                    <td>{{$user->name}}</td>
+                    <td class="tdname">{{$user->name}}</td>
                     <!--Email usuario-->
                     <td>{{$user->email}}</td>
                     <!--rol usuario-->
-                    <td>{{$user->rol}}</td>
+                    <td class="tdrol">{{$user->rol}}</td>
                     <td>
                         <!--boton editar usuario-->
                         @can ('update', $user)

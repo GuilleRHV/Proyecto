@@ -120,7 +120,7 @@ class UserController extends Controller
             }
         }
         //Doble verificacion 
-     
+
         if ($cont != 0) {
             foreach (json_decode($user->coleccion) as $i) {
                 $gameList[] = Game::find((int)$i);
@@ -167,23 +167,23 @@ class UserController extends Controller
         }
     }
 
-    public function   eliminarTodaBiblioteca(User $user){
+    public function   eliminarTodaBiblioteca(User $user)
+    {
         $user->coleccion = null;
-            //Guarda tu coleccion
-            $user->save();
-            return redirect()->route('users.verMiBiblioteca')->with("borradotodacoleccion", "Has eliminado todos los videojuego de tu colección");
-        
+        //Guarda tu coleccion
+        $user->save();
+        return redirect()->route('users.verMiBiblioteca')->with("borradotodacoleccion", "Has eliminado todos los videojuego de tu colección");
     }
-  
 
 
+    //Perfil del usuario
     public function perfil()
     {
         //Te identifica y te redirige a la vista de tu perfil
         $user = auth()->user();
         return view('user.perfil', ['user' => $user]);
     }
-
+    //Cambiar contraseña
     public function cambiarpassword()
     {
         //Te identifica y te redirige a la vista para cambiar la contraseña
@@ -198,28 +198,31 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, $id)
     {
-        //Modificar el perfil de otro usuario o el tu
+        //Modificar el perfil tuyo
         $user = Usuario::find($id);
+        //Mira tu contraseña actual para luego compararla
         $password = $user->password;
+        //Lo valida
         $request->validate([
 
             "name" => "required|max:30",
-"apellido"=> "required|max:30",
+            "apellido" => "required|max:30",
             "imagenperfil" => "image|mimes:jpg,png,jpeg,svg|dimensions:min_width=100,min_heigh=100"
 
         ], [
             "name.required" => "El nombre es obligatorio",
-            "name.max"=>"El nombre solo puede tener hasta 30 caracteres",
+            "name.max" => "El nombre solo puede tener hasta 30 caracteres",
             "apellido.required" => "El apellido es obligatorio",
-            "apellido.max"=>"El apellido solo puede tener hasta 30 caracteres",
+            "apellido.max" => "El apellido solo puede tener hasta 30 caracteres",
             "imagenperfil.image" => "El archivo debe ser una imagen",
             "imagenperfil.mimes" => "La imagen debe tener extension jpg,jpeg,gif o svg",
             "imagenperfil.dimensions" => "La imagen debe tener unas dimensiones minimas de 100x100 px"
         ]);
         $user->name = $request->input('name');
-        $user->apellido=$request->input('apellido');
+        $user->apellido = $request->input('apellido');
         //Fija rutas en imagenesperfil
         $imagen = $request->file("imagenperfil");
         if ($imagen != null) {
@@ -234,7 +237,7 @@ class UserController extends Controller
         }
         //Salva ruta de imagen en bbdd
         $user->save();
-        //Guarda la imagen en la
+        //Guarda la imagen en carpeta
 
         if ($imagen != null) {
             $rutaimagen = $imagen->store("public/imagenesperfil");
@@ -249,11 +252,6 @@ class UserController extends Controller
                 dd("No conseguido");
             }
         }
-
-
-
-
-
         //En caso de que decidas no actualizar
         $user->save();
         return redirect()->route('proyects.index')->with("usuarioeditado", 'Has actualizado el perfil de usuario');
@@ -271,7 +269,7 @@ class UserController extends Controller
         $request->validate([
 
             "name" => "required",
-            "apellido"=> "required",
+            "apellido" => "required",
 
 
         ], [
@@ -358,8 +356,5 @@ class UserController extends Controller
             //No te elimina al usuario y te recuerda que para eliminar usuarios debes activar el check
             return redirect()->route('users.index')->with("errorborrarusuario", "Para eliminar a un usuario debes seleccionar el check ");
         }
-
-
-
     }
 }

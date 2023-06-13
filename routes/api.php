@@ -51,4 +51,3 @@ Route::fallback(function(){
     return response()->json(["error"=>"No encontradooo"],404);
 });
 
-Route::resource("/studies", StudyController::class);

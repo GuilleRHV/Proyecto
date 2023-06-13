@@ -1,3 +1,9 @@
+/*CSS para el responsive*/
+/*Tabla de la lista de juegos del index*/
+#fondo2index{
+    margin-top: 40px !important;
+}
+/*Contenedor para los juegos del index*/
 .contenedorGameIndividualGeneros {
     display: none !important;
 }
@@ -22,11 +28,13 @@ overflow-wrap:break-word !important;
 #contenedorGamesIndex{
     margin-top: 60px !important;
 }
+/********************************/
 .elipsis{
     text-overflow: ellipsis !important ;
 }
-/*Navbar*/
+/*Navbar de administrador*/
 #navbaradmin{
+    z-index: 10 !important;
 width: 100% !important;
 }
 
@@ -37,10 +45,12 @@ overflow: hidden !important;
 .py-4{
     overflow: hidden !important;
 }
+/*Imagen de perfil*/
 #imgperfil{
 width: 30% !important;
 height: 30% !important;
 }
+/**Datos del perfil**/
 #datosperfil{
     margin-left: 35% !important;
     width: 80% !important;
@@ -48,7 +58,7 @@ height: 30% !important;
 #contprincipalperfil input{
 width: 80% !important;
 }
-
+/*Botones del perfil*/
 #botonesperfil{
     position: relative !important;
     display: flex !important;
@@ -62,27 +72,24 @@ position: relative !important;
 width: 100% !important;
 margin-right: 100px !important;
 }
-#wrap{
-    display: none !important;
-}
-#fondo2index{
-    margin-top: 40px !important;
-}
+
 #tablavotaciones{
     overflow: scroll !important;
-
+font-size: 9px;
+margin: 0 0 0 0 !important;
+}
+.tdidvot{
+display: none !important;
 }
 #footer{
     position: sticky !important;
     height: 200px !important;
     bottom: 0 !important;
 }
-#app{
-    height: 120% !important;
-}
 
 
 
+/*Buscador del inder*/
 #camposearcher{
     display: flex !important;
     
@@ -98,17 +105,22 @@ margin-right: 100px !important;
     height: 10px !important;
     position: relative;
 }
+/*Detalles de los juegos*/
 #imagenjuegoshow{
     left: 15% !important;
 }
 #fondo2index  a{
  margin: 4px !important;
 }
+
+/*Contenido imagen*/
 .contenidoeimagen{
     display: flex;
     flex-flow: row wrap !important;
     width: 100% !important;
 }
+/*Reseña index*/
+/*Imagen de la reseña*/
 .imagenResenya{
 width: 30% !important;
 }
@@ -116,6 +128,7 @@ width: 30% !important;
     margin-top: 25%;
     width: 100% !important;
 }
+/*Contenedor para cada reseña*/
 .contenedorIndividual{
     width: 100% !important;
     font-size: 12px !important;
@@ -123,6 +136,8 @@ width: 30% !important;
 .contenedorIndividual p{
     font-size: 12px !important;
 }
+/*Coleccion individual*/
+/*Contenedor de los juegos de tu coleccion*/
 #contenedorGamesColeccion{
 width: 100% !important;
 border-radius: 0 0 0 0 !important;
@@ -134,6 +149,25 @@ overflow: hidden !important;
 #contenedorGamesColeccion img {
     width: 60% !important;
 }
+#wrap{
+    display: none !important;
+}
 .tdresp{
 display: none !important;
+}
+#tablaeditusuarios{
+    width: 90% !important;
+}
+.tdname{
+    display: none !important;
+}
+.tdrol{
+    display: none !important;
+}
+#tablaeditusuarios{
+    font-size: 12px !important;
+}
+#checkeliminar{
+    margin-left: 20px !important;
+    width: 30px !important;
 }

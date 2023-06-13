@@ -13,6 +13,7 @@ return [
     |
     */
 
+    //Paginacion para la lista de juegos
     'previous' => '&laquo; Anterior',
     'next' => 'Siguiente &raquo;',
 
