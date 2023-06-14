@@ -1,24 +1,24 @@
 
 document.addEventListener('DOMContentLoaded', function () {
 
-   //Animacion carrousel
-        var docWidth = $('body').width(),
-          $wrap = $('#wrap'),
-          $images = $('#wrap .hb'),
-          slidesWidth = $wrap.width();
+    //Animacion carrousel
+    var docWidth = $('body').width(),
+        $wrap = $('#wrap'),
+        $images = $('#wrap .hb'),
+        slidesWidth = $wrap.width();
 
 
-        $("#wrap").mousemove(function(e) {
-          var mouseX = e.pageX,
+    $("#wrap").mousemove(function (e) {
+        var mouseX = e.pageX,
             offset = mouseX / docWidth * slidesWidth - mouseX / 12;
 
-          $images.css({
+        $images.css({
             '-webkit-transform': 'translate3d(' + -offset + 'px,0,0)',
             'transform': 'translate3d(' + -offset + 'px,0,0)'
-          });
         });
-        
-     //fin animacion
+    });
+
+    //fin animacion
     //Eliminar toda mi coleccion
     $(".formeliminartodacoleccion").submit(function (e) {
         e.preventDefault();
@@ -42,8 +42,8 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    
-    //Botones eliminar promises
+
+    //Eliminar votacion confirmacion
     $(".formularioeliminarvotacion").submit(function (e) {
         e.preventDefault();
         Swal.fire({
@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         });
     });
-
+    //Eliminar juego de coleccion confirmacion
 
     $(".formeliminarcoleccion").submit(function (e) {
         e.preventDefault();
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-
+    //Eliminar comentario de reseña confirmacion
     $(".formularioeliminarcomentarioresenya").submit(function (e) {
         e.preventDefault();
         Swal.fire({
@@ -112,6 +112,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+    //Eliminar respuesta confirmacion
     $(".formularioeliminarrespuesta").submit(function (e) {
         e.preventDefault();
         Swal.fire({
@@ -136,11 +137,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-    
 
 
 
 
+    //Eliminar comentario juego confirmacion
 
     $(".formularioeliminarcomentariojuego").submit(function (e) {
         e.preventDefault();
@@ -168,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-
+    //Eliminar juego confirmacion
     $(".formularioeliminarjuego").submit(function (e) {
         e.preventDefault();
         Swal.fire({
@@ -193,7 +194,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-
+    //Eliminar reseña confirmacion
     $(".formularioeliminarresenya").submit(function (e) {
         e.preventDefault();
         Swal.fire({
@@ -217,25 +218,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-    /*
-     $(".votaciones").on('click',function(){
-            // alert("Votacion");
-            alert("aa");
-             var id = $(this).attr("id");
-            // console.log("id: "+id);
-             
-     
-            
-             var numId = id.split("votar");
-             //console.log(numId[1]);
-             var numero = numId[1];
-                 window.open("votaciones/"+numero+"/edit","ventanaEmergente","width=300px,height=300px");
-          
-     });
-  */
 
 
-
+    //Aumenta tamaño imagen showw
     $("#imagenjuegoshow").on('click', function () {
 
         $("#imagenjuegoshow").toggleClass('activo');
@@ -271,32 +256,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    //Cambiar password
     $("#botoncambiarcontraseña").on('click', function () {
 
         $("#cambiarcontraseña").toggleClass('inactivo');

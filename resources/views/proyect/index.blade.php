@@ -80,19 +80,19 @@ $contador = 1;
 
 
 
-<!--Carousel movil-->
+    <!--Carousel movil-->
     <div class="container">
       <div id="wrap" style="position: relative;color: black !important; text-decoration:none !important">
-      <!--Como está paginado, recibir todos-->
-      @foreach(\App\Models\Game::all() as $g)
+        <!--Como está paginado, recibir todos-->
+        @foreach(\App\Models\Game::all() as $g)
         <a href="{{ route('games.show',$g->id) }}" class="hb">
           <div class="c">
             <div class="im">
-            @if($g->imagen==null)
-            <img src="imagenes/filenotfound.png" class="imagencarousel img-responsive" alt="" class="imgcarouseldesplegable"/>
-            @else
-            <img src="{{$g->imagen}}" class="imagencarousel img-responsive" alt="" class="imgcarouseldesplegable"/>
-            @endif
+              @if($g->imagen==null)
+              <img src="imagenes/filenotfound.png" class="imagencarousel img-responsive" alt="" class="imgcarouseldesplegable" />
+              @else
+              <img src="{{$g->imagen}}" class="imagencarousel img-responsive" alt="" class="imgcarouseldesplegable" />
+              @endif
             </div>
             <!--Texto desplegable-->
             <div class="txt" style="z-index: 5;">
@@ -102,12 +102,12 @@ $contador = 1;
           </div>
         </a>
         @endforeach
-       
+
 
       </div>
       <br>
 
-<!--Lista de todos los videojuegos-->
+      <!--Lista de todos los videojuegos-->
       <div class="row justify-content-center" id="fondo2index" style="z-index: 12; margin-top:15px">
         <!--Alertas acciones -->
         <div class="col-md-10">
@@ -231,14 +231,14 @@ $contador = 1;
 
           @endif
 
-          
+
           <form action="{{ route('buscar') }}" method="GET">
 
-        <div id="camposearcher">
-          <button type="submit" class="btn btn-primary" style="float: right;"><span class="fa fa-search pulsate-fwd" id="botonsearcher"></span>&nbsp;Buscar</button>
-            <input type="text" class="bordesredondeados" name="query" placeholder="Buscar juego" style="float: right;" id="searcher">
-        </div>
-       
+            <div id="camposearcher">
+              <button type="submit" class="btn btn-primary" style="float: right;"><span class="fa fa-search pulsate-fwd" id="botonsearcher"></span>&nbsp;Buscar</button>
+              <input type="text" class="bordesredondeados" name="query" placeholder="Buscar juego" style="float: right;" id="searcher">
+            </div>
+
           </form>
           <br>
           @if($query!=null)
@@ -437,19 +437,3 @@ $contador = 1;
   </div>
 
   @endsection
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
