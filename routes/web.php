@@ -46,55 +46,70 @@ use Illuminate\Support\Facades\Mail;
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-Route::get('/', function () {
-    $user = Auth::user();
-    $gameList=Game::paginate(10);   
-            $votacionesList=Votacion::all();
-            return view('proyect.index', ['gameList' => $gameList,'user'=>$user,'votacionesList'=>$votacionesList,'query'=>null,'resultados'=>null]);
-});
 //PROYECTO
 
+//Indice del proyecto
+Route::get('/', function () {
+    $user = Auth::user();
+    $gameList = Game::paginate(10);
+    $votacionesList = Votacion::all();
+    return view('proyect.index', ['gameList' => $gameList, 'user' => $user, 'votacionesList' => $votacionesList, 'query' => null, 'resultados' => null]);
+});
+
 Route::get('/buscar', 'App\Http\Controllers\GameController@buscar')->name('buscar');
-//users.verMiBiblioteca
-
-Route::get('/proyects/votacionesGeneral',[VotacionController::class,'votacionesGeneral'])->name('votacion.votacionesGeneral');
-
-Route::put('/proyects/activarvotacion/{id}',[VotacionController::class,'activarvotacion'])->name('votaciones.activarvotacion');
-Route::put('/proyects/cerrarvotacion/{id}',[VotacionController::class,'cerrarvotacion'])->name('votaciones.cerrarvotacion');
-Route::put('/proyects/updateGeneral/{id}',[UserController::class,'updateGeneral'])->name('users.updateGeneral');
-Route::get('/proyects/perfil',[UserController::class,'perfil'])->name('users.perfil');
-Route::get('/proyects/cambiarpassword',[UserController::class,'cambiarpassword'])->name('users.cambiarpassword');
-Route::put('/proyects/formcambiarpassword/{id}',[UserController::class,'formcambiarpassword'])->name('users.formcambiarpassword');
-Route::get('/proyects/{user}',[UserController::class,'verMiBiblioteca'])->name('users.verMiBiblioteca');
-Route::post('/proyects/{user}/{game}',[GameController::class,'agregarAColeccion'])->name('games.agregarAColeccion');
-Route::post('/proyects/{orden}',[ProyectController::class,'indexNombre'])->name('proyects.indexNombre');
-Route::post('/proyects/games/{game_id}/{user_id}',[ComentarioController::class,'store'])->name('comentarios.store');
-Route::post('/proyects/games/{game_id}/{user_id}/{comentario}',[ComentarioController::class,'responder'])->name('comentarios.responder');
-
-Route::post('/proyects/resenyas/{resenya_id}/{user_id}',[ComentarioResenyaController::class,'store'])->name('comentariosresenyas.store');
-Route::post('/proyects/resenyas/{resenya_id}/{user_id}/{comentario}',[ComentarioResenyaController::class,'responder'])->name('comentariosresenyas.responder');
-
-Route::get('/proyects/verMiBiblioteca',[UserController::class,'verMiBiblioteca'])->name('users.verMiBiblioteca');
-Route::delete('/proyects/verMiBiblioteca/{user}/{game}',[UserController::class,'eliminarDeMiBiblioteca'])->name('users.eliminarDeMiBiblioteca');
-Route::delete('/proyects/eliminarDeMiBiblioteca/{user}',[UserController::class,'eliminarTodaBiblioteca'])->name('users.eliminarTodaBiblioteca');
 
 
+//Index votaciones que pueden ver los usuarios normales
+Route::get('/proyects/votacionesGeneral', [VotacionController::class, 'votacionesGeneral'])->name('votacion.votacionesGeneral');
+//Activar/Cerrar votaciones
+Route::put('/proyects/activarvotacion/{id}', [VotacionController::class, 'activarvotacion'])->name('votaciones.activarvotacion');
+Route::put('/proyects/cerrarvotacion/{id}', [VotacionController::class, 'cerrarvotacion'])->name('votaciones.cerrarvotacion');
+//Cambiar datos de perfil de otros usuario
+Route::put('/proyects/updateGeneral/{id}', [UserController::class, 'updateGeneral'])->name('users.updateGeneral');
+//Cambiar datos de tu perfil
+Route::get('/proyects/perfil', [UserController::class, 'perfil'])->name('users.perfil');
+//Cambiar contraseña
+Route::get('/proyects/cambiarpassword', [UserController::class, 'cambiarpassword'])->name('users.cambiarpassword');
+//Formulario para cambiar tu contraseña
+Route::put('/proyects/formcambiarpassword/{id}', [UserController::class, 'formcambiarpassword'])->name('users.formcambiarpassword');
+//Ver tu biblioteca de videojuegos personal
+Route::get('/proyects/{user}', [UserController::class, 'verMiBiblioteca'])->name('users.verMiBiblioteca');
+//Agregar un videojuego a tu coleccion
+Route::post('/proyects/{user}/{game}', [GameController::class, 'agregarAColeccion'])->name('games.agregarAColeccion');
+Route::post('/proyects/{orden}', [ProyectController::class, 'indexNombre'])->name('proyects.indexNombre');
+//Crear un comentario en juegos
+Route::post('/proyects/games/{game_id}/{user_id}', [ComentarioController::class, 'store'])->name('comentarios.store');
+//Responder a un comentario en juegos
+Route::post('/proyects/games/{game_id}/{user_id}/{comentario}', [ComentarioController::class, 'responder'])->name('comentarios.responder');
+//Crear un comentario en reseñas
+Route::post('/proyects/resenyas/{resenya_id}/{user_id}', [ComentarioResenyaController::class, 'store'])->name('comentariosresenyas.store');
+//Responder a un comentario en reseñas
+Route::post('/proyects/resenyas/{resenya_id}/{user_id}/{comentario}', [ComentarioResenyaController::class, 'responder'])->name('comentariosresenyas.responder');
+//Ver mi biblioteca de juegos 
+Route::get('/proyects/verMiBiblioteca', [UserController::class, 'verMiBiblioteca'])->name('users.verMiBiblioteca');
+//Eliminar un juego de mi biblioteca personal
+Route::delete('/proyects/verMiBiblioteca/{user}/{game}', [UserController::class, 'eliminarDeMiBiblioteca'])->name('users.eliminarDeMiBiblioteca');
+//Eliminar todos tus juegos de tu biblioteca personal
+Route::delete('/proyects/eliminarDeMiBiblioteca/{user}', [UserController::class, 'eliminarTodaBiblioteca'])->name('users.eliminarTodaBiblioteca');
 
+
+//Resource de proyect
 Route::resource('proyects', ProyectController::class);
-
+//Resource de videojuegos
 Route::resource('games', GameController::class);
-
+//Resource de reseñas
 Route::resource('resenyas', ResenyaController::class);
-
+//Resource de votaciones
 Route::resource('votaciones', VotacionController::class);
+//Eliminar un comentario de juegos
 Route::delete('/proyects/games/{comentario_id}/destroy', [ComentarioController::class, "destroy"])->name('comentarios.destroy');
+//Eliminar un comentario de reseñas
 Route::delete('/proyects/games/{comentario_id}/destroycomentarioresenya', [ComentarioResenyaController::class, "destroy"])->name('comentariosresenyas.destroy');
 
-
+//Resource de usuarios
 Route::resource('users', UserController::class);
 
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
