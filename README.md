@@ -2,12 +2,17 @@
 
 <p align="center">
     
- # Bibliogames
- ### Proyecto realizado por Guillermo Rodriguez Huguet
+# Bibliogames
+
+### Proyecto realizado por Guillermo Rodriguez Huguet
+
 <img src="public/imagenes/logosintexto.png" alt="Bibliogames">
  </p>
  
 ## Para este proyecto he usado node y laravel auth, se necesitará instalarlo para usarse en local
+
+### En caso de no algun error consultar github del proyecto: https://github.com/guillerhv/proyecto
+
 Documentacion de otros recursos que he utilizado: 
 - Logo:  https://studio.tailorbrands.com
 - Fuentes: https://fonts.google.com/ 
