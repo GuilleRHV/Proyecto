@@ -32,12 +32,21 @@ overflow-wrap:break-word !important;
 .elipsis{
     text-overflow: ellipsis !important ;
 }
+.contenedorcomentarios{
+    width: 100% !important;
+}
+.subcomentarios1{
+    width: 70% !important;
+}
 /*Navbar de administrador*/
 #navbaradmin{
     z-index: 10 !important;
 width: 100% !important;
 }
-
+.form-check .form-check-input{
+    width: 15px !important;
+    height: 15px !important; 
+}
 /*PERFIL*/
 #contprincipalperfil{
 overflow: hidden !important;
@@ -111,6 +120,10 @@ display: none !important;
 }
 #fondo2index  a{
  margin: 4px !important;
+}
+.form-group .col-form-label{
+    width: 100%;
+    overflow-wrap: break-word;
 }
 
 /*Contenido imagen*/

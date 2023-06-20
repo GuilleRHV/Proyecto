@@ -116,7 +116,7 @@
                     @endif
                 </div>
                 <div class="imagenResenya" style="width: 40%;">
-                    <img src="{{asset($resenya->imagen)}}" width="100%" height="100%" />
+                    <img src="{{asset($resenya->imagen)}}" width="100%" height="50%" />
 
                 </div>
                 @endif
@@ -244,7 +244,7 @@
     <span class="glyphicon glyphicon-pencil">
         @foreach($comentario->hijos as $hijo)
         <!--Recorre las respuestas-->
-        <div class="card w-75 subcomentarios{{$hijo->padre_id}}" style="width: 600px !important; display:none">
+        <div class="card w-75 subcomentarios{{$hijo->padre_id}} subcom" style="display:none">
             <div class="card-body">
 
 
@@ -328,7 +328,7 @@
         <!--Recorre los hijos(respuestas) de un comentario-->
         @foreach($comentario->hijos as $hijo)
 
-        <div class="card w-75 subcomentarios{{$hijo->padre_id}}" style="display:none; width: 600px">
+        <div class="card w-75 subcomentarios{{$hijo->padre_id}} subcom" style="display:none;">
             <div class="card-body">
                 <!--Nombre del autor de la respuesta-->
                 <h5 class="card-title">{{ \App\Models\User::find($hijo->user_id)->name}}</h5>

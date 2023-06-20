@@ -101,7 +101,7 @@
                 <!--Precio juego-->
                 <div class="form-group">
                     <label for="precio" class="col-form-label" style="font-weight:600;font-size:17px">Precio</label><br>
-                    <label for="precio" class="col-form-label">{{ $game->precio ?? '' }}</label>
+                    <label for="precio" class="col-form-label">{{ $game->precio ?? '' }} €</label>
                 </div>
                 <hr>
 
@@ -233,7 +233,7 @@
         <!--Recorre las respuestas-->
         @foreach($comentario->hijos as $hijo)
 
-        <div class="card w-75 subcomentarios{{$hijo->padre_id}}" style="width: 600px !important; display:none">
+        <div class="card w-75 subcomentarios{{$hijo->padre_id}} subcom" style="display:none">
 
             <div class="card-body">
 
@@ -341,7 +341,7 @@
     <span class="separadorDeHijos">
         @foreach($comentario->hijos as $hijo)
 
-        <div class="card w-75 subcomentarios{{$hijo->padre_id}}" style="width: 600px !important; display:none">
+        <div class="card w-75 subcomentarios{{$hijo->padre_id}} subcom" style=" display:none">
 
             <div class="card-body">
                 <h5 class="card-title">

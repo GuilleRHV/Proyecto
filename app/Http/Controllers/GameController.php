@@ -244,22 +244,22 @@ public function buscar(Request $request){
             "anyoLanzamiento" => "required|integer|min:1952",
             "generos" => "required",
             "plataformas" => "required",
-            "precio" => "required|numeric|regex:/^\d+(\.\d{1,2})?$/",
+            "precio" => "required|regex:/^\d+(\.\d{1,2})?$/",
             "imagenjuego" => "image|mimes:jpg,png,jpeg,svg|dimensions:min_width=100,min_heigh=100"
         ], [
 
             "nombre.required" => "El nombre es obligatorio",
             "nombre.max" => "El nombre solo puede tener hasta 30 caracteres",
             "descripcion.max"=>"La descripción solo puede tener hasta 1500 caracteres",
-            "anyoLanzamiento.required" => "El anyoLanzamiento es obligatorio",
+            "anyoLanzamiento.required" => "El año de lanzamiento es obligatorio",
             "descripcion.required" => "La descripcion es obligatorio",
             "generos.required" => "El generos es obligatorio",
             "plataformas.required" => "El plataformas es obligatorio",
             "precio.required" => "El precio es obligatorio",
-            "precio.numeric" => "El precio debe ser un numero",
+       
             "precio.regex" => "El precio debe tener un valor numerico",
-            "anyoLanzamiento.integer" => "El anyoLanzamiento debe ser un numero",
-            "anyoLanzamiento.min" => "El anyoLanzamiento debe ser posterior a 1952 (primer videojuego)",
+            "anyoLanzamiento.integer" => "El año de lanzamiento debe ser un numero",
+            "anyoLanzamiento.min" => "El año de lanzamiento debe ser posterior a 1952 (primer videojuego)",
             "imagenjuego.image" => "El archivo debe ser una imagen",
             "imagenjuego.mimes" => "La imagen debe tener extension jpg,jpeg,gif o svg",
             "imagenjuego.dimensions" => "La imagen debe tener unas dimensiones minimas de 100x100 px"
