@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\GameMail;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
+use Illuminate\Support\Facades\Mail;
 class RegisterController extends Controller
 {
     /*
@@ -82,6 +83,11 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $mailData=[
+            'title'=>'Prueba email',
+            'body'=>'este es un testeo'
+        ];
+        Mail::to($data['email'])->send(new GameMail($data['name']));   
         return User::create([
             'name' => $data['name'],
             'apellido'=>$data['apellido'],

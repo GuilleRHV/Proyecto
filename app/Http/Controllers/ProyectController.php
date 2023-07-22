@@ -9,7 +9,8 @@ use App\Models\Game;
 use App\Models\User;
 use App\Models\Votacion;
 use Illuminate\Support\Facades\Auth;
-
+use App\Mail\GameMail;
+use Illuminate\Support\Facades\Mail;
 class ProyectController extends Controller
 {
     /**
@@ -25,6 +26,7 @@ class ProyectController extends Controller
         //Pagina por 10
         $votacionesList = Votacion::all();
         $gameList = Game::paginate(10);
+        
         //Query=busqueda de videojuegos
         return view('proyect.index', ['gameList' => $gameList, 'user' => $user, 'votacionesList' => $votacionesList, 'query' => null, 'resultados' => null]);
     }

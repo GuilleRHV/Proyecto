@@ -30,6 +30,7 @@ use App\Models\Usuario;
 use App\Models\Votacion;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use App\Mail\GameMail;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -47,7 +48,9 @@ use Illuminate\Support\Facades\Mail;
 
 
 //PROYECTO
-
+Route::post('enviar-correo',function(){
+    Mail::to('willythesmurf@gmail.com')->send(new GameMail);  
+})->name('enviar-correo');
 //Indice del proyecto
 Route::get('/', function () {
     $user = Auth::user();

@@ -18,9 +18,10 @@ class GameMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public $nombre;
+    public function __construct($nombre)
     {
-        //
+        $this->nombre=$nombre;
     }
 
     /**
@@ -31,7 +32,7 @@ class GameMail extends Mailable
     public function envelope()
     {
         return new Envelope(
-            subject: 'Enviar correo',
+            subject: 'Bibliogames',
         );
     }
 
@@ -43,7 +44,11 @@ class GameMail extends Mailable
     public function content()
     {
         return new Content(
-            view: 'mails.videogames',
+            view: 'mails.enviar-correo',
+            with:[
+                'nombre'=>$this->nombre
+            ]
+            
         );
     }
 
@@ -58,6 +63,6 @@ class GameMail extends Mailable
     }
 
     public function build(){
-
+        
     }
 }
