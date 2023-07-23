@@ -11,23 +11,32 @@
             background: hsla(0, 0%, 100%, 0.55);
             backdrop-filter: blur(30px);
             ">
-                <div class="card-body p-5 shadow-5 text-center cardregister" >
+                <div class="card-body p-5 shadow-5 text-center cardregister">
                     <h1>Registrate</h1>
                     <br>
+                    
+                    @if($message = Session::get('errorcaptcha'))
+                    <script>
+                        iziToast.success({
+                            title: 'Error',
+                            message: '{{$message}}',
+                        });
+                    </script>
+                    @endif
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
                         <!-- 2 column grid layout with text inputs for the first and last names -->
                         <div class="row">
-                            
-                        <div class="col-md-6 mb-4">
+
+                            <div class="col-md-6 mb-4">
                                 <div class="form-outline">
                                     <label class="form-label" for="form3Example1">Nombre</label>
                                     <input type="text" id="form3Example1" class="form-control @error('name') is-invalid @enderror bordesredondeados " name="name" />
                                     @error('name')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6 mb-4">
@@ -35,10 +44,10 @@
                                     <label class="form-label" for="form3Example2">Apellido</label>
                                     <input type="text" id="form3Example2" class="form-control @error('apellido') is-invalid @enderror bordesredondeados" name="apellido" />
                                     @error('apellido')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
                                 </div>
                             </div>
                         </div>
@@ -46,29 +55,34 @@
                             <label class="form-label" for="formemail">Direccion de correo electronico</label>
                             <input type="email" id="formemail" class="form-control @error('email') is-invalid @enderror bordesredondeados" name="email" />
                             @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
                         <div class="form-outline mb-4">
                             <label class="form-label" for="formpassword">Contraseña</label>
                             <input type="password" id="formpassword" class="form-control @error('password') is-invalid @enderror bordesredondeados" name="password" />
                             @error('password')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                                @enderror
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
 
                         <div class="form-outline mb-4">
-                        <label class="form-label" for="formpassword">Repite la contraseña</label>
-                            <input id="password-confirm" type="password" class="form-control bordesredondeados" name="password_confirmation"   >
-                        
+                            <label class="form-label" for="formpassword">Repite la contraseña</label>
+                            <input id="password-confirm" type="password" class="form-control bordesredondeados" name="password_confirmation">
+
+                        </div>
+                        <div class="mb-3">
+                            <div class="g-recaptcha" data-sitekey=<?echo env("KEY_CAPTCHA")?>>
+
+                            </div>
                         </div>
 
                         <button type="submit" class="btn btn-primary btn-block mb-4 botonloginregister">
-                            Registrarse
+                            Registrarse 
                         </button>
 
 
@@ -79,9 +93,8 @@
         </div>
 
         <div class="col-lg-6 mb-5 mb-lg-0">
-        <img src="{{asset('imagenes/logosintexto.png')}}" class="w-100 shadow-4" style="height: 600px; border-radius: 0 20px 20px 0; "
-          alt="" />
-      </div>
+            <img src="{{asset('imagenes/logosintexto.png')}}" class="w-100 shadow-4" style="height: 600px; border-radius: 0 20px 20px 0; " alt="" />
+        </div>
     </div>
 </div>
 
@@ -125,6 +138,7 @@
 
                         <img src="imagenes/user.png" id="userimagenregistro">
                         <div class="row mb-3">
+                        
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Nombre') }}</label>
 
                             <div class="col-md-6">

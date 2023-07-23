@@ -55,6 +55,7 @@ class RegisterController extends Controller
             'apellido' => ['required', 'string', 'max:20'],
             'email' => ['required', 'string', 'email', 'max:30', 'unique:usuarios'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'g-recaptcha-response'=>['required']
         ],[
             'name.required' => "El nombre es obligatorio",
             'name.string' => "El nombre debe ser una cadena",
@@ -71,7 +72,8 @@ class RegisterController extends Controller
             "password.required"=>"La contraseña es obligatoria",
             "password.string" => "La contraseña debe ser una cadena",
             "password.min" => "La contraseña debe tener como minimo 8 caracteres",
-            "password.confirmed"=>"Las contraseñas deben coincidir" 
+            "password.confirmed"=>"Las contraseñas deben coincidir",
+            'g-recaptcha-response.required'=>'Selecciona el captcha para registrarte'
         ]);
     }
 
@@ -83,10 +85,27 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
+
+        $ip = $_SERVER['REMOTE_ADDR'];
+        $captcha = $data['g-recaptcha-response'];
+        $secretkey = env('SECRET_KEY_CAPTCHA');
+
+        $respuesta = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secretkey&response=$captcha&remoteip)$ip");
+
+        $respuestadecode = json_decode($respuesta,true);
+        if($respuestadecode['success']!='true'){
+            return redirect()->back()->with('errorcaptcha','Hay un error con el captcha');
+        }
+
+
+       // if($respuesta[])
         $mailData=[
             'title'=>'Prueba email',
             'body'=>'este es un testeo'
         ];
+        
+        $pathToImage=public_path('imagenes/logosintexto.png');
         Mail::to($data['email'])->send(new GameMail($data['name']));   
         return User::create([
             'name' => $data['name'],
