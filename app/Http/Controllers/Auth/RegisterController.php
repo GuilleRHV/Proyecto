@@ -89,11 +89,10 @@ class RegisterController extends Controller
 
         $ip = $_SERVER['REMOTE_ADDR'];
         $captcha = $data['g-recaptcha-response'];
-<<<<<<< HEAD
+
         $secretkey = env('SECRET_KEY_CAPTCHA');
-=======
-        $secretkey = '6LeHykknAAAAAFKoe5rpEhzQn5dTCGqxRnIpkq-u';
->>>>>>> 7becde2d8cbb6aea571115604fcd599a688897fe
+
+
 
         $respuesta = file_get_contents("https://www.google.com/recaptcha/api/siteverify?secret=$secretkey&response=$captcha&remoteip)$ip");
 
