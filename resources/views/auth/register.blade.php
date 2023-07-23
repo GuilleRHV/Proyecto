@@ -76,7 +76,11 @@
 
                         </div>
                         <div class="mb-3">
+<<<<<<< HEAD
                             <div class="g-recaptcha" data-sitekey=<?echo env("KEY_CAPTCHA")?>>
+=======
+                            <div class="g-recaptcha" data-sitekey="6LeHykknAAAAAC5uzuiAoz736zSNmD9Y2CPt4tAJ">
+>>>>>>> 7becde2d8cbb6aea571115604fcd599a688897fe
 
                             </div>
                         </div>
