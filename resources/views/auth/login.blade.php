@@ -15,7 +15,7 @@
 
                             <div class="text-center">
                                 <img src="{{ asset('imagenes/logosintexto.png')}}" style="width: 200px;height: 200px; border-radius: 50% 50% 50% 50%" alt="">
-
+ 
                             </div>
                             <br>
 
