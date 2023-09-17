@@ -76,7 +76,22 @@ tail -n 50 /var/log/apache2/error.log
 Esto podría proporcionar pistas sobre lo que está causando el problema.
 
 Si después de verificar estos puntos aún no puedes acceder a localhost/moodle, por favor, proporciona más detalles sobre los mensajes de error o problemas específicos que estás experimentando para que pueda ayudarte mejor a resolver el problema.
+## PARA EL MARIADB
 
+#DESINTALAR MARIADB
+sudo systemctl stop mariadb.service;
+sudo apt-get remove mariadb-server galera:
+sudo apt-get remove --purge mariadb-client;
+sudo apt-get autoremove;
+sudo apt-get update;
+#INSTALAR MARIADB 10.4
+sudo apt-get install software-properties-common;
+sudo apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8;
+sudo add-apt-repository 'deb [arch=amd64] http://nyc2.mirrors.digitalocean.com/mariadb/repo/10.4/ubuntu focal main';
+sudo apt-get update;
+sudo apt-get install mariadb-server;
+sudo apt-get update;
+mysql --version
 <p align="center">
     
 # Bibliogames
