@@ -92,6 +92,21 @@ sudo apt-get update;
 sudo apt-get install mariadb-server;
 sudo apt-get update;
 mysql --version
+
+
+
+
+SELECT g.id AS group_id, g.name AS group_name, COUNT(u.id) AS num_students
+FROM mdl_groups AS g
+LEFT JOIN mdl_groups_members AS gm ON g.id = gm.groupid
+LEFT JOIN mdl_user AS u ON gm.userid = u.id
+LEFT JOIN mdl_role_assignments AS ra ON u.id = ra.userid
+LEFT JOIN mdl_context AS c ON ra.contextid = c.id
+WHERE g.courseid = 'tu_id_de_curso'
+AND c.contextlevel = 50 -- El nivel de contexto 50 se usa para roles de curso (course)
+AND ra.roleid = 'tu_id_de_rol' -- Reemplaza 'tu_id_de_rol' con el ID del rol "students"
+GROUP BY g.id, g.name
+
 <p align="center">
     
 # Bibliogames
