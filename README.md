@@ -103,9 +103,43 @@ LEFT JOIN mdl_user AS u ON gm.userid = u.id
 LEFT JOIN mdl_role_assignments AS ra ON u.id = ra.userid
 LEFT JOIN mdl_context AS c ON ra.contextid = c.id
 WHERE g.courseid = 'tu_id_de_curso'
-AND c.contextlevel = 50 -- El nivel de contexto 50 se usa para roles de curso (course)
-AND ra.roleid = 'tu_id_de_rol' -- Reemplaza 'tu_id_de_rol' con el ID del rol "students"
-GROUP BY g.id, g.name
+AND c.contextlevel = 50 -- El nivel de contexto 50 se usa para roles de curso 
+
+
+
+# opción a
+
+SELECT
+    u.firstname AS Nombre,
+    u.lastname AS Apellido,
+    c.fullname AS Curso,
+    g.finalgrade AS AvanceCurso
+FROM mdl_user AS u
+JOIN mdl_user_enrolments AS ue ON u.id = ue.userid
+JOIN mdl_enrol AS e ON ue.enrolid = e.id
+JOIN mdl_course AS c ON e.courseid = c.id
+LEFT JOIN mdl_grade_grades AS g ON u.id = g.userid AND c.id = g.courseid
+WHERE c.id = 'tu_id_de_curso';
+
+
+
+# opcion b
+
+SELECT
+    u.firstname AS Nombre,
+    u.lastname AS Apellido,
+    c.fullname AS Curso,
+    SUM(g.finalgrade) AS AvanceSemana
+FROM mdl_user AS u
+JOIN mdl_user_enrolments AS ue ON u.id = ue.userid
+JOIN mdl_enrol AS e ON ue.enrolid = e.id
+JOIN mdl_course AS c ON e.courseid = c.id
+LEFT JOIN mdl_grade_grades AS g ON u.id = g.userid AND c.id = g.courseid
+LEFT JOIN mdl_logstore_standard_log AS l ON u.id = l.userid
+WHERE c.id = 'tu_id_de_curso'
+    AND l.timecreated >= UNIX_TIMESTAMP(CURRENT_DATE) - (DAYOFWEEK(CURRENT_DATE) - 1) * 86400
+    AND l.timecreated < UNIX_TIMESTAMP(CURRENT_DATE) + (8 - DAYOFWEEK(CURRENT_DATE)) * 86400
+GROUP BY u.id, u.firstname, u.lastname, c.fullname;
 
 <p align="center">
     
