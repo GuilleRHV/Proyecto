@@ -141,6 +141,42 @@ WHERE c.id = 'tu_id_de_curso'
     AND l.timecreated < UNIX_TIMESTAMP(CURRENT_DATE) + (8 - DAYOFWEEK(CURRENT_DATE)) * 86400
 GROUP BY u.id, u.firstname, u.lastname, c.fullname;
 
+
+
+# opción 3
+
+SELECT
+    u.firstname AS nombre_alumno,
+    u.lastname AS apellido_alumno,
+    c.fullname AS nombre_curso,
+    CASE
+        WHEN ue.timecompleted IS NOT NULL THEN 'Terminado'
+        ELSE 'No terminado'
+    END AS estado_curso
+FROM
+    mdl_user AS u
+INNER JOIN
+    mdl_user_enrolments AS ue ON u.id = ue.userid
+INNER JOIN
+    mdl_enrol AS e ON ue.enrolid = e.id
+INNER JOIN
+    mdl_course AS c ON e.courseid = c.id
+WHERE
+    c.id = 'ID_DEL_CURSO' -- Reemplaza 'ID_DEL_CURSO' con el ID del curso que deseas consultar
+ORDER BY
+    u.lastname, u.firstname;
+
+
+# Mustache
+require_once($CFG->libdir . '/mustache/src/Mustache/Autoloader.php');
+
+
+$mustache = new \Mustache_Engine;
+$template = file_get_contents($plugin->dir . '/templates/tu_plantilla.mustache');
+$output = $mustache->render($template, $tu_contexto_de_datos);
+
+$this->content->text = $output;
+
 <p align="center">
     
 # Bibliogames
