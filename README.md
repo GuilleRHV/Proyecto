@@ -177,6 +177,35 @@ $output = $mustache->render($template, $tu_contexto_de_datos);
 
 $this->content->text = $output;
 
+
+
+define(['jquery'], function($) {
+    return {
+        init: function() {
+            // Cuando se cambia la selección en el selector de cursos.
+            $('#cursoSelector').on('change', function() {
+                var cursoId = $(this).val();
+
+                // Realiza una solicitud AJAX para obtener la lista de profesores.
+                $.ajax({
+                    type: 'POST',
+                    url: M.cfg.wwwroot + '/local/tu_plugin/ajax.php',
+                    data: {
+                        action: 'get_profesores_by_curso',
+                        cursoId: cursoId,
+                        sesskey: M.cfg.sesskey,
+                    },
+                    success: function(data) {
+                        // Actualiza el selector de profesores con los datos recibidos.
+                        $('#profesorSelector').html(data);
+                    },
+                });
+            });
+        },
+    };
+});
+
+
 <p align="center">
     
 # Bibliogames
