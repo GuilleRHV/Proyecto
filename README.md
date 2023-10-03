@@ -206,6 +206,53 @@ define(['jquery'], function($) {
 });
 
 
+SELECT c.id AS cohort_id, c.name AS cohort_name
+FROM mdl_cohort c
+JOIN mdl_cohort_members cm ON c.id = cm.cohortid
+JOIN mdl_context ctx ON cm.contextid = ctx.id
+JOIN mdl_role_assignments ra ON ctx.instanceid = ra.contextid
+WHERE ctx.contextlevel = 50 -- Nivel de contexto del curso
+AND ra.roleid = 3 -- ID del rol de estudiante (puede variar según tu configuración)
+AND ctx.instanceid = [ID_DEL_CURSO]; -- Reemplaza [ID_DEL_CURSO] con el ID del curso deseado
+
+
+
+Para agregar un enlace$COURSE, debes modificar el archivo lib.phpde tu complemento y definir la función `local_tu_plugin_extend_navigation_courseparaca
+
+Crea o modifica el archivo lib.phpde tu complemento:
+Asegúrese de que su complemento tenga un archivo lib.phpen su directorio. Este
+
+Agrega la función de extensión de navegación (dentro de lib.php)
+
+
+function local_tu_plugin_extend_navigation_course($navigation, $course, $context) {
+    global $CFG, $PAGE;
+
+    if ($context->contextlevel == CONTEXT_COURSE && has_capability('local/tu_plugin:view', $context)) {
+        $url = new moodle_url('/local/tu_plugin/view.php', ['courseid' => $course->id]);
+        $node = navigation_node::create(
+            'Tu Plugin', // Nombre del enlace en el menú
+            $url, // URL del enlace
+            navigation_node::TYPE_CUSTOM
+        );
+        $navigation->add_node($node);
+    }
+}
+
+function local_tu_plugin_extend_navigation(global_navigation $navigation) {
+    // No se necesita código aquí para este caso.
+}
+
+function local_tu_plugin_extend_settings_navigation(settings_navigation $navigation) {
+    // No se necesita código aquí para este caso.
+}
+
+function local_tu_plugin_extend_navigation_block(block_navigation $navigation) {
+    // No se necesita código aquí para este caso.
+}
+
+
+
 <p align="center">
     
 # Bibliogames
